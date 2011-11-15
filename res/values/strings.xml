@@ -4,9 +4,13 @@
 	<string name="app_name">BubbleSpot</string>
 
 	<string name="escolha_op">Escolha uma opção</string>
-	<string-array name="opcoes">
+	<string-array name="opcoes_shopping">
 		<item>Nome</item>
 		<item>Localização</item>
+	</string-array>
+	<string-array name="opcoes_loja">
+		<item>Nome</item>
+		<item>Área de Negócio</item>
 	</string-array>
 
 </resources>
