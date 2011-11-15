@@ -33,9 +33,19 @@ public class ShoppingDetail extends Activity {
 	private String imagem_url;
 	private ProgressDialog dialog;
 	private Bitmap bImage;
+	private Button bPromocoes;
+	private Button bAgenda;
+	private Button bCinema;
+	private Button bMapa;
+	private Button bDirecoes;
+	private Button bPesquisa;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		ShoppingDetail.this.setContentView(R.layout.shoppingdetail);
+		Header header = (Header) findViewById(R.id.header);
+	    header.initHeader();
+	    initButtons();
 		
 		dialog = ProgressDialog.show(this, "", "Loading...",true);
 		Bundle b = this.getIntent().getExtras();
@@ -54,6 +64,65 @@ public class ShoppingDetail extends Activity {
 
 	}
 	
+	private void initButtons() {
+		bPromocoes = (Button) ShoppingDetail.this.findViewById(R.id.button2);
+		bPromocoes.setVisibility(View.GONE);
+		bPromocoes.setText("Promoções");
+		bPromocoes.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Toast.makeText(ShoppingDetail.this, "Brevemente Disponível", Toast.LENGTH_SHORT).show();
+			}
+		});
+		bAgenda = (Button) ShoppingDetail.this.findViewById(R.id.button3);
+		bAgenda.setVisibility(View.GONE);
+		bAgenda.setText("Agenda Cultural");
+		bAgenda.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Toast.makeText(ShoppingDetail.this, "Brevemente Disponível", Toast.LENGTH_SHORT).show();
+			}
+		});
+		
+		bCinema = (Button) ShoppingDetail.this.findViewById(R.id.button4);
+		bCinema.setVisibility(View.GONE);
+		bCinema.setText("Cinema");
+		bCinema.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Toast.makeText(ShoppingDetail.this, "Brevemente Disponível", Toast.LENGTH_SHORT).show();
+			}
+		});
+		
+		bMapa = (Button) ShoppingDetail.this.findViewById(R.id.button5);
+		bMapa.setVisibility(View.GONE);
+		bMapa.setText("Mapa");
+		bMapa.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				Toast.makeText(ShoppingDetail.this, "Brevemente Disponível", Toast.LENGTH_SHORT).show();
+			}
+		});
+		
+		bDirecoes = (Button) ShoppingDetail.this.findViewById(R.id.button6);
+		bDirecoes.setVisibility(View.GONE);
+		bDirecoes.setText("Obter Direções");
+		bDirecoes.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(final View v) {
+				Location l = Utils.getLocation(ShoppingDetail.this);
+				if(l!=null){
+		    	Intent i = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?"+
+		    			"saddr=" + l.getLatitude()+","+ l.getLongitude() + 
+		    			"&daddr=" + ShoppingDetail.this.latitude + "," + ShoppingDetail.this.longitude));
+		    	startActivityForResult(i, 0);
+				}
+				else
+					Toast.makeText(getApplicationContext(), "Não foi possivel obter a sua localização!", Toast.LENGTH_SHORT).show();
+			}
+		});
+		
+		bPesquisa = (Button) ShoppingDetail.this.findViewById(R.id.button7);
+		bPesquisa.setVisibility(View.GONE);
+		bPesquisa.setText("Pesquisar");
+	}
+
 	class RetrieveLogo extends AsyncTask<String, Integer, String> {
 
 		@Override
@@ -67,76 +136,21 @@ public class ShoppingDetail extends Activity {
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
-			
-			
-			
 			return null;
 		}
 		
 		@Override
 		protected void onPostExecute(String result) {
-			ShoppingDetail.this.setContentView(R.layout.shoppingdetail);
-			Header header = (Header) findViewById(R.id.header);
-		    header.initHeader();
-			Search.pesquisa(ShoppingDetail.this, ShoppingDetail.this);
 			ImageView logo = (ImageView) ShoppingDetail.this.findViewById(R.id.sdLogo);
 			logo.setImageBitmap(bImage);
-			
-			
-			Button bPromocoes = (Button) ShoppingDetail.this.findViewById(R.id.button2);
-			bPromocoes.setText("Promoções");
-			bPromocoes.setOnClickListener(new View.OnClickListener() {
-				public void onClick(View v) {
-					Toast.makeText(ShoppingDetail.this, "Brevemente Disponível", Toast.LENGTH_SHORT).show();
-				}
-			});
-			Button bAgenda = (Button) ShoppingDetail.this.findViewById(R.id.button3);
-			bAgenda.setText("Agenda Cultural");
-			bAgenda.setOnClickListener(new View.OnClickListener() {
-				public void onClick(View v) {
-					Toast.makeText(ShoppingDetail.this, "Brevemente Disponível", Toast.LENGTH_SHORT).show();
-				}
-			});
-			
-			Button bCinema = (Button) ShoppingDetail.this.findViewById(R.id.button4);
-			bCinema.setText("Cinema");
-			bCinema.setOnClickListener(new View.OnClickListener() {
-				public void onClick(View v) {
-					Toast.makeText(ShoppingDetail.this, "Brevemente Disponível", Toast.LENGTH_SHORT).show();
-				}
-			});
-			
-			Button bMapa = (Button) ShoppingDetail.this.findViewById(R.id.button5);
-			bMapa.setText("Mapa");
-			bMapa.setOnClickListener(new View.OnClickListener() {
-				public void onClick(View v) {
-					Toast.makeText(ShoppingDetail.this, "Brevemente Disponível", Toast.LENGTH_SHORT).show();
-				}
-			});
-			
-			Button bDirecoes = (Button) ShoppingDetail.this.findViewById(R.id.button6);
-			bDirecoes.setText("Obter Direções");
-			bDirecoes.setOnClickListener(new View.OnClickListener() {
-				@Override
-				public void onClick(final View v) {
-					Location l = Utils.getLocation(ShoppingDetail.this);
-					if(l!=null){
-			    	Intent i = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?"+
-			    			"saddr=" + l.getLatitude()+","+ l.getLongitude() + 
-			    			"&daddr=" + ShoppingDetail.this.latitude + "," + ShoppingDetail.this.longitude));
-			    	startActivityForResult(i, 0);
-					}
-					else
-						Toast.makeText(getApplicationContext(), "Não foi possivel obter a sua localização!", Toast.LENGTH_SHORT).show();
-				}
-			});
-			
-			Button bPesquisa = (Button) ShoppingDetail.this.findViewById(R.id.button7);
-			bPesquisa.setText("Pesquisar");
+			bPromocoes.setVisibility(View.VISIBLE);
+			bAgenda.setVisibility(View.VISIBLE);
+			bCinema.setVisibility(View.VISIBLE);
+			bMapa.setVisibility(View.VISIBLE);
+			bDirecoes.setVisibility(View.VISIBLE);
+			bPesquisa.setVisibility(View.VISIBLE);
 			dialog.dismiss();
-			
 		}
-		
 	}
 	
 	
