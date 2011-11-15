@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="hello">Hello World, Main!</string>
+	<string name="app_name">BubbleSpot</string>
+
+	<string name="escolha_op">Escolha uma opção</string>
+	<string-array name="opcoes">
+		<item>Nome</item>
+		<item>Localização</item>
+	</string-array>
+
+</resources>
