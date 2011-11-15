@@ -107,7 +107,7 @@ public class ShoppingDetail extends Activity {
 			});
 			
 			Button bMapa = (Button) ShoppingDetail.this.findViewById(R.id.button5);
-			bMapa.setText("Mapa");
+			bMapa.setText("Planta");
 			bMapa.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View v) {
 					Toast.makeText(ShoppingDetail.this, "Brevemente Disponível", Toast.LENGTH_SHORT).show();
@@ -132,7 +132,12 @@ public class ShoppingDetail extends Activity {
 			});
 			
 			Button bPesquisa = (Button) ShoppingDetail.this.findViewById(R.id.button7);
-			bPesquisa.setText("Pesquisar");
+			bPesquisa.setText("Lojas");
+			bPesquisa.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View v) {
+					Toast.makeText(ShoppingDetail.this, "Brevemente Disponível", Toast.LENGTH_SHORT).show();
+				}
+			});
 			dialog.dismiss();
 			
 		}

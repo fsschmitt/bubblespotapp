@@ -1,22 +1,33 @@
 package com.bubblespot;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class Search {
 	
+	private static Bundle b;
 	
 	public static void pesquisa(final Context c, final Activity a) {
 		
 		final CharSequence[] items = {"Shoppings", "Lojas", "Promoções"};
+		
 
 		ImageView lupa = (ImageView) a.findViewById(R.id.lupa);
 		lupa.setOnClickListener(new View.OnClickListener() {
@@ -29,8 +40,52 @@ public class Search {
 						switch(item){
 						case 0:
 							if (!checkNetwork(c, a)){
-								Intent intent = new Intent(c, SearchShopping.class);
-								a.startActivityForResult(intent, 0);
+								Dialog dialog2 = new Dialog(c);
+								dialog2.setContentView(R.layout.shoppingsearch);
+								dialog2.setTitle("Pesquisa de Shoppings");
+								dialog2.setCancelable(true);
+								
+								final Spinner spinner = (Spinner) dialog2.findViewById(R.id.spinner);
+								ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+										c, R.array.opcoes, android.R.layout.simple_spinner_item);
+								adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+								spinner.setAdapter(adapter);
+								
+								
+								final EditText nome = (EditText) dialog2.findViewById(R.id.pesq_nome);
+
+
+								final Button pesquisa = (Button) dialog2.findViewById(R.id.pesquisar);
+								pesquisa.setOnClickListener(new View.OnClickListener() {
+
+									public void onClick(View v) {
+										if (!checkNetwork(c,a)){
+											String query = "";
+											try {
+												String nomep = ""+nome.getText();
+												String queryTemp = nomep.trim().replace(" ", "+");
+												query = URLEncoder.encode(queryTemp, "utf-8");
+												System.out.println("QUERY: "+query);
+												String pesquisa = "search/shoppings?query=" + query + "&pesquisa=";
+												if(spinner.getSelectedItem().toString().equals("Nome")){
+													pesquisa+="0";
+												}
+												else if (spinner.getSelectedItem().toString().equals("Localização")){
+													pesquisa+="1";
+												}
+												pesquisa+="&format=json";
+												Intent intent = new Intent(v.getContext(), ListShoppings.class);
+												b = new Bundle();
+												b.putString("text", pesquisa);
+												intent.putExtras(b);
+												a.startActivityForResult(intent, 0);
+											} catch (UnsupportedEncodingException e) {
+												Toast.makeText(c, "Erro ao tentar efetuar a pesquisa.", Toast.LENGTH_LONG).show();
+											}
+										}
+									}
+								});
+								dialog2.show();
 							}
 							break;
 						case 1:
