@@ -9,7 +9,8 @@ package com.bubblespot;
 
 public final class R {
     public static final class array {
-        public static final int opcoes=0x7f050000;
+        public static final int opcoes_loja=0x7f050001;
+        public static final int opcoes_shopping=0x7f050000;
     }
     public static final class attr {
     }
@@ -19,11 +20,13 @@ public final class R {
         public static final int cima=0x7f020002;
         public static final int icon=0x7f020003;
         public static final int img_default=0x7f020004;
-        public static final int logo2=0x7f020005;
-        public static final int lupa=0x7f020006;
-        public static final int meio_dir_baixo=0x7f020007;
-        public static final int meio_dir_cima=0x7f020008;
-        public static final int meio_esq=0x7f020009;
+        public static final int loading_images=0x7f020005;
+        public static final int loading_shoppings=0x7f020006;
+        public static final int logo2=0x7f020007;
+        public static final int lupa=0x7f020008;
+        public static final int meio_dir_baixo=0x7f020009;
+        public static final int meio_dir_cima=0x7f02000a;
+        public static final int meio_esq=0x7f02000b;
     }
     public static final class id {
         public static final int baixo=0x7f07000c;
@@ -38,9 +41,9 @@ public final class R {
         public static final int centro_esq=0x7f070008;
         public static final int cima=0x7f070006;
         public static final int corpo=0x7f070000;
-        public static final int detalhes=0x7f07002a;
+        public static final int detalhes=0x7f07002b;
         public static final int distancia=0x7f070023;
-        public static final int gridView1=0x7f070024;
+        public static final int gridView1=0x7f070028;
         public static final int header=0x7f070004;
         public static final int layout_root=0x7f070018;
         public static final int linearLayout1=0x7f070001;
@@ -51,11 +54,12 @@ public final class R {
         public static final int linearLayout6=0x7f070014;
         public static final int linearLayout7=0x7f070015;
         public static final int linearLayout8=0x7f07000d;
+        public static final int listView1=0x7f070024;
         public static final int logo=0x7f070002;
         public static final int lupa=0x7f070003;
         public static final int mapa=0x7f07001f;
-        public static final int perto=0x7f070028;
-        public static final int pesq_nome=0x7f070025;
+        public static final int perto=0x7f070029;
+        public static final int pesq_nome=0x7f070026;
         public static final int pesquisar=0x7f070027;
         public static final int relativeLayout1=0x7f070020;
         public static final int sCoordenadas=0x7f07001d;
@@ -67,8 +71,8 @@ public final class R {
         public static final int sdLogo=0x7f07000e;
         public static final int sn_nome=0x7f070022;
         public static final int sn_shopping=0x7f070021;
-        public static final int sobre=0x7f070029;
-        public static final int spinner=0x7f070026;
+        public static final int sobre=0x7f07002a;
+        public static final int spinner=0x7f070025;
     }
     public static final class layout {
         public static final int empty=0x7f030000;
@@ -81,6 +85,7 @@ public final class R {
         public static final int shoppings=0x7f030007;
         public static final int shoppingsearch=0x7f030008;
         public static final int shoppingsnear=0x7f030009;
+        public static final int shops=0x7f03000a;
     }
     public static final class menu {
         public static final int main_menu=0x7f060000;
