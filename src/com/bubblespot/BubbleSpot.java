@@ -32,7 +32,7 @@ public class BubbleSpot extends Activity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.main);
 		mainCont=this;
-
+		Utils.res = this.getResources();
 		
 		Header header = (Header) findViewById(R.id.header);
 	    header.initHeader();

@@ -15,7 +15,7 @@ public class ImageAdapter extends BaseAdapter {
 
     ImageAdapter(Context c, ArrayList<Bitmap> bImages) {
         mContext = c;
-        this.bImages = bImages;		
+        this.bImages = bImages;
     }
 
     public int getCount() {
@@ -36,7 +36,7 @@ public class ImageAdapter extends BaseAdapter {
         if (convertView == null) {
             imageView = new ImageView(mContext);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setPadding(8, 8, 8, 8);
+            imageView.setPadding(0, 5, 0, 5);
             imageView.setAdjustViewBounds(true);
             
         } else {

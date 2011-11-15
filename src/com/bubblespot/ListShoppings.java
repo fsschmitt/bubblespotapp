@@ -1,11 +1,8 @@
 package com.bubblespot;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -16,24 +13,28 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
 
 
 
 public class ListShoppings extends Activity{
-	//private ListView list;
 	private ArrayList<String> nomes;
 	private ArrayList<Bitmap> bImages;
 	private ArrayList<Shopping> shoppings;
+	private ArrayList<String> images;
 	private ProgressDialog dialog;
-	private GridView gridview;
+	private ListView listview;
+	private ImageAdapter iAdapter;
 	private Bundle b;
 	private String text;
+	private Boolean loading;
 	
 	 public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
@@ -47,12 +48,15 @@ public class ListShoppings extends Activity{
 	        
 	        dialog = ProgressDialog.show(this, "", "Loading...",true);
 	        b = new Bundle();
+	        loading = true;
 	        shoppings = new ArrayList<Shopping>();
 	        nomes = new ArrayList<String>();
 	        bImages = new ArrayList<Bitmap>();
-	        gridview = (GridView) findViewById(R.id.gridView1);
-	        gridview.setNumColumns(1);
-	        gridview.setOnItemClickListener(new OnItemClickListener() {
+	        images = new ArrayList<String>();
+	        listview = (ListView) findViewById(R.id.listView1);
+	        iAdapter = new ImageAdapter(ListShoppings.this, bImages);
+	        listview.setAdapter(iAdapter);
+	        listview.setOnItemClickListener(new OnItemClickListener() {
 	        	@Override
 	        	public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 	                Intent intent = new Intent(v.getContext(), ShoppingDetail.class);
@@ -92,7 +96,7 @@ public class ListShoppings extends Activity{
 				String line = null;
 				JSONArray jo = null;
 				try {
-					line = getJSONLine(url);
+					line = Utils.getJSONLine(url);
 					jo = new JSONArray(line);
 					for (int i = 0; i < jo.length(); i++) {
 						JSONObject shopping = jo.getJSONObject(i);
@@ -104,8 +108,7 @@ public class ListShoppings extends Activity{
 						String Longitude = shopping.getString("longitude");
 						String Telefone = shopping.getString("telefone");
 						String Email = shopping.getString("email");
-						
-						bImages.add(Utils.loadImageFromNetwork(Imagem));
+						images.add(Imagem);
 						nomes.add(Nome);
 						Shopping s = new Shopping(Nome,Localizacao,Descricao,Telefone,Email,Latitude,Longitude,Imagem);
 						shoppings.add(s);
@@ -123,10 +126,9 @@ public class ListShoppings extends Activity{
 
 			// Called once the background activity has completed
 			@Override
-			protected void onPostExecute(String result) { //
-				if(nomes != null && !nomes.isEmpty()){
-					gridview.setAdapter(new ImageAdapter(ListShoppings.this, bImages));
-					dialog.dismiss();
+			protected void onPostExecute(String result) { 
+				if(nomes != null && !nomes.isEmpty() && !images.isEmpty()){
+					new RetrieveImages().execute();
 				}
 				else{
 					dialog.dismiss();
@@ -138,16 +140,39 @@ public class ListShoppings extends Activity{
 			}
 	 }
 	 
-	 public static String getJSONLine(URL url) throws IOException {
-			BufferedReader in;
+	 
+	 class RetrieveImages extends AsyncTask<String, Integer, String> {
 
-			URLConnection tc = url.openConnection();
-			tc.setDoInput(true);
-			tc.setDoOutput(true);
-			in = new BufferedReader(new InputStreamReader(tc.getInputStream()));	
-			return in.readLine();
+			@Override
+			protected String doInBackground(String... arg0) {
+				
+				
+				try{
+					if(loading)
+						bImages.add(Utils.loadImageFromNetwork(images.get(0)));
+					else
+						bImages.add(bImages.size()-1,Utils.loadImageFromNetwork(images.get(0)));
+				}
+				catch(Exception e){
+					Log.e("Erro ao baixar as imagens.", e.getMessage());
+				}
+				return null;
+			}
+			
+			@Override
+			protected void onPostExecute(String result) {
+				if(loading){
+					dialog.dismiss();
+					bImages.add(Utils.overlay(BitmapFactory.decodeResource(Utils.res, R.drawable.loading_shoppings),BitmapFactory.decodeResource(Utils.res, R.drawable.icon)));
+					loading = false;
+				}
+				images.remove(0);
+				iAdapter.notifyDataSetChanged();
+				if(images.size()>0){
+					new RetrieveImages().execute();
+				}
+				else
+					bImages.remove(bImages.size()-1);
+			}
 		}
-	 
-	 
-	
 }
