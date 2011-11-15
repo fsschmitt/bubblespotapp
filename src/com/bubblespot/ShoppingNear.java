@@ -16,12 +16,14 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.GridView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
 
 
 
@@ -29,29 +31,34 @@ public class ShoppingNear extends Activity{
 	private ArrayList<String> nomes;
 	private ArrayList<Bitmap> bImages;
 	private ArrayList<Shopping> shoppings;
+	private ArrayList<String> images;
+	private ShoppingAdapter sAdapter;
 	private ProgressDialog dialog;
-	private GridView gridview;
+	private ListView listview;
 	private Bundle b;
 	private String text;
+	private Boolean loading;
+	private int countImages;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.shoppings);
 		Bundle c = this.getIntent().getExtras();
 		this.text = c.getString("text");
-
+		loading = true;
 		Header header = (Header) findViewById(R.id.header);
 		header.initHeader();
 		Search.pesquisa(this, ShoppingNear.this);
-
 		dialog = ProgressDialog.show(this, "", "Loading...",true);
 		b = new Bundle();
 		shoppings = new ArrayList<Shopping>();
 		nomes = new ArrayList<String>();
 		bImages = new ArrayList<Bitmap>();
-		gridview = (GridView) findViewById(R.id.gridView1);
-		gridview.setNumColumns(1);
-		gridview.setOnItemClickListener(new OnItemClickListener() {
+		images = new ArrayList<String>();
+		listview = (ListView) findViewById(R.id.listView1);
+		sAdapter = new ShoppingAdapter(ShoppingNear.this, bImages, shoppings);
+		listview.setAdapter(sAdapter);
+		listview.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 				Intent intent = new Intent(v.getContext(), ShoppingDetail.class);
@@ -78,9 +85,10 @@ public class ShoppingNear extends Activity{
 
 		@Override
 		protected String doInBackground(String... arg0) {
-
+			countImages=0;
 			nomes.clear();
 			bImages.clear();
+			Log.d("GPS-Message",text);
 			String uri = "http://bubblespot.heroku.com/" + text;
 
 			URL url = null;
@@ -110,9 +118,7 @@ public class ShoppingNear extends Activity{
 					distancia = distancia * 1.6;
 
 					distancia = Utils.roundToDecimals(distancia, 2);
-
-
-					bImages.add(Utils.loadImageFromNetwork(Imagem));
+					images.add(Imagem);
 					nomes.add(Nome);
 					Shopping s = new Shopping(Nome,Localizacao,Descricao,Telefone,Email,Latitude,Longitude,Imagem,distancia);
 					shoppings.add(s);
@@ -128,15 +134,43 @@ public class ShoppingNear extends Activity{
 		// Called once the background activity has completed
 		@Override
 		protected void onPostExecute(String result) { //
-			if(nomes != null && !nomes.isEmpty()){
-				gridview.setAdapter(new ShoppingAdapter(ShoppingNear.this, bImages, shoppings));
-				dialog.dismiss();
+			if(nomes != null && !nomes.isEmpty() && !images.isEmpty()){
+				for(int i = 0; i<images.size();i++)
+					bImages.add(BitmapFactory.decodeResource(Utils.res, R.drawable.loading_images));
+				new RetrieveImages().execute();
 			}
 			else{
 				dialog.dismiss();
 				setResult(RESULT_FIRST_USER);
 				finish();
 			}
+		}
+	}
+	
+	class RetrieveImages extends AsyncTask<String, Integer, String> {
+
+		@Override
+		protected String doInBackground(String... arg0) {
+			try{
+					bImages.set(countImages,Utils.loadImageFromNetwork(images.get(0)));
+					countImages++;
+			}
+			catch(Exception e){
+				Log.e("Erro ao baixar as imagens.", e.getMessage());
+			}
+			return null;
+		}
+		
+		@Override
+		protected void onPostExecute(String result) {
+			if(loading){
+				dialog.dismiss();
+				loading = false;
+			}
+			images.remove(0);
+			sAdapter.notifyDataSetChanged();
+			if(images.size()>0)
+				new RetrieveImages().execute();
 		}
 	}
 
