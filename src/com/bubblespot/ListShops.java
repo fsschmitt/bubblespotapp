@@ -55,7 +55,7 @@ public class ListShops extends Activity{
 	        gridview.setOnItemClickListener(new OnItemClickListener() {
 	        	@Override
 	        	public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-	                Intent intent = new Intent(v.getContext(), ShoppingDetail.class);
+	                Intent intent = new Intent(v.getContext(), ShopDetail.class);
 	                Loja loja = lojas.get(position);
 	                b.putString("lojaNome", loja.getNome());
 	                b.putInt("lojaPiso", loja.getPiso());
@@ -63,6 +63,8 @@ public class ListShops extends Activity{
 	                b.putString("lojaTelefone", loja.getTelefone());
 	                b.putString("lojaDetalhes", loja.getDetalhes());
 	                b.putString("lojaImagem", loja.getImagem());
+	                b.putString("lojaTags", loja.getTags());
+	                b.putString("lojaShopping", loja.getShopping());
 	                intent.putExtras(b);
 					startActivity(intent);
 	        	}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+	<item android:icon="@drawable/about" android:id="@+id/loja_promocoes"
+		android:title="Promoções" />
+	<item android:icon="@drawable/about" android:id="@+id/loja_partilhar"
+		android:title="Partilhar" />
+</menu>

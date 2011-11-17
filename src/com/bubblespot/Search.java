@@ -126,7 +126,7 @@ public class Search {
 													pesquisa+="1";
 												}
 												pesquisa+="&format=json";
-												Intent intent = new Intent(v.getContext(), ListShoppings.class);
+												Intent intent = new Intent(v.getContext(), ListShops.class);
 												b = new Bundle();
 												b.putString("text", pesquisa);
 												intent.putExtras(b);

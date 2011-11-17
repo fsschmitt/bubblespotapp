@@ -56,7 +56,13 @@ public class BubbleSpot extends Activity {
 		loja.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
-				Toast.makeText(BubbleSpot.this, "Brevemente Disponível", Toast.LENGTH_SHORT).show();
+				if (!checkNetwork()){
+					Intent intent = new Intent(v.getContext(), ListShops.class);
+					b = new Bundle();
+					b.putString("text", "lojas?format=json");
+					intent.putExtras(b);
+					startActivityForResult(intent, 0);
+				}
 			}
 		});
 		
@@ -89,7 +95,7 @@ public class BubbleSpot extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		if(resultCode == RESULT_FIRST_USER && requestCode == 0) {
-			Toast.makeText(this, "Não foi encontrado nenhum shopping!", Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Não foi encontrado nenhum resultado!", Toast.LENGTH_LONG).show();
 		}     
 	}
 

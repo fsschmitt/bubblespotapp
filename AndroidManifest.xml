@@ -31,7 +31,7 @@
 		</activity>
 
 		<activity android:theme="@android:style/Theme.NoTitleBar"
-			android:name="SearchShopping" android:screenOrientation="portrait">
+			android:name="ListShops" android:screenOrientation="portrait">
 		</activity>
 		
 		<activity android:theme="@android:style/Theme.NoTitleBar"
