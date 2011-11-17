@@ -103,11 +103,11 @@ public class ListShops extends Activity{
 						String Detalhes = loja.getString("detalhes");
 						String Imagem = loja.getString("imagem");
 						String tags = loja.getString("tags");
-						String shopping = loja.getString("shopping");
+						String shoppingId = loja.getString("shopping_id");
 						
 						bImages.add(Utils.loadImageFromNetwork(Imagem));
 						nomes.add(Nome);
-						Loja s = new Loja(Nome, piso, numero, Telefone, Detalhes, Imagem, tags, shopping);
+						Loja s = new Loja(Nome, piso, numero, Telefone, Detalhes, Imagem, tags, shoppingId);
 						lojas.add(s);
 					}
 				} catch (IOException e) {

@@ -69,6 +69,7 @@ public class ListShoppings extends Activity{
 	                b.putString("shoppingLongitude", sb.getLongitude());
 	                b.putString("shoppingUrl", sb.getImagem_url());
 	                b.putString("shoppingEmail", sb.getEmail());
+	                b.putInt("id", sb.getId());
 	                intent.putExtras(b);
 					startActivity(intent);
 	        	}
@@ -108,9 +109,10 @@ public class ListShoppings extends Activity{
 						String Longitude = shopping.getString("longitude");
 						String Telefone = shopping.getString("telefone");
 						String Email = shopping.getString("email");
+						int id = shopping.getInt("id");
 						images.add(Imagem);
 						nomes.add(Nome);
-						Shopping s = new Shopping(Nome,Localizacao,Descricao,Telefone,Email,Latitude,Longitude,Imagem);
+						Shopping s = new Shopping(id,Nome,Localizacao,Descricao,Telefone,Email,Latitude,Longitude,Imagem);
 						shoppings.add(s);
 					}
 				} catch (IOException e) {

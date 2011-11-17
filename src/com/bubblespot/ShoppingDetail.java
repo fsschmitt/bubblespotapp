@@ -31,6 +31,7 @@ public class ShoppingDetail extends Activity {
 	private String nome;
 	private String telefone;
 	private String imagem_url;
+	private int id;
 	private ProgressDialog dialog;
 	private Bitmap bImage;
 	private Button bPromocoes;
@@ -39,6 +40,7 @@ public class ShoppingDetail extends Activity {
 	private Button bMapa;
 	private Button bDirecoes;
 	private Button bPesquisa;
+	private int SEARCH_REQUEST = 1;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -57,6 +59,7 @@ public class ShoppingDetail extends Activity {
 		this.longitude = b.getString("shoppingLongitude");
 		this.email = b.getString("shoppingEmail");
 		this.imagem_url = b.getString("shoppingUrl");
+		this.id = b.getInt("id");
 		
 		
 		new RetrieveLogo().execute();
@@ -93,7 +96,7 @@ public class ShoppingDetail extends Activity {
 		
 		bMapa = (Button) ShoppingDetail.this.findViewById(R.id.button5);
 		bMapa.setVisibility(View.GONE);
-		bMapa.setText("Mapa");
+		bMapa.setText("Planta");
 		bMapa.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Toast.makeText(ShoppingDetail.this, "Brevemente Disponível", Toast.LENGTH_SHORT).show();
@@ -120,7 +123,17 @@ public class ShoppingDetail extends Activity {
 		
 		bPesquisa = (Button) ShoppingDetail.this.findViewById(R.id.button7);
 		bPesquisa.setVisibility(View.GONE);
-		bPesquisa.setText("Pesquisar");
+		bPesquisa.setText("Lojas");
+		bPesquisa.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+					Intent intent = new Intent(v.getContext(), ListShops.class);
+					Bundle b = new Bundle();
+					b.putString("text", "shoppings/"+id+"/lojas?format=json");
+					intent.putExtras(b);
+					startActivityForResult(intent, SEARCH_REQUEST);
+			}
+		});
 	}
 
 	class RetrieveLogo extends AsyncTask<String, Integer, String> {
@@ -209,7 +222,13 @@ public class ShoppingDetail extends Activity {
 		}
 	}
 
-
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	    super.onActivityResult(requestCode, resultCode, data);
+	    if(resultCode == RESULT_FIRST_USER && requestCode == SEARCH_REQUEST) {
+	    	Toast.makeText(this, "Este shopping não tem nenhuma loja registada!", Toast.LENGTH_LONG).show();
+	    }     
+	}
 
 
 }

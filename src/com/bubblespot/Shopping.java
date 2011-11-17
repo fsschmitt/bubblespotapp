@@ -11,8 +11,9 @@ public class Shopping {
 	private String email;
 	private String imagem_url;
 	private double dist;
+	private int id;
 	
-	Shopping(String nome, String localizacao, String descricao, String telefone, String email, String latitude, String longitude, String image_url, double dist){
+	Shopping(int id,String nome, String localizacao, String descricao, String telefone, String email, String latitude, String longitude, String image_url, double dist){
 		
 		this.setNome(nome);
 		this.setLocalizacao(localizacao);
@@ -23,9 +24,10 @@ public class Shopping {
 		this.setEmail(email);
 		this.setImagem_url(image_url);
 		this.setDist(dist);
+		this.setId(id);
 	}
 
-	Shopping(String nome, String localizacao, String descricao, String telefone, String email, String latitude, String longitude, String image_url){
+	Shopping(int id,String nome, String localizacao, String descricao, String telefone, String email, String latitude, String longitude, String image_url){
 		
 		this.setNome(nome);
 		this.setLocalizacao(localizacao);
@@ -35,6 +37,7 @@ public class Shopping {
 		this.setLongitude(longitude);
 		this.setEmail(email);
 		this.setImagem_url(image_url);
+		this.setId(id);
 	}
 	
 	public void setDescricao(String descricao) {
@@ -107,6 +110,14 @@ public class Shopping {
 
 	public void setDist(double dist) {
 		this.dist = dist;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 }
