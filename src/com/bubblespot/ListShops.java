@@ -103,7 +103,7 @@ public class ListShops extends Activity{
 						String Detalhes = loja.getString("detalhes");
 						String Imagem = loja.getString("imagem");
 						String tags = loja.getString("tags");
-						String shoppingId = loja.getString("shopping_id");
+						String shoppingId = loja.getString("shopping_nome");
 						
 						bImages.add(Utils.loadImageFromNetwork(Imagem));
 						nomes.add(Nome);
