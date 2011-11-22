@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-	<item android:icon="@drawable/about" android:id="@+id/perto"
+	<item android:icon="@drawable/shoppings_perto" android:id="@+id/perto"
 		android:title="Shoppings Perto de Mim" />
 	<item android:icon="@drawable/about" android:id="@+id/sobre"
 		android:title="Sobre" />

@@ -74,7 +74,7 @@ public class ShopDetail extends Activity {
 			Search.pesquisa(ShopDetail.this, ShopDetail.this);
 			
 			TextView loja_shopping = (TextView) ShopDetail.this.findViewById(R.id.loja_shopping);
-			loja_shopping.setText(nome + "(" + shopping + ")");
+			loja_shopping.setText(nome + " (" + shopping + ")");
 			
 			ImageView logo = (ImageView) ShopDetail.this.findViewById(R.id.loja_logo);
 			logo.setImageBitmap(bImage);

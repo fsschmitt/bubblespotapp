@@ -36,7 +36,7 @@ public class ImageAdapter extends BaseAdapter {
         if (convertView == null) {
             imageView = new ImageView(mContext);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setPadding(0, 5, 0, 5);
+            imageView.setPadding(0, 10, 0, 10);
             imageView.setAdjustViewBounds(true);
             
         } else {
