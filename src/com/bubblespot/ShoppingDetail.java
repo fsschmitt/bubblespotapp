@@ -8,6 +8,7 @@ import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -30,6 +31,7 @@ public class ShoppingDetail extends Activity {
 	private String localizacao;
 	private String nome;
 	private String telefone;
+	private Bitmap imagem;
 	private String imagem_url;
 	private int id;
 	private ProgressDialog dialog;
@@ -59,12 +61,27 @@ public class ShoppingDetail extends Activity {
 		this.longitude = b.getString("shoppingLongitude");
 		this.email = b.getString("shoppingEmail");
 		this.imagem_url = b.getString("shoppingUrl");
-		this.id = b.getInt("id");
+		byte[] byteImage = b.getByteArray("shoppingImageByte");
+		if(byteImage != null){
+			this.imagem = BitmapFactory.decodeByteArray(byteImage, 0, byteImage.length);
+			this.id = b.getInt("id");
+			bImage = this.imagem;
+			
+			ImageView logo = (ImageView) ShoppingDetail.this.findViewById(R.id.sdLogo);
+			logo.setImageBitmap(bImage);
+			bPromocoes.setVisibility(View.VISIBLE);
+			bAgenda.setVisibility(View.VISIBLE);
+			bCinema.setVisibility(View.VISIBLE);
+			bMapa.setVisibility(View.VISIBLE);
+			bDirecoes.setVisibility(View.VISIBLE);
+			bPesquisa.setVisibility(View.VISIBLE);
+			dialog.dismiss();
+		}
+		else
+		{
+			new RetrieveLogo().execute();
+		}
 		
-		
-		new RetrieveLogo().execute();
-		
-
 	}
 	
 	private void initButtons() {
@@ -130,6 +147,7 @@ public class ShoppingDetail extends Activity {
 					Intent intent = new Intent(v.getContext(), ListShops.class);
 					Bundle b = new Bundle();
 					b.putString("text", "shoppings/"+id+"/lojas?format=json");
+					b.putInt("idShopping", id);
 					intent.putExtras(b);
 					startActivityForResult(intent, SEARCH_REQUEST);
 			}

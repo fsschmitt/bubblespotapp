@@ -1,5 +1,7 @@
 package com.bubblespot;
 
+import android.graphics.Bitmap;
+
 public class Shopping {
 	
 	private String latitude;
@@ -12,6 +14,7 @@ public class Shopping {
 	private String imagem_url;
 	private double dist;
 	private int id;
+	private Bitmap bImage;
 	
 	Shopping(int id,String nome, String localizacao, String descricao, String telefone, String email, String latitude, String longitude, String image_url, double dist){
 		
@@ -118,6 +121,14 @@ public class Shopping {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public Bitmap getbImage() {
+		return bImage;
+	}
+
+	public void setbImage(Bitmap bImage) {
+		this.bImage = bImage;
 	}
 
 }

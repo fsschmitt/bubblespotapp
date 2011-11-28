@@ -5,8 +5,6 @@ import java.net.MalformedURLException;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,52 +14,37 @@ import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class ShopDetail extends Activity {
+public class PromoDetail extends Activity {
 
-	private int id;
 	private String nome;
-	private int piso;
-	private int numero;
-	private String telefone;
-	private String detalhes;
-	private String imagem;
-	private String tags;
 	private String shopping;
-	private int idShopping;
+	private int loja_id;
 	private ProgressDialog dialog;
 	private Bitmap bImage;
-	private Context context;
+	private Promocao promo;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		context = this;
+		
 		dialog = ProgressDialog.show(this, "", "Loading...",true);
 		Bundle b = this.getIntent().getExtras();
-		this.id = b.getInt("lojaID");
 		this.nome = b.getString("lojaNome");
-		this.piso = b.getInt("lojaPiso");
-		this.numero = b.getInt("lojaNumero");
-		this.telefone = b.getString("lojaTelefone");
-		this.detalhes = b.getString("lojaDetalhes");
-		this.imagem = b.getString("lojaImagem");
-		this.tags = b.getString("lojaTags");
+		this.loja_id = b.getInt("lojaID");
 		this.shopping = b.getString("lojaShopping");
-		this.idShopping = b.getInt("idShopping");
-		
-		
-		new RetrieveLogo().execute();
+		new RetrieveInfo().execute();
 		
 
 	}
 	
-	class RetrieveLogo extends AsyncTask<String, Integer, String> {
+	class RetrieveInfo extends AsyncTask<String, Integer, String> {
 
 		@Override
 		protected String doInBackground(String... arg0) {
 			
 			bImage = null;
 			try {
-				bImage = Utils.loadImageFromNetwork(imagem);
+				bImage = Utils.loadImageFromNetwork("http://placehold.it/200x150");
+				//bImage = Utils.loadImageFromNetwork(imagem);
 			} catch (MalformedURLException e1) {
 				e1.printStackTrace();
 			} catch (IOException e1) {
@@ -75,19 +58,19 @@ public class ShopDetail extends Activity {
 		
 		@Override
 		protected void onPostExecute(String result) {
-			ShopDetail.this.setContentView(R.layout.shopdetail);
+			
+			PromoDetail.this.setContentView(R.layout.promodetail);
 			Header header = (Header) findViewById(R.id.header);
 		    header.initHeader();
-			Search.pesquisa(ShopDetail.this, ShopDetail.this);
+			Search.pesquisa(PromoDetail.this, PromoDetail.this);
+			TextView text_promo = (TextView) PromoDetail.this.findViewById(R.id.text_promo);
+			text_promo.setText(nome + " (" + shopping + ")");
 			
-			TextView loja_shopping = (TextView) ShopDetail.this.findViewById(R.id.loja_shopping);
-			loja_shopping.setText(nome + "(" + shopping + ")");
-			
-			ImageView logo = (ImageView) ShopDetail.this.findViewById(R.id.loja_logo);
+			ImageView logo = (ImageView) PromoDetail.this.findViewById(R.id.promo_logo);
 			logo.setImageBitmap(bImage);
 			
-			TextView loja_detalhes = (TextView) ShopDetail.this.findViewById(R.id.loja_detalhes);
-			loja_detalhes.setText("\tPiso: " + piso + "\n\tNúmero: " + numero + "\n\tTelefone: " + telefone + "\n\tÁreas de Negócio: " + tags + "\n\tDetalhes: " + detalhes);
+			TextView loja_detalhes = (TextView) PromoDetail.this.findViewById(R.id.detalhes_promo);
+			loja_detalhes.setText("\tPiso: " + "\n\tNúmero: " + "\n\tTelefone: " + "\n\tÁreas de Negócio: " +  "\n\tDetalhes: " );
 			dialog.dismiss();
 			
 		}
@@ -106,15 +89,24 @@ public class ShopDetail extends Activity {
 		switch (item.getItemId()) {
 		case R.id.loja_promocoes:
 		{
-			Intent intent = new Intent(context, ListPromo.class);
-			Bundle b = new Bundle();
-			b.putString("text", "shoppings/"+idShopping+"/lojas/"+id+"/promos.json");
-			b.putInt("idShopping", idShopping);
-			b.putInt("idLoja", id);
-			b.putString("nomeLoja", nome);
-			b.putString("nomeShopping", shopping);
-			intent.putExtras(b);
-			startActivityForResult(intent, 0);
+			/*Dialog dialog = new Dialog(ShopDetail.this);
+			dialog.setContentView(R.layout.shoppingdialog);
+			dialog.setTitle("Detalhes do Shopping");
+			dialog.setCancelable(true);
+			TextView nome = (TextView) dialog.findViewById(R.id.sNome);
+			nome.setText("Nome: "+this.nome);
+			TextView local = (TextView) dialog.findViewById(R.id.sLocal);
+			local.setText("Local: "+this.localizacao);
+			TextView descricao = (TextView) dialog.findViewById(R.id.sDescricao);
+			descricao.setText("Descrição: "+this.descricao);
+			TextView telefone = (TextView) dialog.findViewById(R.id.sTelefone);
+			telefone.setText("Telefone: "+this.telefone);
+			TextView email = (TextView) dialog.findViewById(R.id.sEmail);
+			email.setText("Email: "+this.email);
+			TextView coordenadas = (TextView) dialog.findViewById(R.id.sCoordenadas);
+			coordenadas.setText("Coordenadas:\n\t" + this.latitude + "\n\t" + this.longitude);
+			dialog.show();*/
+
 		}
 		return true;
 		case R.id.loja_partilhar:

@@ -1,5 +1,7 @@
 package com.bubblespot;
 
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -13,6 +15,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -70,6 +73,12 @@ public class ListShoppings extends Activity{
 	                b.putString("shoppingUrl", sb.getImagem_url());
 	                b.putString("shoppingEmail", sb.getEmail());
 	                b.putInt("id", sb.getId());
+	                Bitmap image = sb.getbImage();
+	                if(image != null){
+	                	b.putByteArray("shoppingImageByte", Utils.encodeBitmap(image));
+	                }
+	                else
+	                	b.putByteArray("shoppingImageByte", null);
 	                intent.putExtras(b);
 					startActivity(intent);
 	        	}
@@ -150,10 +159,16 @@ public class ListShoppings extends Activity{
 				
 				
 				try{
-					if(loading)
-						bImages.add(Utils.loadImageFromNetwork(images.get(0)));
-					else
-						bImages.add(bImages.size()-1,Utils.loadImageFromNetwork(images.get(0)));
+					if(loading){
+						Bitmap image = Utils.loadImageFromNetwork(images.get(0));
+						bImages.add(image);
+						shoppings.get(0).setbImage(image);
+					}
+					else{
+						Bitmap image = Utils.loadImageFromNetwork(images.get(0));
+						bImages.add(bImages.size()-1,image);
+						shoppings.get(bImages.size()-2).setbImage(image);
+					}
 				}
 				catch(Exception e){
 					Log.e("Erro ao baixar as imagens.", e.getMessage());

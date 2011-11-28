@@ -45,6 +45,14 @@
 		<activity android:theme="@android:style/Theme.NoTitleBar"
 			android:name="ShopDetail" android:screenOrientation="portrait">
 		</activity>
+		
+		<activity android:theme="@android:style/Theme.NoTitleBar"
+			android:name="PromoDetail" android:screenOrientation="portrait">
+		</activity>
+		
+		<activity android:theme="@android:style/Theme.NoTitleBar"
+			android:name="ListPromo" android:screenOrientation="portrait">
+		</activity>
 
 	</application>
 </manifest>

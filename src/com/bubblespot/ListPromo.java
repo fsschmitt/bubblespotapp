@@ -25,12 +25,15 @@ import android.widget.AdapterView.OnItemClickListener;
 
 
 
-public class ListShops extends Activity{
+public class ListPromo extends Activity{
 	//private ListView list;
+	private int idLoja;
 	private int idShopping;
+	private String nomeLoja;
+	private String nomeShopping;
 	private ArrayList<String> nomes;
 	private ArrayList<Bitmap> bImages;
-	private ArrayList<Loja> lojas;
+	private ArrayList<Promocao> promos;
 	private ProgressDialog dialog;
 	private GridView gridview;
 	private Bundle b;
@@ -41,33 +44,32 @@ public class ListShops extends Activity{
 	        setContentView(R.layout.shops);
 	        Bundle c = this.getIntent().getExtras();
 	        this.text = c.getString("text");
-	        this.idShopping = c.getInt("idShopping");
+	        idLoja = c.getInt("idLoja");
+	        idShopping = c.getInt("idShopping");
+	        nomeLoja = c.getString("nomeLoja");
+	        nomeShopping = c.getString("nomeShopping");
+	        
 	        Header header = (Header) findViewById(R.id.header);
 		    header.initHeader();
-			Search.pesquisa(this, ListShops.this);
+			Search.pesquisa(this, ListPromo.this);
 	        
 	        dialog = ProgressDialog.show(this, "", "Loading...",true);
 	        b = new Bundle();
-	        lojas = new ArrayList<Loja>();
+	        promos = new ArrayList<Promocao>();
 	        nomes = new ArrayList<String>();
 	        bImages = new ArrayList<Bitmap>();
 	        gridview = (GridView) findViewById(R.id.gridView1);
-	        gridview.setNumColumns(2);
+	        gridview.setNumColumns(1);
 	        gridview.setOnItemClickListener(new OnItemClickListener() {
 	        	@Override
 	        	public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-	                Intent intent = new Intent(v.getContext(), ShopDetail.class);
-	                Loja loja = lojas.get(position);
-	                b.putInt("lojaID", loja.getId());
-	                b.putString("lojaNome", loja.getNome());
-	                b.putInt("lojaPiso", loja.getPiso());
-	                b.putInt("lojaNumero", loja.getNumero());
-	                b.putString("lojaTelefone", loja.getTelefone());
-	                b.putString("lojaDetalhes", loja.getDetalhes());
-	                b.putString("lojaImagem", loja.getImagem());
-	                b.putString("lojaTags", loja.getTags());
-	                b.putString("lojaShopping", loja.getShopping());
+	                Intent intent = new Intent(v.getContext(), PromoDetail.class);
+	                Promocao promo = promos.get(position);
+	                b.putInt("lojaID", promo.getId());
+	                b.putString("nomeLoja", nomeLoja);
 	                b.putInt("idShopping", idShopping);
+	                b.putString("desconto", promo.getDesconto());
+	                b.putString("shopping", nomeShopping);
 	                intent.putExtras(b);
 					startActivity(intent);
 	        	}
@@ -98,30 +100,26 @@ public class ListShops extends Activity{
 					line = getJSONLine(url);
 					jo = new JSONArray(line);
 					for (int i = 0; i < jo.length(); i++) {
-						JSONObject loja = jo.getJSONObject(i);
-						int id = loja.getInt("id");
-						String Nome = loja.getString("nome");
-						int piso = loja.getInt("piso");
-						int numero = loja.getInt("numero");
-						String Telefone = loja.getString("telefone");
-						String Detalhes = loja.getString("detalhes");
-						String Imagem = loja.getString("imagem");
-						String tags = loja.getString("tags");
-						String shoppingId = loja.getString("shopping_nome");
+						JSONObject promo = jo.getJSONObject(i);
+						int id = promo.getInt("id");
+						String desconto = promo.getString("desconto");
+						String dataf = promo.getString("dataf");
+						String detalhes = promo.getString("detalhes");
+						String imagem = promo.getString("imagem");
+						String precof = promo.getString("precof");
+						String precoi = promo.getString("precoi");
+						String produto = promo.getString("produto");
 						
-						bImages.add(Utils.loadImageFromNetwork(Imagem));
-						nomes.add(Nome);
-						Loja s = new Loja(id, Nome, piso, numero, Telefone, Detalhes, Imagem, tags, shoppingId);
-						lojas.add(s);
+						bImages.add(Utils.loadImageFromNetwork("http://placehold.it/200x150"));
+						nomes.add(produto);
+						Promocao p = new Promocao(id,dataf,desconto,detalhes,imagem,idLoja,precoi,precof,produto);
+						promos.add(p);
 					}
 				} catch (IOException e) {
 					e.printStackTrace();
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
-				
-				
-
 				return null;
 			}
 
@@ -129,7 +127,7 @@ public class ListShops extends Activity{
 			@Override
 			protected void onPostExecute(String result) { //
 				if(nomes != null && !nomes.isEmpty()){
-					gridview.setAdapter(new ImageAdapter(ListShops.this, bImages));
+					gridview.setAdapter(new PromocaoAdapter(ListPromo.this, bImages, promos));
 					dialog.dismiss();
 				}
 				else{

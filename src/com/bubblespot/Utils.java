@@ -1,6 +1,7 @@
 package com.bubblespot;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -15,6 +16,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.Bitmap.CompressFormat;
 import android.location.Location;
 import android.location.LocationManager;
 
@@ -68,5 +70,12 @@ public class Utils {
 	        canvas.drawBitmap(bmp1, new Matrix(), null);
 	        canvas.drawBitmap(bmp2, new Matrix(), null);
 	        return bmOverlay;
+	}
+	
+	public static byte[] encodeBitmap(Bitmap b)
+	{
+		ByteArrayOutputStream bos = new ByteArrayOutputStream(); 
+		b.compress(CompressFormat.PNG, 0 /*ignored for PNG*/, bos); 
+    	return bos.toByteArray();
 	}
 }

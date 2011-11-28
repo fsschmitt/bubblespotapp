@@ -2,6 +2,7 @@ package com.bubblespot;
 
 public class Loja {
 
+	private int id;
 	private String nome;
 	private int piso;
 	private int numero;
@@ -11,7 +12,8 @@ public class Loja {
 	private String tags;
 	private String shopping;
 	
-	Loja (String nome, int piso, int numero, String telefone, String detalhes, String imagem, String tags, String shopping){
+	Loja (int id, String nome, int piso, int numero, String telefone, String detalhes, String imagem, String tags, String shopping){
+		this.id = id;
 		this.nome=nome;
 		this.piso=piso;
 		this.numero=numero;
@@ -73,6 +75,14 @@ public class Loja {
 
 	public void setShopping(String shopping) {
 		this.shopping = shopping;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	
