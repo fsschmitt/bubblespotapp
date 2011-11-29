@@ -57,7 +57,7 @@ public class BubbleSpot extends Activity {
 
 			public void onClick(View v) {
 				if (!checkNetwork()){
-					Intent intent = new Intent(v.getContext(), ListShops.class);
+					Intent intent = new Intent(v.getContext(), ListAllShops.class);
 					b = new Bundle();
 					b.putString("text", "lojas?format=json");
 					intent.putExtras(b);

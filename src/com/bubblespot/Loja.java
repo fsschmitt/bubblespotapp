@@ -11,6 +11,7 @@ public class Loja {
 	private String imagem;
 	private String tags;
 	private String shopping;
+	private boolean primeira=false;
 	
 	Loja (int id, String nome, int piso, int numero, String telefone, String detalhes, String imagem, String tags, String shopping){
 		this.id = id;
@@ -84,7 +85,12 @@ public class Loja {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	
 
+	public boolean isPrimeira() {
+		return primeira;
+	}
+
+	public void setPrimeira() {
+		this.primeira = true;
+	}
 }

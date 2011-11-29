@@ -35,6 +35,10 @@
 		</activity>
 		
 		<activity android:theme="@android:style/Theme.NoTitleBar"
+			android:name="ListAllShops" android:screenOrientation="portrait">
+		</activity>
+		
+		<activity android:theme="@android:style/Theme.NoTitleBar"
 			android:name="Search" android:screenOrientation="portrait">
 		</activity>
 		

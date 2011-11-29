@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relativeLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:cacheColorHint="#00000000" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/shopping_nome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="#90FFFFFF"
+            android:paddingLeft="2dp"
+            android:text="TextView"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#000000"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/loja_nome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            android:text="Medium Text"
+            android:textAppearance="?android:attr/textAppearanceLarge" android:layout_marginLeft="2dp" android:paddingLeft="7dp"/>
+
+        <TextView
+            android:id="@+id/areas_negocio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#ABABAB"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="TextView" android:layout_marginLeft="2dp" android:paddingLeft="10dp"/>
+    </LinearLayout>
+
+</LinearLayout>
