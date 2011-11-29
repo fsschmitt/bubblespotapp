@@ -35,6 +35,10 @@ public class ShopDetail extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		context = this;
+		ShopDetail.this.setContentView(R.layout.shopdetail);
+		Header header = (Header) findViewById(R.id.header);
+	    header.initHeader();
+		Search.pesquisa(ShopDetail.this, ShopDetail.this);
 		dialog = ProgressDialog.show(this, "", "Loading...",true);
 		Bundle b = this.getIntent().getExtras();
 		this.id = b.getInt("lojaID");
@@ -75,10 +79,7 @@ public class ShopDetail extends Activity {
 		
 		@Override
 		protected void onPostExecute(String result) {
-			ShopDetail.this.setContentView(R.layout.shopdetail);
-			Header header = (Header) findViewById(R.id.header);
-		    header.initHeader();
-			Search.pesquisa(ShopDetail.this, ShopDetail.this);
+			
 			
 			TextView loja_shopping = (TextView) ShopDetail.this.findViewById(R.id.loja_shopping);
 			loja_shopping.setText(nome + " (" + shopping + ")");
@@ -111,7 +112,6 @@ public class ShopDetail extends Activity {
 			b.putString("text", "shoppings/"+idShopping+"/lojas/"+id+"/promos.json");
 			b.putInt("idShopping", idShopping);
 			b.putInt("idLoja", id);
-			b.putString("nomeLoja", nome);
 			b.putString("nomeShopping", shopping);
 			intent.putExtras(b);
 			startActivityForResult(intent, 0);

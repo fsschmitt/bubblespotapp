@@ -6,6 +6,7 @@ import java.net.MalformedURLException;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -17,13 +18,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class ShoppingDetail extends Activity {
 
+	private Context context;
 	private String latitude;
 	private String longitude;
 	private String email;
@@ -36,16 +37,23 @@ public class ShoppingDetail extends Activity {
 	private int id;
 	private ProgressDialog dialog;
 	private Bitmap bImage;
-	private Button bPromocoes;
-	private Button bAgenda;
-	private Button bCinema;
-	private Button bMapa;
-	private Button bDirecoes;
-	private Button bPesquisa;
+	private ImageView bPromocoes;
+	private ImageView bAgenda;
+	private ImageView bCinema;
+	private ImageView bPlanta;
+	private ImageView bDirecoes;
+	private ImageView bLojas;
+	private TextView dPromocoes;
+	private TextView dAgenda;
+	private TextView dCinema;
+	private TextView dPlanta;
+	private TextView dDirecoes;
+	private TextView dLojas;
 	private int SEARCH_REQUEST = 1;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		context = this;
 		ShoppingDetail.this.setContentView(R.layout.shoppingdetail);
 		Header header = (Header) findViewById(R.id.header);
 	    header.initHeader();
@@ -70,11 +78,17 @@ public class ShoppingDetail extends Activity {
 			ImageView logo = (ImageView) ShoppingDetail.this.findViewById(R.id.sdLogo);
 			logo.setImageBitmap(bImage);
 			bPromocoes.setVisibility(View.VISIBLE);
+			dPromocoes.setVisibility(View.VISIBLE);
 			bAgenda.setVisibility(View.VISIBLE);
+			dAgenda.setVisibility(View.VISIBLE);
 			bCinema.setVisibility(View.VISIBLE);
-			bMapa.setVisibility(View.VISIBLE);
+			dCinema.setVisibility(View.VISIBLE);
+			bPlanta.setVisibility(View.VISIBLE);
+			dPlanta.setVisibility(View.VISIBLE);
 			bDirecoes.setVisibility(View.VISIBLE);
-			bPesquisa.setVisibility(View.VISIBLE);
+			dDirecoes.setVisibility(View.VISIBLE);
+			bLojas.setVisibility(View.VISIBLE);
+			dLojas.setVisibility(View.VISIBLE);
 			dialog.dismiss();
 		}
 		else
@@ -85,44 +99,54 @@ public class ShoppingDetail extends Activity {
 	}
 	
 	private void initButtons() {
-		bPromocoes = (Button) ShoppingDetail.this.findViewById(R.id.button2);
+		bPromocoes = (ImageView) ShoppingDetail.this.findViewById(R.id.imagePromocoes);
 		bPromocoes.setVisibility(View.GONE);
-		bPromocoes.setText("Promoções");
 		bPromocoes.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				Toast.makeText(ShoppingDetail.this, "Brevemente Disponível", Toast.LENGTH_SHORT).show();
+				Intent intent = new Intent(context, ListPromo.class);
+				Bundle b = new Bundle();
+				b.putString("text", "shoppings/"+id+"/promos.json");
+				b.putInt("idShopping", id);
+				b.putString("nomeShopping", nome);
+				intent.putExtras(b);
+				startActivityForResult(intent, 0);
 			}
 		});
-		bAgenda = (Button) ShoppingDetail.this.findViewById(R.id.button3);
+		dPromocoes = (TextView) ShoppingDetail.this.findViewById(R.id.textPromocoes);
+		dPromocoes.setVisibility(View.GONE);
+		
+		bAgenda = (ImageView) ShoppingDetail.this.findViewById(R.id.imageCultural);
 		bAgenda.setVisibility(View.GONE);
-		bAgenda.setText("Agenda Cultural");
 		bAgenda.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Toast.makeText(ShoppingDetail.this, "Brevemente Disponível", Toast.LENGTH_SHORT).show();
 			}
 		});
+		dAgenda = (TextView) ShoppingDetail.this.findViewById(R.id.textCultural);
+		dAgenda.setVisibility(View.GONE);
 		
-		bCinema = (Button) ShoppingDetail.this.findViewById(R.id.button4);
+		bCinema = (ImageView) ShoppingDetail.this.findViewById(R.id.imageCinema);
 		bCinema.setVisibility(View.GONE);
-		bCinema.setText("Cinema");
 		bCinema.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Toast.makeText(ShoppingDetail.this, "Brevemente Disponível", Toast.LENGTH_SHORT).show();
 			}
 		});
+		dCinema = (TextView) ShoppingDetail.this.findViewById(R.id.textCinema);
+		dCinema.setVisibility(View.GONE);
 		
-		bMapa = (Button) ShoppingDetail.this.findViewById(R.id.button5);
-		bMapa.setVisibility(View.GONE);
-		bMapa.setText("Planta");
-		bMapa.setOnClickListener(new View.OnClickListener() {
+		bPlanta = (ImageView) ShoppingDetail.this.findViewById(R.id.imagePlanta);
+		bPlanta.setVisibility(View.GONE);
+		bPlanta.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				Toast.makeText(ShoppingDetail.this, "Brevemente Disponível", Toast.LENGTH_SHORT).show();
 			}
 		});
+		dPlanta = (TextView) ShoppingDetail.this.findViewById(R.id.textPlanta);
+		dPlanta.setVisibility(View.GONE);
 		
-		bDirecoes = (Button) ShoppingDetail.this.findViewById(R.id.button6);
+		bDirecoes = (ImageView) ShoppingDetail.this.findViewById(R.id.imageDirecoes);
 		bDirecoes.setVisibility(View.GONE);
-		bDirecoes.setText("Obter Direções");
 		bDirecoes.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(final View v) {
@@ -137,12 +161,12 @@ public class ShoppingDetail extends Activity {
 					Toast.makeText(getApplicationContext(), "Não foi possivel obter a sua localização!", Toast.LENGTH_SHORT).show();
 			}
 		});
+		dDirecoes = (TextView) ShoppingDetail.this.findViewById(R.id.textDirecoes);
+		dDirecoes.setVisibility(View.GONE);
 		
-		bPesquisa = (Button) ShoppingDetail.this.findViewById(R.id.button7);
-		bPesquisa.setVisibility(View.GONE);
-		bPesquisa.setText("Lojas");
-		bPesquisa.setOnClickListener(new View.OnClickListener() {
-
+		bLojas = (ImageView) ShoppingDetail.this.findViewById(R.id.imageLojas);
+		bLojas.setVisibility(View.GONE);
+		bLojas.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 					Intent intent = new Intent(v.getContext(), ListShops.class);
 					Bundle b = new Bundle();
@@ -152,6 +176,9 @@ public class ShoppingDetail extends Activity {
 					startActivityForResult(intent, SEARCH_REQUEST);
 			}
 		});
+		dLojas = (TextView) ShoppingDetail.this.findViewById(R.id.textLojas);
+		dLojas.setVisibility(View.GONE);
+		
 	}
 
 	class RetrieveLogo extends AsyncTask<String, Integer, String> {
@@ -175,11 +202,17 @@ public class ShoppingDetail extends Activity {
 			ImageView logo = (ImageView) ShoppingDetail.this.findViewById(R.id.sdLogo);
 			logo.setImageBitmap(bImage);
 			bPromocoes.setVisibility(View.VISIBLE);
+			dPromocoes.setVisibility(View.VISIBLE);
 			bAgenda.setVisibility(View.VISIBLE);
+			dAgenda.setVisibility(View.VISIBLE);
 			bCinema.setVisibility(View.VISIBLE);
-			bMapa.setVisibility(View.VISIBLE);
+			dCinema.setVisibility(View.VISIBLE);
+			bPlanta.setVisibility(View.VISIBLE);
+			dPlanta.setVisibility(View.VISIBLE);
 			bDirecoes.setVisibility(View.VISIBLE);
-			bPesquisa.setVisibility(View.VISIBLE);
+			dDirecoes.setVisibility(View.VISIBLE);
+			bLojas.setVisibility(View.VISIBLE);
+			dLojas.setVisibility(View.VISIBLE);
 			dialog.dismiss();
 		}
 	}

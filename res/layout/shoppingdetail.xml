@@ -8,56 +8,181 @@
 	<LinearLayout android:layout_width="match_parent"
 		android:id="@+id/linearLayout8" android:layout_height="wrap_content"
 		android:orientation="vertical">
-		<ImageView android:id="@+id/sdLogo" android:layout_gravity="center_horizontal"
-			android:layout_width="wrap_content" android:layout_marginBottom="20dp"
-			android:layout_height="0dp" android:layout_weight="1"></ImageView>
-		<LinearLayout android:orientation="vertical"
-			android:layout_width="match_parent" android:id="@+id/linearLayout2"
-			android:layout_height="0dp" android:layout_weight="1">
-			<LinearLayout android:layout_weight="1"
-				android:layout_gravity="center" android:layout_width="match_parent"
-				android:id="@+id/linearLayout3" android:layout_height="0dp">
-				<Button android:layout_width="0dp" android:paddingTop="40dp"
-					android:id="@+id/button2" android:layout_height="wrap_content"
-					android:text="Button" android:layout_weight="1"
-					android:paddingBottom="40dp"></Button>
-				<Button android:layout_width="0dp" android:paddingTop="40dp"
-					android:id="@+id/button3" android:layout_height="wrap_content"
-					android:text="Button" android:layout_weight="1"
-					android:paddingBottom="40dp"></Button>
-			</LinearLayout>
+
+		<ImageView
+		    android:id="@+id/sdLogo"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_weight="1" android:layout_gravity="center_horizontal"/>
+
+		<LinearLayout
+		    android:id="@+id/linearLayout2"
+		    android:layout_width="match_parent"
+		    android:layout_height="0dp"
+		    android:layout_weight="1"
+		    android:orientation="vertical" >
+
+		    <LinearLayout
+		        android:id="@+id/linearLayout3"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginBottom="10dp"
+		        android:layout_weight="1" >
+
+		        <LinearLayout
+		            android:id="@+id/linearLayout11"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_weight="1"
+		            android:gravity="center_horizontal"
+		            android:orientation="vertical" >
+
+		            <ImageView
+		                android:id="@+id/imagePromocoes"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:layout_weight="1"
+		                android:src="@drawable/promocao" />
+
+		            <TextView
+		                android:id="@+id/textPromocoes"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:gravity="center_horizontal"
+		                android:text="Promoções" />
+		        </LinearLayout>
+
+		        <LinearLayout
+		            android:id="@+id/linearLayout12"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_weight="1"
+		            android:gravity="center_horizontal"
+		            android:orientation="vertical" >
+
+		            <ImageView
+		                android:id="@+id/imageCultural"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:layout_weight="1"
+		                android:src="@drawable/cultural" />
+
+		            <TextView
+		                android:id="@+id/textCultural"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:gravity="center_horizontal"
+		                android:text="Agenda Cultural" />
+		        </LinearLayout>
+		    </LinearLayout>
+
+		    <LinearLayout
+		        android:id="@+id/linearLayout5"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginBottom="10dp"
+		        android:layout_weight="1" >
+
+		        <LinearLayout
+		            android:id="@+id/linearLayout1"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_weight="1"
+		            android:gravity="center_horizontal"
+		            android:orientation="vertical" >
+
+		            <ImageView
+		                android:id="@+id/imageCinema"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:layout_weight="1"
+		                android:src="@drawable/cinema" />
+
+		            <TextView
+		                android:id="@+id/textCinema"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:gravity="center_horizontal"
+		                android:text="Cinema" />
+		        </LinearLayout>
+
+		        <LinearLayout
+		            android:id="@+id/linearLayout13"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:gravity="center_horizontal"
+		            android:orientation="vertical" android:layout_weight="1">
+
+		            <ImageView
+		                android:id="@+id/imagePlanta"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:layout_weight="1"
+		                android:src="@drawable/planta" />
+
+		            <TextView
+		                android:id="@+id/textPlanta"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:gravity="center_horizontal"
+		                android:text="Planta" />
+		        </LinearLayout>
+		    </LinearLayout>
+
+		    <LinearLayout
+		        android:id="@+id/linearLayout4"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginBottom="10dp"
+		        android:layout_weight="1" >
+
+		        <LinearLayout
+		            android:id="@+id/linearLayout14"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_weight="1"
+		            android:gravity="center_horizontal"
+		            android:orientation="vertical" >
+
+		            <ImageView
+		                android:id="@+id/imageDirecoes"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:layout_weight="1"
+		                android:src="@drawable/direcoes" />
+
+		            <TextView
+		                android:id="@+id/textDirecoes"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:gravity="center_horizontal"
+		                android:text="Direções" />
+		        </LinearLayout>
+
+		        <LinearLayout
+		            android:id="@+id/linearLayout9"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:layout_weight="1"
+		            android:gravity="center_horizontal"
+		            android:orientation="vertical" >
+
+		            <ImageView
+		                android:id="@+id/imageLojas"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:layout_weight="1"
+		                android:src="@drawable/lojas" />
+
+		            <TextView
+		                android:id="@+id/textLojas"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:gravity="center_horizontal"
+		                android:text="Lojas" />
+		        </LinearLayout>
+		    </LinearLayout>
 		</LinearLayout>
-		<LinearLayout android:orientation="vertical"
-			android:layout_width="match_parent" android:id="@+id/linearLayout4"
-			android:layout_height="0dp" android:layout_weight="1">
-			<LinearLayout android:layout_weight="1"
-				android:layout_gravity="center" android:layout_width="match_parent"
-				android:id="@+id/linearLayout5" android:layout_height="0dp">
-				<Button android:layout_width="0dp" android:paddingTop="40dp"
-					android:id="@+id/button4" android:layout_height="wrap_content"
-					android:text="Button" android:layout_weight="1"
-					android:paddingBottom="40dp"></Button>
-				<Button android:layout_width="0dp" android:paddingTop="40dp"
-					android:id="@+id/button5" android:layout_height="wrap_content"
-					android:text="Button" android:layout_weight="1"
-					android:paddingBottom="40dp"></Button>
-			</LinearLayout>
-		</LinearLayout>
-		<LinearLayout android:orientation="vertical"
-			android:layout_width="match_parent" android:id="@+id/linearLayout6"
-			android:layout_height="0dp" android:layout_weight="1">
-			<LinearLayout android:layout_weight="1"
-				android:layout_gravity="center" android:layout_width="match_parent"
-				android:id="@+id/linearLayout7" android:layout_height="0dp">
-				<Button android:layout_width="0dp" android:paddingTop="40dp"
-					android:id="@+id/button6" android:layout_height="wrap_content"
-					android:text="Button" android:layout_weight="1"
-					android:paddingBottom="40dp"></Button>
-				<Button android:layout_width="0dp" android:paddingTop="40dp"
-					android:id="@+id/button7" android:layout_height="wrap_content"
-					android:text="Button" android:layout_weight="1"
-					android:paddingBottom="40dp"></Button>
-			</LinearLayout>
-		</LinearLayout>
+
 	</LinearLayout>
 </LinearLayout>

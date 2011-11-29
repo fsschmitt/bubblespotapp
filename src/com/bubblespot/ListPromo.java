@@ -31,7 +31,6 @@ public class ListPromo extends Activity{
 	//private ListView list;
 	private int idLoja;
 	private int idShopping;
-	private String nomeLoja;
 	private String nomeShopping;
 	private ArrayList<String> nomes;
 	private ArrayList<Bitmap> bImages;
@@ -48,7 +47,6 @@ public class ListPromo extends Activity{
 	        this.text = c.getString("text");
 	        idLoja = c.getInt("idLoja");
 	        idShopping = c.getInt("idShopping");
-	        nomeLoja = c.getString("nomeLoja");
 	        nomeShopping = c.getString("nomeShopping");
 	        
 	        Header header = (Header) findViewById(R.id.header);
@@ -68,7 +66,6 @@ public class ListPromo extends Activity{
 	                Intent intent = new Intent(v.getContext(), PromoDetail.class);
 	                Promocao promo = promos.get(position);
 	                b.putInt("lojaID", promo.getId());
-	                b.putString("nomeLoja", nomeLoja);
 	                b.putInt("idShopping", idShopping);
 	                b.putString("desconto", promo.getDesconto());
 	                b.putString("shopping", nomeShopping);
@@ -100,23 +97,26 @@ public class ListPromo extends Activity{
 				JSONArray jo = null;
 				try {
 					line = getJSONLine(url);
-					jo = new JSONArray(line);
-					for (int i = 0; i < jo.length(); i++) {
-						JSONObject promo = jo.getJSONObject(i);
-						int id = promo.getInt("id");
-						String desconto = promo.getString("desconto");
-						String dataf = promo.getString("dataf");
-						String detalhes = promo.getString("detalhes");
-						String imagem = promo.getString("imagem");
-						String precof = promo.getString("precof");
-						String precoi = promo.getString("precoi");
-						String produto = promo.getString("produto");
-						
-						bImages.add(Utils.loadImageFromNetwork("http://placehold.it/200x150"));
-						nomes.add(produto);
-						Promocao p = new Promocao(id,dataf,desconto,detalhes,imagem,idLoja,precoi,precof,produto);
-						promos.add(p);
+					if(line != null){
+						jo = new JSONArray(line);
+						for (int i = 0; i < jo.length(); i++) {
+							JSONObject promo = jo.getJSONObject(i);
+							int id = promo.getInt("id");
+							String desconto = promo.getString("desconto");
+							String dataf = promo.getString("dataf");
+							String detalhes = promo.getString("detalhes");
+							String imagem = promo.getString("imagem");
+							String precof = promo.getString("precof");
+							String precoi = promo.getString("precoi");
+							String produto = promo.getString("produto");
+							
+							bImages.add(Utils.loadImageFromNetwork("http://placehold.it/200x150"));
+							nomes.add(produto);
+							Promocao p = new Promocao(id,dataf,desconto,detalhes,imagem,idLoja,precoi,precof,produto);
+							promos.add(p);
+						}
 					}
+					else return null;
 				} catch (IOException e) {
 					e.printStackTrace();
 				} catch (JSONException e) {

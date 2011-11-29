@@ -11,21 +11,11 @@
 		    android:layout_height="wrap_content"
 		    android:layout_gravity="center"
 		    android:layout_marginBottom="20dp"
-		    android:text="TextView"
 		    android:textAppearance="?android:attr/textAppearanceLarge" >
 </TextView>
 	<LinearLayout android:layout_width="match_parent"
 		android:id="@+id/linearLayout8" android:layout_height="wrap_content"
 		android:orientation="vertical">
-
-		<TextView
-		    android:id="@+id/loja_shopping"
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:layout_marginBottom="20dp"
-		    android:gravity="center_horizontal"
-		    android:text="TextView"
-		    android:textAppearance="?android:attr/textAppearanceLarge" />
 
 		<LinearLayout
 		    android:id="@+id/linearLayout1"
@@ -36,7 +26,7 @@
 			    android:id="@+id/loja_logo"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
-			    android:src="@android:drawable/sym_def_app_icon" android:paddingLeft="10dp"/>
+			    android:paddingLeft="10dp"/>
 
 			<LinearLayout
 			    android:id="@+id/linearLayout2"
@@ -47,8 +37,7 @@
 				<TextView
 				    android:id="@+id/loja_detalhes"
 				    android:layout_width="wrap_content"
-				    android:layout_height="wrap_content"
-				    android:text="TextView" />
+				    android:layout_height="wrap_content" />
 
 			</LinearLayout>
 
