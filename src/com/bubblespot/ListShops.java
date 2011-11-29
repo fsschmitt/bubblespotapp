@@ -110,8 +110,9 @@ public class ListShops extends Activity{
 						String Imagem = loja.getString("imagem");
 						String tags = loja.getString("tags");
 						String shoppingId = loja.getString("shopping_nome");
-						
-						bImages.add(Utils.loadImageFromNetwork(Imagem));
+						Bitmap b = Utils.loadImageFromNetwork(Imagem);
+						b = Bitmap.createScaledBitmap(b, b.getWidth()*120/b.getHeight(), 120, false);
+						bImages.add(b);
 						nomes.add(Nome);
 						Loja s = new Loja(id, Nome, piso, numero, Telefone, Detalhes, Imagem, tags, shoppingId);
 						lojas.add(s);
@@ -121,9 +122,6 @@ public class ListShops extends Activity{
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
-				
-				
-
 				return null;
 			}
 
@@ -139,8 +137,6 @@ public class ListShops extends Activity{
 					setResult(RESULT_FIRST_USER);
 					finish();
 				}
-				
-
 			}
 	 }
 	 
