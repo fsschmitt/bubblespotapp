@@ -61,10 +61,10 @@ public class ShoppingDetail extends Activity {
 		this.longitude = b.getString("shoppingLongitude");
 		this.email = b.getString("shoppingEmail");
 		this.imagem_url = b.getString("shoppingUrl");
+		this.id = b.getInt("id");
 		byte[] byteImage = b.getByteArray("shoppingImageByte");
 		if(byteImage != null){
 			this.imagem = BitmapFactory.decodeByteArray(byteImage, 0, byteImage.length);
-			this.id = b.getInt("id");
 			bImage = this.imagem;
 			
 			ImageView logo = (ImageView) ShoppingDetail.this.findViewById(R.id.sdLogo);

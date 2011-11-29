@@ -12,6 +12,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.adapter.ShoppingAdapter;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -71,6 +73,13 @@ public class ShoppingNear extends Activity{
 				b.putString("shoppingLongitude", sb.getLongitude());
 				b.putString("shoppingUrl", sb.getImagem_url());
 				b.putString("shoppingEmail", sb.getEmail());
+				b.putInt("id", sb.getId());
+				Bitmap image = sb.getbImage();
+                if(image != null){
+                	b.putByteArray("shoppingImageByte", Utils.encodeBitmap(image));
+                }
+                else
+                	b.putByteArray("shoppingImageByte", null);
 				intent.putExtras(b);
 				startActivity(intent);
 			}
@@ -101,29 +110,33 @@ public class ShoppingNear extends Activity{
 			JSONArray jo = null;
 			try {
 				line = getJSONLine(url);
-				jo = new JSONArray(line);
-				for (int i = 0; i < jo.length(); i++) {
-					JSONObject shopping = jo.getJSONObject(i);
-					String Nome = shopping.getString("nome");
-					String Descricao = shopping.getString("descricao");
-					String Imagem = shopping.getString("imagem");
-					String Localizacao = shopping.getString("localizacao");
-					String Latitude = shopping.getString("latitude");
-					String Longitude = shopping.getString("longitude");
-					String Telefone = shopping.getString("telefone");
-					String Email = shopping.getString("email");
-					String Dist = shopping.getString("distance");
-					int id = shopping.getInt("id");
-
-					double distancia = Double.parseDouble(Dist);
-					distancia = distancia * 1.6;
-
-					distancia = Utils.roundToDecimals(distancia, 2);
-					images.add(Imagem);
-					nomes.add(Nome);
-					Shopping s = new Shopping(id,Nome,Localizacao,Descricao,Telefone,Email,Latitude,Longitude,Imagem,distancia);
-					shoppings.add(s);
+				if(line != null){
+					jo = new JSONArray(line);
+					for (int i = 0; i < jo.length(); i++) {
+						JSONObject shopping = jo.getJSONObject(i);
+						String Nome = shopping.getString("nome");
+						String Descricao = shopping.getString("descricao");
+						String Imagem = shopping.getString("imagem");
+						String Localizacao = shopping.getString("localizacao");
+						String Latitude = shopping.getString("latitude");
+						String Longitude = shopping.getString("longitude");
+						String Telefone = shopping.getString("telefone");
+						String Email = shopping.getString("email");
+						String Dist = shopping.getString("distance");
+						int id = shopping.getInt("id");
+	
+						double distancia = Double.parseDouble(Dist);
+						distancia = distancia * 1.6;
+	
+						distancia = Utils.roundToDecimals(distancia, 2);
+						images.add(Imagem);
+						nomes.add(Nome);
+						Shopping s = new Shopping(id,Nome,Localizacao,Descricao,Telefone,Email,Latitude,Longitude,Imagem,distancia);
+						shoppings.add(s);
+					}
 				}
+				else
+					return null;
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (JSONException e) {
@@ -153,7 +166,9 @@ public class ShoppingNear extends Activity{
 		@Override
 		protected String doInBackground(String... arg0) {
 			try{
-					bImages.set(countImages,Utils.loadImageFromNetwork(images.get(0)));
+					Bitmap image = Utils.loadImageFromNetwork(images.get(0));
+					shoppings.get(countImages).setbImage(image);
+					bImages.set(countImages,image);
 					countImages++;
 			}
 			catch(Exception e){

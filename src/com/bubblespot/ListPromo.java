@@ -12,6 +12,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.adapter.PromocaoAdapter;
+
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;

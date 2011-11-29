@@ -1,4 +1,4 @@
-package com.bubblespot;
+package com.adapter;
 
 import java.util.ArrayList;
 
@@ -11,14 +11,17 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class ShoppingAdapter extends BaseAdapter {
-	private ArrayList<Shopping> shoppings;
+import com.bubblespot.Promocao;
+import com.bubblespot.R;
+
+public class PromocaoAdapter extends BaseAdapter {
+	private ArrayList<Promocao> promocoes;
 	private ArrayList<Bitmap> bImages;
 	private Context c;
 
-	ShoppingAdapter(Context c, ArrayList<Bitmap> bImages, ArrayList<Shopping> shoppings) {
+	public PromocaoAdapter(Context c, ArrayList<Bitmap> bImages, ArrayList<Promocao> promocoes) {
 		this.bImages = bImages;
-		this.shoppings = shoppings;
+		this.promocoes = promocoes;
 		this.c = c;
 	}
 
@@ -45,10 +48,10 @@ public class ShoppingAdapter extends BaseAdapter {
 			v = vi.inflate(R.layout.shoppingrow, null);
 		} 
 		nome = (TextView) v.findViewById(R.id.sn_nome);
-		nome.setText(shoppings.get(position).getNome());
+		nome.setText(promocoes.get(position).getProduto());
 
 		dist = (TextView) v.findViewById(R.id.distancia);
-		dist.setText(shoppings.get(position).getDist()+"km");
+		dist.setText("Desconto de "+promocoes.get(position).getDesconto());
 		imageView = (ImageView) v.findViewById(R.id.sn_shopping);
 		imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 		imageView.setPadding(3, 3, 3, 3);

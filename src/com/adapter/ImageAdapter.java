@@ -1,4 +1,4 @@
-package com.bubblespot;
+package com.adapter;
 
 import java.util.ArrayList;
 import android.content.Context;
@@ -13,7 +13,7 @@ public class ImageAdapter extends BaseAdapter {
 	private Context mContext;
 	private ArrayList<Bitmap> bImages;
 
-    ImageAdapter(Context c, ArrayList<Bitmap> bImages) {
+    public ImageAdapter(Context c, ArrayList<Bitmap> bImages) {
         mContext = c;
         this.bImages = bImages;
     }

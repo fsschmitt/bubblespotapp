@@ -18,10 +18,10 @@ public class PromoDetail extends Activity {
 
 	private String nome;
 	private String shopping;
-	private int loja_id;
+	//private int loja_id;
 	private ProgressDialog dialog;
 	private Bitmap bImage;
-	private Promocao promo;
+	//private Promocao promo;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -29,7 +29,7 @@ public class PromoDetail extends Activity {
 		dialog = ProgressDialog.show(this, "", "Loading...",true);
 		Bundle b = this.getIntent().getExtras();
 		this.nome = b.getString("lojaNome");
-		this.loja_id = b.getInt("lojaID");
+		//this.loja_id = b.getInt("lojaID");
 		this.shopping = b.getString("lojaShopping");
 		new RetrieveInfo().execute();
 		
