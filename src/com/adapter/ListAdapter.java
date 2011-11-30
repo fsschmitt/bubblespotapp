@@ -92,7 +92,7 @@ public class ListAdapter extends BaseAdapter implements Filterable {
 				ArrayList<Loja> filteredShops = new ArrayList<Loja>();
 				for(String s : nomes)
 				{
-					if(s.contains(filterText))
+					if(s.toLowerCase().contains(filterText.toString().toLowerCase()))
 						filtered.add(s);
 				}
 				String shopping = null;

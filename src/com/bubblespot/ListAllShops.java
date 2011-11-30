@@ -31,11 +31,11 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.adapter.ListAdapter;
+import com.bubblespot.R;
 
 
 
 public class ListAllShops extends Activity{
-	private int idShopping;
 	private ArrayList<Loja> lojas;
 	private ArrayList<String> nomes;
 	private ProgressDialog dialog;
@@ -104,7 +104,6 @@ public class ListAllShops extends Activity{
 				try {
 					url = new URL(uri);				
 				} catch (MalformedURLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				String line = null;
@@ -148,7 +147,6 @@ public class ListAllShops extends Activity{
 					    return ((deptComp == 0) ? l1.getNome().compareTo(l2.getNome())
 					        : deptComp);
 					  }
-					
 				});
 				
 				String shopping = null;
@@ -170,7 +168,6 @@ public class ListAllShops extends Activity{
 			protected void onPostExecute(String result) { //
 				if(lojas != null && !lojas.isEmpty()){
 					adapter =  new ListAdapter(mContext,nomes,lojas);
-					//adapter = new ListAdapter(mContext, lojas);
 					listview.setAdapter(adapter);
 					listview.setTextFilterEnabled(true);
 					dialog.dismiss();
@@ -214,5 +211,4 @@ public class ListAllShops extends Activity{
 		    super.onDestroy();
 		    filterText.removeTextChangedListener(filterTextWatcher);
 		}
-	
 }

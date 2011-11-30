@@ -9,7 +9,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.adapter.ImageAdapter;
+import com.adapter.ImageAdapterShopping;
+import com.bubblespot.R;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -34,7 +35,7 @@ public class ListShoppings extends Activity{
 	private ArrayList<String> images;
 	private ProgressDialog dialog;
 	private ListView listview;
-	private ImageAdapter iAdapter;
+	private ImageAdapterShopping iAdapter;
 	private Bundle b;
 	private String text;
 	private Boolean loading;
@@ -63,7 +64,7 @@ public class ListShoppings extends Activity{
 	        bImages = new ArrayList<Bitmap>();
 	        images = new ArrayList<String>();
 	        listview = (ListView) findViewById(R.id.listView1);
-	        iAdapter = new ImageAdapter(ListShoppings.this, bImages);
+	        iAdapter = new ImageAdapterShopping(ListShoppings.this, bImages);
 	        listview.setAdapter(iAdapter);
 	        listview.setOnItemClickListener(new OnItemClickListener() {
 	        	@Override

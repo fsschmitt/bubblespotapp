@@ -3,6 +3,7 @@ package com.bubblespot;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;

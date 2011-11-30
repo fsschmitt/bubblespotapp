@@ -1,12 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
     android:background="@drawable/background"
-	android:layout_height="match_parent" android:layout_width="wrap_content"
-	android:orientation="vertical">
-	 <com.bubblespot.Header android:id="@+id/header"
-		android:layout_width="match_parent" android:layout_height="wrap_content" />
-	<GridView android:numColumns="1" android:layout_width="wrap_content"
-		android:id="@+id/gridView1" android:layout_gravity="center"
-		android:gravity="center_horizontal" android:layout_height="442dp">
-	</GridView>
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical" >
+
+    <com.bubblespot.Header
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/filter_box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Filtrar lojas" >
+    </EditText>
+
+    <GridView
+        android:id="@+id/gridView1"
+        android:layout_width="wrap_content"
+        android:layout_height="442dp"
+        android:layout_gravity="center"
+        android:gravity="center_horizontal"
+        android:numColumns="1" >
+    </GridView>
+
 </LinearLayout>

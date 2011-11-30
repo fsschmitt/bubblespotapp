@@ -7,12 +7,15 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.adapter.ImageAdapter;
+import com.bubblespot.R;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -21,8 +24,11 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.AdapterView.OnItemClickListener;
 
@@ -37,6 +43,8 @@ public class ListShops extends Activity{
 	private GridView gridview;
 	private Bundle b;
 	private String text;
+	private ImageAdapter adapter;
+	private EditText filterText;
 	
 	 public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
@@ -47,6 +55,9 @@ public class ListShops extends Activity{
 	        Header header = (Header) findViewById(R.id.header);
 		    header.initHeader();
 			Search.pesquisa(this, ListShops.this);
+			
+			filterText = (EditText) findViewById(R.id.filter_box);
+		    filterText.addTextChangedListener(filterTextWatcher);
 	        
 			dialog = ProgressDialog.show(this, "", "A Carregar...",true);
 	        dialog.setCancelable(true);
@@ -103,7 +114,6 @@ public class ListShops extends Activity{
 				try {
 					url = new URL(uri);				
 				} catch (MalformedURLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				String line = null;
@@ -127,11 +137,10 @@ public class ListShops extends Activity{
 							Bitmap b = Utils.loadImageFromNetwork(Imagem);
 							b = Bitmap.createScaledBitmap(b, b.getWidth()*120/b.getHeight(), 120, false);
 							Loja s = new Loja(id, Nome, piso, numero, Telefone, Detalhes, Imagem, tags, shoppingNome,shoppingId);
-							bImages.add(b);
-							nomes.add(Nome);
 							lojas.add(s);
 							s.setbImage(b);
 						}
+						ordenar(lojas);
 					}
 					else
 						return null;
@@ -144,11 +153,32 @@ public class ListShops extends Activity{
 				return null;
 			}
 
+			private void ordenar(ArrayList<Loja> lojas) {
+				Collections.sort(lojas, new Comparator<Object>(){
+					public int compare(Object obj1, Object obj2) {
+					    Loja l1 = (Loja) obj1;
+					    Loja l2 = (Loja) obj2;
+					    int deptComp = l1.getShopping().compareTo(l2.getShopping());
+
+					    return ((deptComp == 0) ? l1.getNome().compareTo(l2.getNome())
+					        : deptComp);
+					  }
+				});
+				
+				for (Loja l : lojas){
+					nomes.add(l.getNome());
+					bImages.add(l.getbImage());
+				}
+			}
+			
+			
 			// Called once the background activity has completed
 			@Override
 			protected void onPostExecute(String result) { //
 				if(nomes != null && !nomes.isEmpty()){
-					gridview.setAdapter(new ImageAdapter(ListShops.this, bImages));
+					adapter =  new ImageAdapter(ListShops.this,bImages,nomes);
+					gridview.setAdapter(adapter);
+					gridview.setTextFilterEnabled(true);
 					dialog.dismiss();
 				}
 				else{
@@ -169,6 +199,25 @@ public class ListShops extends Activity{
 			return in.readLine();
 		}
 	 
-	 
-	
+	 private TextWatcher filterTextWatcher = new TextWatcher() {
+
+		    public void afterTextChanged(Editable s) {
+		    }
+
+		    public void beforeTextChanged(CharSequence s, int start, int count,
+		            int after) {
+		    }
+
+		    public void onTextChanged(CharSequence s, int start, int before,
+		            int count) {
+		        adapter.getFilter().filter(s);
+		    }
+
+		};
+		
+		@Override
+		protected void onDestroy() {
+		    super.onDestroy();
+		    filterText.removeTextChangedListener(filterTextWatcher);
+		}	
 }
