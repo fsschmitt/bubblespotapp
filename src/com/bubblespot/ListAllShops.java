@@ -17,6 +17,7 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
@@ -51,7 +52,6 @@ public class ListAllShops extends Activity{
 	        mContext = this;
 	        Bundle c = this.getIntent().getExtras();
 	        this.text = c.getString("text");
-	        this.idShopping = c.getInt("idShopping");
 	        Header header = (Header) findViewById(R.id.header);
 		    header.initHeader();
 			Search.pesquisa(this, ListAllShops.this);
@@ -59,7 +59,13 @@ public class ListAllShops extends Activity{
 			filterText = (EditText) findViewById(R.id.filter_box);
 		    filterText.addTextChangedListener(filterTextWatcher);
 	        
-	        dialog = ProgressDialog.show(this, "", "Loading...",true);
+	        dialog = ProgressDialog.show(this, "", "A Carregar...",true);
+	        dialog.setCancelable(true);
+	        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+	            public void onCancel(DialogInterface dialog) {
+	            	finish();
+	                }
+	        });
 	        b = new Bundle();
 	        lojas = new ArrayList<Loja>();
 	        nomes = new ArrayList<String>();
@@ -78,7 +84,7 @@ public class ListAllShops extends Activity{
 	                b.putString("lojaImagem", loja.getImagem());
 	                b.putString("lojaTags", loja.getTags());
 	                b.putString("lojaShopping", loja.getShopping());
-	                b.putInt("idShopping", idShopping);
+	                b.putInt("idShopping", loja.getIdShopping());
 	                intent.putExtras(b);
 					startActivity(intent);
 	        	}
@@ -116,10 +122,11 @@ public class ListAllShops extends Activity{
 						String Detalhes = loja.getString("detalhes");
 						String Imagem = loja.getString("imagem");
 						String tags = loja.getString("tags");
-						String shoppingId = loja.getString("shopping_nome");
+						String shoppingNome = loja.getString("shopping_nome");
+						int shoppingId = loja.getInt("shopping_id");
 						Bitmap b = Utils.loadImageFromNetwork(Imagem);
 						b = Bitmap.createScaledBitmap(b, b.getWidth()*120/b.getHeight(), 120, false);
-						Loja s = new Loja(id, Nome, piso, numero, Telefone, Detalhes, Imagem, tags, shoppingId);
+						Loja s = new Loja(id, Nome, piso, numero, Telefone, Detalhes, Imagem, tags, shoppingNome,shoppingId);
 						lojas.add(s);
 					}
 					ordenar(lojas);

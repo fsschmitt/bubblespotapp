@@ -16,6 +16,7 @@ import com.adapter.PromocaoAdapter;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
@@ -53,7 +54,13 @@ public class ListPromo extends Activity{
 		    header.initHeader();
 			Search.pesquisa(this, ListPromo.this);
 	        
-	        dialog = ProgressDialog.show(this, "", "Loading...",true);
+			dialog = ProgressDialog.show(this, "", "A Carregar...",true);
+	        dialog.setCancelable(true);
+	        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+	            public void onCancel(DialogInterface dialog) {
+	            	finish();
+	                }
+	        });
 	        b = new Bundle();
 	        promos = new ArrayList<Promocao>();
 	        nomes = new ArrayList<String>();
@@ -69,6 +76,12 @@ public class ListPromo extends Activity{
 	                b.putInt("idShopping", idShopping);
 	                b.putString("desconto", promo.getDesconto());
 	                b.putString("shopping", nomeShopping);
+	                Bitmap image = promo.getbImage();
+	                if(image != null){
+	                	b.putByteArray("shoppingImageByte", Utils.encodeBitmap(image));
+	                }
+	                else
+	                	b.putByteArray("shoppingImageByte", null);
 	                intent.putExtras(b);
 					startActivity(intent);
 	        	}
@@ -110,7 +123,7 @@ public class ListPromo extends Activity{
 							String precoi = promo.getString("precoi");
 							String produto = promo.getString("produto");
 							
-							bImages.add(Utils.loadImageFromNetwork("http://placehold.it/200x150"));
+							bImages.add(Utils.loadImageFromNetwork(imagem));
 							nomes.add(produto);
 							Promocao p = new Promocao(id,dataf,desconto,detalhes,imagem,idLoja,precoi,precof,produto);
 							promos.add(p);

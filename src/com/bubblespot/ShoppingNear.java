@@ -16,6 +16,7 @@ import com.adapter.ShoppingAdapter;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -51,7 +52,13 @@ public class ShoppingNear extends Activity{
 		Header header = (Header) findViewById(R.id.header);
 		header.initHeader();
 		Search.pesquisa(this, ShoppingNear.this);
-		dialog = ProgressDialog.show(this, "", "Loading...",true);
+		dialog = ProgressDialog.show(this, "", "A Carregar...",true);
+        dialog.setCancelable(true);
+        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            public void onCancel(DialogInterface dialog) {
+            	finish();
+                }
+        });
 		b = new Bundle();
 		shoppings = new ArrayList<Shopping>();
 		nomes = new ArrayList<String>();

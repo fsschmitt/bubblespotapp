@@ -4,6 +4,7 @@ package com.bubblespot;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -104,7 +105,7 @@ public class BubbleSpot extends Activity {
 		if (!isNetworkAvailable()) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setMessage("Por favor ligue-se à Internet!")
-			.setCancelable(false)
+			.setCancelable(true)
 			.setPositiveButton("Definições",
 					new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog,

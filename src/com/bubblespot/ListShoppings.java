@@ -13,6 +13,7 @@ import com.adapter.ImageAdapter;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -48,7 +49,13 @@ public class ListShoppings extends Activity{
 		    header.initHeader();
 			Search.pesquisa(this, ListShoppings.this);
 	        
-	        dialog = ProgressDialog.show(this, "", "Loading...",true);
+			dialog = ProgressDialog.show(this, "", "A Carregar...",true);
+	        dialog.setCancelable(true);
+	        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+	            public void onCancel(DialogInterface dialog) {
+	            	finish();
+	                }
+	        });
 	        b = new Bundle();
 	        loading = true;
 	        shoppings = new ArrayList<Shopping>();

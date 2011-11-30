@@ -2,7 +2,7 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 	<item android:icon="@drawable/about" android:id="@+id/loja_promocoes"
-		android:title="Promoções" />
+		android:title="Listar Promoções" />
 	<item android:icon="@drawable/about" android:id="@+id/loja_partilhar"
 		android:title="Partilhar" />
 </menu>

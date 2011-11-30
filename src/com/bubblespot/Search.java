@@ -162,7 +162,7 @@ public class Search {
 		if (!isNetworkAvailable(c, a)) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(c);
 			builder.setMessage("Por favor ligue-se à Internet!")
-			.setCancelable(false)
+			.setCancelable(true)
 			.setPositiveButton("Definições",
 					new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog,

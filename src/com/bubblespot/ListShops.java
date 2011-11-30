@@ -16,6 +16,7 @@ import com.adapter.ImageAdapter;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
@@ -47,7 +48,13 @@ public class ListShops extends Activity{
 		    header.initHeader();
 			Search.pesquisa(this, ListShops.this);
 	        
-	        dialog = ProgressDialog.show(this, "", "Loading...",true);
+			dialog = ProgressDialog.show(this, "", "A Carregar...",true);
+	        dialog.setCancelable(true);
+	        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+	            public void onCancel(DialogInterface dialog) {
+	            	finish();
+	                }
+	        });
 	        b = new Bundle();
 	        lojas = new ArrayList<Loja>();
 	        nomes = new ArrayList<String>();
@@ -69,6 +76,12 @@ public class ListShops extends Activity{
 	                b.putString("lojaTags", loja.getTags());
 	                b.putString("lojaShopping", loja.getShopping());
 	                b.putInt("idShopping", idShopping);
+	                Bitmap image = loja.getbImage();
+	                if(image != null){
+	                	b.putByteArray("shopImageByte", Utils.encodeBitmap(image));
+	                }
+	                else
+	                	b.putByteArray("shopImageByte", null);
 	                intent.putExtras(b);
 					startActivity(intent);
 	        	}
@@ -97,25 +110,32 @@ public class ListShops extends Activity{
 				JSONArray jo = null;
 				try {
 					line = getJSONLine(url);
-					jo = new JSONArray(line);
-					for (int i = 0; i < jo.length(); i++) {
-						JSONObject loja = jo.getJSONObject(i);
-						int id = loja.getInt("id");
-						String Nome = loja.getString("nome");
-						int piso = loja.getInt("piso");
-						int numero = loja.getInt("numero");
-						String Telefone = loja.getString("telefone");
-						String Detalhes = loja.getString("detalhes");
-						String Imagem = loja.getString("imagem");
-						String tags = loja.getString("tags");
-						String shoppingId = loja.getString("shopping_nome");
-						Bitmap b = Utils.loadImageFromNetwork(Imagem);
-						b = Bitmap.createScaledBitmap(b, b.getWidth()*120/b.getHeight(), 120, false);
-						bImages.add(b);
-						nomes.add(Nome);
-						Loja s = new Loja(id, Nome, piso, numero, Telefone, Detalhes, Imagem, tags, shoppingId);
-						lojas.add(s);
+					if(line != null){
+						jo = new JSONArray(line);
+						for (int i = 0; i < jo.length(); i++) {
+							JSONObject loja = jo.getJSONObject(i);
+							int id = loja.getInt("id");
+							String Nome = loja.getString("nome");
+							int piso = loja.getInt("piso");
+							int numero = loja.getInt("numero");
+							String Telefone = loja.getString("telefone");
+							String Detalhes = loja.getString("detalhes");
+							String Imagem = loja.getString("imagem");
+							String tags = loja.getString("tags");
+							String shoppingNome = loja.getString("shopping_nome");
+							int shoppingId = loja.getInt("shopping_id");
+							Bitmap b = Utils.loadImageFromNetwork(Imagem);
+							b = Bitmap.createScaledBitmap(b, b.getWidth()*120/b.getHeight(), 120, false);
+							Loja s = new Loja(id, Nome, piso, numero, Telefone, Detalhes, Imagem, tags, shoppingNome,shoppingId);
+							bImages.add(b);
+							nomes.add(Nome);
+							lojas.add(s);
+							s.setbImage(b);
+						}
 					}
+					else
+						return null;
+							
 				} catch (IOException e) {
 					e.printStackTrace();
 				} catch (JSONException e) {

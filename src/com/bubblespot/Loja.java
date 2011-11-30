@@ -1,5 +1,7 @@
 package com.bubblespot;
 
+import android.graphics.Bitmap;
+
 public class Loja {
 
 	private int id;
@@ -11,9 +13,11 @@ public class Loja {
 	private String imagem;
 	private String tags;
 	private String shopping;
+	private int idShopping;
 	private boolean primeira=false;
+	private Bitmap bImage;
 	
-	Loja (int id, String nome, int piso, int numero, String telefone, String detalhes, String imagem, String tags, String shopping){
+	Loja (int id, String nome, int piso, int numero, String telefone, String detalhes, String imagem, String tags, String shopping, int idShopping){
 		this.id = id;
 		this.nome=nome;
 		this.piso=piso;
@@ -23,6 +27,8 @@ public class Loja {
 		this.imagem=imagem;
 		this.tags=tags;
 		this.shopping=shopping;
+		this.idShopping=idShopping;
+		this.bImage=null;
 	}
 	
 	public String getNome() {
@@ -92,5 +98,21 @@ public class Loja {
 
 	public void setPrimeira(boolean flag) {
 		this.primeira = flag;
+	}
+
+	public int getIdShopping() {
+		return idShopping;
+	}
+
+	public void setIdShopping(int idShopping) {
+		this.idShopping = idShopping;
+	}
+
+	public Bitmap getbImage() {
+		return bImage;
+	}
+
+	public void setbImage(Bitmap bImage) {
+		this.bImage = bImage;
 	}
 }

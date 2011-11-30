@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -32,7 +33,6 @@ public class ShoppingDetail extends Activity {
 	private String localizacao;
 	private String nome;
 	private String telefone;
-	private Bitmap imagem;
 	private String imagem_url;
 	private int id;
 	private ProgressDialog dialog;
@@ -57,9 +57,16 @@ public class ShoppingDetail extends Activity {
 		ShoppingDetail.this.setContentView(R.layout.shoppingdetail);
 		Header header = (Header) findViewById(R.id.header);
 	    header.initHeader();
+	    Search.pesquisa(this, this);
 	    initButtons();
 		
-		dialog = ProgressDialog.show(this, "", "Loading...",true);
+	    dialog = ProgressDialog.show(this, "", "A Carregar...",true);
+        dialog.setCancelable(true);
+        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            public void onCancel(DialogInterface dialog) {
+            	finish();
+                }
+        });
 		Bundle b = this.getIntent().getExtras();
 		this.nome = b.getString("shoppingNome");
 		this.localizacao = b.getString("shoppingLocal");
@@ -72,8 +79,8 @@ public class ShoppingDetail extends Activity {
 		this.id = b.getInt("id");
 		byte[] byteImage = b.getByteArray("shoppingImageByte");
 		if(byteImage != null){
-			this.imagem = BitmapFactory.decodeByteArray(byteImage, 0, byteImage.length);
-			bImage = this.imagem;
+			bImage =  BitmapFactory.decodeByteArray(byteImage, 0, byteImage.length);
+			
 			
 			ImageView logo = (ImageView) ShoppingDetail.this.findViewById(R.id.sdLogo);
 			logo.setImageBitmap(bImage);

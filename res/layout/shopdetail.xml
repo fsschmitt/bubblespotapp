@@ -20,7 +20,7 @@
 		<LinearLayout
 		    android:id="@+id/linearLayout1"
 		    android:layout_width="match_parent"
-		    android:layout_height="198dp" >
+		    android:layout_height="wrap_content" android:paddingBottom="50dp">
 
 			<ImageView
 			    android:id="@+id/loja_logo"
@@ -32,7 +32,7 @@
 			    android:id="@+id/linearLayout2"
 			    android:layout_width="wrap_content"
 			    android:layout_height="match_parent"
-			    android:orientation="vertical" android:paddingLeft="20dp" android:paddingTop="0dp">
+			    android:orientation="vertical" android:paddingLeft="10dp" android:paddingTop="0dp">
 
 				<TextView
 				    android:id="@+id/loja_detalhes"
@@ -42,6 +42,19 @@
 			</LinearLayout>
 
 		</LinearLayout>
+
+		<TextView
+		    android:id="@+id/textView1"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="Promoções:"
+		    android:paddingLeft="10dp"
+		    android:textAppearance="?android:attr/textAppearanceLarge" android:paddingBottom="20dp"/>
+
+		<Gallery
+		    android:id="@+id/galleryPromos"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content" />
 
 	</LinearLayout>
 

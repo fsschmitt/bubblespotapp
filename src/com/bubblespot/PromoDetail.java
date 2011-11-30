@@ -5,7 +5,9 @@ import java.net.MalformedURLException;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
@@ -25,13 +27,35 @@ public class PromoDetail extends Activity {
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		dialog = ProgressDialog.show(this, "", "Loading...",true);
+		PromoDetail.this.setContentView(R.layout.promodetail);
+		Header header = (Header) findViewById(R.id.header);
+	    header.initHeader();
+		Search.pesquisa(PromoDetail.this, PromoDetail.this);
+		dialog = ProgressDialog.show(this, "", "A Carregar...",true);
+        dialog.setCancelable(true);
+        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            public void onCancel(DialogInterface dialog) {
+            	finish();
+                }
+        });
 		Bundle b = this.getIntent().getExtras();
 		this.nome = b.getString("lojaNome");
 		//this.loja_id = b.getInt("lojaID");
 		this.shopping = b.getString("lojaShopping");
-		new RetrieveInfo().execute();
+		byte[] byteImage = b.getByteArray("promoImageByte");
+		if(byteImage != null){
+			bImage = BitmapFactory.decodeByteArray(byteImage, 0, byteImage.length);
+			ImageView logo = (ImageView) PromoDetail.this.findViewById(R.id.promo_logo);
+			logo.setImageBitmap(bImage);
+			
+			TextView text_promo = (TextView) PromoDetail.this.findViewById(R.id.text_promo);
+			text_promo.setText(nome + " (" + shopping + ")");
+
+			TextView loja_detalhes = (TextView) PromoDetail.this.findViewById(R.id.detalhes_promo);
+			loja_detalhes.setText("\tPiso: " + "\n\tNúmero: " + "\n\tTelefone: " + "\n\tÁreas de Negócio: " +  "\n\tDetalhes: " );
+		}
+		else
+			new RetrieveInfo().execute();
 		
 
 	}
@@ -59,10 +83,7 @@ public class PromoDetail extends Activity {
 		@Override
 		protected void onPostExecute(String result) {
 			
-			PromoDetail.this.setContentView(R.layout.promodetail);
-			Header header = (Header) findViewById(R.id.header);
-		    header.initHeader();
-			Search.pesquisa(PromoDetail.this, PromoDetail.this);
+			
 			TextView text_promo = (TextView) PromoDetail.this.findViewById(R.id.text_promo);
 			text_promo.setText(nome + " (" + shopping + ")");
 			
