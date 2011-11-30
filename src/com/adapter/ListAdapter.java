@@ -7,25 +7,31 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.bubblespot.Loja;
 import com.bubblespot.R;
 
-public class ListAdapter extends BaseAdapter {
+public class ListAdapter extends BaseAdapter implements Filterable {
 	private ArrayList<Loja> shops;
+	private ArrayList<Loja> shopsDisplay;
 	private Context c;
+	private ArrayList<String> nomes;
 
-	public ListAdapter(Context c, ArrayList<Loja> shops) {
+	public ListAdapter(Context c,ArrayList<String> nomes,ArrayList<Loja> shops) {
 		this.shops = shops;
 		this.c = c;
+		this.nomes = nomes;
+		this.shopsDisplay = shops;
 	}
 
 	public int getCount() {
-		return shops.size();
+		return shopsDisplay.size();
 	}
 
-	public Object getItem(int position) {
+	public String getItem(int position) {
 		return null;
 	}
 
@@ -43,16 +49,72 @@ public class ListAdapter extends BaseAdapter {
 		} 
 		TextView shopping = (TextView) v.findViewById(R.id.shopping_nome);
 		
-		if(shops.get(position).isPrimeira()){
-			shopping.setText(shops.get(position).getShopping());
-			shopping.setVisibility(View.VISIBLE);
+		if(shopsDisplay.get(position).isPrimeira()){
+				shopping.setText(shopsDisplay.get(position).getShopping());
+				shopping.setVisibility(View.VISIBLE);
 		}
 		else
 			shopping.setVisibility(View.GONE);
+		
 		TextView nome = (TextView) v.findViewById(R.id.loja_nome);
-		nome.setText(shops.get(position).getNome());
 		TextView areas = (TextView) v.findViewById(R.id.areas_negocio);
-		areas.setText(shops.get(position).getTags());
+
+		nome.setVisibility(View.VISIBLE);
+		areas.setVisibility(View.VISIBLE);
+		nome.setText(shopsDisplay.get(position).getNome());
+		areas.setText(shopsDisplay.get(position).getTags());
+		
 		return v;
 	}
+	
+	@Override
+    public Filter getFilter() {
+        return new Filter() {
+            @SuppressWarnings("unchecked")
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                shopsDisplay = (ArrayList<Loja>) results.values;
+                ListAdapter.this.notifyDataSetChanged();
+            }
+
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                ArrayList<Loja> filteredResults = getFilteredResults(constraint);
+
+                FilterResults results = new FilterResults();
+                results.values = filteredResults;
+
+                return results;
+            }
+
+			private ArrayList<Loja> getFilteredResults(CharSequence filterText) {
+				ArrayList<String> filtered = new ArrayList<String>();
+				ArrayList<Loja> filteredShops = new ArrayList<Loja>();
+				for(String s : nomes)
+				{
+					if(s.contains(filterText))
+						filtered.add(s);
+				}
+				String shopping = null;
+				for(Loja l : shops){
+					if(filtered.contains(l.getNome())){
+						if(shopping == null){
+							l.setPrimeira(true);
+							shopping = l.getShopping();
+						}else if(l.getShopping().equalsIgnoreCase(shopping)){
+							l.setPrimeira(false);
+						}
+						else{
+							l.setPrimeira(true);
+							shopping = l.getShopping();
+						}
+						
+						filteredShops.add(l);
+					}
+				}
+				return filteredShops;
+			}
+
+        };
+    }
 }

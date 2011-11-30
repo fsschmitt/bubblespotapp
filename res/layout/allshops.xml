@@ -3,20 +3,30 @@
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:focusable="true"
+	android:focusableInTouchMode="true">
 
     <com.bubblespot.Header
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
+
+    <EditText
+        android:id="@+id/filter_box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Filtrar lojas">
+    </EditText>
+
     <ListView
         android:id="@+id/listView1"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:cacheColorHint="#00000000"
-        android:dividerHeight="4px" 
-        android:divider = "#90FFFFFF">
+        android:divider="#90FFFFFF"
+        android:dividerHeight="4px" >
+
     </ListView>
 
 </LinearLayout>

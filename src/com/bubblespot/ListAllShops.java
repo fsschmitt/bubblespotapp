@@ -14,42 +14,55 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.adapter.ListAdapter;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.EditText;
 import android.widget.ListView;
+
+import com.adapter.ListAdapter;
 
 
 
 public class ListAllShops extends Activity{
 	private int idShopping;
 	private ArrayList<Loja> lojas;
+	private ArrayList<String> nomes;
 	private ProgressDialog dialog;
 	private ListView listview;
 	private Bundle b;
 	private String text;
+	private ListAdapter adapter;
+	private EditText filterText;
+	private Context mContext;
 	
 	 public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.allshops);
+	        mContext = this;
 	        Bundle c = this.getIntent().getExtras();
 	        this.text = c.getString("text");
 	        this.idShopping = c.getInt("idShopping");
 	        Header header = (Header) findViewById(R.id.header);
 		    header.initHeader();
 			Search.pesquisa(this, ListAllShops.this);
+			
+			filterText = (EditText) findViewById(R.id.filter_box);
+		    filterText.addTextChangedListener(filterTextWatcher);
 	        
 	        dialog = ProgressDialog.show(this, "", "Loading...",true);
 	        b = new Bundle();
 	        lojas = new ArrayList<Loja>();
+	        nomes = new ArrayList<String>();
 	        listview = (ListView) findViewById(R.id.listView1);
 	        listview.setOnItemClickListener(new OnItemClickListener() {
 	        	@Override
@@ -133,13 +146,14 @@ public class ListAllShops extends Activity{
 				
 				String shopping = null;
 				for (Loja l : lojas){
+					nomes.add(l.getNome());
 					if (shopping==null){
 						shopping=l.getShopping();
-						l.setPrimeira();
+						l.setPrimeira(true);
 					}
 					else if(l.getShopping().compareTo(shopping)!=0){
 						shopping=l.getShopping();
-						l.setPrimeira();
+						l.setPrimeira(true);
 					}
 				}
 			}
@@ -148,7 +162,10 @@ public class ListAllShops extends Activity{
 			@Override
 			protected void onPostExecute(String result) { //
 				if(lojas != null && !lojas.isEmpty()){
-					listview.setAdapter(new ListAdapter(ListAllShops.this, lojas));
+					adapter =  new ListAdapter(mContext,nomes,lojas);
+					//adapter = new ListAdapter(mContext, lojas);
+					listview.setAdapter(adapter);
+					listview.setTextFilterEnabled(true);
 					dialog.dismiss();
 				}
 				else{
@@ -169,6 +186,26 @@ public class ListAllShops extends Activity{
 			return in.readLine();
 		}
 	 
-	 
+	 private TextWatcher filterTextWatcher = new TextWatcher() {
+
+		    public void afterTextChanged(Editable s) {
+		    }
+
+		    public void beforeTextChanged(CharSequence s, int start, int count,
+		            int after) {
+		    }
+
+		    public void onTextChanged(CharSequence s, int start, int before,
+		            int count) {
+		        adapter.getFilter().filter(s);
+		    }
+
+		};
+		
+		@Override
+		protected void onDestroy() {
+		    super.onDestroy();
+		    filterText.removeTextChangedListener(filterTextWatcher);
+		}
 	
 }

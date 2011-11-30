@@ -90,7 +90,7 @@ public class Loja {
 		return primeira;
 	}
 
-	public void setPrimeira() {
-		this.primeira = true;
+	public void setPrimeira(boolean flag) {
+		this.primeira = flag;
 	}
 }
