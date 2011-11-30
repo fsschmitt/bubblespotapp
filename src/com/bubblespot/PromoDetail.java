@@ -18,12 +18,20 @@ import android.widget.TextView;
 
 public class PromoDetail extends Activity {
 
-	private String nome;
 	private String shopping;
-	//private int loja_id;
+	private int id;
+	private int idLoja;
+	private int idShopping;
+	private String nomeLoja;
+	private String imagem_url;
+	private String produto;
+	private String detalhes;
+	private String desconto;
+	private String precoFinal;
+	private String precoInicial;
+	private String dataFinal;
 	private ProgressDialog dialog;
 	private Bitmap bImage;
-	//private Promocao promo;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -31,44 +39,73 @@ public class PromoDetail extends Activity {
 		Header header = (Header) findViewById(R.id.header);
 	    header.initHeader();
 		Search.pesquisa(PromoDetail.this, PromoDetail.this);
-		dialog = ProgressDialog.show(this, "", "A Carregar...",true);
-        dialog.setCancelable(true);
-        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            public void onCancel(DialogInterface dialog) {
-            	finish();
-                }
-        });
+		
 		Bundle b = this.getIntent().getExtras();
-		this.nome = b.getString("lojaNome");
-		//this.loja_id = b.getInt("lojaID");
-		this.shopping = b.getString("lojaShopping");
+		id = b.getInt("id");
+		idShopping = b.getInt("idShopping");
+		idLoja = b.getInt("idLoja");
+		nomeLoja = b.getString("nomeLoja");
+		desconto = b.getString("desconto");
+		produto = b.getString("produto");
+		detalhes = b.getString("detalhes");
+		precoFinal = b.getString("precoFinal");
+		precoInicial = b.getString("precoInicial");
+		dataFinal = b.getString("dataFinal");
+		shopping = b.getString("shopping");
+		imagem_url = b.getString("imagem");
+        b.putString("shopping", shopping);
+        
+        
+        TextView text_promo = (TextView) PromoDetail.this.findViewById(R.id.promo_text);
+		text_promo.setText(produto);
+		
+		TextView promoLoja = (TextView) PromoDetail.this.findViewById(R.id.promoLoja);
+		promoLoja.setText(nomeLoja + " (" + shopping + ")");
+		
+		TextView promoDetalhes = (TextView) PromoDetail.this.findViewById(R.id.promoDetalhes);
+		promoDetalhes.setText(detalhes);
+        
+		TextView promoAntes = (TextView) PromoDetail.this.findViewById(R.id.promoAntes);
+		promoAntes.setText("Antes: "+precoInicial);
+		
+		TextView promoDepois = (TextView) PromoDetail.this.findViewById(R.id.promoDepois);
+		promoDepois.setText("Depois: "+precoFinal);
+		
+		TextView promoDesconto = (TextView) PromoDetail.this.findViewById(R.id.promoDesconto);
+		promoDesconto.setText("Desconto: "+desconto+"%");
+		
+		TextView promoDataLimite = (TextView) PromoDetail.this.findViewById(R.id.promoDataLimite);
+		promoDataLimite.setText(dataFinal);
+        
+        
 		byte[] byteImage = b.getByteArray("promoImageByte");
 		if(byteImage != null){
 			bImage = BitmapFactory.decodeByteArray(byteImage, 0, byteImage.length);
 			ImageView logo = (ImageView) PromoDetail.this.findViewById(R.id.promo_logo);
 			logo.setImageBitmap(bImage);
-			
-			TextView text_promo = (TextView) PromoDetail.this.findViewById(R.id.text_promo);
-			text_promo.setText(nome + " (" + shopping + ")");
-
-			TextView loja_detalhes = (TextView) PromoDetail.this.findViewById(R.id.detalhes_promo);
-			loja_detalhes.setText("\tPiso: " + "\n\tNúmero: " + "\n\tTelefone: " + "\n\tÁreas de Negócio: " +  "\n\tDetalhes: " );
 		}
-		else
-			new RetrieveInfo().execute();
+		else{
+			dialog = ProgressDialog.show(this, "", "A Carregar...",true);
+	        dialog.setCancelable(true);
+	        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+	            public void onCancel(DialogInterface dialog) {
+	            	finish();
+	                }
+	        });
+			new RetrieveLogo().execute();
+		}
 		
 
 	}
 	
-	class RetrieveInfo extends AsyncTask<String, Integer, String> {
+	class RetrieveLogo extends AsyncTask<String, Integer, String> {
 
 		@Override
 		protected String doInBackground(String... arg0) {
 			
 			bImage = null;
 			try {
-				bImage = Utils.loadImageFromNetwork("http://placehold.it/200x150");
-				//bImage = Utils.loadImageFromNetwork(imagem);
+				bImage = Utils.loadImageFromNetwork(imagem_url);
 			} catch (MalformedURLException e1) {
 				e1.printStackTrace();
 			} catch (IOException e1) {
@@ -82,16 +119,10 @@ public class PromoDetail extends Activity {
 		
 		@Override
 		protected void onPostExecute(String result) {
-			
-			
-			TextView text_promo = (TextView) PromoDetail.this.findViewById(R.id.text_promo);
-			text_promo.setText(nome + " (" + shopping + ")");
-			
+
 			ImageView logo = (ImageView) PromoDetail.this.findViewById(R.id.promo_logo);
 			logo.setImageBitmap(bImage);
 			
-			TextView loja_detalhes = (TextView) PromoDetail.this.findViewById(R.id.detalhes_promo);
-			loja_detalhes.setText("\tPiso: " + "\n\tNúmero: " + "\n\tTelefone: " + "\n\tÁreas de Negócio: " +  "\n\tDetalhes: " );
 			dialog.dismiss();
 			
 		}
