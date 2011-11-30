@@ -26,12 +26,6 @@
             android:layout_marginBottom="20dp"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <ImageView
-            android:id="@+id/loja_logo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp" android:paddingBottom="10dp"/>
-
     </LinearLayout>
 
     <ScrollView
@@ -39,145 +33,159 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
-        <TableLayout
-            android:id="@+id/tableLayout1"
+        <LinearLayout
+            android:id="@+id/linearLayout1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="wrap_content"
+            android:orientation="vertical" android:gravity="center_horizontal">
 
-            <TableRow
-		                android:id="@+id/tableRow1"
-		                android:layout_width="wrap_content"
-		                android:layout_height="wrap_content" >
+            <ImageView
+                android:id="@+id/loja_logo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp" />
 
-		                <TextView
-		                    android:id="@+id/LojaDetalhes"
-		                    android:layout_width="wrap_content"
-		                    android:layout_height="wrap_content"
-		                    android:layout_weight="1"
-		                    android:background="#90FFFFFF"
-		                    android:gravity="center_vertical|center_horizontal"
-		                    android:text="Detalhes"
-		                    android:textColor="#FFFFFF"
-		                    android:textSize="9pt" />
-		            </TableRow>
+            <TableLayout
+                android:id="@+id/tableLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
 
-		            <TableRow
-		                android:id="@+id/tableRow2"
-		                android:layout_width="wrap_content"
-		                android:layout_height="wrap_content" >
+                <TableRow
+                    android:id="@+id/tableRow1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
 
-		                <TextView
-		                    android:id="@+id/lojaPiso"
-		                    android:layout_width="wrap_content"
-		                    android:layout_height="wrap_content"
-		                    android:layout_weight="1"
-		                    android:textColor="#FFFFFF"
-		                    android:textSize="9pt" />
-		            </TableRow>
-		            
-	                <TableRow
-	                    android:id="@+id/tableRow3"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content" >
+                    <TextView
+                        android:id="@+id/LojaDetalhes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#90FFFFFF"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:text="Detalhes"
+                        android:textColor="#FFFFFF"
+                        android:textSize="9pt" />
+                </TableRow>
 
-		                <TextView
-		                    android:id="@+id/lojaNumero"
-		                    android:layout_width="wrap_content"
-		                    android:layout_height="wrap_content"
-		                    android:layout_weight="1"
-		                    android:textColor="#FFFFFF"
-		                    android:textSize="9pt" />
-		            </TableRow>
-		            
-	                <TableRow
-	                    android:id="@+id/tableRow4"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content" >
+                <TableRow
+                    android:id="@+id/tableRow2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
 
-		                <TextView
-		                    android:id="@+id/lojaTelefone"
-		                    android:layout_width="wrap_content"
-		                    android:layout_height="wrap_content"
-		                    android:layout_weight="1"
-		                    android:textColor="#FFFFFF"
-		                    android:textSize="9pt" />
-		            </TableRow>
-		            
-	                <TableRow
-	                    android:id="@+id/tableRow5"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content" >
+                    <TextView
+                        android:id="@+id/lojaPiso"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="#FFFFFF"
+                        android:textSize="9pt" />
+                </TableRow>
 
-		                <TextView
-		                    android:id="@+id/lojaArea"
-		                    android:layout_width="wrap_content"
-		                    android:layout_height="wrap_content"
-		                    android:layout_weight="1"
-		                    android:textColor="#FFFFFF"
-		                    android:textSize="9pt" />
-		            </TableRow>
+                <TableRow
+                    android:id="@+id/tableRow3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
 
-		            <TableRow
-		                android:id="@+id/TableRow6"
-		                android:layout_width="wrap_content"
-		                android:layout_height="wrap_content" >
+                    <TextView
+                        android:id="@+id/lojaNumero"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="#FFFFFF"
+                        android:textSize="9pt" />
+                </TableRow>
 
-		                <TextView
-		                    android:id="@+id/Descricao"
-		                    android:layout_width="wrap_content"
-		                    android:layout_height="wrap_content"
-		                    android:layout_weight="1"
-		                    android:background="#90FFFFFF"
-		                    android:gravity="center_vertical|center_horizontal"
-		                    android:text="Descrição"
-		                    android:textColor="#FFFFFF"
-		                    android:textSize="9pt" />
-		            </TableRow>
-					
-		            <TableRow
-		                android:id="@+id/tableRow7"
-		                android:layout_width="wrap_content"
-		                android:layout_height="wrap_content" >
+                <TableRow
+                    android:id="@+id/tableRow4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
 
-		                <TextView
-		                    android:id="@+id/lojaDescricao"
-		                    android:layout_width="wrap_content"
-		                    android:layout_height="wrap_content"
-		                    android:layout_weight="1"
-		                    android:textColor="#FFFFFF"
-		                    android:textSize="9pt" />
-		            </TableRow>
-		            
-	                <TableRow
-	                    android:id="@+id/TableRow8"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content" >
+                    <TextView
+                        android:id="@+id/lojaTelefone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="#FFFFFF"
+                        android:textSize="9pt" />
+                </TableRow>
 
-		                <TextView
-		                    android:id="@+id/Promocoes"
-		                    android:layout_width="wrap_content"
-		                    android:layout_height="wrap_content"
-		                    android:layout_weight="1"
-		                    android:background="#90FFFFFF"
-		                    android:gravity="center_vertical|center_horizontal"
-		                    android:text="Promoções"
-		                    android:textColor="#FFFFFF"
-		                    android:textSize="9pt" />
-		            </TableRow>
+                <TableRow
+                    android:id="@+id/tableRow5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
 
-	                <TableRow
-	                    android:id="@+id/tableRow9"
-	                    android:layout_width="wrap_content"
-	                    android:layout_height="wrap_content" >
+                    <TextView
+                        android:id="@+id/lojaArea"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="#FFFFFF"
+                        android:textSize="9pt" />
+                </TableRow>
 
-	                    <Gallery
-	                        android:id="@+id/galleryPromos"
-	                        android:layout_width="match_parent"
-	                        android:layout_height="wrap_content" android:layout_weight="1"/>
+                <TableRow
+                    android:id="@+id/TableRow6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
 
-	                </TableRow>
-		            
-        </TableLayout>
+                    <TextView
+                        android:id="@+id/Descricao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#90FFFFFF"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:text="Descrição"
+                        android:textColor="#FFFFFF"
+                        android:textSize="9pt" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/lojaDescricao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="#FFFFFF"
+                        android:textSize="9pt" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/TableRow8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/Promocoes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="#90FFFFFF"
+                        android:gravity="center_vertical|center_horizontal"
+                        android:text="Promoções"
+                        android:textColor="#FFFFFF"
+                        android:textSize="9pt" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRow9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <Gallery
+                        android:id="@+id/galleryPromos"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
+                </TableRow>
+            </TableLayout>
+
+        </LinearLayout>
 
     </ScrollView>
 
