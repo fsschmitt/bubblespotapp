@@ -11,33 +11,196 @@
 		    android:id="@+id/linearLayout2"
 		    android:layout_width="match_parent"
 		    android:layout_height="wrap_content"
-		    android:orientation="vertical" >
-
+		    android:orientation="vertical" android:gravity="center_horizontal">
+
 		    <TextView
-		        android:id="@+id/text_promo"
+		        android:id="@+id/promo_text"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
-		        android:text="Text View"
-		        android:textAppearance="?android:attr/textAppearanceLarge" />
+		        android:textAppearance="?android:attr/textAppearanceLarge"/>
 
-		    <LinearLayout
-		        android:id="@+id/linearLayout1"
+		    <ImageView
+		        android:id="@+id/promo_logo"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:paddingBottom="10dp"/>
+
+		    <ScrollView
+		        android:id="@+id/scrollView1"
 		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content" >
+		        android:layout_height="wrap_content"
+		        android:layout_weight="1" >
 
-		        <ImageView
-		            android:id="@+id/promo_logo"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:src="@android:drawable/sym_def_app_icon" android:paddingLeft="10dp"/>
+		        <TableLayout
+		            android:id="@+id/tableLayout1"
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content" >
 
-		        <TextView
-		            android:id="@+id/detalhes_promo"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:text="Text View" />
+		            <TableRow
+		                android:id="@+id/tableRow1"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content" >
 
-		    </LinearLayout>
+		                <TextView
+		                    android:id="@+id/Loja"
+		                    android:layout_width="wrap_content"
+		                    android:layout_height="wrap_content"
+		                    android:layout_weight="1"
+		                    android:background="#90FFFFFF"
+		                    android:gravity="center_vertical|center_horizontal"
+		                    android:text="Loja"
+		                    android:textColor="#FFFFFF"
+		                    android:textSize="9pt" />
+		            </TableRow>
+
+		            <TableRow
+		                android:id="@+id/tableRow2"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:gravity="center_horizontal" >
+
+		                <TextView
+		                    android:id="@+id/promoLoja"
+		                    android:layout_width="wrap_content"
+		                    android:layout_height="wrap_content"
+		                    android:layout_weight="1"
+		                    android:gravity="center_vertical|center_horizontal"
+		                    android:textColor="#FFFFFF"
+		                    android:textSize="9pt" />
+		            </TableRow>
+
+		            <TableRow
+		                android:id="@+id/TableRow02"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content" >
+
+		                <TextView
+		                    android:id="@+id/Detalhes"
+		                    android:layout_width="wrap_content"
+		                    android:layout_height="wrap_content"
+		                    android:layout_weight="1"
+		                    android:background="#90FFFFFF"
+		                    android:gravity="center_vertical|center_horizontal"
+		                    android:text="Detalhes"
+		                    android:textColor="#FFFFFF"
+		                    android:textSize="9pt" />
+		            </TableRow>
+
+		            <TableRow
+		                android:id="@+id/TableRow01"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:gravity="center_horizontal" >
+
+		                <TextView
+		                    android:id="@+id/promoDetalhes"
+		                    android:layout_width="wrap_content"
+		                    android:layout_height="wrap_content"
+		                    android:layout_weight="1"
+		                    android:gravity="center_vertical|center_horizontal"
+		                    android:textColor="#FFFFFF"
+		                    android:textSize="9pt" />
+		            </TableRow>
+
+		            <TableRow
+		                android:id="@+id/TableRow03"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content" >
+
+		                <TextView
+		                    android:id="@+id/Preco"
+		                    android:layout_width="wrap_content"
+		                    android:layout_height="wrap_content"
+		                    android:layout_weight="1"
+		                    android:background="#90FFFFFF"
+		                    android:gravity="center_vertical|center_horizontal"
+		                    android:text="Preço"
+		                    android:textColor="#FFFFFF"
+		                    android:textSize="9pt" />
+		            </TableRow>
+
+		            <TableRow
+		                android:id="@+id/tableRow3"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content" >
+
+		                <TextView
+		                    android:id="@+id/promoAntes"
+		                    android:layout_width="wrap_content"
+		                    android:layout_height="wrap_content"
+		                    android:layout_weight="1"
+		                    android:gravity="center_vertical|center_horizontal"
+		                    android:textColor="#FFFFFF"
+		                    android:textSize="9pt" />
+		            </TableRow>
+
+		            <TableRow
+		                android:id="@+id/tableRow4"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content" >
+
+		                <TextView
+		                    android:id="@+id/promoDepois"
+		                    android:layout_width="wrap_content"
+		                    android:layout_height="wrap_content"
+		                    android:layout_weight="1"
+		                    android:gravity="center_vertical|center_horizontal"
+		                    android:textColor="#FFFFFF"
+		                    android:textSize="9pt" />
+		            </TableRow>
+
+		            <TableRow
+		                android:id="@+id/TableRow04"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:gravity="center_horizontal" >
+
+		                <TextView
+		                    android:id="@+id/promoDesconto"
+		                    android:layout_width="wrap_content"
+		                    android:layout_height="wrap_content"
+		                    android:layout_weight="1"
+		                    android:gravity="center_vertical|center_horizontal"
+		                    android:textColor="#FFFFFF"
+		                    android:textSize="9pt" />
+		            </TableRow>
+
+		            <TableRow
+		                android:id="@+id/TableRow05"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content" >
+
+		                <TextView
+		                    android:id="@+id/DataLimite"
+		                    android:layout_width="wrap_content"
+		                    android:layout_height="wrap_content"
+		                    android:layout_weight="1"
+		                    android:background="#90FFFFFF"
+		                    android:gravity="center_vertical|center_horizontal"
+		                    android:text="Data limite"
+		                    android:textColor="#FFFFFF"
+		                    android:textSize="9pt" />
+		            </TableRow>
+
+		            <TableRow
+		                android:id="@+id/TableRow05"
+		                android:layout_width="wrap_content"
+		                android:layout_height="wrap_content"
+		                android:gravity="center_horizontal" >
+
+		                <TextView
+		                    android:id="@+id/promoDataLimite"
+		                    android:layout_width="wrap_content"
+		                    android:layout_height="wrap_content"
+		                    android:layout_weight="1"
+		                    android:gravity="center_vertical|center_horizontal"
+		                    android:textColor="#FFFFFF"
+		                    android:textSize="9pt" />
+		            </TableRow>
+		        </TableLayout>
+
+		    </ScrollView>
+
 		</LinearLayout>
 
 </LinearLayout>

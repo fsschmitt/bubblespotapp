@@ -70,13 +70,6 @@ public class ShopDetail extends Activity {
 		gPromos = (Gallery) findViewById(R.id.galleryPromos);
 		iAdapter = new GalleryAdapter(context, bImages, nomes);
 		gPromos.setAdapter(iAdapter);
-		dialog = ProgressDialog.show(this, "", "A Carregar...",true);
-        dialog.setCancelable(true);
-        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            public void onCancel(DialogInterface dialog) {
-            	finish();
-                }
-        });
 		Bundle b = this.getIntent().getExtras();
 		this.id = b.getInt("lojaID");
 		this.nome = b.getString("lojaNome");
@@ -94,9 +87,17 @@ public class ShopDetail extends Activity {
 				Intent intent = new Intent(v.getContext(), PromoDetail.class);
                 Promocao promo = promos.get(position);
                 Bundle b = new Bundle();
-                b.putInt("lojaID", promo.getId());
+                b.putInt("idLoja", ShopDetail.this.id);
+                b.putInt("id", promo.getId());
                 b.putInt("idShopping", idShopping);
+                b.putString("nomeLoja", promo.getLoja_nome());
                 b.putString("desconto", promo.getDesconto());
+                b.putString("produto", promo.getProduto());
+                b.putString("detalhes", promo.getDetalhes());
+                b.putString("precoFinal", promo.getPreco_final());
+                b.putString("precoInicial", promo.getPreco_inicial());
+                b.putString("dataFinal", promo.getData_final());
+                b.putString("imagem", promo.getImagem_url());
                 b.putString("shopping", shopping);
                 Bitmap image = promo.getbImage();
                 if(image != null){
@@ -121,9 +122,18 @@ public class ShopDetail extends Activity {
 			loja_detalhes.setText("\tPiso: " + piso + "\n\tNúmero: " + numero + "\n\tTelefone: " + telefone + "\n\tÁreas de Negócio: " + tags + "\n\tDetalhes: " + detalhes);
 		}
 		else {
+			dialog = ProgressDialog.show(this, "", "A Carregar...",true);
+	        dialog.setCancelable(true);
+	        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+	            public void onCancel(DialogInterface dialog) {
+	            	finish();
+	                }
+	        });
 			new RetrieveLogo().execute();
 		}
 		new RetrievePromo().execute();
+		
+		
 		
 
 	}
@@ -197,9 +207,10 @@ public class ShopDetail extends Activity {
 						String precof = promo.getString("precof");
 						String precoi = promo.getString("precoi");
 						String produto = promo.getString("produto");
+						String lojaNome = promo.getString("loja_nome");
 						nomes.add(precof);
 						imagens.add(imagemUrl);
-						Promocao p = new Promocao(idPromo,dataf,desconto,detalhes,imagemUrl,id,precoi,precof,produto);
+						Promocao p = new Promocao(idPromo,dataf,desconto,detalhes,imagemUrl,id,lojaNome,precoi,precof,produto);
 						promos.add(p);
 					}
 				}
@@ -215,6 +226,9 @@ public class ShopDetail extends Activity {
 		@Override
 		protected void onPostExecute(String result) {
 			if(nomes != null && !nomes.isEmpty() && !imagens.isEmpty()){
+				for(int i = 0; i<imagens.size();i++)
+					bImages.add(BitmapFactory.decodeResource(Utils.res, R.drawable.loading_images));
+				iAdapter.notifyDataSetChanged();
 				new RetrieveImages().execute();
 			}
 			else{
@@ -231,10 +245,10 @@ public class ShopDetail extends Activity {
 			
 			
 			try{
-					Bitmap image = Utils.loadImageFromNetwork(imagens.get(0));
-					image = Bitmap.createScaledBitmap(image, image.getWidth()*240/image.getHeight(), 240, false);
-					bImages.add(image);
-					promos.get(promos.size()-imagens.size()).setbImage(image);
+				Bitmap image = Utils.loadImageFromNetwork(imagens.get(0));
+				image = Bitmap.createScaledBitmap(image, image.getWidth()*240/image.getHeight(), 240, false);
+				bImages.set(promos.size()-imagens.size(),image);
+				promos.get(promos.size()-imagens.size()).setbImage(image);
 			}
 			catch(Exception e){
 				Log.e("Erro ao baixar as imagens.", e.getMessage());
@@ -244,7 +258,6 @@ public class ShopDetail extends Activity {
 		
 		@Override
 		protected void onPostExecute(String result) {
-			dialog.dismiss();
 			imagens.remove(0);
 			iAdapter.notifyDataSetChanged();
 			if(imagens.size()>0)

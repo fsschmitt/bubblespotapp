@@ -72,9 +72,17 @@ public class ListPromo extends Activity{
 	        	public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 	                Intent intent = new Intent(v.getContext(), PromoDetail.class);
 	                Promocao promo = promos.get(position);
-	                b.putInt("lojaID", promo.getId());
+	                b.putInt("idLoja", idLoja);
+	                b.putInt("id", promo.getId());
 	                b.putInt("idShopping", idShopping);
+	                b.putString("nomeLoja", promo.getLoja_nome());
 	                b.putString("desconto", promo.getDesconto());
+	                b.putString("produto", promo.getProduto());
+	                b.putString("detalhes", promo.getDetalhes());
+	                b.putString("precoFinal", promo.getPreco_final());
+	                b.putString("precoInicial", promo.getPreco_inicial());
+	                b.putString("dataFinal", promo.getData_final());
+	                b.putString("imagem", promo.getImagem_url());
 	                b.putString("shopping", nomeShopping);
 	                Bitmap image = promo.getbImage();
 	                if(image != null){
@@ -122,10 +130,11 @@ public class ListPromo extends Activity{
 							String precof = promo.getString("precof");
 							String precoi = promo.getString("precoi");
 							String produto = promo.getString("produto");
+							String lojaNome = promo.getString("loja_nome");
 							
 							bImages.add(Utils.loadImageFromNetwork(imagem));
 							nomes.add(produto);
-							Promocao p = new Promocao(id,dataf,desconto,detalhes,imagem,idLoja,precoi,precof,produto);
+							Promocao p = new Promocao(id,dataf,desconto,detalhes,imagem,idLoja, lojaNome,precoi,precof,produto);
 							promos.add(p);
 						}
 					}
