@@ -81,6 +81,25 @@ public class ShopDetail extends Activity {
 		this.tags = b.getString("lojaTags");
 		this.shopping = b.getString("lojaShopping");
 		this.idShopping = b.getInt("idShopping");
+		
+		TextView loja_shopping = (TextView) findViewById(R.id.loja_shopping);
+		loja_shopping.setText(nome + " (" + shopping + ")");
+		
+		TextView lojaPiso = (TextView) findViewById(R.id.lojaPiso);
+		lojaPiso.setText("Piso: "+piso);
+		
+		TextView lojaNumero = (TextView) findViewById(R.id.lojaNumero);
+		lojaNumero.setText("Número da Loja: "+numero);
+		
+		TextView lojaTelefone = (TextView) findViewById(R.id.lojaTelefone);
+		lojaTelefone.setText("Número de Telefone: "+telefone);
+		
+		TextView lojaArea = (TextView) findViewById(R.id.lojaArea);
+		lojaArea.setText("Áreas de Negócio: "+tags);
+		
+		TextView lojaDescricao = (TextView) findViewById(R.id.lojaDescricao);
+		lojaDescricao.setText(detalhes);
+		
 		gPromos.setOnItemClickListener(new OnItemClickListener() {
 			@SuppressWarnings("rawtypes")
 			public void onItemClick(AdapterView parent, View v, int position, long id) {
@@ -114,12 +133,6 @@ public class ShopDetail extends Activity {
 			bImage = BitmapFactory.decodeByteArray(byteImage, 0, byteImage.length);
 			ImageView logo = (ImageView) ShopDetail.this.findViewById(R.id.loja_logo);
 			logo.setImageBitmap(bImage);
-			
-			TextView loja_shopping = (TextView) ShopDetail.this.findViewById(R.id.loja_shopping);
-			loja_shopping.setText(nome + " (" + shopping + ")");
-			
-			TextView loja_detalhes = (TextView) ShopDetail.this.findViewById(R.id.loja_detalhes);
-			loja_detalhes.setText("\tPiso: " + piso + "\n\tNúmero: " + numero + "\n\tTelefone: " + telefone + "\n\tÁreas de Negócio: " + tags + "\n\tDetalhes: " + detalhes);
 		}
 		else {
 			dialog = ProgressDialog.show(this, "", "A Carregar...",true);
@@ -159,16 +172,10 @@ public class ShopDetail extends Activity {
 		
 		@Override
 		protected void onPostExecute(String result) {
-			
-			
-			TextView loja_shopping = (TextView) ShopDetail.this.findViewById(R.id.loja_shopping);
-			loja_shopping.setText(nome + " (" + shopping + ")");
-			
+	
 			ImageView logo = (ImageView) ShopDetail.this.findViewById(R.id.loja_logo);
 			logo.setImageBitmap(bImage);
 			
-			TextView loja_detalhes = (TextView) ShopDetail.this.findViewById(R.id.loja_detalhes);
-			loja_detalhes.setText("\tPiso: " + piso + "\n\tNúmero: " + numero + "\n\tTelefone: " + telefone + "\n\tÁreas de Negócio: " + tags + "\n\tDetalhes: " + detalhes);
 			dialog.dismiss();
 			
 		}

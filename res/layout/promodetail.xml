@@ -35,9 +35,9 @@
 		            android:id="@+id/tableLayout1"
 		            android:layout_width="match_parent"
 		            android:layout_height="wrap_content" >
-
+
 		            <TableRow
-		                android:id="@+id/tableRow1"
+		                android:id="@+id/promoTitleLoja"
 		                android:layout_width="wrap_content"
 		                android:layout_height="wrap_content" >
 
@@ -52,9 +52,9 @@
 		                    android:textColor="#FFFFFF"
 		                    android:textSize="9pt" />
 		            </TableRow>
-
+
 		            <TableRow
-		                android:id="@+id/tableRow2"
+		                android:id="@+id/promoTextLoja"
 		                android:layout_width="wrap_content"
 		                android:layout_height="wrap_content"
 		                android:gravity="center_horizontal" >
@@ -68,9 +68,9 @@
 		                    android:textColor="#FFFFFF"
 		                    android:textSize="9pt" />
 		            </TableRow>
-
+
 		            <TableRow
-		                android:id="@+id/TableRow02"
+		                android:id="@+id/promoTitleDetalhes"
 		                android:layout_width="wrap_content"
 		                android:layout_height="wrap_content" >
 
@@ -85,9 +85,9 @@
 		                    android:textColor="#FFFFFF"
 		                    android:textSize="9pt" />
 		            </TableRow>
-
+
 		            <TableRow
-		                android:id="@+id/TableRow01"
+		                android:id="@+id/promoTextDetalhes"
 		                android:layout_width="wrap_content"
 		                android:layout_height="wrap_content"
 		                android:gravity="center_horizontal" >
@@ -101,9 +101,9 @@
 		                    android:textColor="#FFFFFF"
 		                    android:textSize="9pt" />
 		            </TableRow>
-
+
 		            <TableRow
-		                android:id="@+id/TableRow03"
+		                android:id="@+id/promoTitlePreco"
 		                android:layout_width="wrap_content"
 		                android:layout_height="wrap_content" >
 
@@ -118,9 +118,9 @@
 		                    android:textColor="#FFFFFF"
 		                    android:textSize="9pt" />
 		            </TableRow>
-
+
 		            <TableRow
-		                android:id="@+id/tableRow3"
+		                android:id="@+id/tablerRow01"
 		                android:layout_width="wrap_content"
 		                android:layout_height="wrap_content" >
 
@@ -133,9 +133,9 @@
 		                    android:textColor="#FFFFFF"
 		                    android:textSize="9pt" />
 		            </TableRow>
-
+
 		            <TableRow
-		                android:id="@+id/tableRow4"
+		                android:id="@+id/tableRow02"
 		                android:layout_width="wrap_content"
 		                android:layout_height="wrap_content" >
 
@@ -148,9 +148,9 @@
 		                    android:textColor="#FFFFFF"
 		                    android:textSize="9pt" />
 		            </TableRow>
-
+
 		            <TableRow
-		                android:id="@+id/TableRow04"
+		                android:id="@+id/TableRow03"
 		                android:layout_width="wrap_content"
 		                android:layout_height="wrap_content"
 		                android:gravity="center_horizontal" >
@@ -164,9 +164,9 @@
 		                    android:textColor="#FFFFFF"
 		                    android:textSize="9pt" />
 		            </TableRow>
-
+
 		            <TableRow
-		                android:id="@+id/TableRow05"
+		                android:id="@+id/promoTitleDataLimite"
 		                android:layout_width="wrap_content"
 		                android:layout_height="wrap_content" >
 
@@ -181,9 +181,9 @@
 		                    android:textColor="#FFFFFF"
 		                    android:textSize="9pt" />
 		            </TableRow>
-
+
 		            <TableRow
-		                android:id="@+id/TableRow05"
+		                android:id="@+id/promoTextDataLimite"
 		                android:layout_width="wrap_content"
 		                android:layout_height="wrap_content"
 		                android:gravity="center_horizontal" >
