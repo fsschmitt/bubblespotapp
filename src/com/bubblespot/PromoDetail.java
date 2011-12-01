@@ -41,9 +41,9 @@ public class PromoDetail extends Activity {
 		Search.pesquisa(PromoDetail.this, PromoDetail.this);
 		
 		Bundle b = this.getIntent().getExtras();
-		id = b.getInt("id");
-		idShopping = b.getInt("idShopping");
-		idLoja = b.getInt("idLoja");
+		setId(b.getInt("id"));
+		setIdShopping(b.getInt("idShopping"));
+		setIdLoja(b.getInt("idLoja"));
 		nomeLoja = b.getString("nomeLoja");
 		desconto = b.getString("desconto");
 		produto = b.getString("produto");
@@ -180,6 +180,30 @@ public class PromoDetail extends Activity {
 		default:
 			return super.onOptionsItemSelected(item);
 		}
+	}
+
+	public int getIdShopping() {
+		return idShopping;
+	}
+
+	public void setIdShopping(int idShopping) {
+		this.idShopping = idShopping;
+	}
+
+	public int getIdLoja() {
+		return idLoja;
+	}
+
+	public void setIdLoja(int idLoja) {
+		this.idLoja = idLoja;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 

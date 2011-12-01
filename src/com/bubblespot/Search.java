@@ -29,7 +29,15 @@ public class Search {
 		
 		final CharSequence[] items = {"Shoppings", "Lojas", "Promoções"};
 		
+		ImageView logo = (ImageView) a.findViewById(R.id.logo);
+		logo.setOnClickListener(new View.OnClickListener() {
 
+			public void onClick(View v) {
+				Intent intent = new Intent(v.getContext(), BubbleSpot.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+				a.startActivityForResult(intent, 0);
+			}
+		});
+		
 		ImageView lupa = (ImageView) a.findViewById(R.id.lupa);
 		lupa.setOnClickListener(new View.OnClickListener() {
 
