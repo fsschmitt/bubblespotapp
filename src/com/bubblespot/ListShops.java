@@ -7,8 +7,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -139,8 +137,9 @@ public class ListShops extends Activity{
 							Loja s = new Loja(id, Nome, piso, numero, Telefone, Detalhes, Imagem, tags, shoppingNome,shoppingId);
 							lojas.add(s);
 							s.setbImage(b);
+							nomes.add(Nome);
+							bImages.add(b);
 						}
-						ordenar(lojas);
 					}
 					else
 						return null;
@@ -153,25 +152,6 @@ public class ListShops extends Activity{
 				return null;
 			}
 
-			private void ordenar(ArrayList<Loja> lojas) {
-				Collections.sort(lojas, new Comparator<Object>(){
-					public int compare(Object obj1, Object obj2) {
-					    Loja l1 = (Loja) obj1;
-					    Loja l2 = (Loja) obj2;
-					    int deptComp = l1.getShopping().compareTo(l2.getShopping());
-
-					    return ((deptComp == 0) ? l1.getNome().compareTo(l2.getNome())
-					        : deptComp);
-					  }
-				});
-				
-				for (Loja l : lojas){
-					nomes.add(l.getNome());
-					bImages.add(l.getbImage());
-				}
-			}
-			
-			
 			// Called once the background activity has completed
 			@Override
 			protected void onPostExecute(String result) { //
