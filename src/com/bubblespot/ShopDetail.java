@@ -258,6 +258,14 @@ public class ShopDetail extends Activity {
 				promos.get(promos.size()-imagens.size()).setbImage(image);
 			}
 			catch(Exception e){
+				try {
+					Bitmap image = Utils.loadImageFromNetwork("http://placehold.it/128");
+					image = Bitmap.createScaledBitmap(image, image.getWidth()*240/image.getHeight(), 240, false);
+					bImages.set(promos.size()-imagens.size(),image);
+					promos.get(promos.size()-imagens.size()).setbImage(image);
+				} catch (Exception e1) {
+					Log.e("Erro ao baixar as imagens.", e1.getMessage());
+				}
 				Log.e("Erro ao baixar as imagens.", e.getMessage());
 			}
 			return null;

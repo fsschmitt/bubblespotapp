@@ -22,6 +22,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -133,15 +134,31 @@ public class ListPromo extends Activity{
 							String produto = promo.getString("produto");
 							String lojaNome = promo.getString("loja_nome");
 							
-							bImages.add(Utils.loadImageFromNetwork(imagem));
+							
 							nomes.add(produto);
 							Promocao p = new Promocao(id,dataf,desconto,detalhes,imagem,idLoja, lojaNome,precoi,precof,produto);
 							promos.add(p);
+							
+							try{
+								bImages.add(Utils.loadImageFromNetwork(imagem));
+							}
+							catch(Exception e)
+							{
+								try {
+									Bitmap image = Utils.loadImageFromNetwork("http://placehold.it/128");
+									image = Bitmap.createScaledBitmap(image, image.getWidth()*240/image.getHeight(), 240, false);
+									bImages.add(image);
+									promos.get(promos.size()-1).setbImage(image);
+								} catch (Exception e1) {
+									Log.e("Erro ao baixar as imagens.", e1.getMessage());
+								}
+								Log.e("Erro ao baixar as imagens.", e.getMessage());
+							}
 						}
 					}
 					else return null;
 				} catch (IOException e) {
-					e.printStackTrace();
+					
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}

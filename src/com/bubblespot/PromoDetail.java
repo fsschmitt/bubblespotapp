@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -106,10 +107,15 @@ public class PromoDetail extends Activity {
 			bImage = null;
 			try {
 				bImage = Utils.loadImageFromNetwork(imagem_url);
-			} catch (MalformedURLException e1) {
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				e1.printStackTrace();
+			} catch (Exception e) {
+				try {
+					Bitmap image = Utils.loadImageFromNetwork("http://placehold.it/128");
+					image = Bitmap.createScaledBitmap(image, image.getWidth()*240/image.getHeight(), 240, false);
+					bImage = image;
+				} catch (Exception e1) {
+					Log.e("Erro ao baixar as imagens.", e1.getMessage());
+				}
+				Log.e("Erro ao baixar as imagens.", e.getMessage());
 			}
 			
 			

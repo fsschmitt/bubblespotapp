@@ -137,7 +137,13 @@ public class ShoppingDetail extends Activity {
 		bCinema.setVisibility(View.GONE);
 		bCinema.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				Toast.makeText(ShoppingDetail.this, "Brevemente Disponível", Toast.LENGTH_SHORT).show();
+				Intent intent = new Intent(context, Cinema.class);
+				Bundle b = new Bundle();
+				b.putInt("idShopping", id);
+				b.putString("nomeShopping", nome);
+				intent.putExtras(b);
+				startActivityForResult(intent, 0);
+				//Toast.makeText(ShoppingDetail.this, "Brevemente Disponível", Toast.LENGTH_SHORT).show();
 			}
 		});
 		dCinema = (TextView) ShoppingDetail.this.findViewById(R.id.textCinema);

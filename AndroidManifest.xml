@@ -71,10 +71,14 @@
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            ListPromo=""
+             android:name="ListPromo"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar" 
-            android:name="ListPromoroid" >
+            android:theme="@android:style/Theme.NoTitleBar"  >
+        </activity>
+        <activity
+             android:name="Cinema"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar"  >
         </activity>
     </application>
 
