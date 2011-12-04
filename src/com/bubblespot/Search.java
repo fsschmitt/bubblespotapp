@@ -135,7 +135,7 @@ public class Search {
 													pesquisa+="1";
 												}
 												pesquisa+="&format=json";
-												Intent intent = new Intent(v.getContext(), ListShops.class);
+												Intent intent = new Intent(v.getContext(), ListAllShops.class);
 												b = new Bundle();
 												b.putString("text", pesquisa);
 												intent.putExtras(b);
@@ -150,7 +150,47 @@ public class Search {
 							}
 							break;
 						case 2:
-							Toast.makeText(c, items[item], Toast.LENGTH_SHORT).show();
+							if (!checkNetwork(c, a)){
+								Dialog dialog2 = new Dialog(c);
+								dialog2.setContentView(R.layout.shoppingsearch);
+								dialog2.setTitle("Pesquisa de Promoções");
+								dialog2.setCancelable(true);
+								
+								final Spinner spinner = (Spinner) dialog2.findViewById(R.id.spinner);
+								spinner.setVisibility(View.GONE);
+								
+								
+								final EditText nome = (EditText) dialog2.findViewById(R.id.pesq_nome);
+
+
+								final Button pesquisa = (Button) dialog2.findViewById(R.id.pesquisar);
+								pesquisa.setOnClickListener(new View.OnClickListener() {
+
+								
+									
+									public void onClick(View v) {
+										if (!checkNetwork(c,a)){
+											String query = "";
+											try {
+												String nomep = ""+nome.getText();
+												String queryTemp = nomep.trim().replace(" ", "+");
+												query = URLEncoder.encode(queryTemp, "utf-8");
+												System.out.println("QUERY: "+query);
+												String pesquisa = "search/promos?query=" + query;
+												pesquisa+="&format=json";
+												Intent intent = new Intent(v.getContext(), ListPromo.class);
+												b = new Bundle();
+												b.putString("text", pesquisa);
+												intent.putExtras(b);
+												a.startActivityForResult(intent, 0);
+											} catch (UnsupportedEncodingException e) {
+												Toast.makeText(c, "Erro ao tentar efetuar a pesquisa.", Toast.LENGTH_LONG).show();
+											}
+										}
+									}
+								});
+								dialog2.show();
+							}
 							break;
 						}
 

@@ -89,7 +89,6 @@ public class ImageAdapter extends BaseAdapter implements Filterable {
 							filteredShops.add(bImages.get(i));
 						}
 					}
-					System.out.println(filteredShops.size());
 					return filteredShops;
 				}
 

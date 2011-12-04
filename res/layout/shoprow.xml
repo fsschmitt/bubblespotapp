@@ -23,6 +23,17 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="#FFFFFF"
             android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/shop_nome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#60FFFFFF"
+            android:paddingLeft="2dp"
+            android:text="TextView"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#FFFFFF"
+            android:textSize="25dp" />
 
         <TextView
             android:id="@+id/loja_nome"

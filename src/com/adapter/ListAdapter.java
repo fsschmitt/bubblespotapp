@@ -47,8 +47,9 @@ public class ListAdapter extends BaseAdapter implements Filterable {
 			LayoutInflater vi = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			v = vi.inflate(R.layout.shoprow, null);
 		} 
+		TextView loja = (TextView) v.findViewById(R.id.shop_nome);
+		loja.setVisibility(View.GONE);
 		TextView shopping = (TextView) v.findViewById(R.id.shopping_nome);
-		
 		if(shopsDisplay.get(position).isPrimeira()){
 				shopping.setText(shopsDisplay.get(position).getShopping());
 				shopping.setVisibility(View.VISIBLE);

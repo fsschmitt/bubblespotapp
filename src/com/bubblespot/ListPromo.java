@@ -22,9 +22,12 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.AdapterView.OnItemClickListener;
 
@@ -42,6 +45,8 @@ public class ListPromo extends Activity{
 	private GridView gridview;
 	private Bundle b;
 	private String text;
+	private EditText filterText;
+	private PromocaoAdapter adapter;
 	
 	 public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
@@ -55,6 +60,10 @@ public class ListPromo extends Activity{
 	        Header header = (Header) findViewById(R.id.header);
 		    header.initHeader();
 			Search.pesquisa(this, ListPromo.this);
+			
+			filterText = (EditText) findViewById(R.id.filter_box);
+		    filterText.addTextChangedListener(filterTextWatcher);
+		    filterText.setHint("Filtrar Promoções");
 	        
 			dialog = ProgressDialog.show(this, "", "A Carregar...",true);
 	        dialog.setCancelable(true);
@@ -97,10 +106,10 @@ public class ListPromo extends Activity{
 	        	}
 	        });
 
-	        new RetrieveLojas().execute();
+	        new RetrievePromos().execute();
 	        }
 	 
-	 class RetrieveLojas extends AsyncTask<String, Integer, String> {
+	 class RetrievePromos extends AsyncTask<String, Integer, String> {
 
 			@Override
 			protected String doInBackground(String... arg0) {
@@ -113,7 +122,6 @@ public class ListPromo extends Activity{
 				try {
 					url = new URL(uri);				
 				} catch (MalformedURLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				String line = null;
@@ -169,7 +177,8 @@ public class ListPromo extends Activity{
 			@Override
 			protected void onPostExecute(String result) { //
 				if(nomes != null && !nomes.isEmpty()){
-					gridview.setAdapter(new PromocaoAdapter(ListPromo.this, bImages, promos));
+					adapter = new PromocaoAdapter(ListPromo.this, bImages, promos, nomes);
+					gridview.setAdapter(adapter);
 					dialog.dismiss();
 				}
 				else{
@@ -192,6 +201,26 @@ public class ListPromo extends Activity{
 			return in.readLine();
 		}
 	 
-	 
+	 private TextWatcher filterTextWatcher = new TextWatcher() {
+
+		    public void afterTextChanged(Editable s) {
+		    }
+
+		    public void beforeTextChanged(CharSequence s, int start, int count,
+		            int after) {
+		    }
+
+		    public void onTextChanged(CharSequence s, int start, int before,
+		            int count) {
+		        adapter.getFilter().filter(s);
+		    }
+
+		};
+		
+		@Override
+		protected void onDestroy() {
+		    super.onDestroy();
+		    filterText.removeTextChangedListener(filterTextWatcher);
+		}	
 	
 }
