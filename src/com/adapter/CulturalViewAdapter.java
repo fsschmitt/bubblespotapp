@@ -16,76 +16,76 @@ import com.bubblespot.R;
 
 public class CulturalViewAdapter extends PagerAdapter {
 	private ArrayList<Evento> eventos;
-    private Context mContext;
-    
-    public CulturalViewAdapter(Context ctx, ArrayList<Evento> eventos) {
-        this.mContext = ctx;
-        this.eventos = eventos;
-    }
+	private Context mContext;
 
-    @Override
-    public int getCount() {
-        return eventos.size();
-    }
-    
-    @Override
-    public int getItemPosition(Object object) {
-        return POSITION_NONE;
-    }
+	public CulturalViewAdapter(Context ctx, ArrayList<Evento> eventos) {
+		this.mContext = ctx;
+		this.eventos = eventos;
+	}
 
-    @Override
-    public Object instantiateItem(View collection, int position) {
-		
-    	LayoutInflater vi = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+	@Override
+	public int getCount() {
+		return eventos.size();
+	}
+
+	@Override
+	public int getItemPosition(Object object) {
+		return POSITION_NONE;
+	}
+
+	@Override
+	public Object instantiateItem(View collection, int position) {
+
+		LayoutInflater vi = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View v = vi.inflate(R.layout.evento, null);
-        
-        TextView nome = ((TextView) v.findViewById(R.id.eventoNome));
-        nome.setText(eventos.get(position).getNome());
-        
-        if(eventos.get(position).getbImage() != null)
-        {
-        	ImageView imagem = ((ImageView) v.findViewById(R.id.eventoImagem));
-        	imagem.setImageBitmap(eventos.get(position).getbImage());
-        }
-        
-        TextView info = ((TextView) v.findViewById(R.id.eventoInfoText));
-        info.setText(eventos.get(position).getDetalhes());
-        
-        TextView data = ((TextView) v.findViewById(R.id.eventoDataText));
-        data.setText(eventos.get(position).getData());
-        
-        TextView local = ((TextView) v.findViewById(R.id.eventoLocalText));
-        local.setText(eventos.get(position).getLocal());
-        
-        ((ViewPager)collection).addView(v);
 
-        return v;
-    }
+		TextView nome = ((TextView) v.findViewById(R.id.eventoNome));
+		nome.setText(eventos.get(position).getNome());
 
-    @Override
-    public void destroyItem(View collection, int position, Object view) {
-         ((ViewPager) collection).removeView((View) view);
-    }
+		if(eventos.get(position).getbImage() != null)
+		{
+			ImageView imagem = ((ImageView) v.findViewById(R.id.eventoImagem));
+			imagem.setImageBitmap(eventos.get(position).getbImage());
+		}
 
-    @Override
-    public boolean isViewFromObject(View view, Object object) {
-        return view == object;
-    }
+		TextView info = ((TextView) v.findViewById(R.id.eventoInfoText));
+		info.setText(eventos.get(position).getDetalhes());
 
-    @Override
-    public Parcelable saveState() {
-        return null;
-    }
+		TextView data = ((TextView) v.findViewById(R.id.eventoDataText));
+		data.setText(eventos.get(position).getData());
 
-    @Override
-    public void restoreState(Parcelable arg0, ClassLoader arg1) {
-    }
+		TextView local = ((TextView) v.findViewById(R.id.eventoLocalText));
+		local.setText(eventos.get(position).getLocal());
 
-    @Override
-    public void startUpdate(View arg0) {
-    }
+		((ViewPager)collection).addView(v);
 
-    @Override
-    public void finishUpdate(View arg0) {
-    }
+		return v;
+	}
+
+	@Override
+	public void destroyItem(View collection, int position, Object view) {
+		((ViewPager) collection).removeView((View) view);
+	}
+
+	@Override
+	public boolean isViewFromObject(View view, Object object) {
+		return view == object;
+	}
+
+	@Override
+	public Parcelable saveState() {
+		return null;
+	}
+
+	@Override
+	public void restoreState(Parcelable arg0, ClassLoader arg1) {
+	}
+
+	@Override
+	public void startUpdate(View arg0) {
+	}
+
+	@Override
+	public void finishUpdate(View arg0) {
+	}
 }

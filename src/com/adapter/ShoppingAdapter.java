@@ -56,8 +56,8 @@ public class ShoppingAdapter extends BaseAdapter {
 		imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 		imageView.setPadding(3, 3, 3, 3);
 		imageView.setAdjustViewBounds(true);
-		 
-	    imageView.setImageBitmap(bImages.get(position));
+
+		imageView.setImageBitmap(bImages.get(position));
 
 		return v;
 	}

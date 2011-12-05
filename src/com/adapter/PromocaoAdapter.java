@@ -63,50 +63,50 @@ public class PromocaoAdapter extends BaseAdapter implements Filterable {
 		imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 		imageView.setPadding(3, 3, 3, 3);
 		imageView.setAdjustViewBounds(true);
-		 
-	    imageView.setImageBitmap(bImagesdisplay.get(position));
+
+		imageView.setImageBitmap(bImagesdisplay.get(position));
 
 		return v;
 	}
-	
+
 	@Override
 	public Filter getFilter() {
-		  return new Filter() {
-	            @SuppressWarnings("unchecked")
-	            @Override
-	            protected void publishResults(CharSequence constraint, FilterResults results) {
-	                bImagesdisplay = (ArrayList<Bitmap>) results.values;
-	                PromocaoAdapter.this.notifyDataSetChanged();
-	            }
+		return new Filter() {
+			@SuppressWarnings("unchecked")
+			@Override
+			protected void publishResults(CharSequence constraint, FilterResults results) {
+				bImagesdisplay = (ArrayList<Bitmap>) results.values;
+				PromocaoAdapter.this.notifyDataSetChanged();
+			}
 
-	            @Override
-	            protected FilterResults performFiltering(CharSequence constraint) {
-	                ArrayList<Bitmap> filteredResults = getFilteredResults(constraint);
+			@Override
+			protected FilterResults performFiltering(CharSequence constraint) {
+				ArrayList<Bitmap> filteredResults = getFilteredResults(constraint);
 
-	                FilterResults results = new FilterResults();
-	                results.values = filteredResults;
+				FilterResults results = new FilterResults();
+				results.values = filteredResults;
 
-	                return results;
-	            }
+				return results;
+			}
 
-				private ArrayList<Bitmap> getFilteredResults(CharSequence filterText) {
-					ArrayList<String> filtered = new ArrayList<String>();
-					ArrayList<Bitmap> filteredShops = new ArrayList<Bitmap>();
-					for(String s : nomes)
-					{
-						if(s.toLowerCase().contains(filterText.toString().toLowerCase()))
-							filtered.add(s);
-					}
-					for(int i = 0; i< nomes.size(); i++)
-					{
-						if(filtered.contains(nomes.get(i))){
-							filteredShops.add(bImages.get(i));
-							promocoesDisplay.add(promocoes.get(i));
-						}
-					}
-					return filteredShops;
+			private ArrayList<Bitmap> getFilteredResults(CharSequence filterText) {
+				ArrayList<String> filtered = new ArrayList<String>();
+				ArrayList<Bitmap> filteredShops = new ArrayList<Bitmap>();
+				for(String s : nomes)
+				{
+					if(s.toLowerCase().contains(filterText.toString().toLowerCase()))
+						filtered.add(s);
 				}
+				for(int i = 0; i< nomes.size(); i++)
+				{
+					if(filtered.contains(nomes.get(i))){
+						filteredShops.add(bImages.get(i));
+						promocoesDisplay.add(promocoes.get(i));
+					}
+				}
+				return filteredShops;
+			}
 
-	        };
+		};
 	}
 }

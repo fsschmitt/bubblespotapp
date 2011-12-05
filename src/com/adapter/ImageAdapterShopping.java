@@ -9,42 +9,42 @@ import android.widget.ImageView;
 import android.graphics.Bitmap;
 
 public class ImageAdapterShopping extends BaseAdapter {
-	
+
 	private Context mContext;
 	private ArrayList<Bitmap> bImages;
 
-    public ImageAdapterShopping(Context c, ArrayList<Bitmap> bImages) {
-        mContext = c;
-        this.bImages = bImages;
-    }
+	public ImageAdapterShopping(Context c, ArrayList<Bitmap> bImages) {
+		mContext = c;
+		this.bImages = bImages;
+	}
 
-    public int getCount() {
-        return bImages.size();
-    }
+	public int getCount() {
+		return bImages.size();
+	}
 
-    public Object getItem(int position) {
-        return null;
-    }
+	public Object getItem(int position) {
+		return null;
+	}
 
-    public long getItemId(int position) {
-        return 0;
-    }
+	public long getItemId(int position) {
+		return 0;
+	}
 
-    // create a new ImageView for each item referenced by the Adapter
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ImageView imageView;
-        if (convertView == null) {
-            imageView = new ImageView(mContext);
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setPadding(0, 10, 0, 10);
-            imageView.setAdjustViewBounds(true);
-            
-        } else {
-            imageView = (ImageView) convertView;
-        }
+	// create a new ImageView for each item referenced by the Adapter
+	public View getView(int position, View convertView, ViewGroup parent) {
+		ImageView imageView;
+		if (convertView == null) {
+			imageView = new ImageView(mContext);
+			imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+			imageView.setPadding(0, 10, 0, 10);
+			imageView.setAdjustViewBounds(true);
 
-        imageView.setImageBitmap(bImages.get(position));
-        	
-        return imageView;
-    }
+		} else {
+			imageView = (ImageView) convertView;
+		}
+
+		imageView.setImageBitmap(bImages.get(position));
+
+		return imageView;
+	}
 }

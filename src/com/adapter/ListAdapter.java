@@ -42,7 +42,7 @@ public class ListAdapter extends BaseAdapter implements Filterable {
 	// create a new View for each item referenced by the Adapter
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View v = convertView;
-		
+
 		if (v == null) {
 			LayoutInflater vi = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			v = vi.inflate(R.layout.shoprow, null);
@@ -51,12 +51,12 @@ public class ListAdapter extends BaseAdapter implements Filterable {
 		loja.setVisibility(View.GONE);
 		TextView shopping = (TextView) v.findViewById(R.id.shopping_nome);
 		if(shopsDisplay.get(position).isPrimeira()){
-				shopping.setText(shopsDisplay.get(position).getShopping());
-				shopping.setVisibility(View.VISIBLE);
+			shopping.setText(shopsDisplay.get(position).getShopping());
+			shopping.setVisibility(View.VISIBLE);
 		}
 		else
 			shopping.setVisibility(View.GONE);
-		
+
 		TextView nome = (TextView) v.findViewById(R.id.loja_nome);
 		TextView areas = (TextView) v.findViewById(R.id.areas_negocio);
 
@@ -64,29 +64,29 @@ public class ListAdapter extends BaseAdapter implements Filterable {
 		areas.setVisibility(View.VISIBLE);
 		nome.setText(shopsDisplay.get(position).getNome());
 		areas.setText(shopsDisplay.get(position).getTags());
-		
+
 		return v;
 	}
-	
+
 	@Override
-    public Filter getFilter() {
-        return new Filter() {
-            @SuppressWarnings("unchecked")
-            @Override
-            protected void publishResults(CharSequence constraint, FilterResults results) {
-                shopsDisplay = (ArrayList<Loja>) results.values;
-                ListAdapter.this.notifyDataSetChanged();
-            }
+	public Filter getFilter() {
+		return new Filter() {
+			@SuppressWarnings("unchecked")
+			@Override
+			protected void publishResults(CharSequence constraint, FilterResults results) {
+				shopsDisplay = (ArrayList<Loja>) results.values;
+				ListAdapter.this.notifyDataSetChanged();
+			}
 
-            @Override
-            protected FilterResults performFiltering(CharSequence constraint) {
-                ArrayList<Loja> filteredResults = getFilteredResults(constraint);
+			@Override
+			protected FilterResults performFiltering(CharSequence constraint) {
+				ArrayList<Loja> filteredResults = getFilteredResults(constraint);
 
-                FilterResults results = new FilterResults();
-                results.values = filteredResults;
+				FilterResults results = new FilterResults();
+				results.values = filteredResults;
 
-                return results;
-            }
+				return results;
+			}
 
 			private ArrayList<Loja> getFilteredResults(CharSequence filterText) {
 				ArrayList<String> filtered = new ArrayList<String>();
@@ -109,13 +109,13 @@ public class ListAdapter extends BaseAdapter implements Filterable {
 							l.setPrimeira(true);
 							shopping = l.getShopping();
 						}
-						
+
 						filteredShops.add(l);
 					}
 				}
 				return filteredShops;
 			}
 
-        };
-    }
+		};
+	}
 }
