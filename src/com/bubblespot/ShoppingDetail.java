@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 
 
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -153,7 +154,12 @@ public class ShoppingDetail extends Activity {
 		bPlanta.setVisibility(View.GONE);
 		bPlanta.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				Toast.makeText(ShoppingDetail.this, "Brevemente Disponível", Toast.LENGTH_SHORT).show();
+				Intent intent = new Intent(context, Touch.class);
+				Bundle b = new Bundle();
+				b.putString("planta", imagem_url);
+				intent.putExtras(b);
+				startActivityForResult(intent, 0);
+				//Toast.makeText(ShoppingDetail.this, "Brevemente Disponível", Toast.LENGTH_SHORT).show();
 			}
 		});
 		dPlanta = (TextView) ShoppingDetail.this.findViewById(R.id.textPlanta);

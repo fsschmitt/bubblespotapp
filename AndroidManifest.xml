@@ -56,6 +56,11 @@
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
+            android:name="Touch"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity
             android:name="ShoppingNear"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
