@@ -52,6 +52,9 @@ public class CinemaViewAdapter extends PagerAdapter {
         TextView detalhes = ((TextView) v.findViewById(R.id.filmeDetalhesText));
         detalhes.setText(filmes.get(position).getDetalhes());
         
+        TextView sala = ((TextView) v.findViewById(R.id.filmeSalaText));
+        sala.setText(filmes.get(position).getSala());
+        
         TextView horario = ((TextView) v.findViewById(R.id.filmeHorarioText));
         horario.setText(filmes.get(position).getHorarios());
         

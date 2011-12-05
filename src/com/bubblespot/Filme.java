@@ -11,14 +11,16 @@ public class Filme {
 	private Bitmap bImage;
 	private String image_url;
 	private String trailer;
+	private String sala;
 	
-	Filme(int idShopping,String nome, String detalhes, String horarios, String image_url, String trailer){
+	Filme(int idShopping,String nome, String detalhes, String sala, String horarios, String image_url, String trailer){
 		this.setIdShopping(idShopping);
 		this.setNome(nome);
 		this.setDetalhes(detalhes);
 		this.setHorarios(horarios);
 		this.setImage_url(image_url);
 		this.setTrailer(trailer);
+		this.setSala(sala);
 	}
 
 	public String getNome() {
@@ -75,6 +77,14 @@ public class Filme {
 
 	public void setTrailer(String trailer) {
 		this.trailer = trailer;
+	}
+
+	public String getSala() {
+		return sala;
+	}
+
+	public void setSala(String sala) {
+		this.sala = sala;
 	}
 
 }

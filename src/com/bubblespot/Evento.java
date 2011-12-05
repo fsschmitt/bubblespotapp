@@ -10,11 +10,13 @@ public class Evento {
 	private String detalhes;
 	private String imagem_url;
 	private Bitmap bImage;
+	private String local;
 	
-	Evento(int idShopping, String nome, String data, String detalhes, String imagem_url){
+	Evento(int idShopping, String nome, String data, String local, String detalhes, String imagem_url){
 		this.idShopping = idShopping;
 		this.nome = nome;
 		this.data = data;
+		this.local = local;
 		this.detalhes = detalhes;
 		this.imagem_url = imagem_url;
 	}
@@ -65,6 +67,14 @@ public class Evento {
 
 	public void setbImage(Bitmap bImage) {
 		this.bImage = bImage;
+	}
+
+	public String getLocal() {
+		return local;
+	}
+
+	public void setLocal(String local) {
+		this.local = local;
 	}
 	
 }
