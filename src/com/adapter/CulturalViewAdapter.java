@@ -54,6 +54,9 @@ public class CulturalViewAdapter extends PagerAdapter {
         TextView data = ((TextView) v.findViewById(R.id.eventoDataText));
         data.setText(eventos.get(position).getData());
         
+        TextView local = ((TextView) v.findViewById(R.id.eventoLocalText));
+        local.setText(eventos.get(position).getLocal());
+        
         ((ViewPager)collection).addView(v);
 
         return v;
