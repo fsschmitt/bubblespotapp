@@ -15,11 +15,8 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" >
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:scaleType="matrix" />
+        <com.bubblespot.ZoomableImageView android:id="@+id/ziv"
+android:layout_width="fill_parent" android:layout_height="fill_parent"/>
     </FrameLayout>
 
 </LinearLayout>
