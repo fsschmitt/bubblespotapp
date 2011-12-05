@@ -12,14 +12,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.adapter.PromocaoAdapter;
-import com.bubblespot.R;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
@@ -27,9 +25,11 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.AdapterView.OnItemClickListener;
+
+import com.adapter.PromocaoAdapter;
 
 
 
@@ -40,6 +40,7 @@ public class ListPromo extends Activity{
 	private String nomeShopping;
 	private ArrayList<String> nomes;
 	private ArrayList<Bitmap> bImages;
+	private ArrayList<String> images;
 	private ArrayList<Promocao> promos;
 	private ProgressDialog dialog;
 	private GridView gridview;
@@ -47,6 +48,7 @@ public class ListPromo extends Activity{
 	private String text;
 	private EditText filterText;
 	private PromocaoAdapter adapter;
+	private Boolean loading;
 	
 	 public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
@@ -64,7 +66,7 @@ public class ListPromo extends Activity{
 			filterText = (EditText) findViewById(R.id.filter_box);
 		    filterText.addTextChangedListener(filterTextWatcher);
 		    filterText.setHint("Filtrar Promoções");
-	        
+	        loading=true;
 			dialog = ProgressDialog.show(this, "", "A Carregar...",true);
 	        dialog.setCancelable(true);
 	        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -76,6 +78,7 @@ public class ListPromo extends Activity{
 	        promos = new ArrayList<Promocao>();
 	        nomes = new ArrayList<String>();
 	        bImages = new ArrayList<Bitmap>();
+	        images = new ArrayList<String>();
 	        gridview = (GridView) findViewById(R.id.gridView1);
 	        gridview.setNumColumns(1);
 	        gridview.setOnItemClickListener(new OnItemClickListener() {
@@ -144,24 +147,10 @@ public class ListPromo extends Activity{
 							
 							
 							nomes.add(produto);
+							images.add(imagem);
 							Promocao p = new Promocao(id,dataf,desconto,detalhes,imagem,idLoja, lojaNome,precoi,precof,produto);
 							promos.add(p);
 							
-							try{
-								bImages.add(Utils.loadImageFromNetwork(imagem));
-							}
-							catch(Exception e)
-							{
-								try {
-									Bitmap image = Utils.loadImageFromNetwork("http://placehold.it/128");
-									image = Bitmap.createScaledBitmap(image, image.getWidth()*240/image.getHeight(), 240, false);
-									bImages.add(image);
-									promos.get(promos.size()-1).setbImage(image);
-								} catch (Exception e1) {
-									Log.e("Erro ao baixar as imagens.", e1.getMessage());
-								}
-								Log.e("Erro ao baixar as imagens.", e.getMessage());
-							}
 						}
 					}
 					else return null;
@@ -177,9 +166,11 @@ public class ListPromo extends Activity{
 			@Override
 			protected void onPostExecute(String result) { //
 				if(nomes != null && !nomes.isEmpty()){
+					for(int i = 0; i<images.size();i++)
+						bImages.add(BitmapFactory.decodeResource(Utils.res, R.drawable.loading_images));
 					adapter = new PromocaoAdapter(ListPromo.this, bImages, promos, nomes);
 					gridview.setAdapter(adapter);
-					dialog.dismiss();
+					new RetrieveImages().execute();
 				}
 				else{
 					dialog.dismiss();
@@ -190,6 +181,42 @@ public class ListPromo extends Activity{
 
 			}
 	 }
+	 
+	 class RetrieveImages extends AsyncTask<String, Integer, String> {
+
+			@Override
+			protected String doInBackground(String... arg0) {
+				try{
+						Bitmap image = Utils.loadImageFromNetwork(images.get(0));
+						promos.get(promos.size()-images.size()).setbImage(image);
+						bImages.set(promos.size()-images.size(),image);
+				}
+				catch(Exception e){
+					try {
+						Bitmap image = Utils.loadImageFromNetwork("http://placehold.it/128");
+						image = Bitmap.createScaledBitmap(image, image.getWidth()*240/image.getHeight(), 240, false);
+						bImages.add(image);
+						promos.get(promos.size()-1).setbImage(image);
+					} catch (Exception e1) {
+						Log.e("Erro ao baixar as imagens.", e1.getMessage());
+					}
+					Log.e("Erro ao baixar as imagens.", e.getMessage());
+				}
+				return null;
+			}
+			
+			@Override
+			protected void onPostExecute(String result) {
+				if(loading){
+					dialog.dismiss();
+					loading = false;
+				}
+				images.remove(0);
+				adapter.notifyDataSetChanged();
+				if(images.size()>0)
+					new RetrieveImages().execute();
+			}
+		}
 	 
 	 public static String getJSONLine(URL url) throws IOException {
 			BufferedReader in;

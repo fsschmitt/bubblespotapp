@@ -41,7 +41,6 @@ public class ShoppingNear extends Activity{
 	private Bundle b;
 	private String text;
 	private Boolean loading;
-	private int countImages;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -101,7 +100,6 @@ public class ShoppingNear extends Activity{
 
 		@Override
 		protected String doInBackground(String... arg0) {
-			countImages=0;
 			nomes.clear();
 			bImages.clear();
 			Log.d("GPS-Message",text);
@@ -174,9 +172,8 @@ public class ShoppingNear extends Activity{
 		protected String doInBackground(String... arg0) {
 			try{
 					Bitmap image = Utils.loadImageFromNetwork(images.get(0));
-					shoppings.get(countImages).setbImage(image);
-					bImages.set(countImages,image);
-					countImages++;
+					shoppings.get(shoppings.size()-images.size()).setbImage(image);
+					bImages.set(shoppings.size()-images.size(),image);
 			}
 			catch(Exception e){
 				Log.e("Erro ao baixar as imagens.", e.getMessage());

@@ -12,23 +12,24 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.adapter.ImageAdapter;
-import com.bubblespot.R;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.AdapterView.OnItemClickListener;
+
+import com.adapter.ImageAdapter;
 
 
 
@@ -36,6 +37,7 @@ public class ListShops extends Activity{
 	private int idShopping;
 	private ArrayList<String> nomes;
 	private ArrayList<Bitmap> bImages;
+	private ArrayList<String> images;
 	private ArrayList<Loja> lojas;
 	private ProgressDialog dialog;
 	private GridView gridview;
@@ -43,6 +45,7 @@ public class ListShops extends Activity{
 	private String text;
 	private ImageAdapter adapter;
 	private EditText filterText;
+	private boolean loading;
 	
 	 public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
@@ -56,7 +59,7 @@ public class ListShops extends Activity{
 			
 			filterText = (EditText) findViewById(R.id.filter_box);
 		    filterText.addTextChangedListener(filterTextWatcher);
-	        
+	        loading = true;
 			dialog = ProgressDialog.show(this, "", "A Carregar...",true);
 	        dialog.setCancelable(true);
 	        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -68,6 +71,7 @@ public class ListShops extends Activity{
 	        lojas = new ArrayList<Loja>();
 	        nomes = new ArrayList<String>();
 	        bImages = new ArrayList<Bitmap>();
+	        images = new ArrayList<String>();
 	        gridview = (GridView) findViewById(R.id.gridView1);
 	        gridview.setNumColumns(2);
 	        gridview.setOnItemClickListener(new OnItemClickListener() {
@@ -132,13 +136,11 @@ public class ListShops extends Activity{
 							String tags = loja.getString("tags");
 							String shoppingNome = loja.getString("shopping_nome");
 							int shoppingId = loja.getInt("shopping_id");
-							Bitmap b = Utils.loadImageFromNetwork(Imagem);
-							b = Bitmap.createScaledBitmap(b, b.getWidth()*120/b.getHeight(), 120, false);
+							
 							Loja s = new Loja(id, Nome, piso, numero, Telefone, Detalhes, Imagem, tags, shoppingNome,shoppingId);
 							lojas.add(s);
-							s.setbImage(b);
 							nomes.add(Nome);
-							bImages.add(b);
+							images.add(Imagem);
 						}
 					}
 					else
@@ -156,10 +158,12 @@ public class ListShops extends Activity{
 			@Override
 			protected void onPostExecute(String result) { //
 				if(nomes != null && !nomes.isEmpty()){
+					for(int i = 0; i<images.size();i++)
+						bImages.add(BitmapFactory.decodeResource(Utils.res, R.drawable.loading_images));
 					adapter =  new ImageAdapter(ListShops.this,bImages,nomes);
 					gridview.setAdapter(adapter);
 					gridview.setTextFilterEnabled(true);
-					dialog.dismiss();
+					new RetrieveImages().execute();
 				}
 				else{
 					dialog.dismiss();
@@ -168,6 +172,35 @@ public class ListShops extends Activity{
 				}
 			}
 	 }
+	 
+	 class RetrieveImages extends AsyncTask<String, Integer, String> {
+
+			@Override
+			protected String doInBackground(String... arg0) {
+				try{
+						Bitmap image = Utils.loadImageFromNetwork(images.get(0));
+						image = Bitmap.createScaledBitmap(image, image.getWidth()*120/image.getHeight(), 120, false);
+						lojas.get(lojas.size()-images.size()).setbImage(image);
+						bImages.set(lojas.size()-images.size(),image);
+				}
+				catch(Exception e){
+					Log.e("Erro ao baixar as imagens.", e.getMessage());
+				}
+				return null;
+			}
+			
+			@Override
+			protected void onPostExecute(String result) {
+				if(loading){
+					dialog.dismiss();
+					loading = false;
+				}
+				images.remove(0);
+				adapter.notifyDataSetChanged();
+				if(images.size()>0)
+					new RetrieveImages().execute();
+			}
+		}
 	 
 	 public static String getJSONLine(URL url) throws IOException {
 			BufferedReader in;
