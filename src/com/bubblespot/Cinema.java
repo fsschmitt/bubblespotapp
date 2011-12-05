@@ -3,7 +3,6 @@ import java.util.ArrayList;
 
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -11,11 +10,8 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 
-import com.zylinc.view.*;
-
 import com.adapter.CinemaViewAdapter;
-import com.bubblespot.ListShoppings.RetrieveImages;
-import com.bubblespot.ListShoppings.RetrieveShoppings;
+import com.zylinc.view.ViewPagerIndicator;
 
 public class Cinema extends FragmentActivity {
 	    static final int NUM_ITEMS = 10;
