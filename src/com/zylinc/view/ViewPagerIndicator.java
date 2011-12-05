@@ -64,9 +64,10 @@ public class ViewPagerIndicator extends RelativeLayout implements OnPageChangeLi
 		return mCurItem;
 	}
 	
-	ArrayList<String> mPageInfoProvider = new ArrayList<String>();
-	public void setPageInfoProvider(ArrayList<String> pageInfoProvider){
-		this.mPageInfoProvider = pageInfoProvider;
+	ArrayList<Object> mPageInfoProvider = new ArrayList<Object>();
+	@SuppressWarnings("unchecked")
+	public <T> void setPageInfoProvider(ArrayList<T> pageInfoProvider){
+		this.mPageInfoProvider = (ArrayList<Object>) pageInfoProvider;
 	}
 	
 	public void setFocusedTextColor(int[] col){
@@ -101,12 +102,13 @@ public class ViewPagerIndicator extends RelativeLayout implements OnPageChangeLi
 	
 	/**
 	 * Initialization
+	 * @param <T>
 	 * 
 	 * @param startPos The initially selected element in the ViewPager
 	 * @param size Total amount of elements in the ViewPager
 	 * @param pageInfoProvider Interface that returns page titles
 	 */
-	public void init(int startPos, int size, ArrayList<String> pageInfoProvider){
+	public <T> void init(int startPos, int size, ArrayList<T> pageInfoProvider){
 		setPageInfoProvider(pageInfoProvider);
 		this.mSize = size;
 		setText(startPos - 1);

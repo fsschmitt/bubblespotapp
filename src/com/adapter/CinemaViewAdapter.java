@@ -8,26 +8,29 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bubblespot.Filme;
 import com.bubblespot.R;
 
 public class CinemaViewAdapter extends PagerAdapter {
-	private ArrayList<String> nomes;
-	private ArrayList<ArrayList<String>> horarios;
+	private ArrayList<Filme> filmes;
     private Context mContext;
     
-    public CinemaViewAdapter(Context ctx, ArrayList<String> nomes, ArrayList<ArrayList<String>> horarios) {
+    public CinemaViewAdapter(Context ctx, ArrayList<Filme> filmes) {
         this.mContext = ctx;
-        this.nomes = nomes;
-        this.horarios = horarios;
+        this.filmes = filmes;
     }
 
     @Override
     public int getCount() {
-        return nomes.size();
+        return filmes.size();
+    }
+    
+    @Override
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
     }
 
     @Override
@@ -36,11 +39,24 @@ public class CinemaViewAdapter extends PagerAdapter {
     	LayoutInflater vi = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View v = vi.inflate(R.layout.filme, null);
         
-        TextView view = ((TextView) v.findViewById(R.id.filmeNome));
-        view.setText(nomes.get(position));
+        TextView nome = ((TextView) v.findViewById(R.id.filmeNome));
+        nome.setText(filmes.get(position).getNome());
         
-        ListView lv1=(ListView) v.findViewById(R.id.filmeHorarios);
-        lv1.setAdapter(new ArrayAdapter<String>(mContext,android.R.layout.simple_list_item_1 , horarios.get(position)));
+        
+        if(filmes.get(position).getbImage() != null)
+        {
+        	ImageView imagem = ((ImageView) v.findViewById(R.id.filmeImagem));
+        	imagem.setImageBitmap(filmes.get(position).getbImage());
+        }
+        
+        TextView detalhes = ((TextView) v.findViewById(R.id.filmeDetalhesText));
+        detalhes.setText(filmes.get(position).getDetalhes());
+        
+        TextView horario = ((TextView) v.findViewById(R.id.filmeHorarioText));
+        horario.setText(filmes.get(position).getHorarios());
+        
+        TextView trailer = ((TextView) v.findViewById(R.id.filmeTrailerText));
+        trailer.setText(filmes.get(position).getTrailer());
         
         ((ViewPager)collection).addView(v);
 
@@ -68,6 +84,7 @@ public class CinemaViewAdapter extends PagerAdapter {
 
     @Override
     public void startUpdate(View arg0) {
+		
     }
 
     @Override

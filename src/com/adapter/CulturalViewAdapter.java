@@ -10,22 +10,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.bubblespot.Evento;
 import com.bubblespot.R;
 
 public class CulturalViewAdapter extends PagerAdapter {
-	private ArrayList<String> nomes;
-	private ArrayList<String> informacoes;
+	private ArrayList<Evento> eventos;
     private Context mContext;
     
-    public CulturalViewAdapter(Context ctx, ArrayList<String> nomes, ArrayList<String> informacoes) {
+    public CulturalViewAdapter(Context ctx, ArrayList<Evento> eventos) {
         this.mContext = ctx;
-        this.nomes = nomes;
-        this.informacoes = informacoes;
+        this.eventos = eventos;
     }
 
     @Override
     public int getCount() {
-        return nomes.size();
+        return eventos.size();
     }
 
     @Override
@@ -34,11 +33,14 @@ public class CulturalViewAdapter extends PagerAdapter {
     	LayoutInflater vi = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View v = vi.inflate(R.layout.evento, null);
         
-        TextView view = ((TextView) v.findViewById(R.id.eventoNome));
-        view.setText(nomes.get(position));
+        TextView nome = ((TextView) v.findViewById(R.id.eventoNome));
+        nome.setText(eventos.get(position).getNome());
         
-        TextView view2 = ((TextView) v.findViewById(R.id.eventoInfoText));
-        view2.setText(informacoes.get(position));
+        TextView info = ((TextView) v.findViewById(R.id.eventoInfoText));
+        info.setText(eventos.get(position).getDetalhes());
+        
+        TextView data = ((TextView) v.findViewById(R.id.eventoDataText));
+        data.setText(eventos.get(position).getData());
         
         ((ViewPager)collection).addView(v);
 

@@ -24,22 +24,21 @@ public class Cultural extends FragmentActivity {
 		    header.initHeader();
 			Search.pesquisa(this, this);
 			
-			ArrayList<String> texts = new ArrayList<String>();
-			ArrayList<String> info = new ArrayList<String>();
-	        texts.add("Jantar de Natal");
-	        texts.add("Teatro de beneficiência");
-	        info.add("Jantar de Natal no shopping com todas as pessoas envolventes \n 21 Horas - Salão Silo");
-	        info.add("Teatro de beneficiência para ajudar todas as pessoas necessitadas nesta altura de Natal \n 18 Horas");
+			Evento e = new Evento(3,"Jantar de Natal","24/12/2011","Jantar de Natal no shopping com todas as pessoas envolventes \n21 Horas - Salão Silo");
+			Evento e2 = new Evento(3,"Teatro de beneficiência","23/12/2011","Teatro de beneficiência para ajudar todas as pessoas necessitadas nesta altura de Natal \n18 Horas");
+			ArrayList<Evento> eventos = new ArrayList<Evento>();
+			eventos.add(e2);
+			eventos.add(e);
 	        
 	        
 	        
 
-	        mAdapter = new CulturalViewAdapter(this,texts,info);
+	        mAdapter = new CulturalViewAdapter(this,eventos);
 	        mPager = (ViewPager)findViewById(R.id.pager);
 	        mPager.setAdapter(mAdapter);   
 	        ViewPagerIndicator indicator = (ViewPagerIndicator)findViewById(R.id.indicator);
 	        mPager.setOnPageChangeListener(indicator);
-	        indicator.init(0, mAdapter.getCount(), texts);
+	        indicator.init(0, mAdapter.getCount(), eventos);
 	        Resources res = getResources();
 	        Drawable prev = res.getDrawable(R.drawable.indicator_prev_arrow);
 	        Drawable next = res.getDrawable(R.drawable.indicator_next_arrow);
