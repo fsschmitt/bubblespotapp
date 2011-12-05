@@ -8,21 +8,19 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.bubblespot.R;
 
-public class CinemaViewAdapter extends PagerAdapter {
+public class CulturalViewAdapter extends PagerAdapter {
 	private ArrayList<String> nomes;
-	private ArrayList<ArrayList<String>> horarios;
+	private ArrayList<String> informacoes;
     private Context mContext;
     
-    public CinemaViewAdapter(Context ctx, ArrayList<String> nomes, ArrayList<ArrayList<String>> horarios) {
+    public CulturalViewAdapter(Context ctx, ArrayList<String> nomes, ArrayList<String> informacoes) {
         this.mContext = ctx;
         this.nomes = nomes;
-        this.horarios = horarios;
+        this.informacoes = informacoes;
     }
 
     @Override
@@ -34,13 +32,13 @@ public class CinemaViewAdapter extends PagerAdapter {
     public Object instantiateItem(View collection, int position) {
 		
     	LayoutInflater vi = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View v = vi.inflate(R.layout.filme, null);
+		View v = vi.inflate(R.layout.evento, null);
         
-        TextView view = ((TextView) v.findViewById(R.id.filmeNome));
+        TextView view = ((TextView) v.findViewById(R.id.eventoNome));
         view.setText(nomes.get(position));
         
-        ListView lv1=(ListView) v.findViewById(R.id.filmeHorarios);
-        lv1.setAdapter(new ArrayAdapter<String>(mContext,android.R.layout.simple_list_item_1 , horarios.get(position)));
+        TextView view2 = ((TextView) v.findViewById(R.id.eventoInfoText));
+        view2.setText(informacoes.get(position));
         
         ((ViewPager)collection).addView(v);
 

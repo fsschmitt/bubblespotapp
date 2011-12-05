@@ -6,14 +6,14 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import com.zylinc.view.*;
 
-import com.adapter.CinemaViewAdapter;
+import com.adapter.CulturalViewAdapter;
+import com.zylinc.view.ViewPagerIndicator;
 
-public class Cinema extends FragmentActivity {
+public class Cultural extends FragmentActivity {
 	    static final int NUM_ITEMS = 10;
 
-	    CinemaViewAdapter mAdapter;
+	    CulturalViewAdapter mAdapter;
 	    ViewPager mPager;
 
 	    @Override
@@ -25,27 +25,16 @@ public class Cinema extends FragmentActivity {
 			Search.pesquisa(this, this);
 			
 			ArrayList<String> texts = new ArrayList<String>();
-			ArrayList<ArrayList<String>> horarios = new ArrayList<ArrayList<String>>();
-	        texts.add("Inception");
-	        texts.add("In time");
-	        texts.add("The art of getting by");
-	        ArrayList<String> h1 = new ArrayList<String>();
-	        ArrayList<String> h2 = new ArrayList<String>();
-	        ArrayList<String> h3 = new ArrayList<String>();
-	        h1.add("15:10");
-	        h1.add("18:50");
-	        horarios.add(h1);
-	        h2.add("15:10");
-	        h2.add("18:50");
-	        h2.add("21:15");
-	        horarios.add(h2);
-	        h3.add("18:50");
-	        h3.add("23:15");
-	        horarios.add(h3);
+			ArrayList<String> info = new ArrayList<String>();
+	        texts.add("Jantar de Natal");
+	        texts.add("Teatro de beneficiência");
+	        info.add("Jantar de Natal no shopping com todas as pessoas envolventes \n 21 Horas - Salão Silo");
+	        info.add("Teatro de beneficiência para ajudar todas as pessoas necessitadas nesta altura de Natal \n 18 Horas");
+	        
 	        
 	        
 
-	        mAdapter = new CinemaViewAdapter(this,texts,horarios);
+	        mAdapter = new CulturalViewAdapter(this,texts,info);
 	        mPager = (ViewPager)findViewById(R.id.pager);
 	        mPager.setAdapter(mAdapter);   
 	        ViewPagerIndicator indicator = (ViewPagerIndicator)findViewById(R.id.indicator);
