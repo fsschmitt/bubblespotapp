@@ -24,16 +24,12 @@ public class Utils {
 
 	public static int raio = 8000;
 	public static Resources res;
-	
+
 	public static Location getLocation(Context ctx) {
 		LocationManager lm = (LocationManager) ctx
 				.getSystemService(Context.LOCATION_SERVICE);
 		List<String> providers = lm.getProviders(true);
 
-		/*
-		 * Loop over the array backwards, and if you get an accurate location,
-		 * then break out the loop
-		 */
 		Location l = null;
 
 		for (int i = providers.size() - 1; i >= 0; i--) {
@@ -54,28 +50,29 @@ public class Utils {
 		int temp=(int)((d*Math.pow(10,c)));
 		return (((double)temp)/Math.pow(10,c));
 	}
-	
-	public static String getJSONLine(URL url) throws IOException {
-			BufferedReader in;
 
-			URLConnection tc = url.openConnection();
-			tc.setDoInput(true);
-			tc.setDoOutput(true);
-			in = new BufferedReader(new InputStreamReader(tc.getInputStream()));	
-			return in.readLine();
-	}
 	public static Bitmap overlay(Bitmap bmp1, Bitmap bmp2) {
-	        Bitmap bmOverlay = Bitmap.createBitmap(bmp1.getWidth(), bmp1.getHeight(), bmp1.getConfig());
-	        Canvas canvas = new Canvas(bmOverlay);
-	        canvas.drawBitmap(bmp1, new Matrix(), null);
-	        canvas.drawBitmap(bmp2, new Matrix(), null);
-	        return bmOverlay;
+		Bitmap bmOverlay = Bitmap.createBitmap(bmp1.getWidth(), bmp1.getHeight(), bmp1.getConfig());
+		Canvas canvas = new Canvas(bmOverlay);
+		canvas.drawBitmap(bmp1, new Matrix(), null);
+		canvas.drawBitmap(bmp2, new Matrix(), null);
+		return bmOverlay;
 	}
-	
+
+	public static String getJSONLine(URL url) throws IOException {
+		BufferedReader in;
+
+		URLConnection tc = url.openConnection();
+		tc.setDoInput(true);
+		tc.setDoOutput(true);
+		in = new BufferedReader(new InputStreamReader(tc.getInputStream()));	
+		return in.readLine();
+	}
+
 	public static byte[] encodeBitmap(Bitmap b)
 	{
 		ByteArrayOutputStream bos = new ByteArrayOutputStream(); 
 		b.compress(CompressFormat.PNG, 0 /*ignored for PNG*/, bos); 
-    	return bos.toByteArray();
+		return bos.toByteArray();
 	}
 }

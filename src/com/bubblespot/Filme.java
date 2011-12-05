@@ -3,7 +3,7 @@ package com.bubblespot;
 import android.graphics.Bitmap;
 
 public class Filme {
-	
+
 	private String nome;
 	private int idShopping;
 	private String detalhes;
@@ -11,7 +11,7 @@ public class Filme {
 	private Bitmap bImage;
 	private String image_url;
 	private String trailer;
-	
+
 	Filme(int idShopping,String nome, String detalhes, String horarios, String image_url, String trailer){
 		this.setIdShopping(idShopping);
 		this.setNome(nome);
@@ -76,5 +76,4 @@ public class Filme {
 	public void setTrailer(String trailer) {
 		this.trailer = trailer;
 	}
-
 }

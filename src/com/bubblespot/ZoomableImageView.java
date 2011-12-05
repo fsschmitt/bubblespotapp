@@ -1,7 +1,5 @@
 package com.bubblespot;
 
-
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -168,8 +166,6 @@ public class ZoomableImageView extends View {
 				currentScale = 1.0f;
 				minScale = 1.0f;
 			}
-
-
 			invalidate();
 		}
 	}
@@ -208,7 +204,6 @@ public class ZoomableImageView extends View {
 
 		int rangeLimitX = containerWidth - (int)(imgBitmap.getWidth() * currentScale);
 		int rangeLimitY = containerHeight - (int)(imgBitmap.getHeight() * currentScale);
-
 
 		boolean toMoveX = false;
 		boolean toMoveY = false;
@@ -258,7 +253,6 @@ public class ZoomableImageView extends View {
 			mHandler.postDelayed(mUpdateImagePositionTask, 100);
 		}
 	}
-
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
@@ -335,14 +329,12 @@ public class ZoomableImageView extends View {
 						matrix.postScale(scale, scale, mid.x, mid.y);
 					}
 
-
 					matrix.getValues(mvals);
 					curX = mvals[2];
 					curY = mvals[5];
 					currentScale = mvals[0];
 				}
 			}
-
 			break;
 		}
 
@@ -433,7 +425,6 @@ public class ZoomableImageView extends View {
 				currentScale = 1.0f;
 				minScale = 1.0f;
 			}
-
 			invalidate();
 		}
 		else {
@@ -444,7 +435,6 @@ public class ZoomableImageView extends View {
 	public Bitmap getPhotoBitmap() {
 		return imgBitmap;
 	}
-
 
 	private Runnable mUpdateImagePositionTask = new Runnable() {
 		public void run() {
@@ -483,7 +473,6 @@ public class ZoomableImageView extends View {
 				matrix.postTranslate(diffX, diffY);
 				mHandler.postDelayed(this, 25);
 			}
-
 			invalidate();
 		}
 	};
@@ -516,7 +505,6 @@ public class ZoomableImageView extends View {
 					}
 				}
 
-
 				if(scaleChange != 1) {
 					matrix.postScale(scaleChange, scaleChange, targetScaleX, targetScaleY);
 					mHandler.postDelayed(mUpdateImageScale, 15);
@@ -543,30 +531,6 @@ public class ZoomableImageView extends View {
 			}
 		}
 	};
-
-	/** Show an event in the LogCat view, for debugging
-	private void dumpEvent(MotionEvent event) {
-		String names[] = { "DOWN", "UP", "MOVE", "CANCEL", "OUTSIDE", "POINTER_DOWN", "POINTER_UP", "7?", "8?", "9?" };
-		StringBuilder sb = new StringBuilder();
-		int action = event.getAction();
-		int actionCode = action & MotionEvent.ACTION_MASK;
-		sb.append("event ACTION_").append(names[actionCode]);
-		if (actionCode == MotionEvent.ACTION_POINTER_DOWN || actionCode == MotionEvent.ACTION_POINTER_UP) {
-			sb.append("(pid ").append(action >> MotionEvent.ACTION_POINTER_ID_SHIFT);
-			sb.append(")");
-		}
-		sb.append("[");
-
-		for (int i = 0; i < event.getPointerCount(); i++) {
-			sb.append("#").append(i);
-			sb.append("(pid ").append(event.getPointerId(i));
-			sb.append(")=").append((int) event.getX(i));
-			sb.append(",").append((int) event.getY(i));
-			if (i + 1 < event.getPointerCount())
-				sb.append(";");
-		}
-		sb.append("]");
-	}*/
 
 	class MyGestureDetector extends SimpleOnGestureListener {
 		@Override

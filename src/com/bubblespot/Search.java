@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -22,13 +23,12 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 public class Search {
-	
+
 	private static Bundle b;
-	
+
 	public static void pesquisa(final Context c, final Activity a) {
-		
 		final CharSequence[] items = {"Shoppings", "Lojas", "Promoções"};
-		
+
 		ImageView logo = (ImageView) a.findViewById(R.id.logo);
 		logo.setOnClickListener(new View.OnClickListener() {
 
@@ -37,7 +37,7 @@ public class Search {
 				a.startActivityForResult(intent, 0);
 			}
 		});
-		
+
 		ImageView lupa = (ImageView) a.findViewById(R.id.lupa);
 		lupa.setOnClickListener(new View.OnClickListener() {
 
@@ -53,16 +53,14 @@ public class Search {
 								dialog2.setContentView(R.layout.shoppingsearch);
 								dialog2.setTitle("Pesquisa de Shoppings");
 								dialog2.setCancelable(true);
-								
+
 								final Spinner spinner = (Spinner) dialog2.findViewById(R.id.spinner);
 								ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
 										c, R.array.opcoes_shopping, android.R.layout.simple_spinner_item);
 								adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 								spinner.setAdapter(adapter);
-								
-								
-								final EditText nome = (EditText) dialog2.findViewById(R.id.pesq_nome);
 
+								final EditText nome = (EditText) dialog2.findViewById(R.id.pesq_nome);
 
 								final Button pesquisa = (Button) dialog2.findViewById(R.id.pesquisar);
 								pesquisa.setOnClickListener(new View.OnClickListener() {
@@ -103,22 +101,18 @@ public class Search {
 								dialog2.setContentView(R.layout.shoppingsearch);
 								dialog2.setTitle("Pesquisa de Lojas");
 								dialog2.setCancelable(true);
-								
+
 								final Spinner spinner = (Spinner) dialog2.findViewById(R.id.spinner);
 								ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
 										c, R.array.opcoes_loja, android.R.layout.simple_spinner_item);
 								adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 								spinner.setAdapter(adapter);
-								
-								
-								final EditText nome = (EditText) dialog2.findViewById(R.id.pesq_nome);
 
+								final EditText nome = (EditText) dialog2.findViewById(R.id.pesq_nome);
 
 								final Button pesquisa = (Button) dialog2.findViewById(R.id.pesquisar);
 								pesquisa.setOnClickListener(new View.OnClickListener() {
 
-								
-									
 									public void onClick(View v) {
 										if (!checkNetwork(c,a)){
 											String query = "";
@@ -155,19 +149,15 @@ public class Search {
 								dialog2.setContentView(R.layout.shoppingsearch);
 								dialog2.setTitle("Pesquisa de Promoções");
 								dialog2.setCancelable(true);
-								
+
 								final Spinner spinner = (Spinner) dialog2.findViewById(R.id.spinner);
 								spinner.setVisibility(View.GONE);
-								
-								
-								final EditText nome = (EditText) dialog2.findViewById(R.id.pesq_nome);
 
+								final EditText nome = (EditText) dialog2.findViewById(R.id.pesq_nome);
 
 								final Button pesquisa = (Button) dialog2.findViewById(R.id.pesquisar);
 								pesquisa.setOnClickListener(new View.OnClickListener() {
 
-								
-									
 									public void onClick(View v) {
 										if (!checkNetwork(c,a)){
 											String query = "";
@@ -193,20 +183,14 @@ public class Search {
 							}
 							break;
 						}
-
 					}
 				});
 				AlertDialog alert = builder.create();
 				alert.show();
 			}
 		});
-		
-		
-
-		
 	}
-	
-	
+
 	public static boolean checkNetwork(final Context c, final Activity a) {
 		if (!isNetworkAvailable(c, a)) {
 			AlertDialog.Builder builder = new AlertDialog.Builder(c);
@@ -227,13 +211,11 @@ public class Search {
 				public void onClick(DialogInterface dialog,
 						int id) {
 					a.finish();
-
 				}
 			});
 			AlertDialog alert = builder.create();
 			alert.show();
 			return true;
-
 		}
 		return false;
 	}

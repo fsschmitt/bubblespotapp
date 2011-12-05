@@ -1,11 +1,3 @@
-/***
- * Excerpted from "Hello, Android! 3e",
- * published by The Pragmatic Bookshelf.
- * Copyrights apply to this code. It may not be used to create training material, 
- * courses, books, articles, and the like. Contact us if you are in doubt.
- * We make no guarantees that this code is fit for any purpose. 
- * Visit http://www.pragmaticprogrammer.com/titles/eband3 for more book information.
- ***/
 package com.bubblespot;
 
 import android.app.Activity;
@@ -28,12 +20,11 @@ public class Touch extends Activity{
 		Bundle b = this.getIntent().getExtras();
 		url = b.getString("planta");
 		setContentView(R.layout.planta);
-		
+
 		Header header = (Header) findViewById(R.id.header);
-	    header.initHeader();
+		header.initHeader();
 		Search.pesquisa(this, Touch.this);
 
-		
 		dialog = ProgressDialog.show(this, "", "A Carregar...",true);
 		dialog.setCancelable(true);
 		dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -47,7 +38,6 @@ public class Touch extends Activity{
 	}
 
 	class RetrieveImages extends AsyncTask<String, Integer, String> {
-
 		@Override
 		protected String doInBackground(String... arg0) {
 			try{
@@ -66,7 +56,6 @@ public class Touch extends Activity{
 				System.out.println("carreguei");
 			}
 			dialog.dismiss();
-
 		}
 	}
 }

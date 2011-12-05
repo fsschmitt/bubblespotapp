@@ -3,7 +3,7 @@ package com.bubblespot;
 import android.graphics.Bitmap;
 
 public class Shopping {
-	
+
 	private String latitude;
 	private String longitude;
 	private String descricao;
@@ -15,9 +15,9 @@ public class Shopping {
 	private double dist;
 	private int id;
 	private Bitmap bImage;
-	
+
 	Shopping(int id,String nome, String localizacao, String descricao, String telefone, String email, String latitude, String longitude, String image_url, double dist){
-		
+
 		this.setNome(nome);
 		this.setLocalizacao(localizacao);
 		this.setDescricao(descricao);
@@ -30,8 +30,8 @@ public class Shopping {
 		this.setId(id);
 	}
 
-	Shopping(int id,String nome, String localizacao, String descricao, String telefone, String email, String latitude, String longitude, String image_url){
-		
+	public Shopping(int id,String nome, String localizacao, String descricao, String telefone, String email, String latitude, String longitude, String image_url){
+
 		this.setNome(nome);
 		this.setLocalizacao(localizacao);
 		this.setDescricao(descricao);
@@ -42,7 +42,7 @@ public class Shopping {
 		this.setImagem_url(image_url);
 		this.setId(id);
 	}
-	
+
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
@@ -130,5 +130,4 @@ public class Shopping {
 	public void setbImage(Bitmap bImage) {
 		this.bImage = bImage;
 	}
-
 }

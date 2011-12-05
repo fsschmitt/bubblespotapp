@@ -1,7 +1,5 @@
 package com.bubblespot;
 
-
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -34,9 +32,9 @@ public class BubbleSpot extends Activity {
 		setContentView(R.layout.main);
 		mainCont=this;
 		Utils.res = this.getResources();
-		
+
 		Header header = (Header) findViewById(R.id.header);
-	    header.initHeader();
+		header.initHeader();
 		Search.pesquisa(this, BubbleSpot.this);
 
 		final ImageView shopping = (ImageView) findViewById(R.id.cima);
@@ -52,7 +50,7 @@ public class BubbleSpot extends Activity {
 				}
 			}
 		});
-		
+
 		final ImageView loja = (ImageView) findViewById(R.id.centro_esq);
 		loja.setOnClickListener(new View.OnClickListener() {
 
@@ -66,7 +64,7 @@ public class BubbleSpot extends Activity {
 				}
 			}
 		});
-		
+
 		final ImageView promo1 = (ImageView) findViewById(R.id.centro_dir_cima);
 		promo1.setOnClickListener(new View.OnClickListener() {
 
@@ -74,7 +72,7 @@ public class BubbleSpot extends Activity {
 				Toast.makeText(BubbleSpot.this, "Brevemente Disponível", Toast.LENGTH_SHORT).show();
 			}
 		});
-		
+
 		final ImageView promo2 = (ImageView) findViewById(R.id.centro_dir_baixo);
 		promo2.setOnClickListener(new View.OnClickListener() {
 
@@ -82,7 +80,7 @@ public class BubbleSpot extends Activity {
 				Toast.makeText(BubbleSpot.this, "Brevemente Disponível", Toast.LENGTH_SHORT).show();
 			}
 		});
-		
+
 		final ImageView promocao = (ImageView) findViewById(R.id.baixo);
 		promocao.setOnClickListener(new View.OnClickListener() {
 
@@ -97,8 +95,6 @@ public class BubbleSpot extends Activity {
 			}
 		});
 	}
-	
-
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -107,7 +103,6 @@ public class BubbleSpot extends Activity {
 			Toast.makeText(this, "Não foi encontrado nenhum resultado!", Toast.LENGTH_LONG).show();
 		}     
 	}
-
 
 	public boolean checkNetwork() {
 		if (!isNetworkAvailable()) {
@@ -129,7 +124,6 @@ public class BubbleSpot extends Activity {
 				public void onClick(DialogInterface dialog,
 						int id) {
 					BubbleSpot.this.finish();
-
 				}
 			});
 			AlertDialog alert = builder.create();
@@ -147,8 +141,6 @@ public class BubbleSpot extends Activity {
 		return activeNetworkInfo != null;
 	}
 
-
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
@@ -161,7 +153,6 @@ public class BubbleSpot extends Activity {
 		switch (item.getItemId()) {
 		case R.id.perto:
 			if (!checkNetwork()){
-				
 				Location l = Utils.getLocation(this);
 				String pesquisa = "search/shoppings?latitude=" + l.getLatitude() + "&longitude=" + l.getLongitude() + "&radius=" + Utils.raio + "&format=json";
 				Intent intent = new Intent(this, ShoppingNear.class);

@@ -16,8 +16,8 @@ public class Loja {
 	private int idShopping;
 	private boolean primeira=false;
 	private Bitmap bImage;
-	
-	Loja (int id, String nome, int piso, int numero, String telefone, String detalhes, String imagem, String tags, String shopping, int idShopping){
+
+	public Loja (int id, String nome, int piso, int numero, String telefone, String detalhes, String imagem, String tags, String shopping, int idShopping){
 		this.id = id;
 		this.nome=nome;
 		this.piso=piso;
@@ -30,7 +30,7 @@ public class Loja {
 		this.idShopping=idShopping;
 		this.bImage=null;
 	}
-	
+
 	public String getNome() {
 		return nome;
 	}

@@ -1,11 +1,8 @@
 package com.bubblespot;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
@@ -27,10 +24,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.adapter.GalleryAdapter;
 
@@ -60,12 +57,12 @@ public class ShopDetail extends Activity {
 		super.onCreate(savedInstanceState);
 		context = this;
 		bImages = new ArrayList<Bitmap>();
-        nomes = new ArrayList<String>();
-        imagens = new ArrayList<String>();
-        promos = new ArrayList<Promocao>();
+		nomes = new ArrayList<String>();
+		imagens = new ArrayList<String>();
+		promos = new ArrayList<Promocao>();
 		ShopDetail.this.setContentView(R.layout.shopdetail);
 		Header header = (Header) findViewById(R.id.header);
-	    header.initHeader();
+		header.initHeader();
 		Search.pesquisa(ShopDetail.this, ShopDetail.this);
 		gPromos = (Gallery) findViewById(R.id.galleryPromos);
 		iAdapter = new GalleryAdapter(context, bImages, nomes);
@@ -81,50 +78,50 @@ public class ShopDetail extends Activity {
 		this.tags = b.getString("lojaTags");
 		this.shopping = b.getString("lojaShopping");
 		this.idShopping = b.getInt("idShopping");
-		
+
 		TextView loja_shopping = (TextView) findViewById(R.id.loja_shopping);
 		loja_shopping.setText(nome + " (" + shopping + ")");
-		
+
 		TextView lojaPiso = (TextView) findViewById(R.id.lojaPiso);
 		lojaPiso.setText("Piso: "+piso);
-		
+
 		TextView lojaNumero = (TextView) findViewById(R.id.lojaNumero);
 		lojaNumero.setText("Número da Loja: "+numero);
-		
+
 		TextView lojaTelefone = (TextView) findViewById(R.id.lojaTelefone);
 		lojaTelefone.setText("Número de Telefone: "+telefone);
-		
+
 		TextView lojaArea = (TextView) findViewById(R.id.lojaArea);
 		lojaArea.setText("Áreas de Negócio: "+tags);
-		
+
 		TextView lojaDescricao = (TextView) findViewById(R.id.lojaDescricao);
 		lojaDescricao.setText(detalhes);
-		
+
 		gPromos.setOnItemClickListener(new OnItemClickListener() {
 			@SuppressWarnings("rawtypes")
 			public void onItemClick(AdapterView parent, View v, int position, long id) {
 				Intent intent = new Intent(v.getContext(), PromoDetail.class);
-                Promocao promo = promos.get(position);
-                Bundle b = new Bundle();
-                b.putInt("idLoja", ShopDetail.this.id);
-                b.putInt("id", promo.getId());
-                b.putInt("idShopping", idShopping);
-                b.putString("nomeLoja", promo.getLoja_nome());
-                b.putString("desconto", promo.getDesconto());
-                b.putString("produto", promo.getProduto());
-                b.putString("detalhes", promo.getDetalhes());
-                b.putString("precoFinal", promo.getPreco_final());
-                b.putString("precoInicial", promo.getPreco_inicial());
-                b.putString("dataFinal", promo.getData_final());
-                b.putString("imagem", promo.getImagem_url());
-                b.putString("shopping", shopping);
-                Bitmap image = promo.getbImage();
-                if(image != null){
-                	b.putByteArray("promoImageByte", Utils.encodeBitmap(image));
-                }
-                else
-                	b.putByteArray("promoImageByte", null);
-                intent.putExtras(b);
+				Promocao promo = promos.get(position);
+				Bundle b = new Bundle();
+				b.putInt("idLoja", ShopDetail.this.id);
+				b.putInt("id", promo.getId());
+				b.putInt("idShopping", idShopping);
+				b.putString("nomeLoja", promo.getLoja_nome());
+				b.putString("desconto", promo.getDesconto());
+				b.putString("produto", promo.getProduto());
+				b.putString("detalhes", promo.getDetalhes());
+				b.putString("precoFinal", promo.getPreco_final());
+				b.putString("precoInicial", promo.getPreco_inicial());
+				b.putString("dataFinal", promo.getData_final());
+				b.putString("imagem", promo.getImagem_url());
+				b.putString("shopping", shopping);
+				Bitmap image = promo.getbImage();
+				if(image != null){
+					b.putByteArray("promoImageByte", Utils.encodeBitmap(image));
+				}
+				else
+					b.putByteArray("promoImageByte", null);
+				intent.putExtras(b);
 				startActivity(intent);
 			}
 		});
@@ -136,26 +133,21 @@ public class ShopDetail extends Activity {
 		}
 		else {
 			dialog = ProgressDialog.show(this, "", "A Carregar...",true);
-	        dialog.setCancelable(true);
-	        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-	            public void onCancel(DialogInterface dialog) {
-	            	finish();
-	                }
-	        });
+			dialog.setCancelable(true);
+			dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+				public void onCancel(DialogInterface dialog) {
+					finish();
+				}
+			});
 			new RetrieveLogo().execute();
 		}
 		new RetrievePromo().execute();
-		
-		
-		
-
 	}
-	
-	class RetrieveLogo extends AsyncTask<String, Integer, String> {
 
+	class RetrieveLogo extends AsyncTask<String, Integer, String> {
 		@Override
 		protected String doInBackground(String... arg0) {
-			
+
 			bImage = null;
 			try {
 				bImage = Utils.loadImageFromNetwork(imagem);
@@ -164,33 +156,27 @@ public class ShopDetail extends Activity {
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
-			
-			
-			
 			return null;
 		}
-		
+
 		@Override
 		protected void onPostExecute(String result) {
-	
 			ImageView logo = (ImageView) ShopDetail.this.findViewById(R.id.loja_logo);
 			logo.setImageBitmap(bImage);
-			
-			dialog.dismiss();
-			
-		}
-		
-	}
-	
-	class RetrievePromo extends AsyncTask<String, Integer, String> {
 
+			dialog.dismiss();
+		}
+
+	}
+
+	class RetrievePromo extends AsyncTask<String, Integer, String> {
 		@Override
 		protected String doInBackground(String... arg0) {
 			nomes.clear();
 			promos.clear();
 			bImages.clear();
 			String uri = "http://bubblespot.heroku.com/shoppings/"+idShopping+"/lojas/"+id+"/promos.json";
-			
+
 			URL url = null;
 			try {
 				url = new URL(uri);				
@@ -201,7 +187,7 @@ public class ShopDetail extends Activity {
 			String line = null;
 			JSONArray jo = null;
 			try {
-				line = getJSONLine(url);
+				line = Utils.getJSONLine(url);
 				if(line != null){
 					jo = new JSONArray(line);
 					for (int i = 0; i < jo.length(); i++) {
@@ -229,7 +215,7 @@ public class ShopDetail extends Activity {
 			}
 			return null;	
 		}
-		
+
 		@Override
 		protected void onPostExecute(String result) {
 			if(nomes != null && !nomes.isEmpty() && !imagens.isEmpty()){
@@ -242,15 +228,11 @@ public class ShopDetail extends Activity {
 				dialog.dismiss();
 			}	
 		}
-		
 	}
-	
-	class RetrieveImages extends AsyncTask<String, Integer, String> {
 
+	class RetrieveImages extends AsyncTask<String, Integer, String> {
 		@Override
 		protected String doInBackground(String... arg0) {
-			
-			
 			try{
 				Bitmap image = Utils.loadImageFromNetwork(imagens.get(0));
 				image = Bitmap.createScaledBitmap(image, image.getWidth()*240/image.getHeight(), 240, false);
@@ -270,7 +252,7 @@ public class ShopDetail extends Activity {
 			}
 			return null;
 		}
-		
+
 		@Override
 		protected void onPostExecute(String result) {
 			imagens.remove(0);
@@ -279,17 +261,7 @@ public class ShopDetail extends Activity {
 				new RetrieveImages().execute();
 		}
 	}
-		
-		public static String getJSONLine(URL url) throws IOException {
-			BufferedReader in;
 
-			URLConnection tc = url.openConnection();
-			tc.setDoInput(true);
-			tc.setDoOutput(true);
-			in = new BufferedReader(new InputStreamReader(tc.getInputStream()));	
-			return in.readLine();
-		}
-	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
@@ -313,21 +285,7 @@ public class ShopDetail extends Activity {
 		}
 		return true;
 		case R.id.loja_partilhar:
-			/*
-			Dialog dialog = new Dialog(ShopDetail.this);
-			dialog.setContentView(R.layout.shoppingmap);
-			dialog.setTitle("Localização do Shopping");
-			dialog.setCancelable(true);
-			ImageView mapa = (ImageView) dialog.findViewById(R.id.mapa);
-			try {
-				mapa.setImageBitmap(Utils.loadImageFromNetwork("http://maps.googleapis.com/maps/api/staticmap?markers=" + this.latitude + "," + this.longitude + "&zoom=16&size=400x400&sensor=false"));
-			} catch (MalformedURLException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			} 
-			dialog.show();
-			return true;*/
+			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}

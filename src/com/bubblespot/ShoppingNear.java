@@ -1,18 +1,13 @@
 package com.bubblespot;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLConnection;
 import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.adapter.ShoppingAdapter;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -28,7 +23,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-
+import com.adapter.ShoppingAdapter;
 
 public class ShoppingNear extends Activity{
 	private ArrayList<String> nomes;
@@ -52,12 +47,12 @@ public class ShoppingNear extends Activity{
 		header.initHeader();
 		Search.pesquisa(this, ShoppingNear.this);
 		dialog = ProgressDialog.show(this, "", "A Carregar...",true);
-        dialog.setCancelable(true);
-        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            public void onCancel(DialogInterface dialog) {
-            	finish();
-                }
-        });
+		dialog.setCancelable(true);
+		dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+			public void onCancel(DialogInterface dialog) {
+				finish();
+			}
+		});
 		b = new Bundle();
 		shoppings = new ArrayList<Shopping>();
 		nomes = new ArrayList<String>();
@@ -81,23 +76,19 @@ public class ShoppingNear extends Activity{
 				b.putString("shoppingEmail", sb.getEmail());
 				b.putInt("id", sb.getId());
 				Bitmap image = sb.getbImage();
-                if(image != null){
-                	b.putByteArray("shoppingImageByte", Utils.encodeBitmap(image));
-                }
-                else
-                	b.putByteArray("shoppingImageByte", null);
+				if(image != null){
+					b.putByteArray("shoppingImageByte", Utils.encodeBitmap(image));
+				}
+				else
+					b.putByteArray("shoppingImageByte", null);
 				intent.putExtras(b);
 				startActivity(intent);
 			}
 		});
 		new RetrieveShoppings().execute();
-
 	}
 
-
-
 	class RetrieveShoppings extends AsyncTask<String, Integer, String> {
-
 		@Override
 		protected String doInBackground(String... arg0) {
 			nomes.clear();
@@ -114,7 +105,7 @@ public class ShoppingNear extends Activity{
 			String line = null;
 			JSONArray jo = null;
 			try {
-				line = getJSONLine(url);
+				line = Utils.getJSONLine(url);
 				if(line != null){
 					jo = new JSONArray(line);
 					for (int i = 0; i < jo.length(); i++) {
@@ -129,10 +120,10 @@ public class ShoppingNear extends Activity{
 						String Email = shopping.getString("email");
 						String Dist = shopping.getString("distance");
 						int id = shopping.getInt("id");
-	
+
 						double distancia = Double.parseDouble(Dist);
 						distancia = distancia * 1.6;
-	
+
 						distancia = Utils.roundToDecimals(distancia, 2);
 						images.add(Imagem);
 						nomes.add(Nome);
@@ -147,7 +138,6 @@ public class ShoppingNear extends Activity{
 			} catch (JSONException e) {
 				e.printStackTrace();
 			}
-
 			return null;
 		}
 		// Called once the background activity has completed
@@ -165,22 +155,21 @@ public class ShoppingNear extends Activity{
 			}
 		}
 	}
-	
-	class RetrieveImages extends AsyncTask<String, Integer, String> {
 
+	class RetrieveImages extends AsyncTask<String, Integer, String> {
 		@Override
 		protected String doInBackground(String... arg0) {
 			try{
-					Bitmap image = Utils.loadImageFromNetwork(images.get(0));
-					shoppings.get(shoppings.size()-images.size()).setbImage(image);
-					bImages.set(shoppings.size()-images.size(),image);
+				Bitmap image = Utils.loadImageFromNetwork(images.get(0));
+				shoppings.get(shoppings.size()-images.size()).setbImage(image);
+				bImages.set(shoppings.size()-images.size(),image);
 			}
 			catch(Exception e){
 				Log.e("Erro ao baixar as imagens.", e.getMessage());
 			}
 			return null;
 		}
-		
+
 		@Override
 		protected void onPostExecute(String result) {
 			if(loading){
@@ -193,17 +182,4 @@ public class ShoppingNear extends Activity{
 				new RetrieveImages().execute();
 		}
 	}
-
-	public static String getJSONLine(URL url) throws IOException {
-		BufferedReader in;
-
-		URLConnection tc = url.openConnection();
-		tc.setDoInput(true);
-		tc.setDoOutput(true);
-		in = new BufferedReader(new InputStreamReader(tc.getInputStream()));	
-		return in.readLine();
-	}
-
-
-
 }

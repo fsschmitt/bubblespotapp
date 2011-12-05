@@ -16,7 +16,7 @@ public class Promocao {
 	private String produto;
 	private Bitmap bImage;
 	
-	Promocao(int id, String data_final, String desconto, String detalhes, String imagem_url, int loja_id, String loja_nome, String preco_inicial, String preco_final, String produto)
+	public Promocao(int id, String data_final, String desconto, String detalhes, String imagem_url, int loja_id, String loja_nome, String preco_inicial, String preco_final, String produto)
 	{
 		this.setId(id);
 		this.setData_final(data_final);
@@ -118,5 +118,4 @@ public class Promocao {
 	public void setLoja_nome(String loja_nome) {
 		this.loja_nome = loja_nome;
 	}
-
 }

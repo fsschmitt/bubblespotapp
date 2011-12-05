@@ -10,7 +10,7 @@ public class Evento {
 	private String detalhes;
 	private String imagem_url;
 	private Bitmap bImage;
-	
+
 	Evento(int idShopping, String nome, String data, String detalhes, String imagem_url){
 		this.idShopping = idShopping;
 		this.nome = nome;
@@ -66,5 +66,4 @@ public class Evento {
 	public void setbImage(Bitmap bImage) {
 		this.bImage = bImage;
 	}
-	
 }

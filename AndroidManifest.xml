@@ -76,20 +76,19 @@
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-             android:name="ListPromo"
+            android:name="ListPromo"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar"  >
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-             android:name="Cinema"
+            android:name="Cinema"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar"  >
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
-        
-       	<activity
-             android:name="Cultural"
+        <activity
+            android:name="Cultural"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar"  >
+            android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
     </application>
 

@@ -5,6 +5,7 @@ import java.net.MalformedURLException;
 
 
 
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -58,17 +59,17 @@ public class ShoppingDetail extends Activity {
 		context = this;
 		ShoppingDetail.this.setContentView(R.layout.shoppingdetail);
 		Header header = (Header) findViewById(R.id.header);
-	    header.initHeader();
-	    Search.pesquisa(this, this);
-	    initButtons();
-		
-	    dialog = ProgressDialog.show(this, "", "A Carregar...",true);
-        dialog.setCancelable(true);
-        dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            public void onCancel(DialogInterface dialog) {
-            	finish();
-                }
-        });
+		header.initHeader();
+		Search.pesquisa(this, this);
+		initButtons();
+
+		dialog = ProgressDialog.show(this, "", "A Carregar...",true);
+		dialog.setCancelable(true);
+		dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+			public void onCancel(DialogInterface dialog) {
+				finish();
+			}
+		});
 		Bundle b = this.getIntent().getExtras();
 		this.nome = b.getString("shoppingNome");
 		this.localizacao = b.getString("shoppingLocal");
@@ -82,8 +83,8 @@ public class ShoppingDetail extends Activity {
 		byte[] byteImage = b.getByteArray("shoppingImageByte");
 		if(byteImage != null){
 			bImage =  BitmapFactory.decodeByteArray(byteImage, 0, byteImage.length);
-			
-			
+
+
 			ImageView logo = (ImageView) ShoppingDetail.this.findViewById(R.id.sdLogo);
 			logo.setImageBitmap(bImage);
 			bPromocoes.setVisibility(View.VISIBLE);
@@ -104,9 +105,9 @@ public class ShoppingDetail extends Activity {
 		{
 			new RetrieveLogo().execute();
 		}
-		
+
 	}
-	
+
 	private void initButtons() {
 		bPromocoes = (ImageView) ShoppingDetail.this.findViewById(R.id.imagePromocoes);
 		bPromocoes.setVisibility(View.GONE);
@@ -123,7 +124,7 @@ public class ShoppingDetail extends Activity {
 		});
 		dPromocoes = (TextView) ShoppingDetail.this.findViewById(R.id.textPromocoes);
 		dPromocoes.setVisibility(View.GONE);
-		
+
 		bAgenda = (ImageView) ShoppingDetail.this.findViewById(R.id.imageCultural);
 		bAgenda.setVisibility(View.GONE);
 		bAgenda.setOnClickListener(new View.OnClickListener() {
@@ -139,7 +140,7 @@ public class ShoppingDetail extends Activity {
 		});
 		dAgenda = (TextView) ShoppingDetail.this.findViewById(R.id.textCultural);
 		dAgenda.setVisibility(View.GONE);
-		
+
 		bCinema = (ImageView) ShoppingDetail.this.findViewById(R.id.imageCinema);
 		bCinema.setVisibility(View.GONE);
 		bCinema.setOnClickListener(new View.OnClickListener() {
@@ -155,7 +156,7 @@ public class ShoppingDetail extends Activity {
 		});
 		dCinema = (TextView) ShoppingDetail.this.findViewById(R.id.textCinema);
 		dCinema.setVisibility(View.GONE);
-		
+
 		bPlanta = (ImageView) ShoppingDetail.this.findViewById(R.id.imagePlanta);
 		bPlanta.setVisibility(View.GONE);
 		bPlanta.setOnClickListener(new View.OnClickListener() {
@@ -170,7 +171,7 @@ public class ShoppingDetail extends Activity {
 		});
 		dPlanta = (TextView) ShoppingDetail.this.findViewById(R.id.textPlanta);
 		dPlanta.setVisibility(View.GONE);
-		
+
 		bDirecoes = (ImageView) ShoppingDetail.this.findViewById(R.id.imageDirecoes);
 		bDirecoes.setVisibility(View.GONE);
 		bDirecoes.setOnClickListener(new View.OnClickListener() {
@@ -178,10 +179,10 @@ public class ShoppingDetail extends Activity {
 			public void onClick(final View v) {
 				Location l = Utils.getLocation(ShoppingDetail.this);
 				if(l!=null){
-		    	Intent i = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?"+
-		    			"saddr=" + l.getLatitude()+","+ l.getLongitude() + 
-		    			"&daddr=" + ShoppingDetail.this.latitude + "," + ShoppingDetail.this.longitude));
-		    	startActivityForResult(i, 0);
+					Intent i = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse("http://maps.google.com/maps?"+
+							"saddr=" + l.getLatitude()+","+ l.getLongitude() + 
+							"&daddr=" + ShoppingDetail.this.latitude + "," + ShoppingDetail.this.longitude));
+					startActivityForResult(i, 0);
 				}
 				else
 					Toast.makeText(getApplicationContext(), "Não foi possivel obter a sua localização!", Toast.LENGTH_SHORT).show();
@@ -189,29 +190,29 @@ public class ShoppingDetail extends Activity {
 		});
 		dDirecoes = (TextView) ShoppingDetail.this.findViewById(R.id.textDirecoes);
 		dDirecoes.setVisibility(View.GONE);
-		
+
 		bLojas = (ImageView) ShoppingDetail.this.findViewById(R.id.imageLojas);
 		bLojas.setVisibility(View.GONE);
 		bLojas.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-					Intent intent = new Intent(v.getContext(), ListShops.class);
-					Bundle b = new Bundle();
-					b.putString("text", "shoppings/"+id+"/lojas?format=json");
-					b.putInt("idShopping", id);
-					intent.putExtras(b);
-					startActivityForResult(intent, SEARCH_REQUEST);
+				Intent intent = new Intent(v.getContext(), ListShops.class);
+				Bundle b = new Bundle();
+				b.putString("text", "shoppings/"+id+"/lojas?format=json");
+				b.putInt("idShopping", id);
+				intent.putExtras(b);
+				startActivityForResult(intent, SEARCH_REQUEST);
 			}
 		});
 		dLojas = (TextView) ShoppingDetail.this.findViewById(R.id.textLojas);
 		dLojas.setVisibility(View.GONE);
-		
+
 	}
 
 	class RetrieveLogo extends AsyncTask<String, Integer, String> {
 
 		@Override
 		protected String doInBackground(String... arg0) {
-			
+
 			bImage = null;
 			try {
 				bImage = Utils.loadImageFromNetwork(imagem_url);
@@ -222,7 +223,7 @@ public class ShoppingDetail extends Activity {
 			}
 			return null;
 		}
-		
+
 		@Override
 		protected void onPostExecute(String result) {
 			ImageView logo = (ImageView) ShoppingDetail.this.findViewById(R.id.sdLogo);
@@ -242,10 +243,6 @@ public class ShoppingDetail extends Activity {
 			dialog.dismiss();
 		}
 	}
-	
-	
-
-	
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -301,11 +298,9 @@ public class ShoppingDetail extends Activity {
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-	    super.onActivityResult(requestCode, resultCode, data);
-	    if(resultCode == RESULT_FIRST_USER && requestCode == SEARCH_REQUEST) {
-	    	Toast.makeText(this, "Este shopping não tem nenhuma loja registada!", Toast.LENGTH_LONG).show();
-	    }     
+		super.onActivityResult(requestCode, resultCode, data);
+		if(resultCode == RESULT_FIRST_USER && requestCode == SEARCH_REQUEST) {
+			Toast.makeText(this, "Este shopping não tem nenhuma loja registada!", Toast.LENGTH_LONG).show();
+		}     
 	}
-
-
 }
