@@ -12,6 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -48,7 +49,7 @@ public class Cinema extends FragmentActivity {
 		images = new ArrayList<String>();
 		filmes = new ArrayList<Filme>();
 
-		/*loading=true;
+		loading=true;
 		dialog = ProgressDialog.show(this, "", "A Carregar...",true);
 		dialog.setCancelable(true);
 		dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -56,8 +57,6 @@ public class Cinema extends FragmentActivity {
 				finish();
 			}
 		});
-		new RetrieveFilme().execute();
-		 */
 
 		Filme f = new Filme(3,"Inception","Visionário cineasta Christopher Nolan (Amnésia, O Cavaleiro das Trevas) escreve e dirige este filme de ação psicológica de ficção científica sobre um ladrão que possui o poder de entrar nos sonhos dos outros. Dom Cobb (Leonardo DiCaprio) não roubar as coisas, ele rouba idéias. Projetando-se profundamente no subconsciente de seus alvos, ele pode dar informações que até mesmo os hackers melhor computador não pode chegar. No mundo da espionagem corporativa, Cobb é a melhor arma. Mas mesmo armas têm sua fraqueza, e quando Cobb perde tudo, ele é forçado a embarcar em uma missão final, em uma busca desesperada por redenção. Desta vez, Cobb não será colher uma idéia, mas uma semeadura. Se ele e sua equipe de especialistas bem sucedidos, eles terão descoberto uma nova fronteira na arte da espionagem psíquica. Eles planejou tudo com perfeição, e eles têm todas as ferramentas para fazer o trabalho. Sua missão é complicada, no entanto, pela súbita aparição de um inimigo malévolo que parece saber exatamente o que estão fazendo, e precisamente como pará-los. ~ Jason Buchanan, Rovi","3","15:10 / 18:50 / 22:45 / 00:10","http://content8.flixster.com/movie/10/93/37/10933762_det.jpg","http://www.youtube.com/watch?v=dQw4w9WgXcQ");
 		Filme f2 = new Filme(3,"In time","Quando Will Salas é falsamente acusado de assassinato, ele deve descobrir uma maneira de derrubar um sistema onde o tempo é dinheiro - literalmente - permitindo que os ricos para viver para sempre, enquanto os pobres, como Will, tem que mendigar, pedir emprestado e roubar minutos bastante para fazê-lo através de outro dia. - (C) a 20th Century Fox","5","15:10 / 18:50 / 22:45 / 00:10","http://content9.flixster.com/movie/11/15/93/11159399_det.jpg","http://www.youtube.com/watch?v=dQw4w9WgXcQ");
@@ -68,10 +67,9 @@ public class Cinema extends FragmentActivity {
 		images.add(f.getImage_url());
 		images.add(f2.getImage_url());
 		images.add(f3.getImage_url());
+		
+		new RetrieveFilme().execute();
 
-		initAdapter();
-
-		new RetrieveImages().execute();
 	}
 
 
@@ -89,7 +87,7 @@ public class Cinema extends FragmentActivity {
 	}
 
 
-	class RetrieveCultural extends AsyncTask<String, Integer, String> {
+	class RetrieveFilme extends AsyncTask<String, Integer, String> {
 
 		@Override
 		protected String doInBackground(String... arg0) {
@@ -109,10 +107,15 @@ public class Cinema extends FragmentActivity {
 				if(line != null){
 					jo = new JSONArray(line);
 					for (int i = 0; i < jo.length(); i++) {
-						JSONObject evento = jo.getJSONObject(i);
-						//int id = evento.getInt("id");
-						//String imagem = evento.getString("imagem");
-						//images.add(imagem);
+						JSONObject filme = jo.getJSONObject(i);
+						int idShopping = filme.getInt("shopping_id");
+						String detalhes = filme.getString("detalhes");
+						String horarios = filme.getString("horarios");
+						String nome = filme.getString("nome");
+						String trailer = filme.getString("trailer");
+						String imagem = filme.getString("imagem");
+						filmes.add(new Filme(idShopping,nome,detalhes,"[falta este campo]",horarios,imagem,trailer));
+						images.add(imagem);
 					}
 				}
 				else return null;
@@ -144,8 +147,10 @@ public class Cinema extends FragmentActivity {
 		@Override
 		protected String doInBackground(String... arg0) {
 			try{
-				Bitmap image = Utils.loadImageFromNetwork(images.get(0));
-				filmes.get(filmes.size()-images.size()).setbImage(image);
+				if(images.get(0)!=null || !images.get(0).equals("null")){
+					Bitmap image = Utils.loadImageFromNetwork(images.get(0));
+					filmes.get(filmes.size()-images.size()).setbImage(image);
+				}
 			}
 			catch(Exception e){
 				Log.e("Erro ao baixar as imagens.", e.getMessage());

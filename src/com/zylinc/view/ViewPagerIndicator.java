@@ -197,9 +197,9 @@ public class ViewPagerIndicator extends RelativeLayout implements OnPageChangeLi
 		mCurrent.setSingleLine();
 		mNext.setSingleLine();
 
-		mPrevious.setText("previous");
-		mCurrent.setText("current");
-		mNext.setText("next");
+		mPrevious.setText(""); //previous
+		mCurrent.setText(""); //current
+		mNext.setText(""); //next
 
 		mPrevious.setClickable(false);
 		mNext.setClickable(false);

@@ -113,6 +113,7 @@ public class ShoppingNear extends Activity{
 						String Nome = shopping.getString("nome");
 						String Descricao = shopping.getString("descricao");
 						String Imagem = shopping.getString("imagem");
+						String Planta = shopping.getString("imagem");
 						String Localizacao = shopping.getString("localizacao");
 						String Latitude = shopping.getString("latitude");
 						String Longitude = shopping.getString("longitude");
@@ -127,7 +128,7 @@ public class ShoppingNear extends Activity{
 						distancia = Utils.roundToDecimals(distancia, 2);
 						images.add(Imagem);
 						nomes.add(Nome);
-						Shopping s = new Shopping(id,Nome,Localizacao,Descricao,Telefone,Email,Latitude,Longitude,Imagem,distancia);
+						Shopping s = new Shopping(id,Nome,Localizacao,Descricao,Telefone,Email,Latitude,Longitude,Imagem,Planta,distancia);
 						shoppings.add(s);
 					}
 				}

@@ -13,6 +13,7 @@ import org.json.JSONObject;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
@@ -50,7 +51,7 @@ public class Cultural extends FragmentActivity {
 		eventos = new ArrayList<Evento>();
 		images = new ArrayList<String>();
 
-		/*
+		
 		loading = true;
 		dialog = ProgressDialog.show(this, "", "A Carregar...",true);
 		dialog.setCancelable(true);
@@ -59,7 +60,7 @@ public class Cultural extends FragmentActivity {
 				finish();
 			}
 		});
-		new RetrieveCultural().execute();*/
+		
 
 		Evento e = new Evento(3,"Jantar de Natal","24/12/2011 21:00","Praça de Alimentação","Jantar de Natal no shopping com todas as pessoas envolventes.", "http://placehold.it/200x300");
 		Evento e2 = new Evento(3,"Teatro de beneficiência","23/12/2011 18:00","Salão Silo","Teatro de beneficiência para ajudar todas as pessoas necessitadas nesta altura de Natal.","http://placehold.it/200x300");
@@ -69,9 +70,7 @@ public class Cultural extends FragmentActivity {
 		images.add(e2.getImagem_url());
 		images.add(e.getImagem_url());
 
-		initAdapter();
-
-		new RetrieveImages().execute();
+		new RetrieveCultural().execute();
 	}
 
 	private void initAdapter() {
@@ -108,9 +107,13 @@ public class Cultural extends FragmentActivity {
 					jo = new JSONArray(line);
 					for (int i = 0; i < jo.length(); i++) {
 						JSONObject evento = jo.getJSONObject(i);
-						//int id = evento.getInt("id");
-						//String imagem = evento.getString("imagem");
-						//images.add(imagem);
+						int idShopping = evento.getInt("shopping_id");
+						String imagem = evento.getString("imagem");
+						String data = evento.getString("data");
+						String detalhes = evento.getString("detalhes");
+						String nome = evento.getString("nome");
+						eventos.add(new Evento(idShopping,nome,data,"[falta este campo]",detalhes,imagem));
+						images.add(imagem);
 					}
 				}
 				else return null;
@@ -142,8 +145,10 @@ public class Cultural extends FragmentActivity {
 		@Override
 		protected String doInBackground(String... arg0) {
 			try{
-				Bitmap image = Utils.loadImageFromNetwork(images.get(0));
-				eventos.get(eventos.size()-images.size()).setbImage(image);
+				if(images.get(0)!=null || !images.get(0).equals("null")){
+					Bitmap image = Utils.loadImageFromNetwork(images.get(0));
+					eventos.get(eventos.size()-images.size()).setbImage(image);
+				}
 			}
 			catch(Exception e){
 				Log.e("Erro ao baixar as imagens.", e.getMessage());
