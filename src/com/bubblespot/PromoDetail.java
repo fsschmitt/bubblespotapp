@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,8 +16,6 @@ public class PromoDetail extends Activity {
 
 	private String shopping;
 	private int id;
-	private int idLoja;
-	private int idShopping;
 	private String nomeLoja;
 	private String imagem_url;
 	private String produto;
@@ -37,8 +36,6 @@ public class PromoDetail extends Activity {
 
 		Bundle b = this.getIntent().getExtras();
 		setId(b.getInt("id"));
-		setIdShopping(b.getInt("idShopping"));
-		setIdLoja(b.getInt("idLoja"));
 		nomeLoja = b.getString("nomeLoja");
 		desconto = b.getString("desconto");
 		produto = b.getString("produto");
@@ -58,18 +55,48 @@ public class PromoDetail extends Activity {
 
 		TextView promoDetalhes = (TextView) PromoDetail.this.findViewById(R.id.promoDetalhes);
 		promoDetalhes.setText(detalhes);
+		
+		String[] temp = new String[2];
 
 		TextView promoAntes = (TextView) PromoDetail.this.findViewById(R.id.promoAntes);
-		promoAntes.setText("Antes: "+precoInicial);
+		if(precoInicial==null)
+			promoAntes.setVisibility(View.GONE);
+		else{
+			temp = precoInicial.split("\\.");
+			System.out.println(temp[1] + "" + temp[1].length());
+			if (temp[1].equals("0"))
+				precoInicial=temp[0];
+			else if (temp[1].length()==1)
+				precoInicial=precoInicial.concat("0");
+			promoAntes.setText("Antes: "+precoInicial + " €");
+		}
 
 		TextView promoDepois = (TextView) PromoDetail.this.findViewById(R.id.promoDepois);
-		promoDepois.setText("Depois: "+precoFinal);
+		if(precoFinal==null)
+			promoDepois.setVisibility(View.GONE);
+		else{
+			temp = precoFinal.split("\\.");
+			if (temp[1].equals("0"))
+				precoFinal=temp[0];
+			else if (temp[1].length()==1)
+				precoFinal=precoFinal.concat("0");
+			promoDepois.setText("Depois: "+precoFinal + " €");
+		}
 
 		TextView promoDesconto = (TextView) PromoDetail.this.findViewById(R.id.promoDesconto);
-		promoDesconto.setText("Desconto: "+desconto+"%");
+		if(desconto==null)
+			promoDesconto.setVisibility(View.GONE);
+		else{
+			temp = desconto.split("\\.");
+			if (temp[1].equals("0"))
+				desconto=temp[0];
+			else if (temp[1].length()==1)
+				desconto=desconto.concat("0");
+			promoDesconto.setText("Desconto: "+desconto+" %");
+		}
 
 		TextView promoDataLimite = (TextView) PromoDetail.this.findViewById(R.id.promoDataLimite);
-		promoDataLimite.setText(dataFinal);
+		promoDataLimite.setText(dataFinal.substring(8, 10) + "-" + dataFinal.substring(5, 7) + "-" + dataFinal.substring(0, 4) + " " + dataFinal.substring(11, 16));
 
 		byte[] byteImage = b.getByteArray("promoImageByte");
 		if(byteImage != null){
@@ -118,22 +145,6 @@ public class PromoDetail extends Activity {
 
 			dialog.dismiss();
 		}
-	}
-
-	public int getIdShopping() {
-		return idShopping;
-	}
-
-	public void setIdShopping(int idShopping) {
-		this.idShopping = idShopping;
-	}
-
-	public int getIdLoja() {
-		return idLoja;
-	}
-
-	public void setIdLoja(int idLoja) {
-		this.idLoja = idLoja;
 	}
 
 	public int getId() {

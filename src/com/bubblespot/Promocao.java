@@ -11,12 +11,13 @@ public class Promocao {
 	private String imagem_url;
 	private int loja_id;
 	private String loja_nome;
+	private String shopping_nome;
 	private String preco_inicial;
 	private String preco_final;
 	private String produto;
 	private Bitmap bImage;
 	
-	public Promocao(int id, String data_final, String desconto, String detalhes, String imagem_url, int loja_id, String loja_nome, String preco_inicial, String preco_final, String produto)
+	public Promocao(int id, String data_final, String desconto, String detalhes, String imagem_url, int loja_id, String loja_nome,String shopping_nome, String preco_inicial, String preco_final, String produto)
 	{
 		this.setId(id);
 		this.setData_final(data_final);
@@ -24,7 +25,8 @@ public class Promocao {
 		this.setDetalhes(detalhes);
 		this.setImagem_url(imagem_url);
 		this.setLoja_id(loja_id);
-		this.loja_nome = loja_nome;
+		this.setLoja_nome(loja_nome);
+		this.setShopping_nome(shopping_nome);
 		this.setPreco_inicial(preco_inicial);
 		this.setPreco_final(preco_final);
 		this.setProduto(produto);
@@ -109,6 +111,14 @@ public class Promocao {
 
 	public void setbImage(Bitmap bImage) {
 		this.bImage = bImage;
+	}
+
+	public String getShopping_nome() {
+		return shopping_nome;
+	}
+
+	public void setShopping_nome(String shopping_nome) {
+		this.shopping_nome = shopping_nome;
 	}
 
 	public String getLoja_nome() {

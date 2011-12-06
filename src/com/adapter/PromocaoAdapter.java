@@ -58,7 +58,18 @@ public class PromocaoAdapter extends BaseAdapter implements Filterable {
 		nome.setText(promocoesDisplay.get(position).getProduto());
 
 		dist = (TextView) v.findViewById(R.id.distancia);
-		dist.setText("Desconto de "+promocoesDisplay.get(position).getDesconto());
+		String desconto = promocoesDisplay.get(position).getDesconto();
+		String[] temp = new String[2];
+		if(desconto==null)
+			dist.setVisibility(View.GONE);
+		else{
+			temp = desconto.split("\\.");
+			if (temp[1].equals("0"))
+				desconto=temp[0];
+			else if (temp[1].length()==1)
+				desconto=desconto.concat("0");
+			dist.setText("Desconto de "+desconto+" %");
+		}
 		imageView = (ImageView) v.findViewById(R.id.sn_shopping);
 		imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 		imageView.setPadding(3, 3, 3, 3);

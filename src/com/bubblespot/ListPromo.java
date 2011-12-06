@@ -32,7 +32,6 @@ public class ListPromo extends Activity{
 	//private ListView list;
 	private int idLoja;
 	private int idShopping;
-	private String nomeShopping;
 	private ArrayList<String> nomes;
 	private ArrayList<Bitmap> bImages;
 	private ArrayList<String> images;
@@ -52,7 +51,6 @@ public class ListPromo extends Activity{
 		this.text = c.getString("text");
 		idLoja = c.getInt("idLoja");
 		idShopping = c.getInt("idShopping");
-		nomeShopping = c.getString("nomeShopping");
 
 		Header header = (Header) findViewById(R.id.header);
 		header.initHeader();
@@ -92,7 +90,7 @@ public class ListPromo extends Activity{
 				b.putString("precoInicial", promo.getPreco_inicial());
 				b.putString("dataFinal", promo.getData_final());
 				b.putString("imagem", promo.getImagem_url());
-				b.putString("shopping", nomeShopping);
+				b.putString("shopping", promo.getShopping_nome());
 				Bitmap image = promo.getbImage();
 				if(image != null){
 					b.putByteArray("promoImageByte", Utils.encodeBitmap(image));
@@ -139,10 +137,11 @@ public class ListPromo extends Activity{
 						String precoi = promo.getString("precoi");
 						String produto = promo.getString("produto");
 						String lojaNome = promo.getString("loja_nome");
+						String shoppingNome = promo.getString("shopping_nome");
 
 						nomes.add(produto);
 						images.add(imagem);
-						Promocao p = new Promocao(id,dataf,desconto,detalhes,imagem,idLoja, lojaNome,precoi,precof,produto);
+						Promocao p = new Promocao(id,dataf,desconto,detalhes,imagem,idLoja, lojaNome,shoppingNome,precoi,precof,produto);
 						promos.add(p);
 					}
 				}

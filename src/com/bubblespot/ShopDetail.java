@@ -101,28 +101,30 @@ public class ShopDetail extends Activity {
 			@SuppressWarnings("rawtypes")
 			public void onItemClick(AdapterView parent, View v, int position, long id) {
 				Intent intent = new Intent(v.getContext(), PromoDetail.class);
-				Promocao promo = promos.get(position);
-				Bundle b = new Bundle();
-				b.putInt("idLoja", ShopDetail.this.id);
-				b.putInt("id", promo.getId());
-				b.putInt("idShopping", idShopping);
-				b.putString("nomeLoja", promo.getLoja_nome());
-				b.putString("desconto", promo.getDesconto());
-				b.putString("produto", promo.getProduto());
-				b.putString("detalhes", promo.getDetalhes());
-				b.putString("precoFinal", promo.getPreco_final());
-				b.putString("precoInicial", promo.getPreco_inicial());
-				b.putString("dataFinal", promo.getData_final());
-				b.putString("imagem", promo.getImagem_url());
-				b.putString("shopping", shopping);
-				Bitmap image = promo.getbImage();
-				if(image != null){
-					b.putByteArray("promoImageByte", Utils.encodeBitmap(image));
+				if(promos.size()>0){
+					Promocao promo = promos.get(position);
+					Bundle b = new Bundle();
+					b.putInt("idLoja", ShopDetail.this.id);
+					b.putInt("id", promo.getId());
+					b.putInt("idShopping", idShopping);
+					b.putString("nomeLoja", promo.getLoja_nome());
+					b.putString("desconto", promo.getDesconto());
+					b.putString("produto", promo.getProduto());
+					b.putString("detalhes", promo.getDetalhes());
+					b.putString("precoFinal", promo.getPreco_final());
+					b.putString("precoInicial", promo.getPreco_inicial());
+					b.putString("dataFinal", promo.getData_final());
+					b.putString("imagem", promo.getImagem_url());
+					b.putString("shopping", shopping);
+					Bitmap image = promo.getbImage();
+					if(image != null){
+						b.putByteArray("promoImageByte", Utils.encodeBitmap(image));
+					}
+					else
+						b.putByteArray("promoImageByte", null);
+					intent.putExtras(b);
+					startActivity(intent);
 				}
-				else
-					b.putByteArray("promoImageByte", null);
-				intent.putExtras(b);
-				startActivity(intent);
 			}
 		});
 		byte[] byteImage = b.getByteArray("shopImageByte");
@@ -201,9 +203,10 @@ public class ShopDetail extends Activity {
 						String precoi = promo.getString("precoi");
 						String produto = promo.getString("produto");
 						String lojaNome = promo.getString("loja_nome");
+						String shoppingNome = promo.getString("shopping_nome");
 						nomes.add(precof);
 						imagens.add(imagemUrl);
-						Promocao p = new Promocao(idPromo,dataf,desconto,detalhes,imagemUrl,id,lojaNome,precoi,precof,produto);
+						Promocao p = new Promocao(idPromo,dataf,desconto,detalhes,imagemUrl,id,lojaNome,shoppingNome,precoi,precof,produto);
 						promos.add(p);
 					}
 				}
