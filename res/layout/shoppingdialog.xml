@@ -1,8 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/layout_root" android:layout_width="fill_parent" android:layout_height="wrap_content"
-	android:padding="10dp" android:orientation="vertical"
-	android:background="@drawable/background">
-	
+	android:id="@+id/layout_root" android:layout_width="fill_parent"
+	android:layout_height="wrap_content" android:padding="10dp"
+	android:orientation="vertical" android:background="#FFFFFF">
+
 	<TextView android:layout_height="wrap_content" android:id="@+id/sNome"
 		android:text="Nome: " android:layout_width="wrap_content"></TextView>
 	<TextView android:layout_height="wrap_content" android:text="Local: "
@@ -13,5 +13,6 @@
 		android:id="@+id/sEmail" android:layout_width="wrap_content"></TextView>
 	<TextView android:text="Coordenadas: " android:id="@+id/sCoordenadas"
 		android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
-	<TextView android:layout_height="wrap_content" android:text="Descrição: " android:layout_width="wrap_content" android:id="@+id/sDescricao"></TextView>
+	<TextView android:layout_height="wrap_content" android:text="Descrição: "
+		android:layout_width="wrap_content" android:id="@+id/sDescricao"></TextView>
 </LinearLayout>

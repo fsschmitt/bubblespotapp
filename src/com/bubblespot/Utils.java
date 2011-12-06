@@ -41,7 +41,14 @@ public class Utils {
 	}
 
 	public static Bitmap loadImageFromNetwork(String url) throws MalformedURLException, IOException {
-		HttpURLConnection conn = (HttpURLConnection) (new URL(url)).openConnection();
+		URL u;
+		try{
+			u = new URL(url);
+		}
+		catch(MalformedURLException m){
+			u = new URL("http://placehold.it/128");
+		}
+		HttpURLConnection conn = (HttpURLConnection) u.openConnection();
 		conn.connect();
 		return BitmapFactory.decodeStream(new FlushedInputStream(conn.getInputStream()));
 	}

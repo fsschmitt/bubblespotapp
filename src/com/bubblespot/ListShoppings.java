@@ -104,7 +104,6 @@ public class ListShoppings extends Activity{
 			try {
 				url = new URL(uri);				
 			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			String line = null;

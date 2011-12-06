@@ -4,7 +4,8 @@
   android:orientation="vertical"
   android:layout_width="fill_parent"
   android:layout_height="fill_parent"
-  android:minWidth="300dp">
+  android:minWidth="300dp"
+  android:background="#FFFFFF">
   <com.bubblespot.Header android:id="@+id/header"
 		android:layout_width="match_parent" android:layout_height="wrap_content" />
     <Spinner android:layout_height="wrap_content" android:id="@+id/spinner" android:layout_width="match_parent" android:layout_margin="10dp"></Spinner>

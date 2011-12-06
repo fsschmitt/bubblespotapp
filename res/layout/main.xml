@@ -1,80 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/background"
-    android:orientation="vertical" >
+	android:layout_width="match_parent" android:layout_height="match_parent"
+	android:background="#FFFFFF" android:orientation="vertical">
 
-    <com.bubblespot.Header
-        android:id="@+id/header"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+	<com.bubblespot.Header android:id="@+id/header"
+		android:layout_width="match_parent" android:layout_height="wrap_content" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
+	<LinearLayout android:id="@+id/linearLayout4"
+		android:layout_width="match_parent" android:layout_height="wrap_content"
+		android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/cima"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:padding="2dp"
-            android:src="@drawable/cima" >
-        </ImageView>
+		<ImageView android:id="@+id/cima" android:layout_width="wrap_content"
+			android:layout_height="0dp" android:layout_weight="1"
+			android:padding="2dp" android:src="@drawable/cima">
+		</ImageView>
 
-        <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" >
+		<LinearLayout android:id="@+id/linearLayout2"
+			android:layout_width="match_parent" android:layout_height="0dp"
+			android:layout_weight="1">
 
-            <ImageView
-                android:id="@+id/centro_esq"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="2dp"
-                android:src="@drawable/meio_esq" >
-            </ImageView>
+			<ImageView android:id="@+id/centro_esq"
+				android:layout_width="0dp" android:layout_height="wrap_content"
+				android:layout_weight="1" android:padding="2dp" android:src="@drawable/meio_esq">
+			</ImageView>
 
-            <LinearLayout
-                android:id="@+id/linearLayout3"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical" >
+			<LinearLayout android:id="@+id/linearLayout3"
+				android:layout_width="0dp" android:layout_height="match_parent"
+				android:layout_weight="1" android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/centro_dir_cima"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:padding="2dp"
-                    android:src="@drawable/meio_dir_cima" >
-                </ImageView>
+				<ImageView android:id="@+id/centro_dir_cima"
+					android:layout_width="wrap_content" android:layout_height="0dp"
+					android:layout_weight="1" android:padding="2dp" android:src="@drawable/meio_dir_cima">
+				</ImageView>
 
-                <ImageView
-                    android:id="@+id/centro_dir_baixo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:padding="2dp"
-                    android:src="@drawable/meio_dir_baixo" >
-                </ImageView>
-            </LinearLayout>
-        </LinearLayout>
+				<ImageView android:id="@+id/centro_dir_baixo"
+					android:layout_width="wrap_content" android:layout_height="0dp"
+					android:layout_weight="1" android:padding="2dp"
+					android:src="@drawable/meio_dir_baixo">
+				</ImageView>
+			</LinearLayout>
+		</LinearLayout>
 
-        <ImageView
-            android:id="@+id/baixo"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:padding="2dp"
-            android:src="@drawable/baixo" >
-        </ImageView>
-    </LinearLayout>
+		<ImageView android:id="@+id/baixo" android:layout_width="wrap_content"
+			android:layout_height="0dp" android:layout_weight="1"
+			android:padding="2dp" android:src="@drawable/baixo">
+		</ImageView>
+	</LinearLayout>
 
 </LinearLayout>

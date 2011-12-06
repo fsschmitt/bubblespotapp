@@ -168,7 +168,7 @@ public class BubbleSpot extends Activity {
 			dialog.setTitle("Sobre");
 			dialog.setCancelable(true);
 			TextView texto = (TextView) dialog.findViewById(R.id.corpo);
-			texto.setText("FEUP 2011\n\n\n\n\n\n\nLDSO");
+			texto.setText("O BubbleSpot é uma base de dados centralizada com informações úteis relativas a centros comerciais.\n\nDesenvolvido em 2011, na Faculdade de Engenharia da Universidade do Porto.\n\n\nTodos os direitos reservados.");
 			dialog.show();
 			return true;
 		default:

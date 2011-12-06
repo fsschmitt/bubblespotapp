@@ -11,13 +11,13 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
         android:orientation="vertical" >
-
+
         <TextView
-            android:id="@+id/shopping_nome"
+            android:id="@+id/sp_shopping_nome"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="#90FFFFFF"
+            android:background="#9000A6FC"
             android:paddingLeft="2dp"
             android:text="TextView"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -25,32 +25,27 @@
             android:textSize="30dp" />
 
         <TextView
-            android:id="@+id/shop_nome"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#60FFFFFF"
-            android:paddingLeft="2dp"
-            android:text="TextView"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#FFFFFF"
-            android:textSize="25dp" />
-
-        <TextView
-            android:id="@+id/loja_nome"
+            android:id="@+id/sp_loja_nome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
             android:paddingBottom="2dp"
+            android:paddingLeft="7dp"
             android:paddingTop="2dp"
             android:text="Medium Text"
-            android:textAppearance="?android:attr/textAppearanceLarge" android:layout_marginLeft="2dp" android:paddingLeft="7dp"/>
-
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#000000" />
+
         <TextView
-            android:id="@+id/areas_negocio"
+            android:id="@+id/sp_areas_negocio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#ABABAB"
+            android:layout_marginLeft="2dp"
+            android:paddingLeft="10dp"
+            android:text="TextView"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="TextView" android:layout_marginLeft="2dp" android:paddingLeft="10dp"/>
+            android:textColor="#505050" />
+
     </LinearLayout>
 
 </LinearLayout>

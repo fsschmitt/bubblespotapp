@@ -53,7 +53,6 @@ public class Touch extends Activity{
 		protected void onPostExecute(String result) {
 			if(bmp!=null){
 				view.setBitmap(bmp);
-				System.out.println("carreguei");
 			}
 			dialog.dismiss();
 		}

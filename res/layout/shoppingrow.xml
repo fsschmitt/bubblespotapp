@@ -16,10 +16,12 @@
 		<TextView android:layout_height="wrap_content"
 			android:textAppearance="?android:attr/textAppearanceLarge"
 			android:layout_marginLeft="2dip" android:text="TextView"
-			android:layout_width="wrap_content" android:id="@+id/sn_nome"></TextView>
+			android:layout_width="wrap_content" android:id="@+id/sn_nome"
+			android:textColor="#000000"></TextView>
 		<TextView android:layout_height="wrap_content"
 			android:layout_marginLeft="2dip" android:text="TextView"
-			android:layout_width="wrap_content" android:id="@+id/distancia"></TextView>
+			android:layout_width="wrap_content" android:id="@+id/distancia"
+			android:textColor="#000000"></TextView>
 	</LinearLayout>
 
 </LinearLayout>

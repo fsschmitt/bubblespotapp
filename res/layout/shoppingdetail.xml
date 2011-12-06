@@ -1,188 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent" android:layout_height="match_parent"
-	android:orientation="vertical"
-	android:background="@drawable/background">
+	android:orientation="vertical" android:background="#FFFFFF">
 	<com.bubblespot.Header android:id="@+id/header"
 		android:layout_width="match_parent" android:layout_height="wrap_content" />
 	<LinearLayout android:layout_width="match_parent"
 		android:id="@+id/linearLayout8" android:layout_height="wrap_content"
 		android:orientation="vertical">
 
-		<ImageView
-		    android:id="@+id/sdLogo"
-		    android:layout_width="match_parent"
-		    android:layout_height="wrap_content"
-		    android:layout_gravity="center_horizontal"
-		    android:layout_weight="1" android:background="@drawable/banner_glow"/>
+		<ImageView android:id="@+id/sdLogo" android:layout_width="match_parent"
+			android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+			android:layout_weight="1" android:background="@drawable/banner_glow" android:layout_marginBottom="10dp" android:layout_marginTop="5dp"/>
 
-		<LinearLayout
-		    android:id="@+id/linearLayout2"
-		    android:layout_width="match_parent"
-		    android:layout_height="0dp"
-		    android:layout_weight="1"
-		    android:orientation="vertical" >
+		<LinearLayout android:id="@+id/linearLayout2"
+			android:layout_width="match_parent" android:layout_height="0dp"
+			android:layout_weight="1" android:orientation="vertical">
 
-		    <LinearLayout
-		        android:id="@+id/linearLayout3"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:layout_marginBottom="10dp"
-		        android:layout_weight="1" >
+			<LinearLayout android:id="@+id/linearLayout3"
+				android:layout_width="match_parent" android:layout_height="wrap_content"
+				android:layout_marginBottom="10dp" android:layout_weight="1">
 
-		        <LinearLayout
-		            android:id="@+id/linearLayout11"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:layout_weight="1"
-		            android:gravity="center_horizontal"
-		            android:orientation="vertical" >
+				<LinearLayout android:id="@+id/linearLayout11"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:layout_weight="1" android:gravity="center_horizontal"
+					android:orientation="vertical">
 
-		            <ImageView
-		                android:id="@+id/imagePromocoes"
-		                android:layout_width="wrap_content"
-		                android:layout_height="wrap_content"
-		                android:layout_weight="1"
-		                android:src="@drawable/promocao" />
+					<ImageView android:id="@+id/imagePromocoes"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:layout_weight="1" android:src="@drawable/promocao" />
 
-		            <TextView
-		                android:id="@+id/textPromocoes"
-		                android:layout_width="wrap_content"
-		                android:layout_height="wrap_content"
-		                android:gravity="center_horizontal"
-		                android:text="Promoções" />
-		        </LinearLayout>
+					<TextView android:id="@+id/textPromocoes"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:gravity="center_horizontal" android:text="Promoções" android:textColor="#000000"/>
+				</LinearLayout>
 
-		        <LinearLayout
-		            android:id="@+id/linearLayout12"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:layout_weight="1"
-		            android:gravity="center_horizontal"
-		            android:orientation="vertical" >
+				<LinearLayout android:id="@+id/linearLayout12"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:layout_weight="1" android:gravity="center_horizontal"
+					android:orientation="vertical">
 
-		            <ImageView
-		                android:id="@+id/imageCultural"
-		                android:layout_width="wrap_content"
-		                android:layout_height="wrap_content"
-		                android:layout_weight="1"
-		                android:src="@drawable/cultural" />
+					<ImageView android:id="@+id/imageCultural"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:layout_weight="1" android:src="@drawable/cultural" />
 
-		            <TextView
-		                android:id="@+id/textCultural"
-		                android:layout_width="wrap_content"
-		                android:layout_height="wrap_content"
-		                android:gravity="center_horizontal"
-		                android:text="Agenda Cultural" />
-		        </LinearLayout>
-		    </LinearLayout>
+					<TextView android:id="@+id/textCultural"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:gravity="center_horizontal" android:textColor="#000000" android:text="Agenda Cultural" />
+				</LinearLayout>
+			</LinearLayout>
 
-		    <LinearLayout
-		        android:id="@+id/linearLayout5"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:layout_marginBottom="10dp"
-		        android:layout_weight="1" >
+			<LinearLayout android:id="@+id/linearLayout5"
+				android:layout_width="match_parent" android:layout_height="wrap_content"
+				android:layout_marginBottom="10dp" android:layout_weight="1">
 
-		        <LinearLayout
-		            android:id="@+id/linearLayout1"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:layout_weight="1"
-		            android:gravity="center_horizontal"
-		            android:orientation="vertical" >
+				<LinearLayout android:id="@+id/linearLayout1"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:layout_weight="1" android:gravity="center_horizontal"
+					android:orientation="vertical">
 
-		            <ImageView
-		                android:id="@+id/imageCinema"
-		                android:layout_width="wrap_content"
-		                android:layout_height="wrap_content"
-		                android:layout_weight="1"
-		                android:src="@drawable/cinema" />
+					<ImageView android:id="@+id/imageCinema"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:layout_weight="1" android:src="@drawable/cinema" />
 
-		            <TextView
-		                android:id="@+id/textCinema"
-		                android:layout_width="wrap_content"
-		                android:layout_height="wrap_content"
-		                android:gravity="center_horizontal"
-		                android:text="Cinema" />
-		        </LinearLayout>
+					<TextView android:id="@+id/textCinema"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:gravity="center_horizontal" android:text="Cinema" android:textColor="#000000"/>
+				</LinearLayout>
 
-		        <LinearLayout
-		            android:id="@+id/linearLayout13"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:gravity="center_horizontal"
-		            android:orientation="vertical" android:layout_weight="1">
+				<LinearLayout android:id="@+id/linearLayout13"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:gravity="center_horizontal" android:orientation="vertical"
+					android:layout_weight="1">
 
-		            <ImageView
-		                android:id="@+id/imagePlanta"
-		                android:layout_width="wrap_content"
-		                android:layout_height="wrap_content"
-		                android:layout_weight="1"
-		                android:src="@drawable/planta" />
+					<ImageView android:id="@+id/imagePlanta"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:layout_weight="1" android:src="@drawable/planta" />
 
-		            <TextView
-		                android:id="@+id/textPlanta"
-		                android:layout_width="wrap_content"
-		                android:layout_height="wrap_content"
-		                android:gravity="center_horizontal"
-		                android:text="Planta" />
-		        </LinearLayout>
-		    </LinearLayout>
+					<TextView android:id="@+id/textPlanta"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:gravity="center_horizontal" android:text="Planta" android:textColor="#000000"/>
+				</LinearLayout>
+			</LinearLayout>
 
-		    <LinearLayout
-		        android:id="@+id/linearLayout4"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:layout_marginBottom="10dp"
-		        android:layout_weight="1" >
+			<LinearLayout android:id="@+id/linearLayout4"
+				android:layout_width="match_parent" android:layout_height="wrap_content"
+				android:layout_marginBottom="10dp" android:layout_weight="1">
 
-		        <LinearLayout
-		            android:id="@+id/linearLayout14"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:layout_weight="1"
-		            android:gravity="center_horizontal"
-		            android:orientation="vertical" >
+				<LinearLayout android:id="@+id/linearLayout14"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:layout_weight="1" android:gravity="center_horizontal"
+					android:orientation="vertical">
 
-		            <ImageView
-		                android:id="@+id/imageDirecoes"
-		                android:layout_width="wrap_content"
-		                android:layout_height="wrap_content"
-		                android:layout_weight="1"
-		                android:src="@drawable/direcoes" />
+					<ImageView android:id="@+id/imageDirecoes"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:layout_weight="1" android:src="@drawable/direcoes" />
 
-		            <TextView
-		                android:id="@+id/textDirecoes"
-		                android:layout_width="wrap_content"
-		                android:layout_height="wrap_content"
-		                android:gravity="center_horizontal"
-		                android:text="Direções" />
-		        </LinearLayout>
+					<TextView android:id="@+id/textDirecoes"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:gravity="center_horizontal" android:text="Direções" android:textColor="#000000"/>
+				</LinearLayout>
 
-		        <LinearLayout
-		            android:id="@+id/linearLayout9"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:layout_weight="1"
-		            android:gravity="center_horizontal"
-		            android:orientation="vertical" >
+				<LinearLayout android:id="@+id/linearLayout9"
+					android:layout_width="wrap_content" android:layout_height="wrap_content"
+					android:layout_weight="1" android:gravity="center_horizontal"
+					android:orientation="vertical">
 
-		            <ImageView
-		                android:id="@+id/imageLojas"
-		                android:layout_width="wrap_content"
-		                android:layout_height="wrap_content"
-		                android:layout_weight="1"
-		                android:src="@drawable/lojas" />
+					<ImageView android:id="@+id/imageLojas"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:layout_weight="1" android:src="@drawable/lojas" />
 
-		            <TextView
-		                android:id="@+id/textLojas"
-		                android:layout_width="wrap_content"
-		                android:layout_height="wrap_content"
-		                android:gravity="center_horizontal"
-		                android:text="Lojas" />
-		        </LinearLayout>
-		    </LinearLayout>
+					<TextView android:id="@+id/textLojas"
+						android:layout_width="wrap_content" android:layout_height="wrap_content"
+						android:gravity="center_horizontal" android:text="Lojas" android:textColor="#000000"/>
+				</LinearLayout>
+			</LinearLayout>
 		</LinearLayout>
 
 	</LinearLayout>

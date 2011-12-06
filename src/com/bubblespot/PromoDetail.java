@@ -63,7 +63,6 @@ public class PromoDetail extends Activity {
 			promoAntes.setVisibility(View.GONE);
 		else{
 			temp = precoInicial.split("\\.");
-			System.out.println(temp[1] + "" + temp[1].length());
 			if (temp[1].equals("0"))
 				precoInicial=temp[0];
 			else if (temp[1].length()==1)
