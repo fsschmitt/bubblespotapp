@@ -19,14 +19,10 @@ import com.bubblespot.R;
 public class PromocaoAdapter extends BaseAdapter implements Filterable {
 	private ArrayList<Promocao> promocoes;
 	private ArrayList<Promocao> promocoesDisplay;
-	private ArrayList<Bitmap> bImages;
-	private ArrayList<Bitmap> bImagesdisplay;
 	private ArrayList<String> nomes;
 	private Context c;
 
 	public PromocaoAdapter(Context c, ArrayList<Bitmap> bImages, ArrayList<Promocao> promocoes, ArrayList<String> nomes) {
-		this.bImages = bImages;
-		this.bImagesdisplay = bImages;
 		this.promocoes = promocoes;
 		this.promocoesDisplay = promocoes;
 		this.c = c;
@@ -34,7 +30,7 @@ public class PromocaoAdapter extends BaseAdapter implements Filterable {
 	}
 
 	public int getCount() {
-		return bImagesdisplay.size();
+		return promocoesDisplay.size();
 	}
 
 	public Object getItem(int position) {
@@ -64,7 +60,7 @@ public class PromocaoAdapter extends BaseAdapter implements Filterable {
 		imageView.setPadding(3, 3, 3, 3);
 		imageView.setAdjustViewBounds(true);
 
-		imageView.setImageBitmap(bImagesdisplay.get(position));
+		imageView.setImageBitmap(promocoesDisplay.get(position).getbImage());
 
 		return v;
 	}
@@ -75,13 +71,13 @@ public class PromocaoAdapter extends BaseAdapter implements Filterable {
 			@SuppressWarnings("unchecked")
 			@Override
 			protected void publishResults(CharSequence constraint, FilterResults results) {
-				bImagesdisplay = (ArrayList<Bitmap>) results.values;
+				promocoesDisplay = (ArrayList<Promocao>) results.values;
 				PromocaoAdapter.this.notifyDataSetChanged();
 			}
 
 			@Override
 			protected FilterResults performFiltering(CharSequence constraint) {
-				ArrayList<Bitmap> filteredResults = getFilteredResults(constraint);
+				ArrayList<Promocao> filteredResults = getFilteredResults(constraint);
 
 				FilterResults results = new FilterResults();
 				results.values = filteredResults;
@@ -89,9 +85,9 @@ public class PromocaoAdapter extends BaseAdapter implements Filterable {
 				return results;
 			}
 
-			private ArrayList<Bitmap> getFilteredResults(CharSequence filterText) {
+			private ArrayList<Promocao> getFilteredResults(CharSequence filterText) {
 				ArrayList<String> filtered = new ArrayList<String>();
-				ArrayList<Bitmap> filteredShops = new ArrayList<Bitmap>();
+				ArrayList<Promocao> filteredPromos = new ArrayList<Promocao>();
 				for(String s : nomes)
 				{
 					if(s.toLowerCase().contains(filterText.toString().toLowerCase()))
@@ -100,11 +96,10 @@ public class PromocaoAdapter extends BaseAdapter implements Filterable {
 				for(int i = 0; i< nomes.size(); i++)
 				{
 					if(filtered.contains(nomes.get(i))){
-						filteredShops.add(bImages.get(i));
-						promocoesDisplay.add(promocoes.get(i));
+						filteredPromos.add(promocoes.get(i));
 					}
 				}
-				return filteredShops;
+				return filteredPromos;
 			}
 
 		};
