@@ -12,11 +12,12 @@ public class Shopping {
 	private String telefone;
 	private String email;
 	private String imagem_url;
+	private String planta;
 	private double dist;
 	private int id;
 	private Bitmap bImage;
 
-	Shopping(int id,String nome, String localizacao, String descricao, String telefone, String email, String latitude, String longitude, String image_url, double dist){
+	Shopping(int id,String nome, String localizacao, String descricao, String telefone, String email, String latitude, String longitude, String image_url,String planta, double dist){
 
 		this.setNome(nome);
 		this.setLocalizacao(localizacao);
@@ -28,9 +29,10 @@ public class Shopping {
 		this.setImagem_url(image_url);
 		this.setDist(dist);
 		this.setId(id);
+		this.setPlanta(planta);
 	}
 
-	public Shopping(int id,String nome, String localizacao, String descricao, String telefone, String email, String latitude, String longitude, String image_url){
+	public Shopping(int id,String nome, String localizacao, String descricao, String telefone, String email, String latitude, String longitude, String image_url, String planta){
 
 		this.setNome(nome);
 		this.setLocalizacao(localizacao);
@@ -41,6 +43,7 @@ public class Shopping {
 		this.setEmail(email);
 		this.setImagem_url(image_url);
 		this.setId(id);
+		this.setPlanta(planta);
 	}
 
 	public void setDescricao(String descricao) {
@@ -129,5 +132,13 @@ public class Shopping {
 
 	public void setbImage(Bitmap bImage) {
 		this.bImage = bImage;
+	}
+
+	public String getPlanta() {
+		return planta;
+	}
+
+	public void setPlanta(String planta) {
+		this.planta = planta;
 	}
 }

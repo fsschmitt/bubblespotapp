@@ -37,6 +37,7 @@ public class ShoppingDetail extends Activity {
 	private String nome;
 	private String telefone;
 	private String imagem_url;
+	private String planta;
 	private int id;
 	private ProgressDialog dialog;
 	private Bitmap bImage;
@@ -79,6 +80,7 @@ public class ShoppingDetail extends Activity {
 		this.longitude = b.getString("shoppingLongitude");
 		this.email = b.getString("shoppingEmail");
 		this.imagem_url = b.getString("shoppingUrl");
+		this.planta = b.getString("shoppingPlanta");
 		this.id = b.getInt("id");
 		byte[] byteImage = b.getByteArray("shoppingImageByte");
 		if(byteImage != null){
@@ -131,11 +133,11 @@ public class ShoppingDetail extends Activity {
 			public void onClick(View v) {
 				Intent intent = new Intent(context, Cultural.class);
 				Bundle b = new Bundle();
+				b.putString("text", "shoppings/"+id+"/eventos.json");
 				b.putInt("idShopping", id);
 				b.putString("nomeShopping", nome);
 				intent.putExtras(b);
 				startActivityForResult(intent, 0);
-				//Toast.makeText(ShoppingDetail.this, "Brevemente Disponível", Toast.LENGTH_SHORT).show();
 			}
 		});
 		dAgenda = (TextView) ShoppingDetail.this.findViewById(R.id.textCultural);
@@ -147,11 +149,11 @@ public class ShoppingDetail extends Activity {
 			public void onClick(View v) {
 				Intent intent = new Intent(context, Cinema.class);
 				Bundle b = new Bundle();
+				b.putString("text", "shoppings/"+id+"/filmes.json");
 				b.putInt("idShopping", id);
 				b.putString("nomeShopping", nome);
 				intent.putExtras(b);
 				startActivityForResult(intent, 0);
-				//Toast.makeText(ShoppingDetail.this, "Brevemente Disponível", Toast.LENGTH_SHORT).show();
 			}
 		});
 		dCinema = (TextView) ShoppingDetail.this.findViewById(R.id.textCinema);
@@ -163,10 +165,9 @@ public class ShoppingDetail extends Activity {
 			public void onClick(View v) {
 				Intent intent = new Intent(context, Touch.class);
 				Bundle b = new Bundle();
-				b.putString("planta", imagem_url);
+				b.putString("planta", planta);
 				intent.putExtras(b);
 				startActivityForResult(intent, 0);
-				//Toast.makeText(ShoppingDetail.this, "Brevemente Disponível", Toast.LENGTH_SHORT).show();
 			}
 		});
 		dPlanta = (TextView) ShoppingDetail.this.findViewById(R.id.textPlanta);

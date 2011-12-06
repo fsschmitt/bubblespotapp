@@ -77,6 +77,7 @@ public class ListShoppings extends Activity{
 				b.putString("shoppingLongitude", sb.getLongitude());
 				b.putString("shoppingUrl", sb.getImagem_url());
 				b.putString("shoppingEmail", sb.getEmail());
+				b.putString("shoppingPlanta", sb.getPlanta());
 				b.putInt("id", sb.getId());
 				Bitmap image = sb.getbImage();
 				if(image != null){
@@ -116,6 +117,7 @@ public class ListShoppings extends Activity{
 					String Nome = shopping.getString("nome");
 					String Descricao = shopping.getString("descricao");
 					String Imagem = shopping.getString("imagem");
+					String Planta = shopping.getString("imagem");
 					String Localizacao = shopping.getString("localizacao");
 					String Latitude = shopping.getString("latitude");
 					String Longitude = shopping.getString("longitude");
@@ -124,7 +126,7 @@ public class ListShoppings extends Activity{
 					int id = shopping.getInt("id");
 					images.add(Imagem);
 					nomes.add(Nome);
-					Shopping s = new Shopping(id,Nome,Localizacao,Descricao,Telefone,Email,Latitude,Longitude,Imagem);
+					Shopping s = new Shopping(id,Nome,Localizacao,Descricao,Telefone,Email,Latitude,Longitude,Imagem,Planta);
 					shoppings.add(s);
 				}
 			} catch (IOException e) {
