@@ -225,8 +225,10 @@ public class ShopDetail extends Activity {
 				new RetrieveImages().execute();
 			}
 			else{
-				dialog.dismiss();
-			}	
+				nomes.add("");
+				bImages.add(BitmapFactory.decodeResource(Utils.res, R.drawable.no_promo));
+				iAdapter.notifyDataSetChanged();
+			}
 		}
 	}
 
@@ -248,7 +250,6 @@ public class ShopDetail extends Activity {
 				} catch (Exception e1) {
 					Log.e("Erro ao baixar as imagens.", e1.getMessage());
 				}
-				Log.e("Erro ao baixar as imagens.", e.getMessage());
 			}
 			return null;
 		}
