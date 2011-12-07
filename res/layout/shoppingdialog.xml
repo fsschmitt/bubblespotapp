@@ -1,7 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:id="@+id/layout_root" android:layout_width="fill_parent"
 	android:layout_height="wrap_content" android:padding="10dp"
-	android:orientation="vertical" android:background="@color/background_main">
+	android:orientation="vertical" android:background="@drawable/background_main">
 
 	<TextView android:layout_height="wrap_content" android:id="@+id/sNome"
 		android:text="Nome: " android:layout_width="wrap_content" android:textColor="@color/color_text"></TextView>

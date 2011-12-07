@@ -2,15 +2,31 @@
 <resources>
 	<string name="app_name">BubbleSpot</string>
 	
-	<color name="background_main">#FFFFFF</color>
-	<color name="background_header">#000000</color>
+	  
+	<drawable name="background_main">@drawable/background</drawable>
+	<drawable name="loading_images">@drawable/loading_images_white</drawable>
+	<drawable name="loading_shoppings">@drawable/loading_shoppings_white</drawable>
+	<drawable name="no_promo">@drawable/no_promo_white</drawable>
+	<color name="background_header">#00FFFFFF</color>
+	<color name="color_separator">#90FFFFFF</color>
+	<color name="color_divider">#90FFFFFF</color>
+	<color name="color_hint">#FFF</color>
+	<color name="color_text">#FFF</color>
+	<color name="color_text_separator">#FFF</color>
+	<color name="color_text_descricao">#505050</color>
+<!--
+	<drawable name="background_main">#FFF</drawable>
+	<drawable name="loading_images">@drawable/loading_images_black</drawable>
+	<drawable name="loading_shoppings">@drawable/loading_shoppings_black</drawable>
+	<drawable name="no_promo">@drawable/no_promo_black</drawable>
+	<color name="background_header">#000</color>
 	<color name="color_separator">#9000A6FC</color>
 	<color name="color_divider">#90000000</color>
-	<color name="color_hint">#00000000</color>
-	<color name="color_text">#000000</color>
-	<color name="color_text_separator">#FFFFFF</color>
+	<color name="color_hint">#000</color>
+	<color name="color_text">#000</color>
+	<color name="color_text_separator">#FFF</color>
 	<color name="color_text_descricao">#505050</color>
-
+-->
 	<string name="escolha_op">Escolha uma opção</string>
 	<string-array name="opcoes_shopping">
 		<item>Nome</item>
