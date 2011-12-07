@@ -1,18 +1,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:id="@+id/layout_root" android:layout_width="fill_parent"
 	android:layout_height="wrap_content" android:padding="10dp"
-	android:orientation="vertical" android:background="#FFFFFF">
+	android:orientation="vertical" android:background="@color/background_main">
 
 	<TextView android:layout_height="wrap_content" android:id="@+id/sNome"
-		android:text="Nome: " android:layout_width="wrap_content"></TextView>
+		android:text="Nome: " android:layout_width="wrap_content" android:textColor="@color/color_text"></TextView>
 	<TextView android:layout_height="wrap_content" android:text="Local: "
-		android:layout_width="wrap_content" android:id="@+id/sLocal"></TextView>
+		android:layout_width="wrap_content" android:id="@+id/sLocal" android:textColor="@color/color_text"></TextView>
 	<TextView android:text="Telefone: " android:id="@+id/sTelefone"
-		android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+		android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="@color/color_text"></TextView>
 	<TextView android:layout_height="wrap_content" android:text="Email: "
-		android:id="@+id/sEmail" android:layout_width="wrap_content"></TextView>
+		android:id="@+id/sEmail" android:layout_width="wrap_content" android:textColor="@color/color_text"></TextView>
 	<TextView android:text="Coordenadas: " android:id="@+id/sCoordenadas"
-		android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+		android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="@color/color_text"></TextView>
 	<TextView android:layout_height="wrap_content" android:text="Descrição: "
-		android:layout_width="wrap_content" android:id="@+id/sDescricao"></TextView>
+		android:layout_width="wrap_content" android:id="@+id/sDescricao" android:textColor="@color/color_text"></TextView>
 </LinearLayout>

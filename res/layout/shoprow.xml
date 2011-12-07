@@ -3,7 +3,7 @@
     android:id="@+id/relativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:cacheColorHint="#00000000" >
+    android:cacheColorHint="@color/color_hint" >
 
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -17,11 +17,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:background="#9000A6FC"
+            android:background="@color/color_separator"
             android:paddingLeft="2dp"
             android:text="TextView"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/color_text_separator"
             android:textSize="30dp" />
 
         <TextView
@@ -34,7 +34,7 @@
             android:paddingTop="2dp"
             android:text="Medium Text"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#000000" />
+            android:textColor="@color/color_text" />
 
         <TextView
             android:id="@+id/sp_areas_negocio"
@@ -44,7 +44,7 @@
             android:paddingLeft="10dp"
             android:text="TextView"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#505050" />
+            android:textColor="@color/color_text_descricao" />
 
     </LinearLayout>
 

@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="hello">Hello World, Main!</string>
 	<string name="app_name">BubbleSpot</string>
+	
+	<color name="background_main">#FFFFFF</color>
+	<color name="background_header">#000000</color>
+	<color name="color_separator">#9000A6FC</color>
+	<color name="color_divider">#90000000</color>
+	<color name="color_hint">#00000000</color>
+	<color name="color_text">#000000</color>
+	<color name="color_text_separator">#FFFFFF</color>
+	<color name="color_text_descricao">#505050</color>
 
 	<string name="escolha_op">Escolha uma opção</string>
 	<string-array name="opcoes_shopping">

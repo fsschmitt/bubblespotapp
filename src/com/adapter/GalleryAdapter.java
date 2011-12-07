@@ -17,12 +17,12 @@ public class GalleryAdapter extends BaseAdapter {
 
 	private Context mContext;
 	private ArrayList<Bitmap> bImages;
-	private ArrayList<String> nomes;
+	private ArrayList<String> precos;
 
-	public GalleryAdapter(Context c, ArrayList<Bitmap> bImages, ArrayList<String> nomes) {
+	public GalleryAdapter(Context c, ArrayList<Bitmap> bImages, ArrayList<String> precos) {
 		mContext = c;
 		this.bImages = bImages;
-		this.nomes = nomes;
+		this.precos = precos;
 	}
 
 	public int getCount() {
@@ -49,7 +49,7 @@ public class GalleryAdapter extends BaseAdapter {
 
 		imageView = (ImageView) v.findViewById(R.id.galleryImage);
 		text = (TextView) v.findViewById(R.id.galleryText);
-		text.setText(nomes.get(position));
+		text.setText(precos.get(position));
 
 		imageView.setPadding(10, 0, 10, 0);
 		imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);

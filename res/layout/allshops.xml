@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/background_main"
     android:orientation="vertical" 
     android:focusable="true"
 	android:focusableInTouchMode="true">
@@ -23,8 +23,8 @@
         android:id="@+id/listView1"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        android:cacheColorHint="#00000000"
-        android:divider="#90FFFFFF"
+        android:cacheColorHint="@color/color_hint"
+        android:divider="@color/color_divider"
         android:dividerHeight="4px" >
 
     </ListView>

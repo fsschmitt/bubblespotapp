@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="#FFFFFF"
+    android:background="@color/background_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -17,7 +17,7 @@
 		        android:id="@+id/promo_text"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
-		        android:textColor="#000000"
+		        android:textColor="@color/color_text"
 		        android:textAppearance="?android:attr/textAppearanceLarge"/>
 
 		    <ScrollView
@@ -53,10 +53,10 @@
 		                        android:layout_width="wrap_content"
 		                        android:layout_height="wrap_content"
 		                        android:layout_weight="1"
-		                        android:background="#9000A6FC"
+		                        android:background="@color/color_separator"
 		                        android:gravity="center_vertical|center_horizontal"
 		                        android:text="Loja"
-		                        android:textColor="#FFFFFF"
+		                        android:textColor="@color/color_text_separator"
 		                        android:textSize="9pt" />
 		                </TableRow>
 
@@ -72,7 +72,7 @@
 		                        android:layout_height="wrap_content"
 		                        android:layout_weight="1"
 		                        android:gravity="center_vertical|center_horizontal"
-		                        android:textColor="#000000"
+		                        android:textColor="@color/color_text"
 		                        android:textSize="9pt" />
 		                </TableRow>
 
@@ -86,10 +86,10 @@
 		                        android:layout_width="wrap_content"
 		                        android:layout_height="wrap_content"
 		                        android:layout_weight="1"
-		                        android:background="#9000A6FC"
+		                        android:background="@color/color_separator"
 		                        android:gravity="center_vertical|center_horizontal"
 		                        android:text="Detalhes"
-		                        android:textColor="#FFFFFF"
+		                        android:textColor="@color/color_text_separator"
 		                        android:textSize="9pt" />
 		                </TableRow>
 
@@ -105,7 +105,7 @@
 		                        android:layout_height="wrap_content"
 		                        android:layout_weight="1"
 		                        android:gravity="center_vertical|center_horizontal"
-		                        android:textColor="#000000"
+		                        android:textColor="@color/color_text"
 		                        android:textSize="9pt" />
 		                </TableRow>
 
@@ -119,10 +119,10 @@
 		                        android:layout_width="wrap_content"
 		                        android:layout_height="wrap_content"
 		                        android:layout_weight="1"
-		                        android:background="#9000A6FC"
+		                        android:background="@color/color_separator"
 		                        android:gravity="center_vertical|center_horizontal"
 		                        android:text="Preço"
-		                        android:textColor="#FFFFFF"
+		                        android:textColor="@color/color_text_separator"
 		                        android:textSize="9pt" />
 		                </TableRow>
 
@@ -137,7 +137,7 @@
 		                        android:layout_height="wrap_content"
 		                        android:layout_weight="1"
 		                        android:gravity="center_vertical|center_horizontal"
-		                        android:textColor="#000000"
+		                        android:textColor="@color/color_text"
 		                        android:textSize="9pt" />
 		                </TableRow>
 
@@ -152,7 +152,7 @@
 		                        android:layout_height="wrap_content"
 		                        android:layout_weight="1"
 		                        android:gravity="center_vertical|center_horizontal"
-		                        android:textColor="#000000"
+		                        android:textColor="@color/color_text"
 		                        android:textSize="9pt" />
 		                </TableRow>
 
@@ -168,7 +168,7 @@
 		                        android:layout_height="wrap_content"
 		                        android:layout_weight="1"
 		                        android:gravity="center_vertical|center_horizontal"
-		                        android:textColor="#000000"
+		                        android:textColor="@color/color_text"
 		                        android:textSize="9pt" />
 		                </TableRow>
 
@@ -182,10 +182,10 @@
 		                        android:layout_width="wrap_content"
 		                        android:layout_height="wrap_content"
 		                        android:layout_weight="1"
-		                        android:background="#9000A6FC"
+		                        android:background="@color/color_separator"
 		                        android:gravity="center_vertical|center_horizontal"
 		                        android:text="Data limite"
-		                        android:textColor="#FFFFFF"
+		                        android:textColor="@color/color_text_separator"
 		                        android:textSize="9pt" />
 		                </TableRow>
 
@@ -201,7 +201,7 @@
 		                        android:layout_height="wrap_content"
 		                        android:layout_weight="1"
 		                        android:gravity="center_vertical|center_horizontal"
-		                        android:textColor="#000000"
+		                        android:textColor="@color/color_text"
 		                        android:textSize="9pt" />
 		                </TableRow>
 		            </TableLayout>

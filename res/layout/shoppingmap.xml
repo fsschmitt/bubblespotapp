@@ -1,8 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	android:id="@+id/layout_root" android:layout_width="fill_parent" android:layout_height="wrap_content"
-	android:padding="10dp" android:orientation="vertical"
-	android:background="#FFFFFF">
+	android:id="@+id/layout_root" android:layout_width="fill_parent"
+	android:layout_height="wrap_content" android:padding="10dp"
+	android:orientation="vertical" android:background="@color/background_main">
 	<ImageView android:id="@+id/mapa" android:layout_height="match_parent"
-		android:layout_width="match_parent"
-		android:layout_gravity="center"></ImageView>
+		android:layout_width="match_parent" android:layout_gravity="center"></ImageView>
 </LinearLayout>

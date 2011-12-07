@@ -2,7 +2,7 @@
 <LinearLayout android:id="@+id/relativeLayout1"
 	android:layout_width="wrap_content" android:layout_height="wrap_content"
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:cacheColorHint="#00000000">
+	android:cacheColorHint="@color/color_hint">
 
 	<ImageView android:id="@+id/sn_shopping" android:src="@drawable/icon"
 		android:layout_alignParentLeft="true" android:scaleType="center"
@@ -17,11 +17,11 @@
 			android:textAppearance="?android:attr/textAppearanceLarge"
 			android:layout_marginLeft="2dip" android:text="TextView"
 			android:layout_width="wrap_content" android:id="@+id/sn_nome"
-			android:textColor="#000000"></TextView>
+			android:textColor="@color/color_text"></TextView>
 		<TextView android:layout_height="wrap_content"
 			android:layout_marginLeft="2dip" android:text="TextView"
 			android:layout_width="wrap_content" android:id="@+id/distancia"
-			android:textColor="#000000"></TextView>
+			android:textColor="@color/color_text"></TextView>
 	</LinearLayout>
 
 </LinearLayout>

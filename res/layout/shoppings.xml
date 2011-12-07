@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_height="match_parent" android:layout_width="wrap_content"
 	android:orientation="vertical"
-	android:background="#FFFFFF">
+	android:background="@color/background_main">
 	 <com.bubblespot.Header android:id="@+id/header"
 		android:layout_width="match_parent" 
 		android:layout_height="wrap_content" />
@@ -10,6 +10,6 @@
 	     android:layout_height="wrap_content" 
 	     android:layout_width="fill_parent"
 	     android:divider="@null"
-	     android:cacheColorHint="#00000000">
+	     android:cacheColorHint="@color/color_hint">
 	 </ListView>
 </LinearLayout>

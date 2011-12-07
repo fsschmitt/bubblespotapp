@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#FFFFFF"
+    android:background="@color/background_main"
     android:orientation="vertical" >
 
     <LinearLayout
@@ -18,7 +18,7 @@
             android:gravity="center_horizontal"
             android:text="Nome do Evento"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="#000000" />
+            android:textColor="@color/color_text" />
 
         <ScrollView
             android:id="@+id/scrollView1"
@@ -60,11 +60,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:background="#9000A6FC"
+                            android:background="@color/color_separator"
                             android:gravity="center_horizontal"
                             android:text="Data"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textColor="#FFFFFF" />
+                            android:textColor="@color/color_text_separator" />
                     </TableRow>
 
                     <TableRow
@@ -79,7 +79,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center_horizontal"
                             android:text="data do evento"
-                            android:textColor="#000000" />
+                            android:textColor="@color/color_text" />
                     </TableRow>
 
                     <TableRow
@@ -93,11 +93,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:background="#9000A6FC"
+                            android:background="@color/color_separator"
                             android:gravity="center_horizontal"
                             android:text="Local"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textColor="#FFFFFF" />
+                            android:textColor="@color/color_text_separator" />
                     </TableRow>
 
                     <TableRow
@@ -112,7 +112,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center_horizontal"
                             android:text="local do evento"
-                            android:textColor="#000000" />
+                            android:textColor="@color/color_text" />
                     </TableRow>
 
                     <TableRow
@@ -126,11 +126,11 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:background="#9000A6FC"
+                            android:background="@color/color_separator"
                             android:gravity="center_horizontal"
                             android:text="Informações"
                             android:textAppearance="?android:attr/textAppearanceMedium"
-                            android:textColor="#FFFFFF" />
+                            android:textColor="@color/color_text_separator" />
                     </TableRow>
 
                     <TableRow
@@ -143,7 +143,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Brevemente..."
-                            android:textColor="#000000" />
+                            android:textColor="@color/color_text" />
                     </TableRow>
                 </TableLayout>
             </LinearLayout>

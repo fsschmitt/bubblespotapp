@@ -46,7 +46,7 @@ public class ShopDetail extends Activity {
 	private ProgressDialog dialog;
 	private Bitmap bImage;
 	private ArrayList<Bitmap> bImages;
-	private ArrayList<String> nomes;
+	private ArrayList<String> precos;
 	private ArrayList<String> imagens;
 	private ArrayList<Promocao> promos;
 	private Context context;
@@ -57,7 +57,7 @@ public class ShopDetail extends Activity {
 		super.onCreate(savedInstanceState);
 		context = this;
 		bImages = new ArrayList<Bitmap>();
-		nomes = new ArrayList<String>();
+		precos = new ArrayList<String>();
 		imagens = new ArrayList<String>();
 		promos = new ArrayList<Promocao>();
 		ShopDetail.this.setContentView(R.layout.shopdetail);
@@ -65,7 +65,7 @@ public class ShopDetail extends Activity {
 		header.initHeader();
 		Search.pesquisa(ShopDetail.this, ShopDetail.this);
 		gPromos = (Gallery) findViewById(R.id.galleryPromos);
-		iAdapter = new GalleryAdapter(context, bImages, nomes);
+		iAdapter = new GalleryAdapter(context, bImages, precos);
 		gPromos.setAdapter(iAdapter);
 		Bundle b = this.getIntent().getExtras();
 		this.id = b.getInt("lojaID");
@@ -174,7 +174,7 @@ public class ShopDetail extends Activity {
 	class RetrievePromo extends AsyncTask<String, Integer, String> {
 		@Override
 		protected String doInBackground(String... arg0) {
-			nomes.clear();
+			precos.clear();
 			promos.clear();
 			bImages.clear();
 			String uri = "http://bubblespot.heroku.com/shoppings/"+idShopping+"/lojas/"+id+"/promos.json";
@@ -204,7 +204,21 @@ public class ShopDetail extends Activity {
 						String produto = promo.getString("produto");
 						String lojaNome = promo.getString("loja_nome");
 						String shoppingNome = promo.getString("shopping_nome");
-						nomes.add(precof);
+
+						String precoFinal=precof;
+						String[] temp = new String[2];
+						if(precoFinal ==null)
+							precoFinal = desconto;
+						temp = precoFinal.split("\\.");
+						if (temp[1].equals("0"))
+							precoFinal=temp[0];
+						else if (temp[1].length()==1)
+							precoFinal=precoFinal.concat("0");
+						if(precof==null)
+							precoFinal=precoFinal.concat(" %");
+						else
+							precoFinal=precoFinal.concat(" €");
+						precos.add(precoFinal);
 						imagens.add(imagemUrl);
 						Promocao p = new Promocao(idPromo,dataf,desconto,detalhes,imagemUrl,id,lojaNome,shoppingNome,precoi,precof,produto);
 						promos.add(p);
@@ -221,14 +235,14 @@ public class ShopDetail extends Activity {
 
 		@Override
 		protected void onPostExecute(String result) {
-			if(nomes != null && !nomes.isEmpty() && !imagens.isEmpty()){
+			if(precos != null && !precos.isEmpty() && !imagens.isEmpty()){
 				for(int i = 0; i<imagens.size();i++)
 					bImages.add(BitmapFactory.decodeResource(Utils.res, R.drawable.loading_images));
 				iAdapter.notifyDataSetChanged();
 				new RetrieveImages().execute();
 			}
 			else{
-				nomes.add("");
+				precos.add("");
 				bImages.add(BitmapFactory.decodeResource(Utils.res, R.drawable.no_promo));
 				iAdapter.notifyDataSetChanged();
 			}

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent" android:layout_height="match_parent"
-	android:orientation="vertical" android:background="#FFFFFF">
+	android:orientation="vertical" android:background="@color/background_main">
 	<com.bubblespot.Header android:id="@+id/header"
 		android:layout_width="match_parent" android:layout_height="wrap_content" />
 	<LinearLayout android:layout_width="match_parent"
@@ -31,7 +31,7 @@
 
 					<TextView android:id="@+id/textPromocoes"
 						android:layout_width="wrap_content" android:layout_height="wrap_content"
-						android:gravity="center_horizontal" android:text="Promoções" android:textColor="#000000"/>
+						android:gravity="center_horizontal" android:text="Promoções" android:textColor="@color/color_text"/>
 				</LinearLayout>
 
 				<LinearLayout android:id="@+id/linearLayout12"
@@ -45,7 +45,7 @@
 
 					<TextView android:id="@+id/textCultural"
 						android:layout_width="wrap_content" android:layout_height="wrap_content"
-						android:gravity="center_horizontal" android:textColor="#000000" android:text="Agenda Cultural" />
+						android:gravity="center_horizontal" android:textColor="@color/color_text" android:text="Agenda Cultural" />
 				</LinearLayout>
 			</LinearLayout>
 
@@ -64,7 +64,7 @@
 
 					<TextView android:id="@+id/textCinema"
 						android:layout_width="wrap_content" android:layout_height="wrap_content"
-						android:gravity="center_horizontal" android:text="Cinema" android:textColor="#000000"/>
+						android:gravity="center_horizontal" android:text="Cinema" android:textColor="@color/color_text"/>
 				</LinearLayout>
 
 				<LinearLayout android:id="@+id/linearLayout13"
@@ -78,7 +78,7 @@
 
 					<TextView android:id="@+id/textPlanta"
 						android:layout_width="wrap_content" android:layout_height="wrap_content"
-						android:gravity="center_horizontal" android:text="Planta" android:textColor="#000000"/>
+						android:gravity="center_horizontal" android:text="Planta" android:textColor="@color/color_text"/>
 				</LinearLayout>
 			</LinearLayout>
 
@@ -97,7 +97,7 @@
 
 					<TextView android:id="@+id/textDirecoes"
 						android:layout_width="wrap_content" android:layout_height="wrap_content"
-						android:gravity="center_horizontal" android:text="Direções" android:textColor="#000000"/>
+						android:gravity="center_horizontal" android:text="Direções" android:textColor="@color/color_text"/>
 				</LinearLayout>
 
 				<LinearLayout android:id="@+id/linearLayout9"
@@ -111,7 +111,7 @@
 
 					<TextView android:id="@+id/textLojas"
 						android:layout_width="wrap_content" android:layout_height="wrap_content"
-						android:gravity="center_horizontal" android:text="Lojas" android:textColor="#000000"/>
+						android:gravity="center_horizontal" android:text="Lojas" android:textColor="@color/color_text"/>
 				</LinearLayout>
 			</LinearLayout>
 		</LinearLayout>

@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.bubblespot.Filme;
 import com.bubblespot.R;
 
-public class CinemaViewAdapter extends PagerAdapter {
+public class CinemaViewAdapter extends PagerAdapter{
 	private ArrayList<Filme> filmes;
 	private Context mContext;
 
@@ -59,6 +59,24 @@ public class CinemaViewAdapter extends PagerAdapter {
 
 		TextView trailer = ((TextView) v.findViewById(R.id.filmeTrailerText));
 		trailer.setText(filmes.get(position).getTrailer());
+
+		/*
+
+		@SuppressWarnings("unused")
+		final String tr = filmes.get(position).getTrailer();
+		trailer.setOnClickListener(new View.OnClickListener() {
+			
+			public void onClick(View v) {
+				Uri uri = Uri.parse(tr);
+
+				// With this line the Youtube application, if installed, will launch immediately.
+				// Without it you will be prompted with a list of the application to choose.
+				uri = Uri.parse("vnd.youtube:"  + uri.getQueryParameter("v"));
+
+				Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+				startActivity(intent);
+			}
+		});*/
 
 		((ViewPager)collection).addView(v);
 
