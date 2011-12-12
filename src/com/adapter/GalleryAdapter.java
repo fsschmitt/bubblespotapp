@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.graphics.Bitmap;
 
 public class GalleryAdapter extends BaseAdapter {
 
@@ -69,7 +68,7 @@ public class GalleryAdapter extends BaseAdapter {
 		imageView.setPadding(10, 0, 10, 0);
 		imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 		imageView.setAdjustViewBounds(true);
-		imageView.setImageBitmap(promos.get(position).getbImage());        
+		imageView.setImageBitmap(promos.get(position).getbImage());
 		return v;
 	}
 }
