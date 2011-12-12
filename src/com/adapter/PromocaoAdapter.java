@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.bubblespot.Promocao;
 import com.bubblespot.R;
+import com.bubblespot.Utils;
 
 public class PromocaoAdapter extends BaseAdapter implements Filterable {
 	private ArrayList<Promocao> promocoes;
@@ -44,7 +45,7 @@ public class PromocaoAdapter extends BaseAdapter implements Filterable {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View v = convertView;
 		TextView nome;
-		TextView dist;
+		TextView desc;
 		ImageView imageView;
 		if (v == null) {
 			LayoutInflater vi = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -52,19 +53,21 @@ public class PromocaoAdapter extends BaseAdapter implements Filterable {
 		} 
 		nome = (TextView) v.findViewById(R.id.sn_nome);
 		nome.setText(promocoesDisplay.get(position).getProduto());
+		nome.setTypeface(Utils.tf);
 
-		dist = (TextView) v.findViewById(R.id.distancia);
+		desc = (TextView) v.findViewById(R.id.distancia);
+		desc.setTypeface(Utils.tf);
 		String desconto = promocoesDisplay.get(position).getDesconto();
 		String[] temp = new String[2];
 		if(desconto==null)
-			dist.setVisibility(View.GONE);
+			desc.setVisibility(View.GONE);
 		else{
 			temp = desconto.split("\\.");
 			if (temp[1].equals("0"))
 				desconto=temp[0];
 			else if (temp[1].length()==1)
 				desconto=desconto.concat("0");
-			dist.setText("Desconto de "+desconto+" %");
+			desc.setText("Desconto de "+desconto+" %");
 		}
 		imageView = (ImageView) v.findViewById(R.id.sn_shopping);
 		imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);

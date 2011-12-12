@@ -60,15 +60,6 @@ public class Cultural extends FragmentActivity {
 				finish();
 			}
 		});
-		
-
-		Evento e = new Evento(3,"Jantar de Natal","24/12/2011 21:00","Praça de Alimentação","Jantar de Natal no shopping com todas as pessoas envolventes.", "http://placehold.it/200x300");
-		Evento e2 = new Evento(3,"Teatro de beneficiência","23/12/2011 18:00","Salão Silo","Teatro de beneficiência para ajudar todas as pessoas necessitadas nesta altura de Natal.","http://placehold.it/200x300");
-
-		eventos.add(e2);
-		eventos.add(e);
-		images.add(e2.getImagem_url());
-		images.add(e.getImagem_url());
 
 		new RetrieveCultural().execute();
 	}

@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.bubblespot.Loja;
 import com.bubblespot.R;
+import com.bubblespot.Utils;
 
 public class ListAdapter extends BaseAdapter implements Filterable {
 	private ArrayList<Loja> shops;
@@ -50,13 +51,17 @@ public class ListAdapter extends BaseAdapter implements Filterable {
 		TextView shopping = (TextView) v.findViewById(R.id.sp_shopping_nome);
 		if(shopsDisplay.get(position).isPrimeira()){
 			shopping.setText(shopsDisplay.get(position).getShopping());
+			shopping.setTypeface(Utils.tf);
 			shopping.setVisibility(View.VISIBLE);
+			
 		}
 		else
 			shopping.setVisibility(View.GONE);
 
 		TextView nome = (TextView) v.findViewById(R.id.sp_loja_nome);
+		nome.setTypeface(Utils.tf);
 		TextView areas = (TextView) v.findViewById(R.id.sp_areas_negocio);
+		areas.setTypeface(Utils.tf);
 
 		nome.setVisibility(View.VISIBLE);
 		areas.setVisibility(View.VISIBLE);

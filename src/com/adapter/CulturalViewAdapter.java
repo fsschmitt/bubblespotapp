@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.bubblespot.Evento;
 import com.bubblespot.R;
+import com.bubblespot.Utils;
 
 public class CulturalViewAdapter extends PagerAdapter {
 	private ArrayList<Evento> eventos;
@@ -41,6 +42,7 @@ public class CulturalViewAdapter extends PagerAdapter {
 
 		TextView nome = ((TextView) v.findViewById(R.id.eventoNome));
 		nome.setText(eventos.get(position).getNome());
+		nome.setTypeface(Utils.tf);
 
 		if(eventos.get(position).getbImage() != null)
 		{
@@ -50,12 +52,16 @@ public class CulturalViewAdapter extends PagerAdapter {
 
 		TextView info = ((TextView) v.findViewById(R.id.eventoInfoText));
 		info.setText(eventos.get(position).getDetalhes());
+		info.setTypeface(Utils.tf);
 
 		TextView data = ((TextView) v.findViewById(R.id.eventoDataText));
-		data.setText(eventos.get(position).getData());
+		String dataDisplay = eventos.get(position).getData();
+		data.setText(dataDisplay.substring(8, 10)+"-" + dataDisplay.substring(5, 7) + "-" + dataDisplay.substring(0, 4) + " " + dataDisplay.substring(11, 16));
+		data.setTypeface(Utils.tf);
 
 		TextView local = ((TextView) v.findViewById(R.id.eventoLocalText));
 		local.setText(eventos.get(position).getLocal());
+		local.setTypeface(Utils.tf);
 
 		((ViewPager)collection).addView(v);
 

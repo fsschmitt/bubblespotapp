@@ -2,7 +2,9 @@ package com.adapter;
 
 import java.util.ArrayList;
 
+import com.bubblespot.Promocao;
 import com.bubblespot.R;
+import com.bubblespot.Utils;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -16,17 +18,15 @@ import android.graphics.Bitmap;
 public class GalleryAdapter extends BaseAdapter {
 
 	private Context mContext;
-	private ArrayList<Bitmap> bImages;
-	private ArrayList<String> precos;
+	private ArrayList<Promocao> promos;
 
-	public GalleryAdapter(Context c, ArrayList<Bitmap> bImages, ArrayList<String> precos) {
+	public GalleryAdapter(Context c, ArrayList<Promocao> promos) {
 		mContext = c;
-		this.bImages = bImages;
-		this.precos = precos;
+		this.promos = promos;
 	}
 
 	public int getCount() {
-		return bImages.size();
+		return promos.size();
 	}
 
 	public Object getItem(int position) {
@@ -49,12 +49,27 @@ public class GalleryAdapter extends BaseAdapter {
 
 		imageView = (ImageView) v.findViewById(R.id.galleryImage);
 		text = (TextView) v.findViewById(R.id.galleryText);
-		text.setText(precos.get(position));
+		String precoFinal=promos.get(position).getPreco_final();
+		String[] temp = new String[2];
+		if(precoFinal ==null)
+			precoFinal = promos.get(position).getDesconto();
+		temp = precoFinal.split("\\.");
+		if (temp[1].equals("0"))
+			precoFinal=temp[0];
+		else if (temp[1].length()==1)
+			precoFinal=precoFinal.concat("0");
+		
+		if(promos.get(position).getPreco_final()==null)
+			precoFinal=precoFinal.concat(" %");
+		else
+			precoFinal=precoFinal.concat(" €");
+		text.setText(precoFinal);
+		text.setTypeface(Utils.tf);
 
 		imageView.setPadding(10, 0, 10, 0);
 		imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 		imageView.setAdjustViewBounds(true);
-		imageView.setImageBitmap(bImages.get(position));        
+		imageView.setImageBitmap(promos.get(position).getbImage());        
 		return v;
 	}
 }

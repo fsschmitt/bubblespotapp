@@ -16,6 +16,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.Typeface;
 import android.graphics.Bitmap.CompressFormat;
 import android.location.Location;
 import android.location.LocationManager;
@@ -24,12 +25,13 @@ public class Utils {
 
 	public static int raio = 8000;
 	public static Resources res;
+	
+	public static Typeface tf;
 
 	public static Location getLocation(Context ctx) {
 		LocationManager lm = (LocationManager) ctx
 				.getSystemService(Context.LOCATION_SERVICE);
 		List<String> providers = lm.getProviders(true);
-
 		Location l = null;
 
 		for (int i = providers.size() - 1; i >= 0; i--) {

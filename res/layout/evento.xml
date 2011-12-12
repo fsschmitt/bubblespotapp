@@ -18,7 +18,9 @@
             android:gravity="center_horizontal"
             android:text="Nome do Evento"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/color_text" />
+            android:textColor="@color/color_text"
+            android:paddingLeft="10dp" 
+            android:paddingRight="10dp"/>
 
         <ScrollView
             android:id="@+id/scrollView1"
@@ -45,8 +47,7 @@
                         <ImageView
                             android:id="@+id/eventoImagem"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/cinema_load" />
+                            android:layout_height="wrap_content"/>
                     </TableRow>
 
                     <TableRow
@@ -79,7 +80,9 @@
                             android:layout_height="wrap_content"
                             android:gravity="center_horizontal"
                             android:text="data do evento"
-                            android:textColor="@color/color_text" />
+                            android:textColor="@color/color_text" 
+                            android:paddingLeft="10dp" 
+                            android:paddingRight="10dp"/>
                     </TableRow>
 
                     <TableRow
@@ -112,7 +115,9 @@
                             android:layout_height="wrap_content"
                             android:gravity="center_horizontal"
                             android:text="local do evento"
-                            android:textColor="@color/color_text" />
+                            android:textColor="@color/color_text"
+                            android:paddingLeft="10dp" 
+                            android:paddingRight="10dp"/>
                     </TableRow>
 
                     <TableRow
@@ -143,7 +148,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Brevemente..."
-                            android:textColor="@color/color_text" />
+                            android:textColor="@color/color_text"
+                            android:paddingLeft="10dp" 
+                            android:paddingRight="10dp"/>
                     </TableRow>
                 </TableLayout>
             </LinearLayout>

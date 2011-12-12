@@ -18,7 +18,9 @@
             android:gravity="center_horizontal"
             android:text="Nome do Filme"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/color_text" />
+            android:textColor="@color/color_text" 
+            android:paddingLeft="10dp" 
+            android:paddingRight="10dp"/>
 
         <ScrollView
             android:id="@+id/scrollView1"
@@ -45,8 +47,7 @@
                         <ImageView
                             android:id="@+id/filmeImagem"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:src="@drawable/cinema_load" />
+                            android:layout_height="wrap_content"/>
                     </TableRow>
 
                     <TableRow
@@ -69,15 +70,18 @@
 
                     <TableRow
                         android:id="@+id/tableRow4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" >
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content">
 
                         <TextView
                             android:id="@+id/filmeDetalhesText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
                             android:text="detalhes..."
                             android:textColor="@color/color_text" />
+
                     </TableRow>
 
                     <TableRow
@@ -102,7 +106,7 @@
                         android:id="@+id/TableRow05"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center_horizontal" >
+                        android:gravity="center_horizontal">
 
                         <TextView
                             android:id="@+id/filmeSalaText"
@@ -110,7 +114,9 @@
                             android:layout_height="wrap_content"
                             android:gravity="center_horizontal"
                             android:text="sala"
-                            android:textColor="@color/color_text" />
+                            android:textColor="@color/color_text"
+                            android:paddingLeft="10dp" 
+                            android:paddingRight="10dp"/>
                     </TableRow>
 
                     <TableRow
@@ -143,7 +149,9 @@
                             android:layout_weight="1"
                             android:gravity="center_horizontal"
                             android:text="horarios..."
-                            android:textColor="@color/color_text" />
+                            android:textColor="@color/color_text"
+                            android:paddingLeft="10dp" 
+                            android:paddingRight="10dp"/>
                     </TableRow>
 
                     <TableRow
@@ -179,7 +187,9 @@
                             android:clickable="true"
                             android:autoLink="all"
                             android:text="trailer"
-                            android:textColor="@color/color_text" />
+                            android:textColor="@color/color_text" 
+                            android:paddingLeft="10dp" 
+                            android:paddingRight="10dp"/>
                     </TableRow>
                 </TableLayout>
             </LinearLayout>

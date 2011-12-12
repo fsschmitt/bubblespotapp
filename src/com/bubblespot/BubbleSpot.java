@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -32,7 +33,7 @@ public class BubbleSpot extends Activity {
 		setContentView(R.layout.main);
 		mainCont=this;
 		Utils.res = this.getResources();
-
+		Utils.tf = Typeface.createFromAsset(this.getAssets(),"fonts/MyriadPro.otf");
 		Header header = (Header) findViewById(R.id.header);
 		header.initHeader();
 		Search.pesquisa(this, BubbleSpot.this);

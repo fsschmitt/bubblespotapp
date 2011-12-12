@@ -3,6 +3,7 @@ package com.adapter;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.bubblespot.Filme;
 import com.bubblespot.R;
+import com.bubblespot.Utils;
 
 public class CinemaViewAdapter extends PagerAdapter{
 	private ArrayList<Filme> filmes;
@@ -41,6 +43,7 @@ public class CinemaViewAdapter extends PagerAdapter{
 
 		TextView nome = ((TextView) v.findViewById(R.id.filmeNome));
 		nome.setText(filmes.get(position).getNome());
+		nome.setTypeface(Utils.tf);
 
 		if(filmes.get(position).getbImage() != null)
 		{
@@ -50,15 +53,19 @@ public class CinemaViewAdapter extends PagerAdapter{
 
 		TextView detalhes = ((TextView) v.findViewById(R.id.filmeDetalhesText));
 		detalhes.setText(filmes.get(position).getDetalhes());
-
+		detalhes.setTypeface(Utils.tf);
+		
 		TextView sala = ((TextView) v.findViewById(R.id.filmeSalaText));
 		sala.setText(filmes.get(position).getSala());
+		sala.setTypeface(Utils.tf);
 
 		TextView horario = ((TextView) v.findViewById(R.id.filmeHorarioText));
 		horario.setText(filmes.get(position).getHorarios());
+		horario.setTypeface(Utils.tf);
 
 		TextView trailer = ((TextView) v.findViewById(R.id.filmeTrailerText));
 		trailer.setText(filmes.get(position).getTrailer());
+		trailer.setTypeface(Utils.tf);
 
 		/*
 

@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.bubblespot.R;
 import com.bubblespot.Shopping;
+import com.bubblespot.Utils;
 
 public class ShoppingAdapter extends BaseAdapter {
 	private ArrayList<Shopping> shoppings;
@@ -49,8 +50,10 @@ public class ShoppingAdapter extends BaseAdapter {
 		} 
 		nome = (TextView) v.findViewById(R.id.sn_nome);
 		nome.setText(shoppings.get(position).getNome());
+		nome.setTypeface(Utils.tf);
 
 		dist = (TextView) v.findViewById(R.id.distancia);
+		dist.setTypeface(Utils.tf);
 		dist.setText(shoppings.get(position).getDist()+"km");
 		imageView = (ImageView) v.findViewById(R.id.sn_shopping);
 		imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
