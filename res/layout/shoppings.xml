@@ -10,6 +10,6 @@
 	     android:layout_height="wrap_content" 
 	     android:layout_width="fill_parent"
 	     android:divider="@null"
-	     android:cacheColorHint="@color/color_hint">
+	     android:cacheColorHint="#00000000">
 	 </ListView>
 </LinearLayout>
