@@ -30,8 +30,6 @@ import com.adapter.PromocaoAdapter;
 
 public class ListPromo extends Activity{
 	//private ListView list;
-	private int idLoja;
-	private int idShopping;
 	private ArrayList<String> nomes;
 	private ArrayList<Bitmap> bImages;
 	private ArrayList<String> images;
@@ -49,8 +47,6 @@ public class ListPromo extends Activity{
 		setContentView(R.layout.shops);
 		Bundle c = this.getIntent().getExtras();
 		this.text = c.getString("text");
-		idLoja = c.getInt("idLoja");
-		idShopping = c.getInt("idShopping");
 
 		Header header = (Header) findViewById(R.id.header);
 		header.initHeader();
@@ -79,9 +75,9 @@ public class ListPromo extends Activity{
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 				Intent intent = new Intent(v.getContext(), PromoDetail.class);
 				Promocao promo = promos.get(position);
-				b.putInt("idLoja", idLoja);
+				b.putInt("idLoja", promo.getLoja_id());
 				b.putInt("id", promo.getId());
-				b.putInt("idShopping", idShopping);
+				b.putInt("idShopping", promo.getShopping_id());
 				b.putString("nomeLoja", promo.getLoja_nome());
 				b.putString("desconto", promo.getDesconto());
 				b.putString("produto", promo.getProduto());
@@ -138,10 +134,12 @@ public class ListPromo extends Activity{
 						String produto = promo.getString("produto");
 						String lojaNome = promo.getString("loja_nome");
 						String shoppingNome = promo.getString("shopping_nome");
+						int shoppingId = promo.getInt("shopping_id");
+						int idLoja = promo.getInt("loja_id");
 
 						nomes.add(produto);
 						images.add(imagem);
-						Promocao p = new Promocao(id,dataf,desconto,detalhes,imagem,idLoja, lojaNome,shoppingNome,precoi,precof,produto);
+						Promocao p = new Promocao(id,dataf,desconto,detalhes,imagem,idLoja, lojaNome,shoppingId,shoppingNome,precoi,precof,produto);
 						promos.add(p);
 					}
 				}

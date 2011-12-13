@@ -13,7 +13,7 @@
 	<color name="color_hint">#FFF</color>
 	<color name="color_text">#FFF</color>
 	<color name="color_text_separator">#FFF</color>
-	<color name="color_text_descricao">#505050</color>
+	<color name="color_text_descricao">#C0C0C0</color>
 <!--
 	<drawable name="background_main">#FFF</drawable>
 	<drawable name="loading_images">@drawable/loading_images_black</drawable>

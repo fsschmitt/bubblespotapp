@@ -8,6 +8,9 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,6 +29,9 @@ public class PromoDetail extends Activity {
 	private String dataFinal;
 	private ProgressDialog dialog;
 	private Bitmap bImage;
+	private int shopping_id;
+	private int loja_id;
+	private Promocao p;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -45,7 +51,11 @@ public class PromoDetail extends Activity {
 		dataFinal = b.getString("dataFinal");
 		shopping = b.getString("shopping");
 		imagem_url = b.getString("imagem");
+		shopping_id = b.getInt("idShopping");
+		loja_id = b.getInt("idLoja");
 		b.putString("shopping", shopping);
+		
+		p = new Promocao(id,dataFinal,desconto,detalhes,imagem_url,loja_id,nomeLoja,shopping_id,shopping,precoInicial,precoFinal,produto);
 
 		TextView text_promo = (TextView) PromoDetail.this.findViewById(R.id.promo_text);
 		text_promo.setText(produto);
@@ -152,5 +162,25 @@ public class PromoDetail extends Activity {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.promo_menu, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.promo_partilhar:
+		{
+			Utils.share(p,this);
+		}
+		return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 	}
 }

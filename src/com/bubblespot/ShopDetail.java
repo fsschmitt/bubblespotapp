@@ -97,12 +97,12 @@ public class ShopDetail extends Activity {
 
 		gPromos.setOnItemClickListener(new OnItemClickListener() {
 			@SuppressWarnings("rawtypes")
-			public void onItemClick(AdapterView parent, View v, int position, long id) {
+			public void onItemClick(AdapterView parent, View v, int position, long id2) {
 				Intent intent = new Intent(v.getContext(), PromoDetail.class);
 				if(promos.size()>0){
 					Promocao promo = promos.get(position);
 					Bundle b = new Bundle();
-					b.putInt("idLoja", ShopDetail.this.id);
+					b.putInt("idLoja", id);
 					b.putInt("id", promo.getId());
 					b.putInt("idShopping", idShopping);
 					b.putString("nomeLoja", promo.getLoja_nome());
@@ -200,9 +200,10 @@ public class ShopDetail extends Activity {
 						String precoi = promo.getString("precoi");
 						String produto = promo.getString("produto");
 						String lojaNome = promo.getString("loja_nome");
+						int shoppingId = promo.getInt("shopping_id");
 						String shoppingNome = promo.getString("shopping_nome");
 						imagens.add(imagemUrl);
-						Promocao p = new Promocao(idPromo,dataf,desconto,detalhes,imagemUrl,id,lojaNome,shoppingNome,precoi,precof,produto);
+						Promocao p = new Promocao(idPromo,dataf,desconto,detalhes,imagemUrl,id,lojaNome,shoppingId,shoppingNome,precoi,precof,produto);
 						promos.add(p);
 					}
 				}
@@ -283,8 +284,6 @@ public class ShopDetail extends Activity {
 			startActivityForResult(intent, 0);
 		}
 		return true;
-		case R.id.loja_partilhar:
-			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}

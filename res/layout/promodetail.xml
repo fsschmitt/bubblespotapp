@@ -20,7 +20,7 @@
 		        android:textColor="@color/color_text"
 		        android:textAppearance="?android:attr/textAppearanceLarge"
 		        android:paddingLeft="10dp" 
-                android:paddingRight="10dp"/>
+                android:paddingRight="10dp" android:gravity="center_horizontal"/>
 
 		    <ScrollView
 		        android:id="@+id/scrollView1"

@@ -10,7 +10,10 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -20,12 +23,13 @@ import android.graphics.Typeface;
 import android.graphics.Bitmap.CompressFormat;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.Bundle;
 
 public class Utils {
 
 	public static int raio = 8000;
 	public static Resources res;
-	
+
 	public static Typeface tf;
 
 	public static Location getLocation(Context ctx) {
@@ -84,4 +88,66 @@ public class Utils {
 		b.compress(CompressFormat.PNG, 0 /*ignored for PNG*/, bos); 
 		return bos.toByteArray();
 	}
+
+
+
+	public static void share(final Promocao promo, final Context c) {
+		
+		final CharSequence[] items = { "Facebook", "Twitter" };
+		
+		AlertDialog.Builder builder = new AlertDialog.Builder(c);
+		final String message = "";
+		builder.setTitle("Partilhar");
+		
+		builder.setItems(items, new DialogInterface.OnClickListener() {
+
+			public void onClick(DialogInterface dialog, int item) {
+				switch (item) {
+
+				case 0: {
+					Intent intent;
+					Bundle b;
+					String desconto;
+					intent = new Intent(c,
+							FacebookActivity.class);
+					b = new Bundle();
+					
+					b.putString("message", message);
+					b.putString("name", promo.getProduto());
+					b.putString("link", "http://bubblespot.heroku.com/shoppings/"+promo.getShopping_id()+"/lojas/"+promo.getLoja_id()+"/promos/"+promo.getId());
+
+					desconto = "Desconto: " + promo.getDesconto() + "%";
+					if(promo.getPreco_final()!=null)
+						desconto+=" Preço Final: " + promo.getPreco_final() + "€";
+					b.putString("caption", desconto);
+
+					b.putString("imageLink", promo.getImagem_url());
+
+					b.putString("description", promo.getDetalhes());
+
+					intent.putExtras(b);
+					c.startActivity(intent);
+					break;
+				}
+
+				case 1: {
+					Bundle b = new Bundle();
+					String msg = "Vejam esta promoção: " + promo.getProduto() + " com " + promo.getDesconto() + "% de desconto. " + "http://bubblespot.heroku.com/shoppings/"+promo.getShopping_id()+"/lojas/"+promo.getLoja_id()+"/promos/"+promo.getId();
+					b.putString("text", msg);
+					Intent intent = new Intent(c,
+							Twitter.class);
+					intent.putExtras(b);
+					c.startActivity(intent);
+					break;
+				}
+
+				default:
+					break;
+				}
+			}
+		});
+		AlertDialog alert = builder.create();
+		alert.show();
+	}
+
 }

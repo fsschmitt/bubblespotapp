@@ -186,7 +186,7 @@ public class ShoppingDetail extends Activity {
 					startActivityForResult(i, 0);
 				}
 				else
-					Toast.makeText(getApplicationContext(), "Não foi possivel obter a sua localização!", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getApplicationContext(), "Não foi possivel obter a sua localização!", Toast.LENGTH_LONG).show();
 			}
 		});
 		dDirecoes = (TextView) ShoppingDetail.this.findViewById(R.id.textDirecoes);

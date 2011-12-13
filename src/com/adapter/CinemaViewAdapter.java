@@ -3,7 +3,6 @@ package com.adapter;
 import java.util.ArrayList;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;

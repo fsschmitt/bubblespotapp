@@ -155,12 +155,16 @@ public class BubbleSpot extends Activity {
 		case R.id.perto:
 			if (!checkNetwork()){
 				Location l = Utils.getLocation(this);
-				String pesquisa = "search/shoppings?latitude=" + l.getLatitude() + "&longitude=" + l.getLongitude() + "&radius=" + Utils.raio + "&format=json";
-				Intent intent = new Intent(this, ShoppingNear.class);
-				b = new Bundle();
-				b.putString("text", pesquisa);
-				intent.putExtras(b);
-				startActivityForResult(intent, 0);
+				if (l==null)
+					Toast.makeText(BubbleSpot.this, "Não foi possivel obter a sua localização!", Toast.LENGTH_LONG).show();
+				else{
+					String pesquisa = "search/shoppings?latitude=" + l.getLatitude() + "&longitude=" + l.getLongitude() + "&radius=" + Utils.raio + "&format=json";
+					Intent intent = new Intent(this, ShoppingNear.class);
+					b = new Bundle();
+					b.putString("text", pesquisa);
+					intent.putExtras(b);
+					startActivityForResult(intent, 0);
+				}
 			}
 			return true;
 		case R.id.sobre:
