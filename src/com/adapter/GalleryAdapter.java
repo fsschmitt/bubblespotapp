@@ -62,9 +62,11 @@ public class GalleryAdapter extends BaseAdapter {
 			precoFinal=precoFinal.concat(" %");
 		else
 			precoFinal=precoFinal.concat(" €");
-		text.setText(precoFinal);
+		
+		if(promos.get(position).getbImage()!=null)
+			text.setText(precoFinal);
 		text.setTypeface(Utils.tf);
-
+		
 		imageView.setPadding(10, 0, 10, 0);
 		imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
 		imageView.setAdjustViewBounds(true);
