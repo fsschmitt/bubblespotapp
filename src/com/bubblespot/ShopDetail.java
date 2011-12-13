@@ -28,6 +28,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.adapter.GalleryAdapter;
 
@@ -63,7 +64,7 @@ public class ShopDetail extends Activity {
 		header.initHeader();
 		Search.pesquisa(ShopDetail.this, ShopDetail.this);
 		gPromos = (Gallery) findViewById(R.id.galleryPromos);
-		iAdapter = new GalleryAdapter(context, promos);
+		iAdapter = new GalleryAdapter(context, promos,bImages);
 		gPromos.setAdapter(iAdapter);
 		Bundle b = this.getIntent().getExtras();
 		this.id = b.getInt("lojaID");
@@ -76,7 +77,8 @@ public class ShopDetail extends Activity {
 		this.tags = b.getString("lojaTags");
 		this.shopping = b.getString("lojaShopping");
 		this.idShopping = b.getInt("idShopping");
-
+		
+		
 		TextView loja_shopping = (TextView) findViewById(R.id.loja_shopping);
 		loja_shopping.setText(nome + " (" + shopping + ")");
 
@@ -288,6 +290,14 @@ public class ShopDetail extends Activity {
 		default:
 			return super.onOptionsItemSelected(item);
 		}
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if(resultCode == RESULT_FIRST_USER) {
+			Toast.makeText(this, "Esta loja não tem nenhuma promoção registada!", Toast.LENGTH_LONG).show();
+		}     
 	}
 
 
