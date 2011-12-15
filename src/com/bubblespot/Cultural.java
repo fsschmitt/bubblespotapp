@@ -103,7 +103,8 @@ public class Cultural extends FragmentActivity {
 						String data = evento.getString("data");
 						String detalhes = evento.getString("detalhes");
 						String nome = evento.getString("nome");
-						eventos.add(new Evento(idShopping,nome,data,"[falta este campo]",detalhes,imagem));
+						String local = evento.getString("local");
+						eventos.add(new Evento(idShopping,nome,data,local,detalhes,imagem));
 						images.add(imagem);
 					}
 				}

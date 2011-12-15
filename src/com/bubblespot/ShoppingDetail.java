@@ -53,7 +53,10 @@ public class ShoppingDetail extends Activity {
 	private TextView dPlanta;
 	private TextView dDirecoes;
 	private TextView dLojas;
-	private int SEARCH_REQUEST = 1;
+	private int LOJAS_REQUEST = 1;
+	private int CINEMA_REQUEST = 2;
+	private int PROMOCOES_REQUEST = 3;
+	private int EVENTOS_REQUEST = 4;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -121,7 +124,7 @@ public class ShoppingDetail extends Activity {
 				b.putInt("idShopping", id);
 				b.putString("nomeShopping", nome);
 				intent.putExtras(b);
-				startActivityForResult(intent, 0);
+				startActivityForResult(intent, PROMOCOES_REQUEST);
 			}
 		});
 		dPromocoes = (TextView) ShoppingDetail.this.findViewById(R.id.textPromocoes);
@@ -137,7 +140,7 @@ public class ShoppingDetail extends Activity {
 				b.putInt("idShopping", id);
 				b.putString("nomeShopping", nome);
 				intent.putExtras(b);
-				startActivityForResult(intent, 0);
+				startActivityForResult(intent, EVENTOS_REQUEST);
 			}
 		});
 		dAgenda = (TextView) ShoppingDetail.this.findViewById(R.id.textCultural);
@@ -153,7 +156,7 @@ public class ShoppingDetail extends Activity {
 				b.putInt("idShopping", id);
 				b.putString("nomeShopping", nome);
 				intent.putExtras(b);
-				startActivityForResult(intent, 0);
+				startActivityForResult(intent, CINEMA_REQUEST);
 			}
 		});
 		dCinema = (TextView) ShoppingDetail.this.findViewById(R.id.textCinema);
@@ -201,7 +204,7 @@ public class ShoppingDetail extends Activity {
 				b.putString("text", "shoppings/"+id+"/lojas?format=json");
 				b.putInt("idShopping", id);
 				intent.putExtras(b);
-				startActivityForResult(intent, SEARCH_REQUEST);
+				startActivityForResult(intent, LOJAS_REQUEST);
 			}
 		});
 		dLojas = (TextView) ShoppingDetail.this.findViewById(R.id.textLojas);
@@ -300,8 +303,18 @@ public class ShoppingDetail extends Activity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		if(resultCode == RESULT_FIRST_USER && requestCode == SEARCH_REQUEST) {
+		if(resultCode == RESULT_FIRST_USER && requestCode == LOJAS_REQUEST) {
 			Toast.makeText(this, "Este shopping não tem nenhuma loja registada!", Toast.LENGTH_LONG).show();
-		}     
+		}
+		else if(resultCode == RESULT_FIRST_USER && requestCode == CINEMA_REQUEST) {
+			Toast.makeText(this, "Este shopping não tem nenhum filme registado!", Toast.LENGTH_LONG).show();
+		}
+		else if(resultCode == RESULT_FIRST_USER && requestCode == PROMOCOES_REQUEST) {
+			Toast.makeText(this, "Este shopping não tem nenhuma promoção registada!", Toast.LENGTH_LONG).show();
+		}
+		else if(resultCode == RESULT_FIRST_USER && requestCode == EVENTOS_REQUEST) {
+			Toast.makeText(this, "Este shopping não tem nenhum evento registado!", Toast.LENGTH_LONG).show();
+		}
+		
 	}
 }

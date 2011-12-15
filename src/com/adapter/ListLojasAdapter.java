@@ -15,13 +15,13 @@ import com.bubblespot.Loja;
 import com.bubblespot.R;
 import com.bubblespot.Utils;
 
-public class ListAdapter extends BaseAdapter implements Filterable {
+public class ListLojasAdapter extends BaseAdapter implements Filterable {
 	private ArrayList<Loja> shops;
 	private ArrayList<Loja> shopsDisplay;
 	private Context c;
 	private ArrayList<String> nomes;
 
-	public ListAdapter(Context c,ArrayList<String> nomes,ArrayList<Loja> shops) {
+	public ListLojasAdapter(Context c,ArrayList<String> nomes,ArrayList<Loja> shops) {
 		this.shops = shops;
 		this.c = c;
 		this.nomes = nomes;
@@ -78,7 +78,7 @@ public class ListAdapter extends BaseAdapter implements Filterable {
 			@Override
 			protected void publishResults(CharSequence constraint, FilterResults results) {
 				shopsDisplay = (ArrayList<Loja>) results.values;
-				ListAdapter.this.notifyDataSetChanged();
+				ListLojasAdapter.this.notifyDataSetChanged();
 			}
 
 			@Override

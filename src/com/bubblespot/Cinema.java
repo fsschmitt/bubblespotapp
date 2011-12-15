@@ -91,28 +91,52 @@ public class Cinema extends FragmentActivity {
 				e.printStackTrace();
 			}
 			String line = null;
-			JSONArray jo = null;
+			JSONArray ja = null;
 			try {
 				line = getJSONLine(url);
 				if(line != null){
-					jo = new JSONArray(line);
-					for (int i = 0; i < jo.length(); i++) {
-						JSONObject filme = jo.getJSONObject(i);
-						int idShopping = filme.getInt("shopping_id");
-						String detalhes = filme.getString("detalhes");
-						String horarios = filme.getString("horarios");
-						String nome = filme.getString("nome");
-						String trailer = filme.getString("trailer");
-						String imagem = filme.getString("imagem");
-						filmes.add(new Filme(idShopping,nome,detalhes,"[falta este campo]",horarios,imagem,trailer));
-						images.add(imagem);
+					ja = new JSONArray(line);
+					if(ja != null){
+						for (int i = 0; i < ja.length(); i++) {
+							JSONObject filme = ja.getJSONObject(i);
+							int idFilme = filme.getInt("id");
+							int idShopping = filme.getInt("shopping_id");
+							String detalhes = filme.getString("detalhes");
+							String nomeShopping = filme.getString("shopping_nome");
+							String horarios = filme.getString("horarios");
+							String nome = filme.getString("nome");
+							String trailer = filme.getString("trailer");
+							String imagem = filme.getString("imagem");
+							String sala = filme.getString("sala");
+							filmes.add(new Filme(idFilme,idShopping,nomeShopping,nome,detalhes,sala,horarios,imagem,trailer));
+							images.add(imagem);
+						}
 					}
 				}
 				else return null;
 			} catch (IOException e) {
+				System.out.println(e.getMessage());
 
 			} catch (JSONException e) {
-				e.printStackTrace();
+				try{
+					//Caso seja apenas um filme e não venha num array a informação
+					JSONObject filme = new JSONObject(line);
+					int idFilme = filme.getInt("id");
+					int idShopping = filme.getInt("shopping_id");
+					String detalhes = filme.getString("detalhes");
+					String nomeShopping = filme.getString("shopping_nome");
+					String horarios = filme.getString("horarios");
+					String nome = filme.getString("nome");
+					String trailer = filme.getString("trailer");
+					String imagem = filme.getString("imagem");
+					String sala = filme.getString("sala");
+					filmes.add(new Filme(idFilme,idShopping,nomeShopping,nome,detalhes,sala,horarios,imagem,trailer));
+					images.add(imagem);
+				}
+				catch(Exception e1){
+					System.out.println(e1.getMessage());
+				}
+				System.out.println(e.getMessage());
 			}
 			return null;
 		}

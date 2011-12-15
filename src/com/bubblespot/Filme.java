@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 
 public class Filme {
 
+	private int id;
 	private String nome;
 	private int idShopping;
 	private String detalhes;
@@ -12,8 +13,12 @@ public class Filme {
 	private String image_url;
 	private String trailer;
 	private String sala;
+	private String nomeShopping;
+	private int pos;
+	private boolean primeira=false;
 
-	Filme(int idShopping,String nome, String detalhes, String sala, String horarios, String image_url, String trailer){
+	Filme(int id, int idShopping,String nomeShopping,String nome, String detalhes, String sala, String horarios, String image_url, String trailer){
+		this.setId(id);
 		this.setIdShopping(idShopping);
 		this.setNome(nome);
 		this.setDetalhes(detalhes);
@@ -21,6 +26,7 @@ public class Filme {
 		this.setImage_url(image_url);
 		this.setTrailer(trailer);
 		this.setSala(sala);
+		this.setShopping(nomeShopping);
 	}
 
 	public String getNome() {
@@ -85,6 +91,38 @@ public class Filme {
 
 	public void setSala(String sala) {
 		this.sala = sala;
+	}
+
+	public String getShopping() {
+		return nomeShopping;
+	}
+
+	public void setShopping(String nomeShopping) {
+		this.nomeShopping = nomeShopping;
+	}
+
+	public boolean isPrimeira() {
+		return primeira;
+	}
+
+	public void setPrimeira(boolean primeira) {
+		this.primeira = primeira;
+	}
+
+	public int getPos() {
+		return pos;
+	}
+
+	public void setPos(int pos) {
+		this.pos = pos;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }
 

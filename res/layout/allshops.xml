@@ -15,15 +15,14 @@
     <EditText
         android:id="@+id/filter_box"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Filtrar lojas">
+        android:layout_height="wrap_content">
     </EditText>
 
     <ListView
         android:id="@+id/listView1"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        android:cacheColorHint="@color/color_hint"
+        android:cacheColorHint="#00000000"
         android:divider="@color/color_divider"
         android:dividerHeight="4px" >
 

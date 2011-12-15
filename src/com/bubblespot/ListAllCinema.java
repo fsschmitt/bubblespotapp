@@ -26,16 +26,15 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.adapter.ListLojasAdapter;
+import com.adapter.ListFilmesAdapter;
 
-public class ListAllShops extends Activity{
-	private ArrayList<Loja> lojas;
+public class ListAllCinema extends Activity{
+	private ArrayList<Filme> filmes;
 	private ArrayList<String> nomes;
 	private ProgressDialog dialog;
 	private ListView listview;
-	private Bundle b;
 	private String text;
-	private ListLojasAdapter adapter;
+	private ListFilmesAdapter adapter;
 	private EditText filterText;
 	private Context mContext;
 
@@ -47,11 +46,11 @@ public class ListAllShops extends Activity{
 		this.text = c.getString("text");
 		Header header = (Header) findViewById(R.id.header);
 		header.initHeader();
-		Search.pesquisa(this, ListAllShops.this);
+		Search.pesquisa(this, ListAllCinema.this);
 
 		filterText = (EditText) findViewById(R.id.filter_box);
 		filterText.addTextChangedListener(filterTextWatcher);
-		filterText.setHint("Filtrar lojas");
+		filterText.setHint("Filtrar filmes");
 
 		dialog = ProgressDialog.show(this, "", "A Carregar...",true);
 		dialog.setCancelable(true);
@@ -60,34 +59,25 @@ public class ListAllShops extends Activity{
 				finish();
 			}
 		});
-		b = new Bundle();
-		lojas = new ArrayList<Loja>();
+		filmes = new ArrayList<Filme>();
 		nomes = new ArrayList<String>();
 		listview = (ListView) findViewById(R.id.listView1);
 		listview.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-				Intent intent = new Intent(v.getContext(), ShopDetail.class);
-				Loja loja = lojas.get(position);
-				b.putInt("lojaID", loja.getId());
-				b.putString("lojaNome", loja.getNome());
-				b.putInt("lojaPiso", loja.getPiso());
-				b.putInt("lojaNumero", loja.getNumero());
-				b.putString("lojaTelefone", loja.getTelefone());
-				b.putString("lojaDetalhes", loja.getDetalhes());
-				b.putString("lojaImagem", loja.getImagem());
-				b.putString("lojaTags", loja.getTags());
-				b.putString("lojaShopping", loja.getShopping());
-				b.putInt("idShopping", loja.getIdShopping());
+				Intent intent = new Intent(v.getContext(), Cinema.class);
+				Filme filme = filmes.get(position);
+				Bundle b = new Bundle();
+				b.putString("text", "shoppings/"+filme.getIdShopping()+"/filmes/"+filme.getId()+".json");
 				intent.putExtras(b);
 				startActivity(intent);
 			}
 		});
 
-		new RetrieveLojas().execute();
+		new RetrieveFilmes().execute();
 	}
 
-	class RetrieveLojas extends AsyncTask<String, Integer, String> {
+	class RetrieveFilmes extends AsyncTask<String, Integer, String> {
 
 		@Override
 		protected String doInBackground(String... arg0) {
@@ -105,21 +95,20 @@ public class ListAllShops extends Activity{
 				line = Utils.getJSONLine(url);
 				jo = new JSONArray(line);
 				for (int i = 0; i < jo.length(); i++) {
-					JSONObject loja = jo.getJSONObject(i);
-					int id = loja.getInt("id");
-					String Nome = loja.getString("nome");
-					int piso = loja.getInt("piso");
-					int numero = loja.getInt("numero");
-					String Telefone = loja.getString("telefone");
-					String Detalhes = loja.getString("detalhes");
-					String Imagem = loja.getString("imagem");
-					String tags = loja.getString("tags");
-					String shoppingNome = loja.getString("shopping_nome");
-					int shoppingId = loja.getInt("shopping_id");
-					Loja s = new Loja(id, Nome, piso, numero, Telefone, Detalhes, Imagem, tags, shoppingNome,shoppingId);
-					lojas.add(s);
+					JSONObject filme = jo.getJSONObject(i);
+					int id = filme.getInt("id");
+					String nome = filme.getString("nome");
+					String imagem_url = filme.getString("imagem");
+					String sala = filme.getString("sala");
+					String detalhes = filme.getString("detalhes");
+					String horarios = filme.getString("horarios");
+					String trailer = filme.getString("trailer");
+					String shoppingNome = filme.getString("shopping_nome");
+					int shoppingId = filme.getInt("shopping_id");
+					Filme f = new Filme(id,shoppingId,shoppingNome,nome,detalhes,sala,horarios,imagem_url,trailer);
+					filmes.add(f);
 				}
-				ordenar(lojas);
+				ordenar(filmes);
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (JSONException e) {
@@ -128,11 +117,11 @@ public class ListAllShops extends Activity{
 			return null;
 		}
 
-		private void ordenar(ArrayList<Loja> lojas) {
-			Collections.sort(lojas, new Comparator<Object>(){
+		private void ordenar(ArrayList<Filme> filmes) {
+			Collections.sort(filmes, new Comparator<Object>(){
 				public int compare(Object obj1, Object obj2) {
-					Loja l1 = (Loja) obj1;
-					Loja l2 = (Loja) obj2;
+					Filme l1 = (Filme) obj1;
+					Filme l2 = (Filme) obj2;
 					int deptComp = l1.getShopping().compareTo(l2.getShopping());
 					return ((deptComp == 0) ? l1.getNome().compareTo(l2.getNome())
 							: deptComp);
@@ -140,7 +129,7 @@ public class ListAllShops extends Activity{
 			});
 
 			String shopping = null;
-			for (Loja l : lojas){
+			for (Filme l : filmes){
 				nomes.add(l.getNome());
 				if (shopping==null){
 					shopping=l.getShopping();
@@ -156,8 +145,8 @@ public class ListAllShops extends Activity{
 		// Called once the background activity has completed
 		@Override
 		protected void onPostExecute(String result) { //
-			if(lojas != null && !lojas.isEmpty()){
-				adapter =  new ListLojasAdapter(mContext,nomes,lojas);
+			if(filmes != null && !filmes.isEmpty()){
+				adapter =  new ListFilmesAdapter(mContext,nomes,filmes);
 				listview.setAdapter(adapter);
 				listview.setTextFilterEnabled(true);
 				dialog.dismiss();
