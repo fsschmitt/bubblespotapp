@@ -26,26 +26,27 @@ import android.graphics.Matrix;
 import android.graphics.Typeface;
 import android.graphics.Bitmap.CompressFormat;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 
 public class Utils {
 
-	public static int raio = 8000;
+	public static int raio = 5; //km
 	public static String link = "http://bubblespot.heroku.com";
 	public static String link_shopping = "/shoppings/";
 	public static String link_loja = "/lojas/";
 	public static String link_promo = "/promos/";
 	public static String link_filme = "/filmes/";
 	public static String link_evento = "/eventos/";
-	
+
 	public static String link_shopping_ = "/shoppings";
 	public static String link_loja_ = "/lojas";
 	public static String link_promo_ = "/promos";
 	public static String link_filme_ = "/filmes";
 	public static String link_evento_ = "/eventos";
 	public static String link_format = ".json";
-	
+
 	public static String imagem_default = "http://placehold.it/128";
 
 	public static Resources res;
@@ -53,18 +54,38 @@ public class Utils {
 
 
 	public static Location getLocation(Context ctx) {
-		LocationManager lm = (LocationManager) ctx
-				.getSystemService(Context.LOCATION_SERVICE);
+		LocationManager lm = (LocationManager) ctx.getSystemService(Context.LOCATION_SERVICE);
 		List<String> providers = lm.getProviders(true);
 		Location l = null;
 
-		for (int i = providers.size() - 1; i >= 0; i--) {
-			l = lm.getLastKnownLocation(providers.get(i));
-			if (l != null)
-				break;
+		while(l==null){
+			for (String s : providers) {
+				lm.requestLocationUpdates(s, 100, 1, locationListener);
+				l = lm.getLastKnownLocation(s);
+				if (l != null)
+					break;
+			}
 		}
 		return l;
 	}
+
+	private final static LocationListener locationListener = new LocationListener() {
+		public void onLocationChanged(Location location) {
+		}
+
+		@Override
+		public void onProviderDisabled(String provider) {
+		}
+
+		@Override
+		public void onProviderEnabled(String provider) {
+		}
+
+		@Override
+		public void onStatusChanged(String provider, int status, Bundle extras) {
+		}
+	};
+
 
 	public static Bitmap loadImageFromNetwork(String url) throws MalformedURLException, IOException {
 		URL u;
