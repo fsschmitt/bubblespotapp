@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-	<item android:icon="@drawable/about" android:id="@+id/loja_promocoes"
+	<item android:icon="@android:drawable/ic_input_get" android:id="@+id/loja_promocoes"
 		android:title="Listar Promoções" />
 </menu>

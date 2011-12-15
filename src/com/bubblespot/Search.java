@@ -76,7 +76,6 @@ public class Search {
 												String nomep = ""+nome.getText();
 												String queryTemp = nomep.trim().replace(" ", "+");
 												query = URLEncoder.encode(queryTemp, "utf-8");
-												System.out.println("QUERY: "+query);
 												String pesquisa = "/search/shoppings?query=" + query + "&pesquisa=";
 												if(spinner.getSelectedItem().toString().equals("Nome")){
 													pesquisa+="0";
