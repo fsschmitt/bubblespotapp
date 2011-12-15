@@ -17,6 +17,8 @@ public class Promocao {
 	private String preco_final;
 	private String produto;
 	private Bitmap bImage;
+	private boolean primeira_s = false;
+	private boolean primeira_l = false;
 	
 	public Promocao(int id, String data_final, String desconto, String detalhes, String imagem_url, int loja_id, String loja_nome, int shopping_id, String shopping_nome, String preco_inicial, String preco_final, String produto)
 	{
@@ -137,5 +139,21 @@ public class Promocao {
 
 	public void setShopping_id(int shopping_id) {
 		this.shopping_id = shopping_id;
+	}
+
+	public boolean isPrimeira_s() {
+		return primeira_s;
+	}
+
+	public void setPrimeira_s(boolean primeira_s) {
+		this.primeira_s = primeira_s;
+	}
+
+	public boolean isPrimeira_l() {
+		return primeira_l;
+	}
+
+	public void setPrimeira_l(boolean primeira_l) {
+		this.primeira_l = primeira_l;
 	}
 }

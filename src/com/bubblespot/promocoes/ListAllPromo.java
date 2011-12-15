@@ -13,54 +13,51 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.AdapterView.OnItemClickListener;
 
-import com.adapter.PromocaoAdapter;
+import com.adapter.ListPromosAdapter;
 import com.bubblespot.Header;
 import com.bubblespot.R;
 import com.bubblespot.Search;
 import com.bubblespot.Utils;
 
-public class ListPromo extends Activity{
+public class ListAllPromo extends Activity{
+	private ArrayList<Promocao> promocoes;
 	private ArrayList<String> nomes;
-	private ArrayList<Bitmap> bImages;
-	private ArrayList<String> images;
-	private ArrayList<Promocao> promos;
 	private ProgressDialog dialog;
 	private ListView listview;
 	private Bundle b;
 	private String text;
+	private ListPromosAdapter adapter;
 	private EditText filterText;
-	private PromocaoAdapter adapter;
-	private Boolean loading;
+	private Context mContext;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.allshops);
+		mContext = this;
 		Bundle c = this.getIntent().getExtras();
 		this.text = c.getString("text");
-
 		Header header = (Header) findViewById(R.id.header);
 		header.initHeader();
-		Search.pesquisa(this, ListPromo.this);
+		Search.pesquisa(this, ListAllPromo.this);
 
 		filterText = (EditText) findViewById(R.id.filter_box);
 		filterText.addTextChangedListener(filterTextWatcher);
 		filterText.setHint("Filtrar Promoções");
-		loading=true;
+
 		dialog = ProgressDialog.show(this, "", "A Carregar...",true);
 		dialog.setCancelable(true);
 		dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
@@ -69,16 +66,14 @@ public class ListPromo extends Activity{
 			}
 		});
 		b = new Bundle();
-		promos = new ArrayList<Promocao>();
+		promocoes = new ArrayList<Promocao>();
 		nomes = new ArrayList<String>();
-		bImages = new ArrayList<Bitmap>();
-		images = new ArrayList<String>();
 		listview = (ListView) findViewById(R.id.listView1);
 		listview.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 				Intent intent = new Intent(v.getContext(), PromoDetail.class);
-				Promocao promo = promos.get(position);
+				Promocao promo = promocoes.get(position);
 				b.putInt("idLoja", promo.getLoja_id());
 				b.putInt("id", promo.getId());
 				b.putInt("idShopping", promo.getShopping_id());
@@ -138,11 +133,10 @@ public class ListPromo extends Activity{
 					int idLoja = promo.getInt("loja_id");
 
 					nomes.add(produto);
-					images.add(imagem);
 					Promocao p = new Promocao(id,dataf,desconto,detalhes,imagem,idLoja, lojaNome,shoppingId,shoppingNome,precoi,precof,produto);
-					promos.add(p);
+					promocoes.add(p);
 				}
-				ordenar(promos);
+				ordenar(promocoes);
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (JSONException e) {
@@ -190,12 +184,11 @@ public class ListPromo extends Activity{
 		// Called once the background activity has completed
 		@Override
 		protected void onPostExecute(String result) { //
-			if(nomes != null && !nomes.isEmpty()){
-				for(int i = 0; i<images.size();i++)
-					bImages.add(BitmapFactory.decodeResource(Utils.res, R.drawable.loading_images));
-				adapter = new PromocaoAdapter(ListPromo.this, bImages, promos, nomes);
+			if(promocoes != null && !promocoes.isEmpty()){
+				adapter =  new ListPromosAdapter(mContext,nomes,promocoes);
 				listview.setAdapter(adapter);
-				new RetrieveImages().execute();
+				listview.setTextFilterEnabled(true);
+				dialog.dismiss();
 			}
 			else{
 				dialog.dismiss();
@@ -205,35 +198,8 @@ public class ListPromo extends Activity{
 		}
 	}
 
-	class RetrieveImages extends AsyncTask<String, Integer, String> {
-
-		@Override
-		protected String doInBackground(String... arg0) {
-			try{
-				Bitmap image = Utils.loadImageFromNetwork(images.get(0));
-				promos.get(promos.size()-images.size()).setbImage(image);
-				bImages.set(promos.size()-images.size(),image);
-			}
-			catch(Exception e){
-				Log.e("Erro ao baixar as imagens.", e.getMessage());
-			}
-			return null;
-		}
-
-		@Override
-		protected void onPostExecute(String result) {
-			if(loading){
-				dialog.dismiss();
-				loading = false;
-			}
-			images.remove(0);
-			adapter.notifyDataSetChanged();
-			if(images.size()>0)
-				new RetrieveImages().execute();
-		}
-	}
-
 	private TextWatcher filterTextWatcher = new TextWatcher() {
+
 		public void afterTextChanged(Editable s) {
 		}
 
@@ -251,6 +217,5 @@ public class ListPromo extends Activity{
 	protected void onDestroy() {
 		super.onDestroy();
 		filterText.removeTextChangedListener(filterTextWatcher);
-	}	
-
+	}
 }

@@ -51,6 +51,9 @@ public class ShoppingAdapter extends BaseAdapter {
 		nome = (TextView) v.findViewById(R.id.sn_nome);
 		nome.setText(shoppings.get(position).getNome());
 		nome.setTypeface(Utils.tf);
+		
+		TextView loja = (TextView) v.findViewById(R.id.sp_loja_nome);
+		loja.setVisibility(View.GONE);
 
 		dist = (TextView) v.findViewById(R.id.distancia);
 		dist.setTypeface(Utils.tf);

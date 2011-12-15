@@ -3,7 +3,7 @@ package com.bubblespot;
 import com.bubblespot.cinema.ListAllCinema;
 import com.bubblespot.evento.ListAllCultural;
 import com.bubblespot.lojas.ListAllShops;
-import com.bubblespot.promocoes.ListPromo;
+import com.bubblespot.promocoes.ListAllPromo;
 import com.bubblespot.shoppings.ListShoppings;
 import com.bubblespot.shoppings.ShoppingNear;
 
@@ -106,7 +106,7 @@ public class BubbleSpot extends Activity {
 
 			public void onClick(View v) {
 				if (!checkNetwork()){
-					Intent intent = new Intent(v.getContext(), ListPromo.class);
+					Intent intent = new Intent(v.getContext(), ListAllPromo.class);
 					b = new Bundle();
 					b.putString("text", Utils.link_promo_ + Utils.link_format);
 					intent.putExtras(b);

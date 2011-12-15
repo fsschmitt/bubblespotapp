@@ -9,6 +9,7 @@
 	<drawable name="no_promo">@drawable/no_promo_white</drawable>
 	<color name="background_header">#00FFFFFF</color>
 	<color name="color_separator">#90FFFFFF</color>
+	<color name="color_separator2">#90C0C0C0</color>
 	<color name="color_divider">#90FFFFFF</color>
 	<color name="color_hint">#FFF</color>
 	<color name="color_text">#FFF</color>
