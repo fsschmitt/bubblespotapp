@@ -11,9 +11,9 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
 
-import com.bubblespot.Filme;
 import com.bubblespot.R;
 import com.bubblespot.Utils;
+import com.bubblespot.cinema.Filme;
 
 public class ListFilmesAdapter extends BaseAdapter implements Filterable {
 	private ArrayList<Filme> filmes;

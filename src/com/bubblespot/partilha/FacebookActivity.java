@@ -1,4 +1,4 @@
-package com.bubblespot;
+package com.bubblespot.partilha;
 
 import android.app.Activity;
 import android.content.Context;

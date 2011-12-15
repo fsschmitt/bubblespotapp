@@ -1,10 +1,7 @@
-package com.bubblespot;
+package com.bubblespot.shoppings;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-
-
-
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -25,6 +22,16 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bubblespot.Header;
+import com.bubblespot.R;
+import com.bubblespot.Search;
+import com.bubblespot.Touch;
+import com.bubblespot.Utils;
+import com.bubblespot.cinema.Cinema;
+import com.bubblespot.evento.Cultural;
+import com.bubblespot.lojas.ListShops;
+import com.bubblespot.promocoes.ListPromo;
 
 public class ShoppingDetail extends Activity {
 

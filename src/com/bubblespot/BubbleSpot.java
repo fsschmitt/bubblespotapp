@@ -1,5 +1,12 @@
 package com.bubblespot;
 
+import com.bubblespot.cinema.ListAllCinema;
+import com.bubblespot.evento.ListAllCultural;
+import com.bubblespot.lojas.ListAllShops;
+import com.bubblespot.promocoes.ListPromo;
+import com.bubblespot.shoppings.ListShoppings;
+import com.bubblespot.shoppings.ShoppingNear;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;

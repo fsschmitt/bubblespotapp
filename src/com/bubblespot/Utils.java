@@ -10,6 +10,10 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.List;
 
+import com.bubblespot.partilha.FacebookActivity;
+import com.bubblespot.partilha.Twitter;
+import com.bubblespot.promocoes.Promocao;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;

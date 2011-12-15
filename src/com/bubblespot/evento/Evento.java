@@ -1,4 +1,4 @@
-package com.bubblespot;
+package com.bubblespot.evento;
 
 import android.graphics.Bitmap;
 

@@ -1,4 +1,4 @@
-package com.bubblespot;
+package com.bubblespot.cinema;
 
 import android.graphics.Bitmap;
 

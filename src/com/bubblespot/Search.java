@@ -3,6 +3,10 @@ package com.bubblespot;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
+import com.bubblespot.lojas.ListAllShops;
+import com.bubblespot.promocoes.ListPromo;
+import com.bubblespot.shoppings.ListShoppings;
+
 
 
 import android.app.Activity;

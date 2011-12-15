@@ -1,4 +1,4 @@
-package com.bubblespot;
+package com.bubblespot.shoppings;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -8,9 +8,6 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.adapter.ImageAdapterShopping;
-import com.bubblespot.R;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -25,6 +22,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+
+import com.adapter.ImageAdapterShopping;
+import com.bubblespot.Header;
+import com.bubblespot.R;
+import com.bubblespot.Search;
+import com.bubblespot.Utils;
 
 public class ListShoppings extends Activity{
 	private ArrayList<String> nomes;

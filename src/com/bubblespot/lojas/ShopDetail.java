@@ -1,4 +1,4 @@
-package com.bubblespot;
+package com.bubblespot.lojas;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -31,6 +31,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.adapter.GalleryAdapter;
+import com.bubblespot.Header;
+import com.bubblespot.R;
+import com.bubblespot.Search;
+import com.bubblespot.Utils;
+import com.bubblespot.promocoes.ListPromo;
+import com.bubblespot.promocoes.PromoDetail;
+import com.bubblespot.promocoes.Promocao;
 
 public class ShopDetail extends Activity {
 

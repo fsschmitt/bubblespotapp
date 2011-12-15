@@ -1,4 +1,4 @@
-package com.bubblespot;
+package com.bubblespot.evento;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -26,16 +26,19 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import com.adapter.ListLojasAdapter;
+import com.adapter.ListEventosAdapter;
+import com.bubblespot.Header;
+import com.bubblespot.R;
+import com.bubblespot.Search;
+import com.bubblespot.Utils;
 
-public class ListAllShops extends Activity{
-	private ArrayList<Loja> lojas;
+public class ListAllCultural extends Activity{
+	private ArrayList<Evento> eventos;
 	private ArrayList<String> nomes;
 	private ProgressDialog dialog;
 	private ListView listview;
-	private Bundle b;
 	private String text;
-	private ListLojasAdapter adapter;
+	private ListEventosAdapter adapter;
 	private EditText filterText;
 	private Context mContext;
 
@@ -47,11 +50,11 @@ public class ListAllShops extends Activity{
 		this.text = c.getString("text");
 		Header header = (Header) findViewById(R.id.header);
 		header.initHeader();
-		Search.pesquisa(this, ListAllShops.this);
+		Search.pesquisa(this, ListAllCultural.this);
 
 		filterText = (EditText) findViewById(R.id.filter_box);
 		filterText.addTextChangedListener(filterTextWatcher);
-		filterText.setHint("Filtrar lojas");
+		filterText.setHint("Filtrar eventos");
 
 		dialog = ProgressDialog.show(this, "", "A Carregar...",true);
 		dialog.setCancelable(true);
@@ -60,34 +63,25 @@ public class ListAllShops extends Activity{
 				finish();
 			}
 		});
-		b = new Bundle();
-		lojas = new ArrayList<Loja>();
+		eventos = new ArrayList<Evento>();
 		nomes = new ArrayList<String>();
 		listview = (ListView) findViewById(R.id.listView1);
 		listview.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-				Intent intent = new Intent(v.getContext(), ShopDetail.class);
-				Loja loja = lojas.get(position);
-				b.putInt("lojaID", loja.getId());
-				b.putString("lojaNome", loja.getNome());
-				b.putInt("lojaPiso", loja.getPiso());
-				b.putInt("lojaNumero", loja.getNumero());
-				b.putString("lojaTelefone", loja.getTelefone());
-				b.putString("lojaDetalhes", loja.getDetalhes());
-				b.putString("lojaImagem", loja.getImagem());
-				b.putString("lojaTags", loja.getTags());
-				b.putString("lojaShopping", loja.getShopping());
-				b.putInt("idShopping", loja.getIdShopping());
+				Intent intent = new Intent(v.getContext(), Cultural.class);
+				Evento evento = eventos.get(position);
+				Bundle b = new Bundle();
+				b.putString("text", "shoppings/"+evento.getIdShopping()+"/eventos/"+evento.getId()+".json");
 				intent.putExtras(b);
 				startActivity(intent);
 			}
 		});
 
-		new RetrieveLojas().execute();
+		new RetrieveFilmes().execute();
 	}
 
-	class RetrieveLojas extends AsyncTask<String, Integer, String> {
+	class RetrieveFilmes extends AsyncTask<String, Integer, String> {
 
 		@Override
 		protected String doInBackground(String... arg0) {
@@ -105,21 +99,18 @@ public class ListAllShops extends Activity{
 				line = Utils.getJSONLine(url);
 				jo = new JSONArray(line);
 				for (int i = 0; i < jo.length(); i++) {
-					JSONObject loja = jo.getJSONObject(i);
-					int id = loja.getInt("id");
-					String Nome = loja.getString("nome");
-					int piso = loja.getInt("piso");
-					int numero = loja.getInt("numero");
-					String Telefone = loja.getString("telefone");
-					String Detalhes = loja.getString("detalhes");
-					String Imagem = loja.getString("imagem");
-					String tags = loja.getString("tags");
-					String shoppingNome = loja.getString("shopping_nome");
-					int shoppingId = loja.getInt("shopping_id");
-					Loja s = new Loja(id, Nome, piso, numero, Telefone, Detalhes, Imagem, tags, shoppingNome,shoppingId);
-					lojas.add(s);
+					JSONObject evento = jo.getJSONObject(i);
+					int idEvento = evento.getInt("id");
+					int idShopping = evento.getInt("shopping_id");
+					String imagem = evento.getString("imagem");
+					String data = evento.getString("data");
+					String detalhes = evento.getString("detalhes");
+					String nome = evento.getString("nome");
+					String local = evento.getString("local");
+					String nomeShopping = evento.getString("shopping_nome");
+					eventos.add(new Evento(idEvento,idShopping,nomeShopping,nome,data,local,detalhes,imagem));
 				}
-				ordenar(lojas);
+				ordenar(eventos);
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (JSONException e) {
@@ -128,11 +119,11 @@ public class ListAllShops extends Activity{
 			return null;
 		}
 
-		private void ordenar(ArrayList<Loja> lojas) {
-			Collections.sort(lojas, new Comparator<Object>(){
+		private void ordenar(ArrayList<Evento> eventos) {
+			Collections.sort(eventos, new Comparator<Object>(){
 				public int compare(Object obj1, Object obj2) {
-					Loja l1 = (Loja) obj1;
-					Loja l2 = (Loja) obj2;
+					Evento l1 = (Evento) obj1;
+					Evento l2 = (Evento) obj2;
 					int deptComp = l1.getShopping().compareTo(l2.getShopping());
 					return ((deptComp == 0) ? l1.getNome().compareTo(l2.getNome())
 							: deptComp);
@@ -140,7 +131,7 @@ public class ListAllShops extends Activity{
 			});
 
 			String shopping = null;
-			for (Loja l : lojas){
+			for (Evento l : eventos){
 				nomes.add(l.getNome());
 				if (shopping==null){
 					shopping=l.getShopping();
@@ -156,8 +147,8 @@ public class ListAllShops extends Activity{
 		// Called once the background activity has completed
 		@Override
 		protected void onPostExecute(String result) { //
-			if(lojas != null && !lojas.isEmpty()){
-				adapter =  new ListLojasAdapter(mContext,nomes,lojas);
+			if(eventos != null && !eventos.isEmpty()){
+				adapter =  new ListEventosAdapter(mContext,nomes,eventos);
 				listview.setAdapter(adapter);
 				listview.setTextFilterEnabled(true);
 				dialog.dismiss();

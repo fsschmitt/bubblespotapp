@@ -13,9 +13,9 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bubblespot.Promocao;
 import com.bubblespot.R;
 import com.bubblespot.Utils;
+import com.bubblespot.promocoes.Promocao;
 
 public class PromocaoAdapter extends BaseAdapter implements Filterable {
 	private ArrayList<Promocao> promocoes;

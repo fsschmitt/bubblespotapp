@@ -11,9 +11,9 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
 
-import com.bubblespot.Evento;
 import com.bubblespot.R;
 import com.bubblespot.Utils;
+import com.bubblespot.evento.Evento;
 
 public class ListEventosAdapter extends BaseAdapter implements Filterable {
 	private ArrayList<Evento> eventos;

@@ -21,42 +21,42 @@
         android:icon="@drawable/icon"
         android:label="@string/app_name" >
         <activity
-            android:label="@string/app_name"
             android:name="BubbleSpot"
+            android:label="@string/app_name"
             android:screenOrientation="portrait" >
-            <intent-filter >
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="ListShoppings"
+            android:name=".shoppings.ListShoppings"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="ShoppingDetail"
+            android:name=".shoppings.ShoppingDetail"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="ListShops"
+            android:name=".lojas.ListShops"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="ListAllShops"
+            android:name=".lojas.ListAllShops"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="ListAllCinema"
+            android:name=".cinema.ListAllCinema"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="ListAllCultural"
+            android:name=".evento.ListAllCultural"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
@@ -71,42 +71,42 @@
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="ShoppingNear"
+            android:name=".shoppings.ShoppingNear"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="ShopDetail"
+            android:name=".lojas.ShopDetail"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="PromoDetail"
+            android:name=".promocoes.PromoDetail"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="ListPromo"
+            android:name=".promocoes.ListPromo"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="Cinema"
+            android:name=".cinema.Cinema"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="Cultural"
+            android:name=".evento.Cultural"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="FacebookActivity"
+            android:name=".partilha.FacebookActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="Twitter"
+            android:name=".partilha.Twitter"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>

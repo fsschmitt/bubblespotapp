@@ -12,8 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bubblespot.R;
-import com.bubblespot.Shopping;
 import com.bubblespot.Utils;
+import com.bubblespot.shoppings.Shopping;
 
 public class ShoppingAdapter extends BaseAdapter {
 	private ArrayList<Shopping> shoppings;

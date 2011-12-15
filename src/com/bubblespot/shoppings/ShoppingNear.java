@@ -1,4 +1,4 @@
-package com.bubblespot;
+package com.bubblespot.shoppings;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -24,6 +24,10 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
 import com.adapter.ShoppingAdapter;
+import com.bubblespot.Header;
+import com.bubblespot.R;
+import com.bubblespot.Search;
+import com.bubblespot.Utils;
 
 public class ShoppingNear extends Activity{
 	private ArrayList<String> nomes;

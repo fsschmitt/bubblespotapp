@@ -1,4 +1,4 @@
-package com.bubblespot;
+package com.bubblespot.cinema;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -27,6 +27,10 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import com.adapter.ListFilmesAdapter;
+import com.bubblespot.Header;
+import com.bubblespot.R;
+import com.bubblespot.Search;
+import com.bubblespot.Utils;
 
 public class ListAllCinema extends Activity{
 	private ArrayList<Filme> filmes;

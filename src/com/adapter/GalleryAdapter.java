@@ -2,9 +2,9 @@ package com.adapter;
 
 import java.util.ArrayList;
 
-import com.bubblespot.Promocao;
 import com.bubblespot.R;
 import com.bubblespot.Utils;
+import com.bubblespot.promocoes.Promocao;
 
 import android.content.Context;
 import android.graphics.Bitmap;

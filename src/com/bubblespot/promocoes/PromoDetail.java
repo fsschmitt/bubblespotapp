@@ -1,4 +1,4 @@
-package com.bubblespot;
+package com.bubblespot.promocoes;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -14,6 +14,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bubblespot.Header;
+import com.bubblespot.R;
+import com.bubblespot.Search;
+import com.bubblespot.Utils;
 
 public class PromoDetail extends Activity {
 

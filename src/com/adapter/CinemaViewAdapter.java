@@ -14,9 +14,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bubblespot.Filme;
 import com.bubblespot.R;
 import com.bubblespot.Utils;
+import com.bubblespot.cinema.Filme;
 
 public class CinemaViewAdapter extends PagerAdapter{
 	private ArrayList<Filme> filmes;

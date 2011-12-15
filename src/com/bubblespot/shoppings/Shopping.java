@@ -1,4 +1,4 @@
-package com.bubblespot;
+package com.bubblespot.shoppings;
 
 import android.graphics.Bitmap;
 

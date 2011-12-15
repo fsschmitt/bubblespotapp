@@ -1,4 +1,4 @@
-package com.bubblespot;
+package com.bubblespot.lojas;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -27,7 +27,10 @@ import android.widget.EditText;
 import android.widget.GridView;
 
 import com.adapter.ImageAdapter;
+import com.bubblespot.Header;
 import com.bubblespot.R;
+import com.bubblespot.Search;
+import com.bubblespot.Utils;
 
 public class ListShops extends Activity{
 	private int idShopping;

@@ -11,9 +11,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bubblespot.Evento;
 import com.bubblespot.R;
 import com.bubblespot.Utils;
+import com.bubblespot.evento.Evento;
 
 public class CulturalViewAdapter extends PagerAdapter {
 	private ArrayList<Evento> eventos;

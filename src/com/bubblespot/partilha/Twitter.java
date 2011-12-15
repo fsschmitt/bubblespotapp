@@ -6,7 +6,7 @@
  * http://www.londatiga.net
  */
 
-package com.bubblespot;
+package com.bubblespot.partilha;
 
 
 import android.app.Activity;
@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.bubblespot.R;
 import com.twitter.TwitterApp;
 import com.twitter.TwitterApp.TwDialogListener;
 
