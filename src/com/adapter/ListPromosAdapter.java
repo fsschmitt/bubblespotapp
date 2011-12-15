@@ -40,7 +40,6 @@ public class ListPromosAdapter extends BaseAdapter implements Filterable {
 		return 0;
 	}
 
-	// create a new View for each item referenced by the Adapter
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View v = convertView;
 
@@ -53,17 +52,15 @@ public class ListPromosAdapter extends BaseAdapter implements Filterable {
 			shopping.setText(promocoesDisplay.get(position).getShopping_nome());
 			shopping.setTypeface(Utils.tf);
 			shopping.setVisibility(View.VISIBLE);
-			
 		}
 		else
 			shopping.setVisibility(View.GONE);
-		
+
 		TextView loja = (TextView) v.findViewById(R.id.sp_loja_nome);
 		if(promocoesDisplay.get(position).isPrimeira_l()){
 			loja.setText(promocoesDisplay.get(position).getLoja_nome());
 			loja.setTypeface(Utils.tf);
 			loja.setVisibility(View.VISIBLE);
-			
 		}
 		else
 			loja.setVisibility(View.GONE);
@@ -76,7 +73,7 @@ public class ListPromosAdapter extends BaseAdapter implements Filterable {
 		nome.setVisibility(View.VISIBLE);
 		areas.setVisibility(View.VISIBLE);
 		nome.setText(promocoesDisplay.get(position).getProduto());
-		
+
 		String desconto = promocoesDisplay.get(position).getDesconto();
 		String[] temp = new String[2];
 		if(desconto==null)
@@ -89,7 +86,6 @@ public class ListPromosAdapter extends BaseAdapter implements Filterable {
 				desconto=desconto.concat("0");
 			areas.setText("Desconto de "+desconto+" %");
 		}
-		
 		return v;
 	}
 
@@ -151,7 +147,6 @@ public class ListPromosAdapter extends BaseAdapter implements Filterable {
 				}
 				return filteredShops;
 			}
-
 		};
 	}
 }

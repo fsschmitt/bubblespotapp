@@ -37,7 +37,6 @@ public class ImageAdapter extends BaseAdapter implements Filterable {
 		return 0;
 	}
 
-	// create a new ImageView for each item referenced by the Adapter
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ImageView imageView;
 		if (convertView == null) {

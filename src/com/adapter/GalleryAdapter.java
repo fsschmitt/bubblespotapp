@@ -39,7 +39,6 @@ public class GalleryAdapter extends BaseAdapter {
 		return 0;
 	}
 
-	// create a new ImageView for each item referenced by the Adapter
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ImageView imageView;
 		TextView text;
@@ -60,18 +59,17 @@ public class GalleryAdapter extends BaseAdapter {
 				precoFinal=temp[0];
 			else if (temp[1].length()==1)
 				precoFinal=precoFinal.concat("0");
-			
+
 			if(promos.get(position).getPreco_final()==null)
 				precoFinal=precoFinal.concat(" %");
 			else
 				precoFinal=precoFinal.concat(" €");
-			
+
 			if(promos.get(position).getbImage()!=null)
 				text.setText(precoFinal);
-			
+
 			text.setTypeface(Utils.tf);
 		}
-		
 		imageView = (ImageView) v.findViewById(R.id.galleryImage);
 		imageView.setPadding(10, 0, 10, 0);
 		imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);

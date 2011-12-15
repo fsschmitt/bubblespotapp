@@ -40,7 +40,6 @@ public class ListFilmesAdapter extends BaseAdapter implements Filterable {
 		return 0;
 	}
 
-	// create a new View for each item referenced by the Adapter
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View v = convertView;
 
@@ -53,7 +52,6 @@ public class ListFilmesAdapter extends BaseAdapter implements Filterable {
 			shopping.setText(filmesDisplay.get(position).getShopping());
 			shopping.setTypeface(Utils.tf);
 			shopping.setVisibility(View.VISIBLE);
-			
 		}
 		else
 			shopping.setVisibility(View.GONE);
@@ -112,13 +110,11 @@ public class ListFilmesAdapter extends BaseAdapter implements Filterable {
 							l.setPrimeira(true);
 							shopping = l.getShopping();
 						}
-
 						filteredShops.add(l);
 					}
 				}
 				return filteredShops;
 			}
-
 		};
 	}
 }

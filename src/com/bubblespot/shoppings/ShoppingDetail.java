@@ -96,7 +96,6 @@ public class ShoppingDetail extends Activity {
 		if(byteImage != null){
 			bImage =  BitmapFactory.decodeByteArray(byteImage, 0, byteImage.length);
 
-
 			ImageView logo = (ImageView) ShoppingDetail.this.findViewById(R.id.sdLogo);
 			logo.setImageBitmap(bImage);
 			bPromocoes.setVisibility(View.VISIBLE);
@@ -117,7 +116,6 @@ public class ShoppingDetail extends Activity {
 		{
 			new RetrieveLogo().execute();
 		}
-
 	}
 
 	private void initButtons() {
@@ -216,7 +214,6 @@ public class ShoppingDetail extends Activity {
 		});
 		dLojas = (TextView) ShoppingDetail.this.findViewById(R.id.textLojas);
 		dLojas.setVisibility(View.GONE);
-
 	}
 
 	class RetrieveLogo extends AsyncTask<String, Integer, String> {
@@ -284,7 +281,6 @@ public class ShoppingDetail extends Activity {
 			TextView coordenadas = (TextView) dialog.findViewById(R.id.sCoordenadas);
 			coordenadas.setText("Coordenadas:\n\t" + this.latitude + "\n\t" + this.longitude);
 			dialog.show();
-
 		}
 		return true;
 		case R.id.mapa:
@@ -322,6 +318,5 @@ public class ShoppingDetail extends Activity {
 		else if(resultCode == RESULT_FIRST_USER && requestCode == EVENTOS_REQUEST) {
 			Toast.makeText(this, "Este shopping não tem nenhum evento registado!", Toast.LENGTH_LONG).show();
 		}
-		
 	}
 }

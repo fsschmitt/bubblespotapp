@@ -40,7 +40,6 @@ public class ListEventosAdapter extends BaseAdapter implements Filterable {
 		return 0;
 	}
 
-	// create a new View for each item referenced by the Adapter
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View v = convertView;
 
@@ -113,13 +112,11 @@ public class ListEventosAdapter extends BaseAdapter implements Filterable {
 							l.setPrimeira(true);
 							shopping = l.getShopping();
 						}
-
 						filteredShops.add(l);
 					}
 				}
 				return filteredShops;
 			}
-
 		};
 	}
 }

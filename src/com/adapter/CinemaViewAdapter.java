@@ -56,7 +56,7 @@ public class CinemaViewAdapter extends PagerAdapter{
 		TextView detalhes = ((TextView) v.findViewById(R.id.filmeDetalhesText));
 		detalhes.setText(filmes.get(position).getDetalhes());
 		detalhes.setTypeface(Utils.tf);
-		
+
 		TextView sala = ((TextView) v.findViewById(R.id.filmeSalaText));
 		sala.setText(filmes.get(position).getSala());
 		sala.setTypeface(Utils.tf);
@@ -72,9 +72,9 @@ public class CinemaViewAdapter extends PagerAdapter{
 			image = Bitmap.createScaledBitmap(image, image.getWidth()*200/image.getHeight(), 200, false);
 			trailer.setImageBitmap(image);
 		}
-		
+
 		trailer.setOnClickListener(new View.OnClickListener() {
-			
+
 			public void onClick(View v) {
 				Uri uri = Uri.parse(filmes.get(position).getTrailer());
 				uri = Uri.parse("vnd.youtube:"  + uri.getQueryParameter("v"));

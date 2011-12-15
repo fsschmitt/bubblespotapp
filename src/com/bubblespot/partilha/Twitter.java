@@ -39,7 +39,6 @@ public class Twitter extends Activity {
 			Toast.makeText(Twitter.this, "Ligado ao twitter como " + username, Toast.LENGTH_LONG).show();
 		}
 
-
 		Button postBtn 				= (Button) findViewById(R.id.button1);
 		final EditText reviewEdit   = (EditText) findViewById(R.id.revieew);
 
@@ -58,10 +57,7 @@ public class Twitter extends Activity {
 			}
 		});
 
-
-
 		mTwitter.setListener(mTwLoginDialogListener);
-
 	}
 
 	private void postToTwitter(final String review) {
@@ -87,7 +83,6 @@ public class Twitter extends Activity {
 				dialog.dismiss();
 			}
 		}.start();
-
 	}
 
 	private Handler mHandler = new Handler() {
@@ -111,7 +106,6 @@ public class Twitter extends Activity {
 
 		@Override
 		public void onError(String value) {
-
 			Toast.makeText(Twitter.this, "Ligação ao Twitter falhou", Toast.LENGTH_LONG).show();
 		}
 	};

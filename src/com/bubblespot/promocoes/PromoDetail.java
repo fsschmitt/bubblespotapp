@@ -59,7 +59,7 @@ public class PromoDetail extends Activity {
 		shopping_id = b.getInt("idShopping");
 		loja_id = b.getInt("idLoja");
 		b.putString("shopping", shopping);
-		
+
 		p = new Promocao(id,dataFinal,desconto,detalhes,imagem_url,loja_id,nomeLoja,shopping_id,shopping,precoInicial,precoFinal,produto);
 
 		TextView text_promo = (TextView) PromoDetail.this.findViewById(R.id.promo_text);
@@ -70,7 +70,7 @@ public class PromoDetail extends Activity {
 
 		TextView promoDetalhes = (TextView) PromoDetail.this.findViewById(R.id.promoDetalhes);
 		promoDetalhes.setText(detalhes);
-		
+
 		String[] temp = new String[2];
 
 		TextView promoAntes = (TextView) PromoDetail.this.findViewById(R.id.promoAntes);
@@ -168,7 +168,7 @@ public class PromoDetail extends Activity {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();

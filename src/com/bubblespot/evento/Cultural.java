@@ -56,7 +56,6 @@ public class Cultural extends FragmentActivity {
 		eventos = new ArrayList<Evento>();
 		images = new ArrayList<String>();
 
-		
 		loading = true;
 		dialog = ProgressDialog.show(this, "", "A Carregar...",true);
 		dialog.setCancelable(true);
@@ -65,7 +64,6 @@ public class Cultural extends FragmentActivity {
 				finish();
 			}
 		});
-
 		new RetrieveCultural().execute();
 	}
 

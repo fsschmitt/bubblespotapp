@@ -3,7 +3,7 @@ package com.bubblespot.promocoes;
 import android.graphics.Bitmap;
 
 public class Promocao {
-	
+
 	private int id;
 	private String data_final;
 	private String desconto;
@@ -19,7 +19,7 @@ public class Promocao {
 	private Bitmap bImage;
 	private boolean primeira_s = false;
 	private boolean primeira_l = false;
-	
+
 	public Promocao(int id, String data_final, String desconto, String detalhes, String imagem_url, int loja_id, String loja_nome, int shopping_id, String shopping_nome, String preco_inicial, String preco_final, String produto)
 	{
 		this.setId(id);

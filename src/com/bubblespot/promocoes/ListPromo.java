@@ -101,7 +101,6 @@ public class ListPromo extends Activity{
 				startActivity(intent);
 			}
 		});
-
 		new RetrievePromos().execute();
 	}
 
@@ -252,5 +251,4 @@ public class ListPromo extends Activity{
 		super.onDestroy();
 		filterText.removeTextChangedListener(filterTextWatcher);
 	}	
-
 }

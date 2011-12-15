@@ -180,7 +180,7 @@ public class ListShops extends Activity{
 				bImages.set(lojas.size()-images.size(),image);
 			}
 			catch(Exception e){
-					Log.e("Erro ao baixar as imagens.", e.getMessage());
+				Log.e("Erro ao baixar as imagens.", e.getMessage());
 			}
 			return null;
 		}

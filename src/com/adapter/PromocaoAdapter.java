@@ -60,7 +60,6 @@ public class PromocaoAdapter extends BaseAdapter implements Filterable {
 			loja.setText(promocoesDisplay.get(position).getLoja_nome());
 			loja.setTypeface(Utils.tf);
 			loja.setVisibility(View.VISIBLE);
-			
 		}
 		else
 			loja.setVisibility(View.GONE);
@@ -130,13 +129,11 @@ public class PromocaoAdapter extends BaseAdapter implements Filterable {
 							p.setPrimeira_l(true);
 							loja = p.getLoja_nome();
 						}
-
 						filteredPromos.add(p);
 					}
 				}
 				return filteredPromos;
 			}
-
 		};
 	}
 }

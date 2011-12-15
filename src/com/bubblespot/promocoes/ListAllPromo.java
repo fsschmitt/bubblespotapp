@@ -96,7 +96,6 @@ public class ListAllPromo extends Activity{
 				startActivity(intent);
 			}
 		});
-
 		new RetrievePromos().execute();
 	}
 

@@ -84,8 +84,7 @@ public class ShopDetail extends Activity {
 		this.tags = b.getString("lojaTags");
 		this.shopping = b.getString("lojaShopping");
 		this.idShopping = b.getInt("idShopping");
-		
-		
+
 		TextView loja_shopping = (TextView) findViewById(R.id.loja_shopping);
 		loja_shopping.setText(nome + " (" + shopping + ")");
 
@@ -175,7 +174,6 @@ public class ShopDetail extends Activity {
 
 			dialog.dismiss();
 		}
-
 	}
 
 	class RetrievePromo extends AsyncTask<String, Integer, String> {
@@ -296,7 +294,7 @@ public class ShopDetail extends Activity {
 			return super.onOptionsItemSelected(item);
 		}
 	}
-	
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
@@ -304,8 +302,4 @@ public class ShopDetail extends Activity {
 			Toast.makeText(this, "Esta loja não tem nenhuma promoção registada!", Toast.LENGTH_LONG).show();
 		}     
 	}
-
-
-
-
 }

@@ -38,7 +38,6 @@ public class ShoppingAdapter extends BaseAdapter {
 		return 0;
 	}
 
-	// create a new ImageView for each item referenced by the Adapter
 	public View getView(int position, View convertView, ViewGroup parent) {
 		View v = convertView;
 		TextView nome;
@@ -51,7 +50,7 @@ public class ShoppingAdapter extends BaseAdapter {
 		nome = (TextView) v.findViewById(R.id.sn_nome);
 		nome.setText(shoppings.get(position).getNome());
 		nome.setTypeface(Utils.tf);
-		
+
 		TextView loja = (TextView) v.findViewById(R.id.sp_loja_nome);
 		loja.setVisibility(View.GONE);
 

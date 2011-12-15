@@ -31,7 +31,6 @@ public class FacebookActivity extends Activity {
 	private String href;
 	private String name;
 
-	
 	public boolean saveCredentials(Facebook facebook) {
 		Editor editor = getApplicationContext().getSharedPreferences(KEY,
 				Context.MODE_PRIVATE).edit();
@@ -56,10 +55,10 @@ public class FacebookActivity extends Activity {
 
 		facebook = new Facebook(APP_ID);
 		restoreCredentials(facebook);
-		
+
 		facebook.authorize(this, PERMISSIONS,
 
-		new DialogListener() {
+				new DialogListener() {
 
 			public void onComplete(Bundle values) {
 				saveCredentials(facebook);
@@ -91,9 +90,6 @@ public class FacebookActivity extends Activity {
 		caption = b.getString("caption");
 		href = b.getString("link");
 		name = b.getString("name");
-
-
-		
 	}
 
 	public void loginAndPostToWall() {
@@ -109,18 +105,15 @@ public class FacebookActivity extends Activity {
 		parameters.putString("description", description);
 
 		parameters.putString("caption", caption);
-		
+
 		facebook.dialog(this, "stream.publish", parameters,
 				new WallPostDialogListener());
-		
-		
 	}
 
 	class LoginDialogListener implements DialogListener {
 		public void onComplete(Bundle values) {
 			saveCredentials(facebook);
 			if (messageToPost != null) {
-				
 				postToWall(messageToPost);
 			}
 		}
@@ -172,7 +165,7 @@ public class FacebookActivity extends Activity {
 
 	private void showToast(String message) {
 		Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT)
-				.show();
+		.show();
 	}
 
 	@Override
@@ -181,6 +174,4 @@ public class FacebookActivity extends Activity {
 
 		facebook.authorizeCallback(requestCode, resultCode, data);
 	}
-	
-
 }

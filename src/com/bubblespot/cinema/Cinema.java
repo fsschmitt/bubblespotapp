@@ -64,9 +64,8 @@ public class Cinema extends FragmentActivity {
 				finish();
 			}
 		});
-		
-		new RetrieveFilme().execute();
 
+		new RetrieveFilme().execute();
 	}
 
 
@@ -85,9 +84,7 @@ public class Cinema extends FragmentActivity {
 		indicator.setArrows(prev, next);
 	}
 
-
 	class RetrieveFilme extends AsyncTask<String, Integer, String> {
-
 		@Override
 		protected String doInBackground(String... arg0) {
 
@@ -185,15 +182,15 @@ public class Cinema extends FragmentActivity {
 		}
 
 		private String getUrlImage(String trailer) {
-	        String pattern = "(?:videos\\/|v=)([\\w-]+)";
-	        Pattern compiledPattern = Pattern.compile(pattern);
-	        Matcher matcher = compiledPattern.matcher(trailer);
-	        String url=null;
-	        if(matcher.find()){
+			String pattern = "(?:videos\\/|v=)([\\w-]+)";
+			Pattern compiledPattern = Pattern.compile(pattern);
+			Matcher matcher = compiledPattern.matcher(trailer);
+			String url=null;
+			if(matcher.find()){
 				if(matcher.group().split("=").length > 1)
 					url = "http://img.youtube.com/vi/"+matcher.group().split("=")[1]+"/1.jpg";
-	        }
-	        return url;
+			}
+			return url;
 		}
 
 		@Override
