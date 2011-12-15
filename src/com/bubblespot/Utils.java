@@ -32,9 +32,25 @@ import android.os.Bundle;
 public class Utils {
 
 	public static int raio = 8000;
-	public static Resources res;
+	public static String link = "http://bubblespot.heroku.com";
+	public static String link_shopping = "/shoppings/";
+	public static String link_loja = "/lojas/";
+	public static String link_promo = "/promos/";
+	public static String link_filme = "/filmes/";
+	public static String link_evento = "/eventos/";
+	
+	public static String link_shopping_ = "/shoppings";
+	public static String link_loja_ = "/lojas";
+	public static String link_promo_ = "/promos";
+	public static String link_filme_ = "/filmes";
+	public static String link_evento_ = "/eventos";
+	public static String link_format = ".json";
+	
+	public static String imagem_default = "http://placehold.it/128";
 
+	public static Resources res;
 	public static Typeface tf;
+
 
 	public static Location getLocation(Context ctx) {
 		LocationManager lm = (LocationManager) ctx
@@ -56,7 +72,7 @@ public class Utils {
 			u = new URL(url);
 		}
 		catch(MalformedURLException m){
-			u = new URL("http://placehold.it/128");
+			u = new URL(imagem_default );
 		}
 		HttpURLConnection conn = (HttpURLConnection) u.openConnection();
 		conn.connect();
@@ -96,16 +112,19 @@ public class Utils {
 
 
 	public static void share(final Promocao promo, final Context c) {
-		
+
 		final CharSequence[] items = { "Facebook", "Twitter" };
-		
+
 		AlertDialog.Builder builder = new AlertDialog.Builder(c);
 		final String message = "";
 		builder.setTitle("Partilhar");
-		
+
 		builder.setItems(items, new DialogInterface.OnClickListener() {
 
 			public void onClick(DialogInterface dialog, int item) {
+
+				String url = link + link_shopping +promo.getShopping_id()+ link_loja +promo.getLoja_id()+
+						link_promo +promo.getId();
 				switch (item) {
 
 				case 0: {
@@ -115,10 +134,10 @@ public class Utils {
 					intent = new Intent(c,
 							FacebookActivity.class);
 					b = new Bundle();
-					
+
 					b.putString("message", message);
 					b.putString("name", promo.getProduto());
-					b.putString("link", "http://bubblespot.heroku.com/shoppings/"+promo.getShopping_id()+"/lojas/"+promo.getLoja_id()+"/promos/"+promo.getId());
+					b.putString("link", url);
 
 					desconto = "Desconto: " + promo.getDesconto() + "%";
 					if(promo.getPreco_final()!=null)
@@ -136,7 +155,8 @@ public class Utils {
 
 				case 1: {
 					Bundle b = new Bundle();
-					String msg = "Vejam esta promoção: " + promo.getProduto() + " com " + promo.getDesconto() + "% de desconto. " + "http://bubblespot.heroku.com/shoppings/"+promo.getShopping_id()+"/lojas/"+promo.getLoja_id()+"/promos/"+promo.getId();
+					String msg = "Vejam esta promoção: " + promo.getProduto() + " com " + promo.getDesconto() + "% de desconto. " +
+							url;
 					b.putString("text", msg);
 					Intent intent = new Intent(c,
 							Twitter.class);

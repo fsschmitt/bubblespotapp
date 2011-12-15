@@ -127,7 +127,7 @@ public class ShoppingDetail extends Activity {
 			public void onClick(View v) {
 				Intent intent = new Intent(context, ListPromo.class);
 				Bundle b = new Bundle();
-				b.putString("text", "shoppings/"+id+"/promos.json");
+				b.putString("text", Utils.link_shopping+id+Utils.link_promo_+Utils.link_format);
 				b.putInt("idShopping", id);
 				b.putString("nomeShopping", nome);
 				intent.putExtras(b);
@@ -143,7 +143,7 @@ public class ShoppingDetail extends Activity {
 			public void onClick(View v) {
 				Intent intent = new Intent(context, Cultural.class);
 				Bundle b = new Bundle();
-				b.putString("text", "shoppings/"+id+"/eventos.json");
+				b.putString("text", Utils.link_shopping+id+Utils.link_evento_+Utils.link_format);
 				b.putInt("idShopping", id);
 				b.putString("nomeShopping", nome);
 				intent.putExtras(b);
@@ -159,7 +159,7 @@ public class ShoppingDetail extends Activity {
 			public void onClick(View v) {
 				Intent intent = new Intent(context, Cinema.class);
 				Bundle b = new Bundle();
-				b.putString("text", "shoppings/"+id+"/filmes.json");
+				b.putString("text", Utils.link_shopping+id+Utils.link_filme_+Utils.link_format);
 				b.putInt("idShopping", id);
 				b.putString("nomeShopping", nome);
 				intent.putExtras(b);
@@ -208,7 +208,7 @@ public class ShoppingDetail extends Activity {
 			public void onClick(View v) {
 				Intent intent = new Intent(v.getContext(), ListShops.class);
 				Bundle b = new Bundle();
-				b.putString("text", "shoppings/"+id+"/lojas?format=json");
+				b.putString("text", Utils.link_shopping+id+Utils.link_loja_+Utils.link_format);
 				b.putInt("idShopping", id);
 				intent.putExtras(b);
 				startActivityForResult(intent, LOJAS_REQUEST);

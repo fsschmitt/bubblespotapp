@@ -107,7 +107,7 @@ public class ListShops extends Activity{
 
 			nomes.clear();
 			bImages.clear();
-			String uri = "http://bubblespot.heroku.com/" + text;
+			String uri = Utils.link + text;
 
 			URL url = null;
 			try {

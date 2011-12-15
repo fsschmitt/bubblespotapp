@@ -72,7 +72,7 @@ public class ListAllCinema extends Activity{
 				Intent intent = new Intent(v.getContext(), Cinema.class);
 				Filme filme = filmes.get(position);
 				Bundle b = new Bundle();
-				b.putString("text", "shoppings/"+filme.getIdShopping()+"/filmes/"+filme.getId()+".json");
+				b.putString("text", Utils.link_shopping+filme.getIdShopping()+Utils.link_filme+filme.getId()+Utils.link_format);
 				intent.putExtras(b);
 				startActivity(intent);
 			}
@@ -86,7 +86,7 @@ public class ListAllCinema extends Activity{
 		@Override
 		protected String doInBackground(String... arg0) {
 
-			String uri = "http://bubblespot.heroku.com/" + text;
+			String uri = Utils.link + text;
 			URL url = null;
 			try {
 				url = new URL(uri);				

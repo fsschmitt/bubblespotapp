@@ -139,7 +139,7 @@ public class PromoDetail extends Activity {
 				bImage = Utils.loadImageFromNetwork(imagem_url);
 			} catch (Exception e) {
 				try {
-					Bitmap image = Utils.loadImageFromNetwork("http://placehold.it/128");
+					Bitmap image = Utils.loadImageFromNetwork(Utils.imagem_default);
 					image = Bitmap.createScaledBitmap(image, image.getWidth()*240/image.getHeight(), 240, false);
 					bImage = image;
 				} catch (Exception e1) {

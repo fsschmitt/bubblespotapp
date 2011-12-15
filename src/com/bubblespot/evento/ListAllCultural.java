@@ -72,7 +72,7 @@ public class ListAllCultural extends Activity{
 				Intent intent = new Intent(v.getContext(), Cultural.class);
 				Evento evento = eventos.get(position);
 				Bundle b = new Bundle();
-				b.putString("text", "shoppings/"+evento.getIdShopping()+"/eventos/"+evento.getId()+".json");
+				b.putString("text", Utils.link_shopping+evento.getIdShopping()+Utils.link_evento+evento.getId()+Utils.link_format);
 				intent.putExtras(b);
 				startActivity(intent);
 			}
@@ -86,7 +86,7 @@ public class ListAllCultural extends Activity{
 		@Override
 		protected String doInBackground(String... arg0) {
 
-			String uri = "http://bubblespot.heroku.com/" + text;
+			String uri = Utils.link + text;
 			URL url = null;
 			try {
 				url = new URL(uri);				

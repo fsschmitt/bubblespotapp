@@ -1,13 +1,4 @@
-/**
- * This example shows how to post status to Twitter.
- * 
- * @author Lorensius W. L. T <lorenz@londatiga.net>
- * 
- * http://www.londatiga.net
- */
-
 package com.bubblespot.partilha;
-
 
 import android.app.Activity;
 import android.app.ProgressDialog;

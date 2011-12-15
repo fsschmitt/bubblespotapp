@@ -52,7 +52,7 @@ public class BubbleSpot extends Activity {
 				if (!checkNetwork()){
 					Intent intent = new Intent(v.getContext(), ListShoppings.class);
 					b = new Bundle();
-					b.putString("text", "shoppings?format=json");
+					b.putString("text", Utils.link_shopping_ + Utils.link_format);
 					intent.putExtras(b);
 					startActivityForResult(intent, 0);
 				}
@@ -66,35 +66,35 @@ public class BubbleSpot extends Activity {
 				if (!checkNetwork()){
 					Intent intent = new Intent(v.getContext(), ListAllShops.class);
 					b = new Bundle();
-					b.putString("text", "lojas?format=json");
+					b.putString("text", Utils.link_loja_ + Utils.link_format);
 					intent.putExtras(b);
 					startActivityForResult(intent, 0);
 				}
 			}
 		});
 
-		final ImageView promo1 = (ImageView) findViewById(R.id.centro_dir_cima);
-		promo1.setOnClickListener(new View.OnClickListener() {
+		final ImageView filme = (ImageView) findViewById(R.id.centro_dir_cima);
+		filme.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
 				if (!checkNetwork()){
 					Intent intent = new Intent(v.getContext(), ListAllCinema.class);
 					b = new Bundle();
-					b.putString("text", "filmes?format=json");
+					b.putString("text", Utils.link_filme_ + Utils.link_format);
 					intent.putExtras(b);
 					startActivityForResult(intent, 0);
 				}
 			}
 		});
 
-		final ImageView promo2 = (ImageView) findViewById(R.id.centro_dir_baixo);
-		promo2.setOnClickListener(new View.OnClickListener() {
+		final ImageView evento = (ImageView) findViewById(R.id.centro_dir_baixo);
+		evento.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
 				if (!checkNetwork()){
 					Intent intent = new Intent(v.getContext(), ListAllCultural.class);
 					b = new Bundle();
-					b.putString("text", "eventos?format=json");
+					b.putString("text", Utils.link_evento_ + Utils.link_format);
 					intent.putExtras(b);
 					startActivityForResult(intent, 0);
 				}
@@ -108,7 +108,7 @@ public class BubbleSpot extends Activity {
 				if (!checkNetwork()){
 					Intent intent = new Intent(v.getContext(), ListPromo.class);
 					b = new Bundle();
-					b.putString("text", "promos?format=json");
+					b.putString("text", Utils.link_promo_ + Utils.link_format);
 					intent.putExtras(b);
 					startActivityForResult(intent, 0);
 				}
@@ -177,7 +177,7 @@ public class BubbleSpot extends Activity {
 				if (l==null)
 					Toast.makeText(BubbleSpot.this, "Não foi possivel obter a sua localização!", Toast.LENGTH_LONG).show();
 				else{
-					String pesquisa = "search/shoppings?latitude=" + l.getLatitude() + "&longitude=" + l.getLongitude() + "&radius=" + Utils.raio + "&format=json";
+					String pesquisa = "/search/shoppings?latitude=" + l.getLatitude() + "&longitude=" + l.getLongitude() + "&radius=" + Utils.raio + "&format=json";
 					Intent intent = new Intent(this, ShoppingNear.class);
 					b = new Bundle();
 					b.putString("text", pesquisa);

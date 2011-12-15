@@ -77,7 +77,7 @@ public class Search {
 												String queryTemp = nomep.trim().replace(" ", "+");
 												query = URLEncoder.encode(queryTemp, "utf-8");
 												System.out.println("QUERY: "+query);
-												String pesquisa = "search/shoppings?query=" + query + "&pesquisa=";
+												String pesquisa = "/search/shoppings?query=" + query + "&pesquisa=";
 												if(spinner.getSelectedItem().toString().equals("Nome")){
 													pesquisa+="0";
 												}
@@ -125,7 +125,7 @@ public class Search {
 												String queryTemp = nomep.trim().replace(" ", "+");
 												query = URLEncoder.encode(queryTemp, "utf-8");
 												System.out.println("QUERY: "+query);
-												String pesquisa = "search/lojas?query=" + query + "&pesquisa=";
+												String pesquisa = "/search/lojas?query=" + query + "&pesquisa=";
 												if(spinner.getSelectedItem().toString().equals("Nome")){
 													pesquisa+="0";
 												}
@@ -170,7 +170,7 @@ public class Search {
 												String queryTemp = nomep.trim().replace(" ", "+");
 												query = URLEncoder.encode(queryTemp, "utf-8");
 												System.out.println("QUERY: "+query);
-												String pesquisa = "search/promos?query=" + query;
+												String pesquisa = "/search/promos?query=" + query;
 												pesquisa+="&format=json";
 												Intent intent = new Intent(v.getContext(), ListPromo.class);
 												b = new Bundle();

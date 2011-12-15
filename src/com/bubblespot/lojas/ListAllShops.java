@@ -96,7 +96,7 @@ public class ListAllShops extends Activity{
 		@Override
 		protected String doInBackground(String... arg0) {
 
-			String uri = "http://bubblespot.heroku.com/" + text;
+			String uri = Utils.link + text;
 			URL url = null;
 			try {
 				url = new URL(uri);				

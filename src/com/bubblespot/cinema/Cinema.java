@@ -91,7 +91,7 @@ public class Cinema extends FragmentActivity {
 		@Override
 		protected String doInBackground(String... arg0) {
 
-			String uri = "http://bubblespot.heroku.com/"+text;
+			String uri = Utils.link+text;
 
 			URL url = null;
 			try {

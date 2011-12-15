@@ -183,13 +183,12 @@ public class ShopDetail extends Activity {
 		protected String doInBackground(String... arg0) {
 			promos.clear();
 			bImages.clear();
-			String uri = "http://bubblespot.heroku.com/shoppings/"+idShopping+"/lojas/"+id+"/promos.json";
+			String uri = Utils.link + Utils.link_shopping +idShopping+Utils.link_loja+id+ Utils.link_promo_ + Utils.link_format;
 
 			URL url = null;
 			try {
 				url = new URL(uri);				
 			} catch (MalformedURLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			String line = null;
@@ -285,7 +284,7 @@ public class ShopDetail extends Activity {
 		{
 			Intent intent = new Intent(context, ListPromo.class);
 			Bundle b = new Bundle();
-			b.putString("text", "shoppings/"+idShopping+"/lojas/"+id+"/promos.json");
+			b.putString("text", Utils.link_shopping+idShopping+Utils.link_loja+id+Utils.link_promo_ + Utils.link_format);
 			b.putInt("idShopping", idShopping);
 			b.putInt("idLoja", id);
 			b.putString("nomeShopping", shopping);
