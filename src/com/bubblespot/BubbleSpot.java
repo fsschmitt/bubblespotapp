@@ -77,7 +77,6 @@ public class BubbleSpot extends Activity {
 					intent.putExtras(b);
 					startActivityForResult(intent, 0);
 				}
-				//Toast.makeText(BubbleSpot.this, "Brevemente Disponível", Toast.LENGTH_SHORT).show();
 			}
 		});
 
@@ -85,7 +84,13 @@ public class BubbleSpot extends Activity {
 		promo2.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
-				Toast.makeText(BubbleSpot.this, "Brevemente Disponível", Toast.LENGTH_SHORT).show();
+				if (!checkNetwork()){
+					Intent intent = new Intent(v.getContext(), ListAllCultural.class);
+					b = new Bundle();
+					b.putString("text", "eventos?format=json");
+					intent.putExtras(b);
+					startActivityForResult(intent, 0);
+				}
 			}
 		});
 

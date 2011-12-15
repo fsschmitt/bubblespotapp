@@ -6,6 +6,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -163,6 +165,9 @@ public class Cinema extends FragmentActivity {
 			try{
 				if(images.get(0)!=null || !images.get(0).equals("null")){
 					Bitmap image = Utils.loadImageFromNetwork(images.get(0));
+					String imageTrailer = getUrlImage(filmes.get(filmes.size()-images.size()).getTrailer());
+					Bitmap trailer = Utils.loadImageFromNetwork(imageTrailer);
+					filmes.get(filmes.size()-images.size()).setbTrailer(trailer);
 					filmes.get(filmes.size()-images.size()).setbImage(image);
 				}
 			}
@@ -170,6 +175,18 @@ public class Cinema extends FragmentActivity {
 				Log.e("Erro ao baixar as imagens.", e.getMessage());
 			}
 			return null;
+		}
+
+		private String getUrlImage(String trailer) {
+	        String pattern = "(?:videos\\/|v=)([\\w-]+)";
+	        Pattern compiledPattern = Pattern.compile(pattern);
+	        Matcher matcher = compiledPattern.matcher(trailer);
+	        String url=null;
+	        if(matcher.find()){
+				if(matcher.group().split("=").length > 1)
+					url = "http://img.youtube.com/vi/"+matcher.group().split("=")[1]+"/1.jpg";
+	        }
+	        return url;
 		}
 
 		@Override

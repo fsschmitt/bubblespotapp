@@ -7,12 +7,12 @@
 		android:layout_width="match_parent" android:layout_height="wrap_content" />
 
 	<LinearLayout android:id="@+id/linearLayout4"
-		android:layout_width="match_parent" android:layout_height="wrap_content"
+		android:layout_width="match_parent" android:layout_height="match_parent"
 		android:orientation="vertical">
 
 		<ImageView android:id="@+id/cima" android:layout_width="wrap_content"
 			android:layout_height="0dp" android:layout_weight="1"
-			android:padding="2dp" android:src="@drawable/cima">
+			android:src="@drawable/cima" android:padding="2dp">
 		</ImageView>
 
 		<LinearLayout android:id="@+id/linearLayout2"
@@ -21,29 +21,28 @@
 
 			<ImageView android:id="@+id/centro_esq"
 				android:layout_width="0dp" android:layout_height="wrap_content"
-				android:layout_weight="1" android:padding="2dp" android:src="@drawable/meio_esq">
+				android:layout_weight="1" android:src="@drawable/meio_esq" android:padding="2dp">
 			</ImageView>
 
 			<LinearLayout android:id="@+id/linearLayout3"
 				android:layout_width="0dp" android:layout_height="match_parent"
-				android:layout_weight="1" android:orientation="vertical">
+				android:layout_weight="1" android:orientation="vertical" android:padding="2dp">
 
 				<ImageView android:id="@+id/centro_dir_cima"
 					android:layout_width="wrap_content" android:layout_height="0dp"
-					android:layout_weight="1" android:padding="2dp" android:src="@drawable/meio_dir_cima">
+					android:layout_weight="1" android:src="@drawable/meio_dir_cima">
 				</ImageView>
 
 				<ImageView android:id="@+id/centro_dir_baixo"
 					android:layout_width="wrap_content" android:layout_height="0dp"
-					android:layout_weight="1" android:padding="2dp"
-					android:src="@drawable/meio_dir_baixo">
+					android:layout_weight="1" android:src="@drawable/meio_dir_baixo">
 				</ImageView>
 			</LinearLayout>
 		</LinearLayout>
 
 		<ImageView android:id="@+id/baixo" android:layout_width="wrap_content"
 			android:layout_height="0dp" android:layout_weight="1"
-			android:padding="2dp" android:src="@drawable/baixo">
+			android:src="@drawable/baixo" android:padding="2dp">
 		</ImageView>
 	</LinearLayout>
 

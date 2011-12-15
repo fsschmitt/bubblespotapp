@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 
 public class Evento {
 
+	private int id;
 	private int idShopping;
 	private String nome;
 	private String data;
@@ -11,14 +12,18 @@ public class Evento {
 	private String imagem_url;
 	private Bitmap bImage;
 	private String local;
+	private String nomeShopping;
+	private boolean primeira = false;
 
-	Evento(int idShopping, String nome, String data, String local, String detalhes, String imagem_url){
-		this.idShopping = idShopping;
-		this.nome = nome;
-		this.data = data;
-		this.local = local;
-		this.detalhes = detalhes;
-		this.imagem_url = imagem_url;
+	Evento(int id, int idShopping, String nomeShopping, String nome, String data, String local, String detalhes, String imagem_url){
+		this.setId(id);
+		this.setIdShopping(idShopping);
+		this.setShopping(nomeShopping);
+		this.setNome(nome);
+		this.setData(data);
+		this.setLocal(local);
+		this.setDetalhes(detalhes);
+		this.setImagem_url(imagem_url);
 	}
 
 	public int getIdShopping() {
@@ -75,5 +80,29 @@ public class Evento {
 
 	public void setLocal(String local) {
 		this.local = local;
+	}
+
+	public boolean isPrimeira() {
+		return primeira;
+	}
+
+	public void setPrimeira(boolean primeira) {
+		this.primeira = primeira;
+	}
+
+	public String getShopping() {
+		return nomeShopping;
+	}
+
+	public void setShopping(String nomeShopping) {
+		this.nomeShopping = nomeShopping;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 }

@@ -98,13 +98,15 @@ public class Cultural extends FragmentActivity {
 					jo = new JSONArray(line);
 					for (int i = 0; i < jo.length(); i++) {
 						JSONObject evento = jo.getJSONObject(i);
+						int idEvento = evento.getInt("id");
 						int idShopping = evento.getInt("shopping_id");
 						String imagem = evento.getString("imagem");
 						String data = evento.getString("data");
 						String detalhes = evento.getString("detalhes");
 						String nome = evento.getString("nome");
 						String local = evento.getString("local");
-						eventos.add(new Evento(idShopping,nome,data,local,detalhes,imagem));
+						String nomeShopping = evento.getString("shopping_nome");
+						eventos.add(new Evento(idEvento,idShopping,nomeShopping,nome,data,local,detalhes,imagem));
 						images.add(imagem);
 					}
 				}
@@ -112,7 +114,24 @@ public class Cultural extends FragmentActivity {
 			} catch (IOException e) {
 
 			} catch (JSONException e) {
-				e.printStackTrace();
+				try{
+					//Caso seja apenas um filme e não venha num array a informação
+					JSONObject evento = new JSONObject(line);
+					int idEvento = evento.getInt("id");
+					int idShopping = evento.getInt("shopping_id");
+					String imagem = evento.getString("imagem");
+					String data = evento.getString("data");
+					String detalhes = evento.getString("detalhes");
+					String nome = evento.getString("nome");
+					String local = evento.getString("local");
+					String nomeShopping = evento.getString("shopping_nome");
+					eventos.add(new Evento(idEvento,idShopping,nomeShopping,nome,data,local,detalhes,imagem));
+					images.add(imagem);
+				}
+				catch(Exception e1){
+					System.out.println(e1.getMessage());
+				}
+				System.out.println(e.getMessage());
 			}
 			return null;
 		}

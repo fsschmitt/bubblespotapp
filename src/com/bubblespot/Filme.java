@@ -10,6 +10,7 @@ public class Filme {
 	private String detalhes;
 	private String horarios;
 	private Bitmap bImage;
+	private Bitmap bTrailer;
 	private String image_url;
 	private String trailer;
 	private String sala;
@@ -123,6 +124,14 @@ public class Filme {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public Bitmap getbTrailer() {
+		return bTrailer;
+	}
+
+	public void setbTrailer(Bitmap bTrailer) {
+		this.bTrailer = bTrailer;
 	}
 }
 

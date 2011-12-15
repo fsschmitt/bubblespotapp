@@ -178,19 +178,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal" >
+
+                     <ImageView
+                         android:id="@+id/filmeTrailerPic"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content" />
 
-                     <TextView
-                            android:id="@+id/filmeTrailerText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_horizontal"
-                            android:clickable="true"
-                            android:autoLink="all"
-                            android:text="trailer"
-                            android:textColor="@color/color_text" 
-                            android:paddingLeft="10dp" 
-                            android:paddingRight="10dp"/>
                     </TableRow>
                 </TableLayout>
             </LinearLayout>

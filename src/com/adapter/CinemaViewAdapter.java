@@ -3,6 +3,9 @@ package com.adapter;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -35,7 +38,7 @@ public class CinemaViewAdapter extends PagerAdapter{
 	}
 
 	@Override
-	public Object instantiateItem(View collection, int position) {
+	public Object instantiateItem(View collection, final int position) {
 
 		LayoutInflater vi = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View v = vi.inflate(R.layout.filme, null);
@@ -62,27 +65,24 @@ public class CinemaViewAdapter extends PagerAdapter{
 		horario.setText(filmes.get(position).getHorarios());
 		horario.setTypeface(Utils.tf);
 
-		TextView trailer = ((TextView) v.findViewById(R.id.filmeTrailerText));
-		trailer.setText(filmes.get(position).getTrailer());
-		trailer.setTypeface(Utils.tf);
-
-		/*
-
-		@SuppressWarnings("unused")
-		final String tr = filmes.get(position).getTrailer();
+		ImageView trailer = ((ImageView) v.findViewById(R.id.filmeTrailerPic));
+		if(filmes.get(position).getbTrailer() != null)
+		{
+			Bitmap image = filmes.get(position).getbTrailer();
+			image = Bitmap.createScaledBitmap(image, image.getWidth()*200/image.getHeight(), 200, false);
+			trailer.setImageBitmap(image);
+		}
+		
 		trailer.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
-				Uri uri = Uri.parse(tr);
-
-				// With this line the Youtube application, if installed, will launch immediately.
-				// Without it you will be prompted with a list of the application to choose.
+				Uri uri = Uri.parse(filmes.get(position).getTrailer());
 				uri = Uri.parse("vnd.youtube:"  + uri.getQueryParameter("v"));
 
 				Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-				startActivity(intent);
+				mContext.startActivity(intent);
 			}
-		});*/
+		});
 
 		((ViewPager)collection).addView(v);
 

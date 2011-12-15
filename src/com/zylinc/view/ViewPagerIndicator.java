@@ -295,16 +295,18 @@ public class ViewPagerIndicator extends RelativeLayout implements OnPageChangeLi
 	 * @param prevPos
 	 */
 	void setText(int prevPos){
-		if(prevPos < 0){
-			mPrevious.setText("");
-		}else{
-			mPrevious.setText(""+(prevPos+1));
-		}
-		mCurrent.setText((prevPos + 2)+"/"+mPageInfoProvider.size());
-		if(prevPos + 2 == this.mSize){
-			mNext.setText("");
-		}else{
-			mNext.setText(""+(prevPos + 3));
+		if(mPageInfoProvider.size() > 1){
+			if(prevPos < 0){
+				mPrevious.setText("");
+			}else{
+				mPrevious.setText(""+(prevPos+1));
+			}
+			mCurrent.setText((prevPos + 2)+"/"+mPageInfoProvider.size());
+			if(prevPos + 2 == this.mSize){
+				mNext.setText("");
+			}else{
+				mNext.setText(""+(prevPos + 3));
+			}
 		}
 	}
 
