@@ -72,6 +72,7 @@ public class ShoppingNear extends Activity{
 				Shopping sb = shoppings.get(position);
 				b.putString("shoppingNome", sb.getNome());
 				b.putString("shoppingLocal", sb.getLocalizacao());
+				b.putString("shoppingPlanta", sb.getPlanta());
 				b.putString("shoppingDescricao", sb.getDescricao());
 				b.putString("shoppingTelefone", sb.getTelefone());
 				b.putString("shoppingLatitude", sb.getLatitude());
