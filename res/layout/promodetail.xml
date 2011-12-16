@@ -44,8 +44,8 @@
                     android:id="@+id/promo_logo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="10dp" 
-                    android:contentDescription="@string/desc"/>
+                    android:contentDescription="@string/desc"
+                    android:paddingBottom="10dp" />
 
                 <TableLayout
                     android:id="@+id/tableLayout1"

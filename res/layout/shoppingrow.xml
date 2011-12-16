@@ -24,11 +24,11 @@
         android:cacheColorHint="@color/color_hint" >
 
         <ImageView
-            android:contentDescription="@string/desc"
             android:id="@+id/sn_shopping"
             android:layout_width="150dip"
             android:layout_height="100dip"
             android:layout_gravity="center"
+            android:contentDescription="@string/desc"
             android:scaleType="center"
             android:src="@drawable/icon" >
         </ImageView>

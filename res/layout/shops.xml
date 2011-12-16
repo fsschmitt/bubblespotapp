@@ -11,13 +11,12 @@
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
+
     <EditText
         android:id="@+id/filter_box"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/shops_filtrar" >
-
     </EditText>
 
     <GridView

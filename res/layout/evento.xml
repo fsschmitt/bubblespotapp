@@ -32,10 +32,10 @@
                 android:gravity="center_horizontal" >
 
                 <ImageView
-                    android:contentDescription="@string/desc"
                     android:id="@+id/eventoImagem"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/desc" />
             </TableRow>
 
             <TableRow
