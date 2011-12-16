@@ -2,31 +2,36 @@ package com.adapter;
 
 import java.util.ArrayList;
 
+import com.bubblespot.lojas.Loja;
+import com.bubblespot.lojas.ShopDetail;
+
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
-import android.graphics.Bitmap;
 
 public class ImageAdapter extends BaseAdapter implements Filterable {
 	private Context c;
-	private ArrayList<Bitmap> bImages;
-	private ArrayList<Bitmap> bImagesdisplay;
+	private ArrayList<Loja> lojas;
+	private ArrayList<Loja> lojasdisplay;
 	private ArrayList<String> nomes;
 
-	public ImageAdapter(Context c, ArrayList<Bitmap> bImages, ArrayList<String> nomes) {
+	public ImageAdapter(Context c, ArrayList<Loja> lojas,  ArrayList<String> nomes) {
 		this.c = c;
+		this.lojas = lojas;
+		this.lojasdisplay = lojas;
 		this.nomes = nomes;
-		this.bImages = bImages;
-		this.bImagesdisplay = bImages;
 	}
 
 	public int getCount() {
-		return bImagesdisplay.size();
+		return lojasdisplay.size();
 	}
 
 	public Object getItem(int position) {
@@ -37,7 +42,8 @@ public class ImageAdapter extends BaseAdapter implements Filterable {
 		return 0;
 	}
 
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(final int position, View convertView, ViewGroup parent) {
+		
 		ImageView imageView;
 		if (convertView == null) {
 			imageView = new ImageView(c);
@@ -49,8 +55,28 @@ public class ImageAdapter extends BaseAdapter implements Filterable {
 			imageView = (ImageView) convertView;
 		}
 
-		imageView.setImageBitmap(bImagesdisplay.get(position));
-
+		imageView.setImageBitmap(lojasdisplay.get(position).getbImage());
+		
+		imageView.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(v.getContext(), ShopDetail.class);
+				Bundle b = new Bundle();
+				Loja loja = lojasdisplay.get(position);
+				b.putInt("lojaID", loja.getId());
+				b.putString("lojaNome", loja.getNome());
+				b.putInt("lojaPiso", loja.getPiso());
+				b.putInt("lojaNumero", loja.getNumero());
+				b.putString("lojaTelefone", loja.getTelefone());
+				b.putString("lojaDetalhes", loja.getDetalhes());
+				b.putString("lojaImagem", loja.getImagem());
+				b.putString("lojaTags", loja.getTags());
+				b.putString("lojaShopping", loja.getShopping());
+				b.putInt("idShopping", loja.getIdShopping());
+				intent.putExtras(b);
+				c.startActivity(intent);
+			}
+		});
 		return imageView;
 	}
 
@@ -60,13 +86,13 @@ public class ImageAdapter extends BaseAdapter implements Filterable {
 			@SuppressWarnings("unchecked")
 			@Override
 			protected void publishResults(CharSequence constraint, FilterResults results) {
-				bImagesdisplay = (ArrayList<Bitmap>) results.values;
+				lojasdisplay = (ArrayList<Loja>) results.values;
 				ImageAdapter.this.notifyDataSetChanged();
 			}
 
 			@Override
 			protected FilterResults performFiltering(CharSequence constraint) {
-				ArrayList<Bitmap> filteredResults = getFilteredResults(constraint);
+				ArrayList<Loja> filteredResults = getFilteredResults(constraint);
 
 				FilterResults results = new FilterResults();
 				results.values = filteredResults;
@@ -74,9 +100,9 @@ public class ImageAdapter extends BaseAdapter implements Filterable {
 				return results;
 			}
 
-			private ArrayList<Bitmap> getFilteredResults(CharSequence filterText) {
+			private ArrayList<Loja> getFilteredResults(CharSequence filterText) {
 				ArrayList<String> filtered = new ArrayList<String>();
-				ArrayList<Bitmap> filteredShops = new ArrayList<Bitmap>();
+				ArrayList<Loja> filteredShops = new ArrayList<Loja>();
 				for(String s : nomes)
 				{
 					if(s.toLowerCase().contains(filterText.toString().toLowerCase()))
@@ -85,7 +111,7 @@ public class ImageAdapter extends BaseAdapter implements Filterable {
 				for(int i = 0; i< nomes.size(); i++)
 				{
 					if(filtered.contains(nomes.get(i))){
-						filteredShops.add(bImages.get(i));
+						filteredShops.add(lojas.get(i));
 					}
 				}
 				return filteredShops;

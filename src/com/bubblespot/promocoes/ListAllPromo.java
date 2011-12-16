@@ -15,17 +15,12 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.AdapterView.OnItemClickListener;
 
 import com.adapter.ListPromosAdapter;
 import com.bubblespot.Header;
@@ -38,7 +33,6 @@ public class ListAllPromo extends Activity{
 	private ArrayList<String> nomes;
 	private ProgressDialog dialog;
 	private ListView listview;
-	private Bundle b;
 	private String text;
 	private ListPromosAdapter adapter;
 	private EditText filterText;
@@ -65,37 +59,10 @@ public class ListAllPromo extends Activity{
 				finish();
 			}
 		});
-		b = new Bundle();
+		new Bundle();
 		promocoes = new ArrayList<Promocao>();
 		nomes = new ArrayList<String>();
 		listview = (ListView) findViewById(R.id.listView1);
-		listview.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-				Intent intent = new Intent(v.getContext(), PromoDetail.class);
-				Promocao promo = promocoes.get(position);
-				b.putInt("idLoja", promo.getLoja_id());
-				b.putInt("id", promo.getId());
-				b.putInt("idShopping", promo.getShopping_id());
-				b.putString("nomeLoja", promo.getLoja_nome());
-				b.putString("desconto", promo.getDesconto());
-				b.putString("produto", promo.getProduto());
-				b.putString("detalhes", promo.getDetalhes());
-				b.putString("precoFinal", promo.getPreco_final());
-				b.putString("precoInicial", promo.getPreco_inicial());
-				b.putString("dataFinal", promo.getData_final());
-				b.putString("imagem", promo.getImagem_url());
-				b.putString("shopping", promo.getShopping_nome());
-				Bitmap image = promo.getbImage();
-				if(image != null){
-					b.putByteArray("promoImageByte", Utils.encodeBitmap(image));
-				}
-				else
-					b.putByteArray("promoImageByte", null);
-				intent.putExtras(b);
-				startActivity(intent);
-			}
-		});
 		new RetrievePromos().execute();
 	}
 

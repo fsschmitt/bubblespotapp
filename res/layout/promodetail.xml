@@ -47,185 +47,116 @@
                     android:contentDescription="@string/desc"
                     android:paddingBottom="10dp" />
 
-                <TableLayout
-                    android:id="@+id/tableLayout1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
+                <TextView
+                    android:id="@+id/Loja"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/color_separator"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="@string/promodetail_loja"
+                    android:textColor="@color/color_text_separator"
+                    android:textSize="9pt" />
 
-                    <TableRow
-                        android:id="@+id/promoTitleLoja"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" >
+                <TextView
+                    android:id="@+id/promoLoja"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@color/color_text"
+                    android:textSize="9pt" />
 
-                        <TextView
-                            android:id="@+id/Loja"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@color/color_separator"
-                            android:gravity="center_vertical|center_horizontal"
-                            android:text="@string/promodetail_loja"
-                            android:textColor="@color/color_text_separator"
-                            android:textSize="9pt" />
-                    </TableRow>
+                <TextView
+                    android:id="@+id/Detalhes"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/color_separator"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="@string/promodetail_det"
+                    android:textColor="@color/color_text_separator"
+                    android:textSize="9pt" />
 
-                    <TableRow
-                        android:id="@+id/promoTextLoja"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal" >
+                <TextView
+                    android:id="@+id/promoDetalhes"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@color/color_text"
+                    android:textSize="9pt" />
 
-                        <TextView
-                            android:id="@+id/promoLoja"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical|center_horizontal"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"
-                            android:textColor="@color/color_text"
-                            android:textSize="9pt" />
-                    </TableRow>
+                <TextView
+                    android:id="@+id/Preco"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/color_separator"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="@string/promodetail_preco"
+                    android:textColor="@color/color_text_separator"
+                    android:textSize="9pt" />
 
-                    <TableRow
-                        android:id="@+id/promoTitleDetalhes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" >
+                <TextView
+                    android:id="@+id/promoAntes"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@color/color_text"
+                    android:textSize="9pt" />
 
-                        <TextView
-                            android:id="@+id/Detalhes"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@color/color_separator"
-                            android:gravity="center_vertical|center_horizontal"
-                            android:text="@string/promodetail_det"
-                            android:textColor="@color/color_text_separator"
-                            android:textSize="9pt" />
-                    </TableRow>
+                <TextView
+                    android:id="@+id/promoDepois"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@color/color_text"
+                    android:textSize="9pt" />
 
-                    <TableRow
-                        android:id="@+id/promoTextDetalhes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal" >
+                <TextView
+                    android:id="@+id/promoDesconto"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@color/color_text"
+                    android:textSize="9pt" />
 
-                        <TextView
-                            android:id="@+id/promoDetalhes"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical|center_horizontal"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"
-                            android:textColor="@color/color_text"
-                            android:textSize="9pt" />
-                    </TableRow>
+                <TextView
+                    android:id="@+id/DataLimite"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/color_separator"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="@string/promodetail_data"
+                    android:textColor="@color/color_text_separator"
+                    android:textSize="9pt" />
 
-                    <TableRow
-                        android:id="@+id/promoTitlePreco"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" >
+                <TextView
+                    android:id="@+id/promoDataLimite"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textColor="@color/color_text"
+                    android:textSize="9pt" />
 
-                        <TextView
-                            android:id="@+id/Preco"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@color/color_separator"
-                            android:gravity="center_vertical|center_horizontal"
-                            android:text="@string/promodetail_preco"
-                            android:textColor="@color/color_text_separator"
-                            android:textSize="9pt" />
-                    </TableRow>
-
-                    <TableRow
-                        android:id="@+id/tablerRow01"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" >
-
-                        <TextView
-                            android:id="@+id/promoAntes"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical|center_horizontal"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"
-                            android:textColor="@color/color_text"
-                            android:textSize="9pt" />
-                    </TableRow>
-
-                    <TableRow
-                        android:id="@+id/tableRow02"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" >
-
-                        <TextView
-                            android:id="@+id/promoDepois"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical|center_horizontal"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"
-                            android:textColor="@color/color_text"
-                            android:textSize="9pt" />
-                    </TableRow>
-
-                    <TableRow
-                        android:id="@+id/TableRow03"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal" >
-
-                        <TextView
-                            android:id="@+id/promoDesconto"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical|center_horizontal"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"
-                            android:textColor="@color/color_text"
-                            android:textSize="9pt" />
-                    </TableRow>
-
-                    <TableRow
-                        android:id="@+id/promoTitleDataLimite"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" >
-
-                        <TextView
-                            android:id="@+id/DataLimite"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:background="@color/color_separator"
-                            android:gravity="center_vertical|center_horizontal"
-                            android:text="@string/promodetail_data"
-                            android:textColor="@color/color_text_separator"
-                            android:textSize="9pt" />
-                    </TableRow>
-
-                    <TableRow
-                        android:id="@+id/promoTextDataLimite"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_horizontal" >
-
-                        <TextView
-                            android:id="@+id/promoDataLimite"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical|center_horizontal"
-                            android:paddingLeft="10dp"
-                            android:paddingRight="10dp"
-                            android:textColor="@color/color_text"
-                            android:textSize="9pt" />
-                    </TableRow>
-                </TableLayout>
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

@@ -3,8 +3,11 @@ package com.adapter;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Filter;
@@ -14,6 +17,7 @@ import android.widget.TextView;
 import com.bubblespot.R;
 import com.bubblespot.Utils;
 import com.bubblespot.lojas.Loja;
+import com.bubblespot.lojas.ShopDetail;
 
 public class ListLojasAdapter extends BaseAdapter implements Filterable {
 	private ArrayList<Loja> shops;
@@ -40,13 +44,34 @@ public class ListLojasAdapter extends BaseAdapter implements Filterable {
 		return 0;
 	}
 
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(final int position, View convertView, ViewGroup parent) {
 		View v = convertView;
 
 		if (v == null) {
 			LayoutInflater vi = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			v = vi.inflate(R.layout.shoprow, null);
 		} 
+		
+		v.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(v.getContext(), ShopDetail.class);
+				Bundle b = new Bundle();
+				Loja loja = shopsDisplay.get(position);
+				b.putInt("lojaID", loja.getId());
+				b.putString("lojaNome", loja.getNome());
+				b.putInt("lojaPiso", loja.getPiso());
+				b.putInt("lojaNumero", loja.getNumero());
+				b.putString("lojaTelefone", loja.getTelefone());
+				b.putString("lojaDetalhes", loja.getDetalhes());
+				b.putString("lojaImagem", loja.getImagem());
+				b.putString("lojaTags", loja.getTags());
+				b.putString("lojaShopping", loja.getShopping());
+				b.putInt("idShopping", loja.getIdShopping());
+				intent.putExtras(b);
+				c.startActivity(intent);
+			}
+		});
 		TextView shopping = (TextView) v.findViewById(R.id.sp_shopping_nome);
 		if(shopsDisplay.get(position).isPrimeira()){
 			shopping.setText(shopsDisplay.get(position).getShopping());

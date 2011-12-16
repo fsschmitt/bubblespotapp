@@ -3,8 +3,11 @@ package com.adapter;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Filter;
@@ -13,6 +16,7 @@ import android.widget.TextView;
 
 import com.bubblespot.R;
 import com.bubblespot.Utils;
+import com.bubblespot.evento.Cultural;
 import com.bubblespot.evento.Evento;
 
 public class ListEventosAdapter extends BaseAdapter implements Filterable {
@@ -40,13 +44,27 @@ public class ListEventosAdapter extends BaseAdapter implements Filterable {
 		return 0;
 	}
 
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(final int position, View convertView, ViewGroup parent) {
 		View v = convertView;
 
 		if (v == null) {
 			LayoutInflater vi = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			v = vi.inflate(R.layout.shoprow, null);
 		} 
+		
+		v.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(v.getContext(), Cultural.class);
+				Evento evento = eventosDisplay.get(position);
+				Bundle b = new Bundle();
+				b.putString("text", Utils.link_shopping+evento.getIdShopping()+Utils.link_evento+evento.getId()+Utils.link_format);
+				intent.putExtras(b);
+				c.startActivity(intent);
+			}
+		});
+
+		
 		TextView shopping = (TextView) v.findViewById(R.id.sp_shopping_nome);
 		if(eventosDisplay.get(position).isPrimeira()){
 			shopping.setText(eventosDisplay.get(position).getShopping());

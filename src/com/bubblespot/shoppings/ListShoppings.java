@@ -119,7 +119,7 @@ public class ListShoppings extends Activity{
 					String Nome = shopping.getString("nome");
 					String Descricao = shopping.getString("descricao");
 					String Imagem = shopping.getString("imagem");
-					String Planta = shopping.getString("imagem");
+					String Planta = shopping.getString("link_mapa");
 					String Localizacao = shopping.getString("localizacao");
 					String Latitude = shopping.getString("latitude");
 					String Longitude = shopping.getString("longitude");

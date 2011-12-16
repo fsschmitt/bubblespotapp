@@ -15,14 +15,10 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -66,17 +62,6 @@ public class ListAllCinema extends Activity{
 		filmes = new ArrayList<Filme>();
 		nomes = new ArrayList<String>();
 		listview = (ListView) findViewById(R.id.listView1);
-		listview.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-				Intent intent = new Intent(v.getContext(), Cinema.class);
-				Filme filme = filmes.get(position);
-				Bundle b = new Bundle();
-				b.putString("text", Utils.link_shopping+filme.getIdShopping()+Utils.link_filme+filme.getId()+Utils.link_format);
-				intent.putExtras(b);
-				startActivity(intent);
-			}
-		});
 
 		new RetrieveFilmes().execute();
 	}

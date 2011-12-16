@@ -15,14 +15,10 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -37,7 +33,6 @@ public class ListAllShops extends Activity{
 	private ArrayList<String> nomes;
 	private ProgressDialog dialog;
 	private ListView listview;
-	private Bundle b;
 	private String text;
 	private ListLojasAdapter adapter;
 	private EditText filterText;
@@ -64,29 +59,9 @@ public class ListAllShops extends Activity{
 				finish();
 			}
 		});
-		b = new Bundle();
 		lojas = new ArrayList<Loja>();
 		nomes = new ArrayList<String>();
 		listview = (ListView) findViewById(R.id.listView1);
-		listview.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-				Intent intent = new Intent(v.getContext(), ShopDetail.class);
-				Loja loja = lojas.get(position);
-				b.putInt("lojaID", loja.getId());
-				b.putString("lojaNome", loja.getNome());
-				b.putInt("lojaPiso", loja.getPiso());
-				b.putInt("lojaNumero", loja.getNumero());
-				b.putString("lojaTelefone", loja.getTelefone());
-				b.putString("lojaDetalhes", loja.getDetalhes());
-				b.putString("lojaImagem", loja.getImagem());
-				b.putString("lojaTags", loja.getTags());
-				b.putString("lojaShopping", loja.getShopping());
-				b.putInt("idShopping", loja.getIdShopping());
-				intent.putExtras(b);
-				startActivity(intent);
-			}
-		});
 
 		new RetrieveLojas().execute();
 	}

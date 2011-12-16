@@ -3,8 +3,11 @@ package com.adapter;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Filter;
@@ -13,6 +16,7 @@ import android.widget.TextView;
 
 import com.bubblespot.R;
 import com.bubblespot.Utils;
+import com.bubblespot.cinema.Cinema;
 import com.bubblespot.cinema.Filme;
 
 public class ListFilmesAdapter extends BaseAdapter implements Filterable {
@@ -40,13 +44,26 @@ public class ListFilmesAdapter extends BaseAdapter implements Filterable {
 		return 0;
 	}
 
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(final int position, View convertView, ViewGroup parent) {
 		View v = convertView;
 
 		if (v == null) {
 			LayoutInflater vi = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			v = vi.inflate(R.layout.shoprow, null);
 		} 
+		
+		v.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(v.getContext(), Cinema.class);
+				Filme filme = filmesDisplay.get(position);
+				Bundle b = new Bundle();
+				b.putString("text", Utils.link_shopping+filme.getIdShopping()+Utils.link_filme+filme.getId()+Utils.link_format);
+				intent.putExtras(b);
+				c.startActivity(intent);
+			}
+		});
+		
 		TextView shopping = (TextView) v.findViewById(R.id.sp_shopping_nome);
 		if(filmesDisplay.get(position).isPrimeira()){
 			shopping.setText(filmesDisplay.get(position).getShopping());

@@ -14,7 +14,6 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -22,9 +21,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -41,7 +37,6 @@ public class ListPromo extends Activity{
 	private ArrayList<Promocao> promos;
 	private ProgressDialog dialog;
 	private ListView listview;
-	private Bundle b;
 	private String text;
 	private EditText filterText;
 	private PromocaoAdapter adapter;
@@ -68,39 +63,12 @@ public class ListPromo extends Activity{
 				finish();
 			}
 		});
-		b = new Bundle();
+		new Bundle();
 		promos = new ArrayList<Promocao>();
 		nomes = new ArrayList<String>();
 		bImages = new ArrayList<Bitmap>();
 		images = new ArrayList<String>();
 		listview = (ListView) findViewById(R.id.listView1);
-		listview.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-				Intent intent = new Intent(v.getContext(), PromoDetail.class);
-				Promocao promo = promos.get(position);
-				b.putInt("idLoja", promo.getLoja_id());
-				b.putInt("id", promo.getId());
-				b.putInt("idShopping", promo.getShopping_id());
-				b.putString("nomeLoja", promo.getLoja_nome());
-				b.putString("desconto", promo.getDesconto());
-				b.putString("produto", promo.getProduto());
-				b.putString("detalhes", promo.getDetalhes());
-				b.putString("precoFinal", promo.getPreco_final());
-				b.putString("precoInicial", promo.getPreco_inicial());
-				b.putString("dataFinal", promo.getData_final());
-				b.putString("imagem", promo.getImagem_url());
-				b.putString("shopping", promo.getShopping_nome());
-				Bitmap image = promo.getbImage();
-				if(image != null){
-					b.putByteArray("promoImageByte", Utils.encodeBitmap(image));
-				}
-				else
-					b.putByteArray("promoImageByte", null);
-				intent.putExtras(b);
-				startActivity(intent);
-			}
-		});
 		new RetrievePromos().execute();
 	}
 
@@ -136,8 +104,6 @@ public class ListPromo extends Activity{
 					int shoppingId = promo.getInt("shopping_id");
 					int idLoja = promo.getInt("loja_id");
 
-					nomes.add(produto);
-					images.add(imagem);
 					Promocao p = new Promocao(id,dataf,desconto,detalhes,imagem,idLoja, lojaNome,shoppingId,shoppingNome,precoi,precof,produto);
 					promos.add(p);
 				}
@@ -166,6 +132,7 @@ public class ListPromo extends Activity{
 			String loja = null;
 			for (Promocao p : promos){
 				nomes.add(p.getProduto());
+				images.add(p.getImagem_url());
 				if (shopping==null){
 					shopping=p.getShopping_nome();
 					p.setPrimeira_s(true);

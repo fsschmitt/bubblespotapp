@@ -3,9 +3,13 @@ package com.adapter;
 import java.util.ArrayList;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
@@ -13,6 +17,7 @@ import android.widget.TextView;
 
 import com.bubblespot.R;
 import com.bubblespot.Utils;
+import com.bubblespot.promocoes.PromoDetail;
 import com.bubblespot.promocoes.Promocao;
 
 public class ListPromosAdapter extends BaseAdapter implements Filterable {
@@ -21,11 +26,11 @@ public class ListPromosAdapter extends BaseAdapter implements Filterable {
 	private Context c;
 	private ArrayList<String> nomes;
 
-	public ListPromosAdapter(Context c,ArrayList<String> nomes,ArrayList<Promocao> eventos) {
-		this.promocoes = eventos;
+	public ListPromosAdapter(Context c,ArrayList<String> nomes,ArrayList<Promocao> promocoes) {
+		this.promocoes = promocoes;
 		this.c = c;
 		this.nomes = nomes;
-		this.promocoesDisplay = eventos;
+		this.promocoesDisplay = promocoes;
 	}
 
 	public int getCount() {
@@ -40,13 +45,42 @@ public class ListPromosAdapter extends BaseAdapter implements Filterable {
 		return 0;
 	}
 
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(final int position, View convertView, ViewGroup parent) {
 		View v = convertView;
 
 		if (v == null) {
 			LayoutInflater vi = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			v = vi.inflate(R.layout.promorow, null);
 		} 
+		
+		v.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Bundle b = new Bundle();
+				Intent intent = new Intent(v.getContext(), PromoDetail.class);
+				Promocao promo = promocoesDisplay.get(position);
+				b.putInt("idLoja", promo.getLoja_id());
+				b.putInt("id", promo.getId());
+				b.putInt("idShopping", promo.getShopping_id());
+				b.putString("nomeLoja", promo.getLoja_nome());
+				b.putString("desconto", promo.getDesconto());
+				b.putString("produto", promo.getProduto());
+				b.putString("detalhes", promo.getDetalhes());
+				b.putString("precoFinal", promo.getPreco_final());
+				b.putString("precoInicial", promo.getPreco_inicial());
+				b.putString("dataFinal", promo.getData_final());
+				b.putString("imagem", promo.getImagem_url());
+				b.putString("shopping", promo.getShopping_nome());
+				Bitmap image = promo.getbImage();
+				if(image != null){
+					b.putByteArray("promoImageByte", Utils.encodeBitmap(image));
+				}
+				else
+					b.putByteArray("promoImageByte", null);
+				intent.putExtras(b);
+				c.startActivity(intent);
+			}
+		});
 		TextView shopping = (TextView) v.findViewById(R.id.sp_shopping_nome);
 		if(promocoesDisplay.get(position).isPrimeira_s()){
 			shopping.setText(promocoesDisplay.get(position).getShopping_nome());
@@ -111,7 +145,7 @@ public class ListPromosAdapter extends BaseAdapter implements Filterable {
 
 			private ArrayList<Promocao> getFilteredResults(CharSequence filterText) {
 				ArrayList<String> filtered = new ArrayList<String>();
-				ArrayList<Promocao> filteredShops = new ArrayList<Promocao>();
+				ArrayList<Promocao> filteredPromos = new ArrayList<Promocao>();
 				for(String s : nomes)
 				{
 					if(s.toLowerCase().contains(filterText.toString().toLowerCase()))
@@ -142,10 +176,10 @@ public class ListPromosAdapter extends BaseAdapter implements Filterable {
 							p.setPrimeira_l(true);
 							loja = p.getLoja_nome();
 						}
-						filteredShops.add(p);
+						filteredPromos.add(p);
 					}
 				}
-				return filteredShops;
+				return filteredPromos;
 			}
 		};
 	}

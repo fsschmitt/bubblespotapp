@@ -115,6 +115,7 @@
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
+        <uses-library android:name="android.test.runner" />
     </application>
-
+	<instrumentation android:targetPackage="com.bubblespot" android:name="android.test.InstrumentationTestRunner" />
 </manifest>

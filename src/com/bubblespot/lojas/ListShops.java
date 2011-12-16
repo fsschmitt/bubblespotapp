@@ -155,9 +155,9 @@ public class ListShops extends Activity{
 		@Override
 		protected void onPostExecute(String result) { //
 			if(nomes != null && !nomes.isEmpty()){
-				for(int i = 0; i<images.size();i++)
-					bImages.add(BitmapFactory.decodeResource(Utils.res, R.drawable.loading_images));
-				adapter =  new ImageAdapter(ListShops.this,bImages,nomes);
+				for(int i = 0; i<lojas.size();i++)
+					lojas.get(i).setbImage(BitmapFactory.decodeResource(Utils.res, R.drawable.loading_images));
+				adapter =  new ImageAdapter(ListShops.this,lojas,nomes);
 				gridview.setAdapter(adapter);
 				gridview.setTextFilterEnabled(true);
 				new RetrieveImages().execute();
