@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-	<item android:icon="@android:drawable/ic_menu_share" android:id="@+id/promo_partilhar"
-		android:title="Partilhar" />
+    <item
+        android:id="@+id/promo_partilhar"
+        android:icon="@android:drawable/ic_menu_share"
+        android:title="Partilhar"/>
+
 </menu>

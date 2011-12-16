@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-	<string name="app_name">BubbleSpot</string>
-	
-	  
-	<drawable name="background_main">@drawable/background</drawable>
-	<drawable name="loading_images">@drawable/loading_images_white</drawable>
-	<drawable name="loading_shoppings">@drawable/loading_shoppings_white</drawable>
-	<drawable name="no_promo">@drawable/no_promo_white</drawable>
-	<color name="background_header">#00FFFFFF</color>
-	<color name="color_separator">#90FFFFFF</color>
-	<color name="color_separator2">#90C0C0C0</color>
-	<color name="color_divider">#90FFFFFF</color>
-	<color name="color_hint">#FFF</color>
-	<color name="color_text">#FFF</color>
-	<color name="color_text_separator">#FFF</color>
-	<color name="color_text_descricao">#C0C0C0</color>
-<!--
+
+    <string name="app_name">BubbleSpot</string>
+    <string name="desc">BubbleSpot</string>
+
+    <drawable name="background_main">@drawable/background</drawable>
+    <drawable name="loading_images">@drawable/loading_images_white</drawable>
+    <drawable name="loading_shoppings">@drawable/loading_shoppings_white</drawable>
+    <drawable name="no_promo">@drawable/no_promo_white</drawable>
+
+    <color name="background_header">#00FFFFFF</color>
+    <color name="color_separator">#90FFFFFF</color>
+    <color name="color_separator2">#90C0C0C0</color>
+    <color name="color_divider">#90FFFFFF</color>
+    <color name="color_hint">#FFF</color>
+    <color name="color_text">#FFF</color>
+    <color name="color_text_separator">#FFF</color>
+    <color name="color_text_descricao">#C0C0C0</color>
+    <!--
 	<drawable name="background_main">#FFF</drawable>
 	<drawable name="loading_images">@drawable/loading_images_black</drawable>
 	<drawable name="loading_shoppings">@drawable/loading_shoppings_black</drawable>
@@ -26,16 +28,41 @@
 	<color name="color_hint">#000</color>
 	<color name="color_text">#000</color>
 	<color name="color_text_separator">#FFF</color>
-	<color name="color_text_descricao">#505050</color>
--->
-	<string name="escolha_op">Escolha uma opção</string>
-	<string-array name="opcoes_shopping">
-		<item>Nome</item>
-		<item>Localização</item>
-	</string-array>
-	<string-array name="opcoes_loja">
-		<item>Nome</item>
-		<item>Área de Negócio</item>
-	</string-array>
+	<color name="color_text_descricao">#505050</color>
+    -->
+    <string name="escolha_op">Escolha uma opção</string>
 
+    <string-array name="opcoes_shopping">
+        <item>Nome</item>
+        <item>Localização</item>
+    </string-array>
+    <string-array name="opcoes_loja">
+        <item>Nome</item>
+        <item>Área de Negócio</item>
+    </string-array>
+        <string name="post_enviar">"    Enviar    "</string>
+        <string name="post_edit">Edite a mensagem que vai publicar</string>
+        <string name="post_hint">Escreva o seu texto</string>
+        <string name="post_text">Editar…</string>
+        <string name="shops_filtrar">Filtrar lojas</string>
+        <string name="shoppingdetail_promos">Promoções</string>
+        <string name="shoppingdetail_eventos">Agenda Cultural</string>
+        <string name="shoppingdetail_cinema">Cinema</string>
+        <string name="shoppingdetail_planta">Planta</string>
+        <string name="shoppingdetail_dir">Direções</string>
+        <string name="shoppingdetail_lojas">Lojas</string>
+        <string name="shopdetail_promos">Promoções</string>
+        <string name="shopdetail_desc">Descrição</string>
+        <string name="shopdetail_det">Detalhes</string>
+         <string name="promodetail_loja">Loja</string>
+        <string name="promodetail_preco">Preço</string>
+        <string name="promodetail_det">Detalhes</string>
+        <string name="promodetail_data">Data Limite</string>
+        <string name="filme_detalhes">Detalhes</string>
+        <string name="filme_sala">Sala</string>
+        <string name="filme_horario">Sessões</string>
+        <string name="filme_trailer">Trailer</string>
+		<string name="evento_data">Data</string>
+        <string name="evento_local">Local</string>
+        <string name="evento_info">Informações</string>
 </resources>

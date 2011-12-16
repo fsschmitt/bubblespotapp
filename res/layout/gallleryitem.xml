@@ -8,12 +8,14 @@
     <ImageView
         android:id="@+id/galleryImage"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:layout_marginTop="5dp"/>
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/desc" />
 
     <TextView
         android:id="@+id/galleryText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:textColor="@color/color_text" />
 
 </LinearLayout>

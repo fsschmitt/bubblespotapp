@@ -9,7 +9,6 @@
         android:id="@+id/corpo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
         android:padding="3dp"
         android:textColor="@color/color_text" >
     </TextView>

@@ -6,26 +6,28 @@
     android:background="@drawable/background_main"
     android:orientation="vertical" >
 
-    <com.bubblespot.Header android:id="@+id/header"
-		android:layout_width="match_parent" android:layout_height="wrap_content" />
-    
-    <com.zylinc.view.ViewPagerIndicator 
-                             android:id="@+id/indicator"
-                             android:layout_width="match_parent"
-                             android:layout_height="wrap_content"
-                             android:background="#ffeaeaea"
-                             android:paddingLeft="5dp"
-                             android:paddingRight="5dp" />
-	<FrameLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="match_parent" >
+    <com.bubblespot.Header
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
-	    <android.support.v4.view.ViewPager
-	        android:id="@+id/pager"
-	        android:layout_width="match_parent"
-	        android:layout_height="match_parent">
-	    </android.support.v4.view.ViewPager>
+    <com.zylinc.view.ViewPagerIndicator
+        android:id="@+id/indicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffeaeaea"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" />
 
-	</FrameLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+        </android.support.v4.view.ViewPager>
+    </FrameLayout>
 
 </LinearLayout>

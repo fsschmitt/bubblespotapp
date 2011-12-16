@@ -15,7 +15,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/color_text_separator"
         android:textSize="22dp" />
-
+
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/relativeLayout1"
@@ -24,12 +24,10 @@
         android:cacheColorHint="@color/color_hint" >
 
         <ImageView
+            android:contentDescription="@string/desc"
             android:id="@+id/sn_shopping"
             android:layout_width="150dip"
             android:layout_height="100dip"
-            android:layout_alignParentLeft="true"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
             android:layout_gravity="center"
             android:scaleType="center"
             android:src="@drawable/icon" >
@@ -47,7 +45,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dip"
-                android:text="TextView"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/color_text" >
             </TextView>
@@ -57,7 +54,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="2dip"
-                android:text="TextView"
                 android:textColor="@color/color_text" >
             </TextView>
         </LinearLayout>

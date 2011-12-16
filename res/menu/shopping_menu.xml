@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
-	<item android:icon="@android:drawable/ic_menu_info_details" android:id="@+id/detalhes"
-		android:title="Detalhes" />
-	<item android:icon="@android:drawable/ic_menu_mapmode" android:id="@+id/mapa"
-		android:title="Mapa" />
+    <item
+        android:id="@+id/detalhes"
+        android:icon="@android:drawable/ic_menu_info_details"
+        android:title="Detalhes"/>
+    <item
+        android:id="@+id/mapa"
+        android:icon="@android:drawable/ic_menu_mapmode"
+        android:title="Mapa"/>
+
 </menu>
