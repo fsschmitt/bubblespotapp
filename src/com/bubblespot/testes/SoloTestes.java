@@ -26,7 +26,7 @@ public class SoloTestes extends ActivityInstrumentationTestCase2<BubbleSpot>{
 			solo.assertCurrentActivity("Expected ShoppingDetail activity", "ShoppingDetail");
 		}
 		
-		/*public void testPromocoesShopping() throws Exception {
+		public void testPromocoesShopping() throws Exception {
 			getDolceVita();
 			//Entrar na atividade das Promocoes
 			solo.clickOnText("Promoções"); 
@@ -115,7 +115,7 @@ public class SoloTestes extends ActivityInstrumentationTestCase2<BubbleSpot>{
 			solo.assertCurrentActivity("Expected ListShoppings activity", "ListShoppings"); 
 			solo.clickOnImage(3);
 			solo.assertCurrentActivity("Expected ShoppingDetail activity", "ShoppingDetail");
-		}*/
+		}
 
 		@Override
 		public void tearDown() throws Exception {
