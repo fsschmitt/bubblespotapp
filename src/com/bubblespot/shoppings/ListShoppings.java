@@ -113,24 +113,28 @@ public class ListShoppings extends Activity{
 			JSONArray jo = null;
 			try {
 				line = Utils.getJSONLine(url);
-				jo = new JSONArray(line);
-				for (int i = 0; i < jo.length(); i++) {
-					JSONObject shopping = jo.getJSONObject(i);
-					String Nome = shopping.getString("nome");
-					String Descricao = shopping.getString("descricao");
-					String Imagem = shopping.getString("imagem");
-					String Planta = shopping.getString("link_mapa");
-					String Localizacao = shopping.getString("localizacao");
-					String Latitude = shopping.getString("latitude");
-					String Longitude = shopping.getString("longitude");
-					String Telefone = shopping.getString("telefone");
-					String Email = shopping.getString("email");
-					int id = shopping.getInt("id");
-					images.add(Imagem);
-					nomes.add(Nome);
-					Shopping s = new Shopping(id,Nome,Localizacao,Descricao,Telefone,Email,Latitude,Longitude,Imagem,Planta);
-					shoppings.add(s);
+				if(line != null){
+					jo = new JSONArray(line);
+					for (int i = 0; i < jo.length(); i++) {
+						JSONObject shopping = jo.getJSONObject(i);
+						String Nome = shopping.getString("nome");
+						String Descricao = shopping.getString("descricao");
+						String Imagem = shopping.getString("imagem");
+						String Planta = shopping.getString("link_mapa");
+						String Localizacao = shopping.getString("localizacao");
+						String Latitude = shopping.getString("latitude");
+						String Longitude = shopping.getString("longitude");
+						String Telefone = shopping.getString("telefone");
+						String Email = shopping.getString("email");
+						int id = shopping.getInt("id");
+						images.add(Imagem);
+						nomes.add(Nome);
+						Shopping s = new Shopping(id,Nome,Localizacao,Descricao,Telefone,Email,Latitude,Longitude,Imagem,Planta);
+						shoppings.add(s);
+					}
 				}
+				else
+					return null;
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (JSONException e) {
