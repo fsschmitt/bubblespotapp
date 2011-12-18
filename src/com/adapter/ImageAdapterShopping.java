@@ -1,25 +1,27 @@
 package com.adapter;
 
 import java.util.ArrayList;
+
+import com.bubblespot.shoppings.Shopping;
+
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.graphics.Bitmap;
 
 public class ImageAdapterShopping extends BaseAdapter {
 
 	private Context mContext;
-	private ArrayList<Bitmap> bImages;
+	private ArrayList<Shopping> shoppings;
 
-	public ImageAdapterShopping(Context c, ArrayList<Bitmap> bImages) {
+	public ImageAdapterShopping(Context c, ArrayList<Shopping> shoppings) {
 		mContext = c;
-		this.bImages = bImages;
+		this.shoppings = shoppings;
 	}
 
 	public int getCount() {
-		return bImages.size();
+		return shoppings.size();
 	}
 
 	public Object getItem(int position) {
@@ -41,8 +43,9 @@ public class ImageAdapterShopping extends BaseAdapter {
 		} else {
 			imageView = (ImageView) convertView;
 		}
-
-		imageView.setImageBitmap(bImages.get(position));
+		
+		if(shoppings.get(position).getbImage()!=null)
+			imageView.setImageBitmap(shoppings.get(position).getbImage());
 
 		return imageView;
 	}

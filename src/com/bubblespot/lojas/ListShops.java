@@ -35,7 +35,6 @@ import com.bubblespot.Utils;
 public class ListShops extends Activity{
 	private int idShopping;
 	private ArrayList<String> nomes;
-	private ArrayList<Bitmap> bImages;
 	private ArrayList<String> images;
 	private ArrayList<Loja> lojas;
 	private ProgressDialog dialog;
@@ -69,7 +68,6 @@ public class ListShops extends Activity{
 		b = new Bundle();
 		lojas = new ArrayList<Loja>();
 		nomes = new ArrayList<String>();
-		bImages = new ArrayList<Bitmap>();
 		images = new ArrayList<String>();
 		gridview = (GridView) findViewById(R.id.gridView1);
 		gridview.setNumColumns(2);
@@ -106,7 +104,6 @@ public class ListShops extends Activity{
 		protected String doInBackground(String... arg0) {
 
 			nomes.clear();
-			bImages.clear();
 			String uri = Utils.link + text;
 
 			URL url = null;
@@ -177,10 +174,9 @@ public class ListShops extends Activity{
 				Bitmap image = Utils.loadImageFromNetwork(images.get(0));
 				image = Bitmap.createScaledBitmap(image, image.getWidth()*120/image.getHeight(), 120, false);
 				lojas.get(lojas.size()-images.size()).setbImage(image);
-				bImages.set(lojas.size()-images.size(),image);
 			}
 			catch(Exception e){
-				Log.e("Erro ao baixar as imagens.", e.getMessage());
+				Log.e("Erro ao baixar as imagens. (ListShops)", e.getMessage());
 			}
 			return null;
 		}

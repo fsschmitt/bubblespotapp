@@ -139,7 +139,7 @@ public class SoloTestes extends ActivityInstrumentationTestCase2<BubbleSpot>{
 		solo.clickOnImage(3); 
 		solo.assertCurrentActivity("Expected ListAllShops activity", "ListAllShops"); 
 		solo.enterText(0, "Pull");
-		solo.clickOnText("Pull");
+		solo.clickOnText("Bear");
 		solo.assertCurrentActivity("Expected ShopDetail activity", "ShopDetail");
 		assertTrue(solo.searchText("Pull"));
 	}
@@ -172,7 +172,8 @@ public class SoloTestes extends ActivityInstrumentationTestCase2<BubbleSpot>{
 
 	public void testEventos(){
 		//Imagem Eventos
-		solo.clickOnImage(5); 
+		solo.assertCurrentActivity("Expected BubbleSpot activity", "BubbleSpot");
+		solo.clickOnImage(5);
 		solo.assertCurrentActivity("Expected ListAllCultural activity", "ListAllCultural"); 
 		solo.clickOnText("Jantar");
 		solo.assertCurrentActivity("Expected Cultural activity", "Cultural");

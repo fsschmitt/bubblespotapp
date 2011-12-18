@@ -81,20 +81,22 @@ public class ListAllCultural extends Activity{
 			JSONArray jo = null;
 			try {
 				line = Utils.getJSONLine(url);
-				jo = new JSONArray(line);
-				for (int i = 0; i < jo.length(); i++) {
-					JSONObject evento = jo.getJSONObject(i);
-					int idEvento = evento.getInt("id");
-					int idShopping = evento.getInt("shopping_id");
-					String imagem = evento.getString("imagem");
-					String data = evento.getString("data");
-					String detalhes = evento.getString("detalhes");
-					String nome = evento.getString("nome");
-					String local = evento.getString("local");
-					String nomeShopping = evento.getString("shopping_nome");
-					eventos.add(new Evento(idEvento,idShopping,nomeShopping,nome,data,local,detalhes,imagem));
-				}
-				ordenar(eventos);
+				if(line != null){
+					jo = new JSONArray(line);
+					for (int i = 0; i < jo.length(); i++) {
+						JSONObject evento = jo.getJSONObject(i);
+						int idEvento = evento.getInt("id");
+						int idShopping = evento.getInt("shopping_id");
+						String imagem = evento.getString("imagem");
+						String data = evento.getString("data");
+						String detalhes = evento.getString("detalhes");
+						String nome = evento.getString("nome");
+						String local = evento.getString("local");
+						String nomeShopping = evento.getString("shopping_nome");
+						eventos.add(new Evento(idEvento,idShopping,nomeShopping,nome,data,local,detalhes,imagem));
+					}
+					ordenar(eventos);
+				} else return null;
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (JSONException e) {

@@ -31,7 +31,6 @@ import com.bubblespot.Utils;
 
 public class ListShoppings extends Activity{
 	private ArrayList<String> nomes;
-	private ArrayList<Bitmap> bImages;
 	private ArrayList<Shopping> shoppings;
 	private ArrayList<String> images;
 	private ProgressDialog dialog;
@@ -62,10 +61,9 @@ public class ListShoppings extends Activity{
 		loading = true;
 		shoppings = new ArrayList<Shopping>();
 		nomes = new ArrayList<String>();
-		bImages = new ArrayList<Bitmap>();
 		images = new ArrayList<String>();
 		listview = (ListView) findViewById(R.id.listView1);
-		iAdapter = new ImageAdapterShopping(ListShoppings.this, bImages);
+		iAdapter = new ImageAdapterShopping(ListShoppings.this, shoppings);
 		listview.setAdapter(iAdapter);
 		listview.setOnItemClickListener(new OnItemClickListener() {
 			@Override
@@ -100,7 +98,6 @@ public class ListShoppings extends Activity{
 		protected String doInBackground(String... arg0) {
 
 			nomes.clear();
-			bImages.clear();
 			String uri = Utils.link + text;
 
 			URL url = null;
@@ -147,6 +144,8 @@ public class ListShoppings extends Activity{
 		@Override
 		protected void onPostExecute(String result) { 
 			if(nomes != null && !nomes.isEmpty() && !images.isEmpty()){
+				for(Shopping s : shoppings)
+					s.setbImage(Utils.overlay(BitmapFactory.decodeResource(Utils.res, R.drawable.loading_images),BitmapFactory.decodeResource(Utils.res, R.drawable.icon)));
 				new RetrieveImages().execute();
 			}
 			else{
@@ -164,13 +163,11 @@ public class ListShoppings extends Activity{
 			try{
 				if(loading){
 					Bitmap image = Utils.loadImageFromNetwork(images.get(0));
-					bImages.add(image);
 					shoppings.get(0).setbImage(image);
 				}
 				else{
 					Bitmap image = Utils.loadImageFromNetwork(images.get(0));
-					bImages.add(bImages.size()-1,image);
-					shoppings.get(bImages.size()-2).setbImage(image);
+					shoppings.get(shoppings.size()-images.size()).setbImage(image);
 				}
 			}
 			catch(Exception e){
@@ -183,7 +180,6 @@ public class ListShoppings extends Activity{
 		protected void onPostExecute(String result) {
 			if(loading){
 				dialog.dismiss();
-				bImages.add(Utils.overlay(BitmapFactory.decodeResource(Utils.res, R.drawable.loading_shoppings),BitmapFactory.decodeResource(Utils.res, R.drawable.icon)));
 				loading = false;
 			}
 			images.remove(0);
@@ -191,8 +187,6 @@ public class ListShoppings extends Activity{
 			if(images.size()>0){
 				new RetrieveImages().execute();
 			}
-			else
-				bImages.remove(bImages.size()-1);
 		}
 	}
 }
