@@ -52,19 +52,19 @@ public class GalleryAdapter extends BaseAdapter {
 			text = (TextView) v.findViewById(R.id.galleryText);
 			String precoFinal=promos.get(position).getPreco_final();
 			String[] temp = new String[2];
-			if(precoFinal ==null || precoFinal.equalsIgnoreCase("null"))
+			if(precoFinal ==null || precoFinal.equalsIgnoreCase("null")){
 				precoFinal = promos.get(position).getDesconto();
-			temp = precoFinal.split("\\.");
-			if (temp[1].equals("0"))
-				precoFinal=temp[0];
-			else if (temp[1].length()==1)
-				precoFinal=precoFinal.concat("0");
-
-			if(promos.get(position).getPreco_final()==null)
 				precoFinal=precoFinal.concat(" %");
-			else
+			} else{
+				temp = precoFinal.split("\\.");
+				if (temp[1].equals("0"))
+					precoFinal=temp[0];
+				else if (temp[1].length()==1)
+					precoFinal=precoFinal.concat("0");
+				
 				precoFinal=precoFinal.concat(" €");
-
+			}
+			
 			if(promos.get(position).getbImage()!=null)
 				text.setText(precoFinal);
 
