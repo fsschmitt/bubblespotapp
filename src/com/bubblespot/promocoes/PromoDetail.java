@@ -74,7 +74,7 @@ public class PromoDetail extends Activity {
 		String[] temp = new String[2];
 
 		TextView promoAntes = (TextView) PromoDetail.this.findViewById(R.id.promoAntes);
-		if(precoInicial==null)
+		if(precoInicial==null || precoInicial.equalsIgnoreCase("null"))
 			promoAntes.setVisibility(View.GONE);
 		else{
 			temp = precoInicial.split("\\.");
@@ -86,7 +86,7 @@ public class PromoDetail extends Activity {
 		}
 
 		TextView promoDepois = (TextView) PromoDetail.this.findViewById(R.id.promoDepois);
-		if(precoFinal==null)
+		if(precoFinal==null || precoFinal.equalsIgnoreCase("null"))
 			promoDepois.setVisibility(View.GONE);
 		else{
 			temp = precoFinal.split("\\.");
@@ -98,7 +98,7 @@ public class PromoDetail extends Activity {
 		}
 
 		TextView promoDesconto = (TextView) PromoDetail.this.findViewById(R.id.promoDesconto);
-		if(desconto==null)
+		if(desconto==null || desconto.equalsIgnoreCase("null"))
 			promoDesconto.setVisibility(View.GONE);
 		else{
 			temp = desconto.split("\\.");
