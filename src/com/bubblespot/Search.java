@@ -3,12 +3,6 @@ package com.bubblespot;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-import com.bubblespot.lojas.ListAllShops;
-import com.bubblespot.promocoes.ListPromo;
-import com.bubblespot.shoppings.ListShoppings;
-
-
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -25,6 +19,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.bubblespot.lojas.ListAllShops;
+import com.bubblespot.promocoes.ListPromo;
+import com.bubblespot.shoppings.ListShoppings;
 
 public class Search {
 
@@ -74,9 +72,12 @@ public class Search {
 											String query = "";
 											try {
 												String nomep = ""+nome.getText();
-												String queryTemp = nomep.trim().replace(" ", "+");
+												String queryTemp = nomep.trim().replace(" ","+");
+												System.out.println(queryTemp);
 												query = URLEncoder.encode(queryTemp, "utf-8");
+												query = query.trim().replace("%2B","+");
 												String pesquisa = "/search/shoppings?query=" + query + "&pesquisa=";
+												System.out.println(pesquisa);
 												if(spinner.getSelectedItem().toString().equals("Nome")){
 													pesquisa+="0";
 												}
@@ -123,6 +124,7 @@ public class Search {
 												String nomep = ""+nome.getText();
 												String queryTemp = nomep.trim().replace(" ", "+");
 												query = URLEncoder.encode(queryTemp, "utf-8");
+												query = query.trim().replace("%2B","+");
 												System.out.println("QUERY: "+query);
 												String pesquisa = "/search/lojas?query=" + query + "&pesquisa=";
 												if(spinner.getSelectedItem().toString().equals("Nome")){
@@ -168,6 +170,7 @@ public class Search {
 												String nomep = ""+nome.getText();
 												String queryTemp = nomep.trim().replace(" ", "+");
 												query = URLEncoder.encode(queryTemp, "utf-8");
+												query = query.trim().replace("%2B","+");
 												System.out.println("QUERY: "+query);
 												String pesquisa = "/search/promos?query=" + query;
 												pesquisa+="&format=json";
